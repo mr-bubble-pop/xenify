@@ -40,12 +40,31 @@ xenify-write profiles
   user with no admin prompt. Checked here: the command line, checker and
   model under Wine. The window itself needs a real Windows.
 - **macOS:** needs a Mac (Apple's SDK can't legally be used elsewhere).
-  Use the workflow (GitHub's Mac runners), or run the script on a Mac.
+  Run the script on a Mac. The workflow's Mac job was taken out on
+  2026-10-20 (no Mac release yet); to bring it back, add
+  `{ os: macos-14, system: macos }` to its matrix.
 - **All at once:** `.github/workflows/write-packages.yml` builds Linux
-  (Ubuntu 22.04), Windows, macOS and the browser version on GitHub Actions.
-  It needs the repo on GitHub, and a repository variable `SPOTTER_URL`
-  pointing at `B7.tgz` (for example a release asset). Also set
+  (Ubuntu 22.04), Windows and the browser version on GitHub Actions
+  (github.com/mr-bubble-pop/xenify). It needs a repository variable
+  `SPOTTER_URL` pointing at `B7.tgz` (for example a release asset), and
   `SPOTTER_SHA256` from `checkpoints/SHA256SUMS`.
+  - It puts xenify.net on Cloudflare Pages (project `xenify`; the secrets
+    `CLOUDFLARE_API_TOKEN`, with only *Cloudflare Pages: Edit*, and
+    `CLOUDFLARE_ACCOUNT_ID`).
+  - A `write-v*` tag also makes a draft GitHub release with fixed file
+    names (`Xenify-Write-Setup-x64.exe`, `Xenify-Write-amd64.deb`, ...).
+    The site's download links point at
+    `releases/latest/download/<name>`, so they work once a release is
+    published.
+
+## xenify.net
+
+`site/` is the feature page. `scripts/build-site.sh` puts it together with
+the browser version (at `/write/`) in `target/site`, without the `.br`/`.gz`
+copies, and moves the caching rules in `_headers` under `/write/`. Deploy by
+hand with `npx wrangler pages deploy target/site --project-name xenify`, or
+drag `target/site` into Cloudflare's *Upload assets*. The screenshots in
+`site/img` were taken from the browser version in headless Chromium.
 
 ## Signing: none (decided 2026-10-20)
 

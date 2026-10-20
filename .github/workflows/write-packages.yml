@@ -1,17 +1,18 @@
-# Builds Xenify Write's packages on each system: Linux (.deb, .rpm,
-# .AppImage, .tar.gz), Windows (setup .exe), macOS (.dmg for Apple silicon
-# and Intel) and the browser version (a folder for any static host).
-# Run it from the Actions tab, or push a tag like write-v0.1.0.
+# Builds Xenify Write's packages: Linux (.deb, .rpm, .AppImage, .tar.gz),
+# Windows (setup .exe) and the browser version, then puts xenify.net
+# (feature page + /write/) on Cloudflare Pages.
+# Run it from the Actions tab, or push a tag like write-v0.1.0. A tag also
+# makes a DRAFT GitHub release with the packages under fixed names
+# (Xenify-Write-Setup-x64.exe, ...), which the download links on the site
+# point at once the release is published.
 #
 # Repository settings it uses (Settings › Secrets and variables › Actions):
 #   variable SPOTTER_URL      where to download the mistake-spotter model (B7.tgz,
 #                             e.g. an asset of a GitHub release); required
 #   variable SPOTTER_SHA256   its SHA-256 (checkpoints/SHA256SUMS); recommended
-#   secrets for signing (optional; without them the packages are unsigned):
-#     macOS:   APPLE_CERTIFICATE (base64 .p12), APPLE_CERTIFICATE_PASSWORD,
-#              APPLE_SIGNING_IDENTITY, and for notarising APPLE_ID,
-#              APPLE_PASSWORD (app-specific), APPLE_TEAM_ID
-#     Windows: see docs/write-packaging.md
+#   secret CLOUDFLARE_API_TOKEN   a token with only Account › Cloudflare Pages › Edit
+#   secret CLOUDFLARE_ACCOUNT_ID
+# The Mac build is left out for now; see docs/write-packaging.md to add it back.
 name: Xenify Write packages
 
 on:
@@ -24,6 +25,9 @@ env:
   SPOTTER_SHA256: ${{ vars.SPOTTER_SHA256 }}
   CARGO_TERM_COLOR: always
 
+permissions:
+  contents: read
+
 jobs:
   desktop:
     strategy:
@@ -33,7 +37,6 @@ jobs:
           # The oldest supported Ubuntu, so the Linux packages run on older systems too.
           - { os: ubuntu-22.04, system: linux }
           - { os: windows-latest, system: windows }
-          - { os: macos-14, system: macos }
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
@@ -48,13 +51,6 @@ jobs:
         run: cargo install tauri-cli --version "^2" --locked
       - name: Package
         shell: bash
-        env:
-          APPLE_CERTIFICATE: ${{ secrets.APPLE_CERTIFICATE }}
-          APPLE_CERTIFICATE_PASSWORD: ${{ secrets.APPLE_CERTIFICATE_PASSWORD }}
-          APPLE_SIGNING_IDENTITY: ${{ secrets.APPLE_SIGNING_IDENTITY }}
-          APPLE_ID: ${{ secrets.APPLE_ID }}
-          APPLE_PASSWORD: ${{ secrets.APPLE_PASSWORD }}
-          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
         run: scripts/package-write.sh ${{ matrix.system }}
       - uses: actions/upload-artifact@v4
         with:
@@ -76,8 +72,66 @@ jobs:
           curl -fsSL https://github.com/WebAssembly/binaryen/releases/download/version_124/binaryen-version_124-x86_64-linux.tar.gz | tar xz -C "$HOME"
           echo "$HOME/binaryen-version_124/bin" >> "$GITHUB_PATH"
       - name: Build
-        run: scripts/build-write-web.sh
+        run: scripts/build-site.sh --rebuild
       - uses: actions/upload-artifact@v4
         with:
-          name: xenify-write-web
-          path: target/write-web
+          name: xenify-site
+          path: target/site
+
+  deploy-site:
+    needs: web
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: xenify-site
+          path: site
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Upload to Cloudflare Pages
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          # The first run creates the project (xenify.pages.dev).
+          npx --yes wrangler@4 pages project list | grep -qw xenify ||
+            npx --yes wrangler@4 pages project create xenify --production-branch main
+          npx --yes wrangler@4 pages deploy site --project-name xenify --branch main
+
+  release:
+    if: startsWith(github.ref, 'refs/tags/write-v')
+    needs: desktop
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: xenify-write-*
+          merge-multiple: true
+          path: packages
+      - name: Fixed names for the site's download links
+        run: |
+          cd packages
+          mv *_x64-setup.exe Xenify-Write-Setup-x64.exe
+          mv *_amd64.deb Xenify-Write-amd64.deb
+          mv *.x86_64.rpm Xenify-Write-x86_64.rpm
+          mv *_amd64.AppImage Xenify-Write-x86_64.AppImage
+          mv *-x86_64-linux.tar.gz Xenify-Write-x86_64-linux.tar.gz
+          sha256sum * > SHA256SUMS.txt
+          ls -la
+      - uses: softprops/action-gh-release@v2
+        with:
+          draft: true
+          name: Xenify Write ${{ github.ref_name }}
+          files: packages/*
+          body: |
+            Xenify Write for Windows and Linux. Or use it in your browser at https://xenify.net/write/.
+
+            - **Windows:** Xenify-Write-Setup-x64.exe. Windows may say "Windows protected your PC" because the installer isn't signed with a paid certificate: click More info, then Run anyway.
+            - **Ubuntu, Debian, Mint:** Xenify-Write-amd64.deb
+            - **Fedora, openSUSE:** Xenify-Write-x86_64.rpm
+            - **Any Linux:** Xenify-Write-x86_64.AppImage, or the .tar.gz archive
+
+            SHA256SUMS.txt lists each file's checksum.

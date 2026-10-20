@@ -414,3 +414,45 @@ notes = """Original fine-tune made for this program from DeBERTa-v3-xsmall (Micr
 corpus (synthetic, CC0-1.0) and on passages derived from Wikipedia edits (WikEd Error Corpus; Wikipedia \
 text is CC BY-SA 4.0); the raw edits are never shipped. Credits ship with the model in \
 crates/xenify-grammar-spotter/model/README.md."""
+
+[[asset]]
+path = "site/img/editor-light.webp"
+name = "Screenshot of Xenify Write for xenify.net (sample text written for it)"
+source = "generated"
+generator = "Xenify Write's browser version (target/write-web) in headless Chromium"
+license = "MIT"
+fetched = "2026-10-20"
+
+[[asset]]
+path = "site/img/checker-light.webp"
+name = "Screenshot of Xenify Write for xenify.net (sample text written for it)"
+source = "generated"
+generator = "Xenify Write's browser version (target/write-web) in headless Chromium"
+license = "MIT"
+fetched = "2026-10-20"
+
+[[asset]]
+path = "site/img/checker-dark.webp"
+name = "Screenshot of Xenify Write for xenify.net (sample text written for it)"
+source = "generated"
+generator = "Xenify Write's browser version (target/write-web) in headless Chromium"
+license = "MIT"
+fetched = "2026-10-20"
+
+[[asset]]
+path = "site/img/write-icon.png"
+name = "Xenify Write icon (copy of crates/xenify-write-app/icons/128x128@2x.png)"
+source = "generated"
+generator = "same as crates/xenify-write-app/icons"
+license = "MIT"
+fetched = "2026-10-20"
+
+[[asset]]
+path = "site/fonts/Figtree.ttf"
+name = "Figtree font (variable weight), for the xenify.net feature page"
+source_url = "https://github.com/google/fonts/tree/47d54ca1ebb14fd864695f1d39dc734f39017c33/ofl/figtree"
+version = "google/fonts at 47d54ca1 (same file as crates/xenify-write-app/ui/fonts/Figtree.ttf)"
+license = "OFL-1.1"
+license_file = "site/fonts/OFL-Figtree.txt"
+attribution = "Figtree, © 2022 The Figtree Project Authors (Erik Kennedy)"
+fetched = "2026-10-20"
