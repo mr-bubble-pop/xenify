@@ -1,0 +1,16 @@
+{
+  "v": 3,
+  "createdOnFiles": {"v": 1, "at": "2026-10-18T09:00:00Z"},
+  "title": "Xenify Write — HTML mockup",
+  "launch": {"view": "canvas"},
+  "pages": [],
+  "boards": {
+    "Main.dc.html": {"x": 0, "y": 0, "w": 1440, "h": 900, "title": "Editor — writing a requirements doc", "expand": "fill"},
+    "NewDocument.dc.html": {"x": 1520, "y": 0, "w": 1440, "h": 900, "title": "New document — pick a type, fill in details", "expand": "fill", "is_interactive": true},
+    "Settings.dc.html": {"x": 0, "y": 1020, "w": 1440, "h": 900, "title": "Settings — try the search box", "expand": "fill", "is_interactive": true},
+    "SettingsSearch.dc.html": {"x": 1520, "y": 1020, "w": 1440, "h": 900, "title": "Settings — searching “quotes”", "expand": "fill", "is_interactive": true}
+  },
+  "order": ["Main.dc.html", "NewDocument.dc.html", "Settings.dc.html", "SettingsSearch.dc.html"],
+  "notes": {},
+  "designSystems": []
+}

@@ -1,0 +1,28 @@
+[package]
+name = "xenify-ui"
+description = "The Xenify Vector editor UI (egui)"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+xenify-anim.workspace = true
+xenify-ai.workspace = true
+serde_json.workspace = true
+serde.workspace = true
+png.workspace = true
+image.workspace = true
+xenify-doc.workspace = true
+xenify-export.workspace = true
+xenify-ops.workspace = true
+xenify-platform.workspace = true
+xenify-audio.workspace = true
+xenify-render.workspace = true
+eframe.workspace = true
+egui.workspace = true
+egui_dock.workspace = true
+kurbo.workspace = true
+
+[dev-dependencies]
+# Headless GUI tests (no window, no GPU): drive the app through its accessibility tree.
+egui_kittest = { version = "=0.35.0", features = ["eframe", "wgpu"] }

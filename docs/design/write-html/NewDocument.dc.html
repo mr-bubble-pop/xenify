@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>New document</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#EFECE8}
+a{color:#C2410C}a:hover{color:#9A3412}
+.card{display:flex;flex-direction:column;gap:8px;padding:10px;border-radius:14px;border:1px solid #E2DDD7;background:#fff;cursor:pointer;text-align:left;font:inherit;color:inherit;min-height:44px}
+.card:hover{border-color:#C9C2BA}
+.card.on{border:2px solid #C2410C;padding:9px;background:#FFF7F2}
+.thumb{height:62px;border-radius:6px;background:#F7F5F2;padding:8px 10px;box-sizing:border-box;display:flex;flex-direction:column;gap:4px;overflow:hidden}
+.bar{border-radius:2px}
+.lbl{display:block;font-size:14px;font-weight:600;margin-bottom:6px;color:#1C1917}
+.inp{width:100%;box-sizing:border-box;height:42px;border-radius:10px;border:1px solid #D6D0C9;background:#fff;padding:0 12px;font:400 15px Figtree,sans-serif;color:#1C1917}
+.inp::placeholder{color:#8A827B}
+.inp:focus{outline:2px solid #C2410C;outline-offset:1px;border-color:#C2410C}
+.chip{display:inline-flex;align-items:center;height:36px;padding:0 14px;border-radius:999px;border:1px solid #D6D0C9;background:#fff;font:500 14px Figtree,sans-serif;color:#1C1917;cursor:pointer}
+.chip.on{background:#1C1917;border-color:#1C1917;color:#fff}
+.seg{flex:1 1 0;height:38px;border:0;border-radius:9px;background:transparent;font:500 14px Figtree,sans-serif;color:#44403C;cursor:pointer}
+.seg.on{background:#fff;color:#1C1917;font-weight:600;box-shadow:0 1px 2px rgba(28,25,23,.1)}
+.btn{height:44px;padding:0 18px;border-radius:12px;border:1px solid #D6D0C9;background:#fff;font:600 15px Figtree,sans-serif;color:#1C1917;cursor:pointer}
+.btn.main{background:#C2410C;border-color:#C2410C;color:#fff}
+.ghost{color:#A8A29E;font-style:italic}
+.fill{background:#F2EFEB;color:#78716C;border-radius:3px;padding:0 4px}
+</style>
+</helmet>
+<div style="min-height: 100vh; box-sizing: border-box; display: flex; flex-direction: column; gap: 16px; padding: 20px 24px 24px 24px; font-family: Figtree, sans-serif; color: #1C1917; background: #EFECE8">
+
+  <header style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap">
+    <h1 style="margin: 0; font-size: 24px; font-weight: 700">New document</h1>
+    <span style="font-size: 15px; color: #57534E">Start blank, or begin from an example with the headings already in place.</span>
+    <span style="flex: 1 1 0"></span>
+    <button class="btn" style="height: 40px">Open a file instead</button>
+    <button aria-label="Close" style="width: 40px; height: 40px; border-radius: 10px; border: 0; background: transparent; cursor: pointer; color: #44403C"><svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
+  </header>
+
+  <div style="flex: 1 1 auto; display: flex; flex-wrap: wrap; gap: 16px; align-items: stretch">
+
+    <!-- 1. Types -->
+    <section aria-label="Document types" style="flex: 1 1 400px; min-width: 0; max-width: 470px; background: #fff; border-radius: 20px; padding: 18px; box-sizing: border-box; display: flex; flex-direction: column; gap: 14px">
+      <label style="position: relative; display: block">
+        <span style="position: absolute; left: 12px; top: 12px; color: #78716C" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></span>
+        <span style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Find a document type</span>
+        <input class="inp" style="padding-left: 40px" placeholder="e.g. lab report, minutes, invoice" value="{{query}}" onChange="{{setQuery}}">
+      </label>
+      <sc-for list="{{groups}}" as="g" hint-placeholder-count="3">
+        <div>
+          <h2 style="margin: 0 0 8px 0; font-size: 13px; font-weight: 600; color: #57534E; letter-spacing: .02em">{{g.name}}</h2>
+          <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
+            <sc-for list="{{g.items}}" as="t" hint-placeholder-count="3">
+              <button class="{{t.cls}}" onClick="{{t.pick}}" aria-pressed="{{t.on}}">
+                <div class="thumb" aria-hidden="true">
+                  <sc-for list="{{t.bars}}" as="b"><div class="bar" style="{{b.css}}"></div></sc-for>
+                </div>
+                <span style="font-size: 14px; font-weight: 600; line-height: 1.25">{{t.name}}</span>
+              </button>
+            </sc-for>
+          </div>
+        </div>
+      </sc-for>
+      <sc-if value="{{noMatch}}" hint-placeholder-val="{{ false }}">
+        <p style="margin: 0; font-size: 15px; color: #44403C">Nothing called “{{query}}”. Try <b>Blank</b> and set the details yourself.</p>
+      </sc-if>
+    </section>
+
+    <!-- 2. Details -->
+    <section aria-label="About this document" style="flex: 999 1 460px; min-width: 0; background: #fff; border-radius: 20px; padding: 22px 24px; box-sizing: border-box; display: flex; flex-direction: column; gap: 18px">
+      <div>
+        <div style="font-size: 13px; font-weight: 600; color: #9A3412">{{type.name}}</div>
+        <p style="margin: 4px 0 0 0; font-size: 15px; line-height: 1.5; color: #44403C">{{type.blurb}}</p>
+      </div>
+
+      <div>
+        <label class="lbl" for="f-title">Title <span style="font-weight: 400; color: #57534E">(optional)</span></label>
+        <input id="f-title" class="inp" style="height: 48px; font-size: 18px; font-weight: 600" placeholder="{{type.titleEg}}" value="{{title}}" onChange="{{setTitle}}">
+      </div>
+
+
+      <div>
+        <div class="lbl">Who will read it?</div>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px">
+          <sc-for list="{{audiences}}" as="a" hint-placeholder-count="5">
+            <button class="{{a.cls}}" aria-pressed="{{a.on}}" onClick="{{a.pick}}">{{a.name}}</button>
+          </sc-for>
+        </div>
+      </div>
+
+      <div>
+        <div class="lbl">Tone</div>
+        <div role="radiogroup" aria-label="Tone" style="display: flex; gap: 4px; padding: 4px; background: #F2EFEB; border-radius: 12px; max-width: 420px">
+          <sc-for list="{{tones}}" as="o" hint-placeholder-count="3">
+            <button role="radio" aria-checked="{{o.on}}" class="{{o.cls}}" onClick="{{o.pick}}">{{o.name}}</button>
+          </sc-for>
+        </div>
+      </div>
+
+      <div style="background: #F7F5F2; border-radius: 14px; padding: 14px 16px; display: flex; flex-direction: column; gap: 8px; font-size: 15px; line-height: 1.5">
+        <div style="display: flex; gap: 10px; align-items: flex-start">
+          <svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#C2410C" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="flex: none; margin-top: 2px"><path d="m6 16 6-12 6 12"/><path d="M8 12h8"/><path d="m16 20 2 2 4-4"/></svg>
+          <span>Checked as <b>{{type.profile}}</b>: {{type.profileNote}}</span>
+        </div>
+        <div style="display: flex; gap: 10px; align-items: flex-start">
+          <svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#C2410C" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="flex: none; margin-top: 2px"><path d="m21.64 3.64-1.28-1.28a1.21 1.21 0 0 0-1.72 0L2.36 18.64a1.21 1.21 0 0 0 0 1.72l1.28 1.28a1.2 1.2 0 0 0 1.72 0L21.64 5.36a1.2 1.2 0 0 0 0-1.72"/><path d="m14 7 3 3"/></svg>
+          <span>AI help writes for <b>{{audienceText}}</b> in a <b>{{toneText}}</b> tone.</span>
+        </div>
+      </div>
+
+      <sc-if value="{{hasFill}}" hint-placeholder-val="{{ true }}">
+        <p style="margin: 0; font-size: 15px; line-height: 1.5; color: #44403C">You’ll fill in <b>{{fillText}}</b> on the page itself. Click a grey box and type.</p>
+      </sc-if>
+
+      <div style="flex: 1 1 auto"></div>
+      <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap; border-top: 1px solid #EEEAE5; padding-top: 16px">
+        <span style="font-size: 14px; color: #57534E; flex: 1 1 240px">You can change these later from the details button in the toolbar.</span>
+        <button class="btn main">Create {{type.short}}</button>
+      </div>
+    </section>
+
+    <!-- 3. Preview -->
+    <section aria-label="First page preview" style="flex: 1 1 340px; min-width: 0; max-width: 400px; display: flex; flex-direction: column; gap: 10px">
+      <div style="font-size: 13px; font-weight: 600; color: #57534E; padding-left: 4px">First page</div>
+      <div style="background: #fff; border-radius: 6px; box-shadow: 0 1px 3px rgba(28,25,23,.1), 0 10px 28px rgba(28,25,23,.08); aspect-ratio: 1 / 1.414; padding: 34px 32px; box-sizing: border-box; overflow: hidden; font-family: 'Source Serif 4', serif">
+        <div style="font-family: Figtree, sans-serif; font-size: 9px; letter-spacing: .1em; text-transform: uppercase; color: #78716C">{{type.name}}</div>
+        <div class="{{titleCls}}" style="font-size: 21px; font-weight: 700; line-height: 1.2; margin: 6px 0 12px 0">{{titleShown}}</div>
+        <div style="display: flex; flex-direction: column; gap: 3px; font-family: Figtree, sans-serif; font-size: 10px; margin-bottom: 16px">
+          <sc-for list="{{fields}}" as="f" hint-placeholder-count="3">
+            <div style="display: flex; gap: 8px"><span style="width: 74px; color: #78716C; flex: none">{{f.label}}</span><span class="{{f.shownCls}}">{{f.shown}}</span></div>
+          </sc-for>
+        </div>
+        <sc-for list="{{type.outline}}" as="h" hint-placeholder-count="4">
+          <div style="margin-bottom: 11px">
+            <div style="font-size: 12px; font-weight: 700; margin-bottom: 5px">{{h.n}}  {{h.text}}</div>
+            <div style="height: 4px; border-radius: 2px; background: #ECE8E3; width: 100%; margin-bottom: 4px"></div>
+            <div style="height: 4px; border-radius: 2px; background: #ECE8E3; width: 82%"></div>
+          </div>
+        </sc-for>
+      </div>
+      <p style="margin: 0; font-size: 14px; color: #57534E; line-height: 1.45; padding: 0 4px">Headings come with a one-line hint of what goes in them. Hints show on screen only and are never printed.</p>
+    </section>
+  </div>
+<p style="margin: 0; position: absolute; left: 490px; top: 0px">it? B7 stays backed up, and switching bac</p></div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+var B = function (w, h, c) { return { css: 'width:' + w + ';height:' + h + 'px;background:' + c + ';flex:none' }; };
+var INK = '#57534E', LINE = '#DDD7D0', ACC = '#E9A07A';
+var TEXT = [B('80%', 3, LINE), B('90%', 3, LINE), B('70%', 3, LINE)];
+var TYPES = [
+  { id: 'brd', group: 'Work', name: 'Business requirements', short: 'requirements', blurb: 'What a project must do and why: purpose, scope, numbered requirements and who signs off.', titleEg: 'e.g. Checkout redesign', profile: 'Technical documentation', profileNote: 'points out vague words (“should”, “etc.”), undefined acronyms and passive voice.', aud: 'Engineers', tone: 'Neutral',
+    fields: [['Project owner', 'e.g. Priya Shah, Product'], ['Version', 'e.g. 0.1'], ['Status', ['Draft', 'In review', 'Approved']], ['Signed off by', 'e.g. Head of Product']],
+    outline: ['Purpose', 'Scope', 'Stakeholders', 'Requirements', 'Acceptance criteria', 'Risks'], bars: [B('60%', 6, INK), B('100%', 9, ACC), B('85%', 3, LINE), B('100%', 9, ACC)] },
+  { id: 'proposal', group: 'Work', name: 'Project proposal', short: 'proposal', blurb: 'Make the case for a piece of work: the problem, your plan, cost and next steps.', titleEg: 'e.g. Moving support to live chat', profile: 'Standard', profileNote: 'points out long sentences, wordy phrases and inconsistent spelling.', aud: 'Managers', tone: 'Neutral',
+    fields: [['Prepared for', 'e.g. Leadership team'], ['Prepared by', 'e.g. Sam Lee'], ['Date', 'e.g. 18 October 2026'], ['Budget asked for', 'e.g. £40,000']],
+    outline: ['Summary', 'The problem', 'What we propose', 'Cost and timeline', 'Next steps'], bars: [B('70%', 6, INK)].concat(TEXT, [B('40%', 5, INK)]) },
+  { id: 'report', group: 'Work', name: 'Report', short: 'report', blurb: 'Findings for readers who want the answer first: summary, background, findings, recommendations.', titleEg: 'e.g. Q3 customer survey', profile: 'Standard', profileNote: 'points out long sentences, wordy phrases and a main point that comes too late.', aud: 'Managers', tone: 'Formal',
+    fields: [['Author', 'e.g. Sam Lee'], ['Organisation', 'e.g. Northwind Ltd'], ['Date', 'e.g. October 2026'], ['Who can see it', ['Anyone', 'Internal only', 'Confidential']]],
+    outline: ['Summary', 'Background', 'Findings', 'Recommendations'], bars: [B('55%', 8, INK), B('35%', 3, LINE)].concat(TEXT) },
+  { id: 'minutes', group: 'Work', name: 'Meeting notes', short: 'notes', blurb: 'Who came, what was decided and who does what next.', titleEg: 'e.g. Weekly product sync', profile: 'Work chat', profileNote: 'relaxed about short sentences and contractions; still catches spelling.', aud: 'Colleagues', tone: 'Friendly',
+    fields: [['Meeting date', 'e.g. 18 October 2026'], ['Chaired by', 'e.g. Priya'], ['Attendees', 'e.g. Priya, Sam, Ola'], ['Next meeting', 'e.g. 25 October']],
+    outline: ['Attendees', 'Agenda', 'Decisions', 'Actions'], bars: [B('50%', 6, INK), B('60%', 3, LINE), B('8px', 8, ACC), B('60%', 3, LINE)] },
+  { id: 'letter-work', group: 'Work', name: 'Formal letter', short: 'letter', blurb: 'Addresses, date, greeting and sign-off laid out the way people expect.', titleEg: 'e.g. Notice of rent increase', profile: 'Formal or legal letter', profileNote: 'points out contractions, slang and casual greetings.', aud: 'Clients', tone: 'Formal',
+    fields: [['To', 'e.g. Ms J. Patel'], ['Their address', 'e.g. 4 Mill Lane, Leeds'], ['From', 'e.g. Sam Lee'], ['Date', 'e.g. 18 October 2026']],
+    outline: ['Opening', 'The details', 'What happens next', 'Sign-off'], bars: [B('35%', 3, INK), B('35%', 3, LINE), B('30%', 3, LINE)].concat(TEXT) },
+  { id: 'assignment', group: 'School & study', name: 'School assignment', short: 'assignment', blurb: 'An essay or assignment with a cover block your teacher can read at a glance, and references at the end.', titleEg: 'e.g. What caused the First World War?', profile: 'School essay', profileNote: 'points out slang, contractions, first person and words used over and over.', aud: 'Teacher', tone: 'Formal',
+    fields: [['Your name', 'e.g. Alex Morgan'], ['Subject', 'e.g. History'], ['Teacher', 'e.g. Mr Okafor'], ['Due', 'e.g. Friday 24 October'], ['Word limit', 'e.g. 1500'], ['References style', ['Harvard', 'APA', 'Chicago', 'IEEE']]],
+    outline: ['Introduction', 'Main argument', 'Counter-argument', 'Conclusion', 'References'], bars: [B('70%', 7, INK), B('40%', 3, LINE), B('40%', 3, LINE)].concat(TEXT) },
+  { id: 'lab', group: 'School & study', name: 'Lab report', short: 'lab report', blurb: 'Aim, method, results and discussion, with room for tables and graphs.', titleEg: 'e.g. How temperature affects enzyme activity', profile: 'Academic paper', profileNote: 'points out first person, vague words and inconsistent numbers.', aud: 'Teacher', tone: 'Formal',
+    fields: [['Your name', 'e.g. Alex Morgan'], ['Subject', 'e.g. Biology'], ['Lab partners', 'e.g. Jo, Ravi'], ['Date of experiment', 'e.g. 14 October 2026']],
+    outline: ['Aim', 'Method', 'Results', 'Discussion', 'Conclusion'], bars: [B('60%', 6, INK), B('100%', 14, ACC), B('80%', 3, LINE)] },
+  { id: 'paper', group: 'School & study', name: 'Scientific paper', short: 'paper', blurb: 'Abstract, numbered sections and citations in the style your journal or course asks for.', titleEg: 'e.g. Low-cost soil moisture sensing', profile: 'Academic paper', profileNote: 'points out first person, hedging and undefined acronyms.', aud: 'Experts', tone: 'Formal',
+    fields: [['Authors', 'e.g. A. Morgan, R. Iyer'], ['Affiliation', 'e.g. University of Leeds'], ['References style', ['APA', 'IEEE', 'Harvard', 'Chicago']], ['Keywords', 'e.g. sensors, irrigation']],
+    outline: ['Abstract', 'Introduction', 'Method', 'Results', 'Discussion', 'References'], bars: [B('80%', 6, INK), B('50%', 3, LINE), B('100%', 12, '#F0ECE7')].concat(TEXT) },
+  { id: 'cv', group: 'Personal', name: 'CV', short: 'CV', blurb: 'Your experience on one or two pages, newest first.', titleEg: 'e.g. Alex Morgan', profile: 'Standard', profileNote: 'points out inconsistent dates, capitals and wordy phrases.', aud: 'Employer', tone: 'Formal',
+    fields: [['Role you want', 'e.g. Junior designer'], ['Email', 'e.g. alex@example.com'], ['Phone', 'e.g. 07700 900123'], ['Town', 'e.g. Leeds']],
+    outline: ['Profile', 'Experience', 'Education', 'Skills'], bars: [B('50%', 8, INK), B('30%', 3, ACC)].concat(TEXT) },
+  { id: 'cover', group: 'Personal', name: 'Cover letter', short: 'cover letter', blurb: 'One page on why you fit the job, addressed to a real person.', titleEg: 'e.g. Application for Junior designer', profile: 'Cover letter', profileNote: 'points out clichés, weak intensifiers and every sentence starting with “I”.', aud: 'Employer', tone: 'Neutral',
+    fields: [['Company', 'e.g. Northwind Ltd'], ['Role', 'e.g. Junior designer'], ['Hiring manager', 'e.g. Ms Patel'], ['Your name', 'e.g. Alex Morgan']],
+    outline: ['Why this role', 'What I bring', 'Close'], bars: [B('35%', 3, INK)].concat(TEXT, TEXT) },
+  { id: 'story', group: 'Personal', name: 'Story', short: 'story', blurb: 'Chapters, scene breaks and a word count goal.', titleEg: 'e.g. The Lighthouse Keeper', profile: 'Creative writing', profileNote: 'leaves dialogue and style alone; still catches spelling and repeated words.', aud: 'General readers', tone: 'Friendly',
+    fields: [['Author', 'e.g. Alex Morgan'], ['Word goal', 'e.g. 50,000']],
+    outline: ['Chapter one', 'Chapter two'], bars: [B('45%', 6, INK)].concat(TEXT, TEXT) },
+  { id: 'newsletter', group: 'Layouts', name: 'Newsletter', short: 'newsletter', blurb: 'A banner and stories that flow between linked boxes.', titleEg: 'e.g. Parish news — November', profile: 'News article', profileNote: 'points out long paragraphs and a main point that comes too late.', aud: 'General readers', tone: 'Friendly',
+    fields: [['Issue', 'e.g. No. 12'], ['Date', 'e.g. November 2026']],
+    outline: ['Lead story', 'In brief', 'Dates for the diary'], bars: [B('100%', 12, ACC), B('48%', 3, LINE), B('48%', 3, LINE)] },
+  { id: 'invoice', group: 'Layouts', name: 'Invoice', short: 'invoice', blurb: 'Your details, theirs, a line-item table and totals.', titleEg: 'e.g. Invoice 1042', profile: 'Standard', profileNote: 'checks spelling only; numbers are left alone.', aud: 'Clients', tone: 'Formal',
+    fields: [['Bill to', 'e.g. Northwind Ltd'], ['Invoice number', 'e.g. 1042'], ['Date', 'e.g. 18 October 2026'], ['Pay within', ['14 days', '30 days', '60 days']]],
+    outline: ['Items', 'Total', 'How to pay'], bars: [B('40%', 6, INK), B('100%', 16, '#F0ECE7'), B('30%', 4, INK)] },
+];
+TYPES.unshift({ id: 'blank', group: 'Start', name: 'Blank document', short: 'document', blurb: 'An empty page. Say who it’s for and Write still checks it the right way.', titleEg: 'e.g. Notes', profile: 'Standard', profileNote: 'points out long sentences, wordy phrases and inconsistent spelling.', aud: 'General readers', tone: 'Neutral',
+  fields: [], outline: [], bars: [] });
+var AUD = {
+  'Start': ['General readers', 'Colleagues', 'Teacher', 'Clients', 'Friends and family'],
+  'Work': ['Colleagues', 'Managers', 'Engineers', 'Clients', 'General readers'],
+  'School & study': ['Teacher', 'Examiner', 'Experts', 'Classmates', 'General readers'],
+  'Personal': ['Employer', 'General readers', 'Friends and family'],
+  'Layouts': ['Clients', 'General readers', 'Colleagues']
+};
+var GROUPS = ['Start', 'Work', 'School & study', 'Personal', 'Layouts'];
+var GROUP_TITLE = { 'Start': 'Start', 'Work': 'Examples · Work', 'School & study': 'Examples · School & study', 'Personal': 'Examples · Personal', 'Layouts': 'Examples · Layouts' };
+
+class Component extends DCLogic {
+  constructor(p) { super(p); this.state = { id: 'blank', title: '', vals: {}, aud: null, tone: null, query: '' }; }
+  renderVals() {
+    var self = this, s = this.state;
+    var type = TYPES.filter(function (t) { return t.id === s.id; })[0];
+    var q = s.query.trim().toLowerCase();
+    var groups = GROUPS.map(function (g) {
+      return { name: GROUP_TITLE[g], items: TYPES.filter(function (t) {
+        return t.group === g && (!q || (t.name + ' ' + t.blurb).toLowerCase().indexOf(q) >= 0);
+      }).map(function (t) {
+        var on = t.id === s.id;
+        return { name: t.name, on: on, cls: on ? 'card on' : 'card', bars: t.bars,
+          pick: function () { self.setState({ id: t.id, vals: {}, aud: null, tone: null }); } };
+      }) };
+    }).filter(function (g) { return g.items.length; });
+    var fields = type.fields.map(function (f, i) {
+      var key = type.id + ':' + f[0];
+      var isSelect = Array.isArray(f[1]);
+      var v = s.vals[key] != null ? s.vals[key] : (isSelect ? f[1][0] : '');
+      return { label: f[0], domId: 'fld-' + i, isSelect: isSelect, isText: !isSelect, options: isSelect ? f[1] : [], eg: isSelect ? '' : f[1], value: v,
+        shown: isSelect ? f[1][0] : 'Type ' + f[0].charAt(0).toLowerCase() + f[0].slice(1), shownCls: isSelect ? '' : 'fill',
+        set: function (e) { var o = Object.assign({}, self.state.vals); o[key] = e.target.value; self.setState({ vals: o }); } };
+    });
+    var aud = s.aud || type.aud, tone = s.tone || type.tone;
+    var audiences = (AUD[type.group] || AUD.Work).map(function (a) {
+      return { name: a, on: a === aud, cls: a === aud ? 'chip on' : 'chip', pick: function () { self.setState({ aud: a }); } };
+    });
+    audiences.push({ name: 'Someone else…', on: false, cls: 'chip', pick: function () {} });
+    var tones = ['Formal', 'Neutral', 'Friendly'].map(function (t) {
+      return { name: t, on: t === tone, cls: t === tone ? 'seg on' : 'seg', pick: function () { self.setState({ tone: t }); } };
+    });
+    return {
+      groups: groups, noMatch: groups.length === 0, query: s.query,
+      setQuery: function (e) { self.setState({ query: e.target.value }); },
+      type: { name: type.name, short: type.short, blurb: type.blurb, titleEg: type.titleEg, profile: type.profile, profileNote: type.profileNote,
+        outline: type.outline.map(function (h, i) { return { n: i + 1, text: h }; }) },
+      title: s.title, setTitle: function (e) { self.setState({ title: e.target.value }); },
+      titleShown: s.title || type.titleEg.replace(/^e\.g\. /, ''), titleCls: s.title ? '' : 'ghost',
+      fields: fields, audiences: audiences, tones: tones,
+      hasFill: fields.length > 0,
+      fillText: (function (l) { return l.length < 2 ? l.join('') : l.slice(0, -1).join(', ') + ' and ' + l[l.length - 1]; })(type.fields.filter(function (f) { return !Array.isArray(f[1]); }).map(function (f) { return f[0].toLowerCase(); })),
+      audienceText: aud.toLowerCase() === 'teacher' ? 'your teacher' : aud.toLowerCase(), toneText: tone.toLowerCase()
+    };
+  }
+}
+</script>
+</body>
+</html>

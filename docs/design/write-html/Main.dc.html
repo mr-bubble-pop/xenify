@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Xenify Write editor</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#EFECE8}
+a{color:#C2410C}a:hover{color:#9A3412}
+.ib{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border:0;background:transparent;border-radius:10px;color:#44403C;cursor:pointer;font:600 15px Figtree,sans-serif}
+.ib:hover{background:#F5F3F0}
+.ib svg{width:18px;height:18px}
+.sep{width:1px;height:22px;background:#E2DDD7;margin:0 6px}
+.menu{border:0;background:transparent;font:500 14px Figtree,sans-serif;color:#44403C;padding:6px 10px;border-radius:8px;cursor:pointer}
+.menu:hover{background:#E6E2DD}
+.pick{display:inline-flex;align-items:center;gap:6px;height:34px;padding:0 10px;border:1px solid #E2DDD7;border-radius:10px;background:#fff;font:500 14px Figtree,sans-serif;color:#1C1917;cursor:pointer}
+.pick svg{width:14px;height:14px;color:#78716C}
+.doc p{margin:0 0 12px}
+.spell{text-decoration:underline wavy #DC2626;text-decoration-thickness:1.5px;text-underline-offset:3px}
+.style{text-decoration:underline dotted #C2410C;text-decoration-thickness:2px;text-underline-offset:4px}
+.sel{background:#FDE3D3;border-radius:2px}
+.btn{height:36px;padding:0 14px;border-radius:10px;border:1px solid #E2DDD7;background:#fff;font:600 14px Figtree,sans-serif;color:#1C1917;cursor:pointer}
+.btn.main{background:#C2410C;border-color:#C2410C;color:#fff}
+.chip{display:inline-flex;align-items:center;height:32px;padding:0 12px;border-radius:999px;border:1px solid #E2DDD7;background:#fff;font:500 14px Figtree,sans-serif;color:#1C1917;cursor:pointer}
+.chip:hover{border-color:#C2410C;color:#9A3412}
+.ptab{display:inline-flex;align-items:center;gap:6px;height:34px;padding:0 12px;border:0;border-radius:10px;background:transparent;font:500 14px Figtree,sans-serif;color:#57534E;cursor:pointer}
+.ptab svg{width:16px;height:16px}
+.ptab.on{background:#fff;color:#1C1917;box-shadow:0 1px 2px rgba(28,25,23,.08)}
+td,th{text-align:left;vertical-align:top}
+</style>
+</helmet>
+<div style="min-height: 100vh; display: flex; flex-direction: column; font-family: Figtree, sans-serif; color: #1C1917; background: #EFECE8">
+
+  <!-- Menu bar -->
+  <nav aria-label="Menu" style="display: flex; align-items: center; gap: 2px; padding: 6px 12px 0 12px; flex-wrap: wrap">
+    <div style="display: flex; align-items: center; gap: 8px; padding: 0 10px 0 4px; font-weight: 700; font-size: 15px">
+      <span aria-hidden="true" style="width: 22px; height: 22px; border-radius: 7px; background: #C2410C; display: inline-flex; align-items: center; justify-content: center; color: #fff; font-size: 13px">W</span>
+      Write
+    </div>
+    <button class="menu">File</button><button class="menu">Edit</button><button class="menu">View</button><button class="menu">Insert</button><button class="menu">Format</button><button class="menu">Layout</button><button class="menu">References</button><button class="menu">Review</button><button class="menu">Tools</button><button class="menu">Help</button>
+  </nav>
+
+  <!-- Document tabs -->
+  <div role="tablist" aria-label="Open documents" style="display: flex; align-items: flex-end; gap: 4px; padding: 8px 12px 0 12px; overflow-x: auto">
+    <div role="tab" aria-selected="true" style="display: flex; align-items: center; gap: 10px; height: 40px; padding: 0 10px 0 14px; background: #fff; border-radius: 12px 12px 0 0; font-size: 14px; font-weight: 600; white-space: nowrap">
+      <svg aria-hidden="true" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#C2410C" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M16 13H8"/><path d="M16 17H8"/></svg>
+      Checkout redesign — requirements
+      <button class="ib" aria-label="Close tab" style="width: 26px; height: 26px; border-radius: 7px"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="width: 14px; height: 14px"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
+    </div>
+    <div role="tab" aria-selected="false" style="display: flex; align-items: center; gap: 10px; height: 36px; padding: 0 14px; border-radius: 12px 12px 0 0; font-size: 14px; color: #57534E; white-space: nowrap">
+      Year 10 History — causes of WW1
+      <span aria-label="Unsaved changes" style="width: 8px; height: 8px; border-radius: 50%; background: #78716C"></span>
+    </div>
+    <div role="tab" aria-selected="false" style="display: flex; align-items: center; height: 36px; padding: 0 14px; font-size: 14px; color: #57534E; white-space: nowrap">Letter to landlord</div>
+    <button class="ib" aria-label="New document" style="width: 32px; height: 32px; margin-bottom: 2px"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg></button>
+  </div>
+
+  <!-- Toolbar -->
+  <div role="toolbar" aria-label="Formatting" style="display: flex; align-items: center; gap: 2px; flex-wrap: wrap; padding: 8px 12px; background: #fff; border-bottom: 1px solid #E2DDD7">
+    <button class="ib" aria-label="Undo"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/></svg></button>
+    <button class="ib" aria-label="Redo"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m15 14 5-5-5-5"/><path d="M20 9H9.5a5.5 5.5 0 0 0 0 11H13"/></svg></button>
+    <span class="sep"></span>
+    <button class="pick" style="width: 132px; justify-content: space-between">Body text<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg></button>
+    <button class="pick" style="width: 150px; justify-content: space-between; margin-left: 6px"><span style="font-family: 'Source Serif 4', serif">Source Serif</span><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg></button>
+    <button class="pick" style="width: 62px; justify-content: space-between; margin-left: 6px">11<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg></button>
+    <span class="sep"></span>
+    <button class="ib" aria-label="Bold" style="font-weight: 800">B</button>
+    <button class="ib" aria-label="Italic" style="font-style: italic; font-family: 'Source Serif 4', serif; font-size: 17px">I</button>
+    <button class="ib" aria-label="Underline" style="text-decoration: underline; text-underline-offset: 3px">U</button>
+    <button class="ib" aria-label="Text colour" style="flex-direction: column; gap: 1px"><span style="line-height: 1">A</span><span style="width: 16px; height: 3px; border-radius: 2px; background: #C2410C"></span></button>
+    <span class="sep"></span>
+    <button class="ib" aria-label="Align left"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M21 6H3"/><path d="M15 12H3"/><path d="M17 18H3"/></svg></button>
+    <button class="ib" aria-label="Bulleted list"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M3 12h.01"/><path d="M3 18h.01"/><path d="M3 6h.01"/><path d="M8 12h13"/><path d="M8 18h13"/><path d="M8 6h13"/></svg></button>
+    <button class="ib" aria-label="Numbered list"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 12h11"/><path d="M10 18h11"/><path d="M10 6h11"/><path d="M4 10h2"/><path d="M4 6h1v4"/><path d="M6 18H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></button>
+    <span class="sep"></span>
+    <button class="ib" aria-label="Link"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></button>
+    <button class="ib" aria-label="Picture"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg></button>
+    <button class="ib" aria-label="Table"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M3 15h18"/><path d="M12 3v18"/></svg></button>
+    <button class="ib" aria-label="Comment"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></button>
+    <div style="flex: 1 1 0"></div>
+    <button class="pick" aria-label="Document details" style="gap: 8px; border-color: #F3D2BF; background: #FFF7F2; color: #7C2D12">
+      <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color: #C2410C"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/></svg>
+      Business requirements · for product &amp; engineering
+    </button>
+  </div>
+
+  <!-- Work area -->
+  <div style="flex: 1 1 auto; display: flex; flex-wrap: wrap; gap: 16px; padding: 16px; align-items: flex-start">
+
+    <!-- Page area -->
+    <main style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 8px; position: relative">
+      <div aria-label="Ruler" role="img" style="width: 100%; max-width: 720px; height: 26px; position: relative; background: #E2DDD7; border-radius: 4px; overflow: hidden; font-size: 10px; color: #57534E">
+        <div style="position: absolute; left: 10%; right: 10%; top: 0; bottom: 0; background: #fff; background-image: repeating-linear-gradient(to right, #A8A29E 0 1px, transparent 1px 28.8px), repeating-linear-gradient(to right, #D6D0C9 0 1px, transparent 1px 14.4px); background-size: 100% 7px, 100% 4px; background-repeat: repeat-x; background-position: 0 100%, 0 100%"></div>
+        <div style="position: absolute; left: 10%; right: 10%; top: 3px; display: flex; justify-content: space-between; padding: 0 2px"><span>0</span><span>2</span><span>4</span><span>6</span><span>8</span><span>10</span><span>12</span><span>14</span><span>16</span></div>
+        <span aria-hidden="true" style="position: absolute; left: calc(10% - 5px); top: 0; width: 0; height: 0; border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 7px solid #C2410C"></span>
+        <span aria-hidden="true" style="position: absolute; left: calc(10% - 5px); bottom: 0; width: 0; height: 0; border-left: 5px solid transparent; border-right: 5px solid transparent; border-bottom: 7px solid #C2410C"></span>
+        <span aria-hidden="true" style="position: absolute; right: calc(10% - 5px); bottom: 0; width: 0; height: 0; border-left: 5px solid transparent; border-right: 5px solid transparent; border-bottom: 7px solid #C2410C"></span>
+      </div>
+      <article class="doc" aria-label="Page 1" style="width: 100%; max-width: 720px; background: #fff; border-radius: 6px; box-shadow: 0 1px 3px rgba(28,25,23,.10), 0 8px 24px rgba(28,25,23,.06); padding: 64px 72px 72px 72px; box-sizing: border-box; font-family: 'Source Serif 4', serif; font-size: 16px; line-height: 1.6; color: #1C1917">
+        <div style="font-family: Figtree, sans-serif; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: #78716C; margin-bottom: 10px">Business requirements</div>
+        <h1 style="margin: 0 0 18px 0; font-size: 34px; line-height: 1.15; font-weight: 700">Checkout redesign</h1>
+        <table style="border-collapse: collapse; font-family: Figtree, sans-serif; font-size: 13.5px; margin-bottom: 28px; width: 100%">
+          <tr><th style="padding: 6px 16px 6px 0; color: #78716C; font-weight: 500; width: 110px">Owner</th><td style="padding: 6px 0">Priya Shah, Product</td><th style="padding: 6px 16px 6px 0; color: #78716C; font-weight: 500; width: 80px">Status</th><td style="padding: 6px 0"><span style="background: #FEF3C7; color: #78350F; border-radius: 999px; padding: 2px 10px; font-weight: 600">In review</span></td></tr>
+          <tr><th style="padding: 6px 16px 6px 0; color: #78716C; font-weight: 500">Version</th><td style="padding: 6px 0">0.4 · 18 October 2026</td><th style="padding: 6px 16px 6px 0; color: #78716C; font-weight: 500">Sign-off</th><td style="padding: 6px 0">Head of Product, CTO</td></tr>
+        </table>
+        <h2 style="font-size: 21px; margin: 0 0 10px 0">1  Purpose</h2>
+        <p>Customers leave the basket at the payment step more often than at any other point. This project will <span class="sel">streamline</span> checkout to a single page and <span class="style">make use of</span> saved cards, so that returning customers can pay in under thirty seconds.</p>
+        <h2 style="font-size: 21px; margin: 22px 0 10px 0">2  Scope</h2>
+        <p>In scope: the basket, delivery and payment steps on web and the mobile app. Out of scope: the order history page and <span class="spell">reciepts</span>.</p>
+        <h2 style="font-size: 21px; margin: 22px 0 12px 0">3  Requirements</h2>
+        <table style="border-collapse: collapse; width: 100%; font-family: Figtree, sans-serif; font-size: 14px; line-height: 1.45">
+          <tr style="background: #F5F3F0"><th style="padding: 9px 12px; border-bottom: 1px solid #E2DDD7; width: 56px">ID</th><th style="padding: 9px 12px; border-bottom: 1px solid #E2DDD7">Requirement</th><th style="padding: 9px 12px; border-bottom: 1px solid #E2DDD7; width: 84px">Priority</th></tr>
+          <tr><td style="padding: 9px 12px; border-bottom: 1px solid #EEEAE5; color: #57534E">R1</td><td style="padding: 9px 12px; border-bottom: 1px solid #EEEAE5">Basket, delivery and payment fit on one page.</td><td style="padding: 9px 12px; border-bottom: 1px solid #EEEAE5">Must</td></tr>
+          <tr><td style="padding: 9px 12px; border-bottom: 1px solid #EEEAE5; color: #57534E">R2</td><td style="padding: 9px 12px; border-bottom: 1px solid #EEEAE5">Signed-in customers can pay with a saved card.</td><td style="padding: 9px 12px; border-bottom: 1px solid #EEEAE5">Must</td></tr>
+          <tr><td style="padding: 9px 12px; color: #57534E">R3</td><td style="padding: 9px 12px">Guests can create an account after paying.</td><td style="padding: 9px 12px">Should</td></tr>
+        </table>
+      </article>
+
+      <!-- Word card: the new "look up" -->
+      <div role="dialog" aria-label="Look up streamline" style="position: absolute; top: 300px; left: 50%; margin-left: -60px; width: 320px; background: #fff; border-radius: 16px; box-shadow: 0 4px 10px rgba(28,25,23,.10), 0 18px 40px rgba(28,25,23,.16); padding: 16px; box-sizing: border-box; font-family: Figtree, sans-serif">
+        <div style="display: flex; align-items: baseline; gap: 8px">
+          <span style="font-family: 'Source Serif 4', serif; font-size: 20px; font-weight: 700">streamline</span>
+          <span style="font-size: 13px; color: #57534E">verb</span>
+        </div>
+        <p style="margin: 4px 0 12px 0; font-size: 14px; line-height: 1.45; color: #44403C">Make something simpler and quicker by cutting out steps.</p>
+        <div style="font-size: 12px; font-weight: 600; color: #57534E; margin-bottom: 8px">Swap for</div>
+        <div style="display: flex; flex-wrap: wrap; gap: 6px">
+          <button class="chip">simplify</button><button class="chip">speed up</button><button class="chip">shorten</button><button class="chip">tidy up</button>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 14px; padding-top: 12px; border-top: 1px solid #EEEAE5; font-size: 13.5px">
+          <a href="#">2 more meanings</a>
+          <span style="color: #57534E">Right-click any word</span>
+        </div>
+      </div>
+    </main>
+
+    <!-- Side panel -->
+    <aside aria-label="Writing" style="flex: 1 1 340px; max-width: 380px; min-width: 0; background: #fff; border-radius: 20px; padding: 14px; box-sizing: border-box; display: flex; flex-direction: column; gap: 14px">
+      <div role="tablist" aria-label="Panel" style="display: flex; gap: 4px; background: #F5F3F0; border-radius: 12px; padding: 4px">
+        <button role="tab" aria-selected="true" class="ptab on"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m6 16 6-12 6 12"/><path d="M8 12h8"/><path d="m16 20 2 2 4-4"/></svg>Writing</button>
+        <button role="tab" aria-selected="false" class="ptab"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" x2="15" y1="20" y2="20"/><line x1="12" x2="12" y1="4" y2="20"/></svg>Styles</button>
+        <button role="tab" aria-selected="false" class="ptab"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Comments</button>
+      </div>
+
+      <div style="background: #F7F5F2; border-radius: 14px; padding: 12px 14px">
+        <div style="display: flex; justify-content: space-between; align-items: center">
+          <div style="font-size: 13px; color: #57534E">Checking this as</div>
+          <a href="#" style="font-size: 13.5px; font-weight: 600">Change</a>
+        </div>
+        <div style="font-size: 15px; font-weight: 600; margin-top: 2px">Business requirements</div>
+        <div style="font-size: 14px; color: #44403C; margin-top: 2px">For product &amp; engineering · neutral tone · English (UK)</div>
+      </div>
+
+      <div style="display: flex; justify-content: space-between; align-items: baseline">
+        <h2 style="margin: 0; font-size: 16px">3 things to look at</h2>
+        <span style="font-size: 13.5px; color: #57534E">on this page</span>
+      </div>
+
+      <div style="border: 1px solid #E2DDD7; border-radius: 14px; padding: 12px 14px">
+        <div style="display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: #B91C1C"><span style="width: 8px; height: 8px; border-radius: 50%; background: #DC2626"></span>Spelling</div>
+        <div style="font-size: 15px; margin: 6px 0 10px 0"><s style="color: #78716C">reciepts</s> → <b>receipts</b></div>
+        <div style="display: flex; gap: 8px"><button class="btn main">Fix</button><button class="btn">Add to my words</button></div>
+      </div>
+
+      <div style="border: 2px solid #C2410C; border-radius: 14px; padding: 11px 13px">
+        <div style="display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: #9A3412"><span style="width: 8px; height: 8px; border-radius: 50%; background: #C2410C"></span>Shorter wording</div>
+        <div style="font-size: 15px; margin: 6px 0 4px 0"><s style="color: #78716C">make use of</s> → <b>use</b></div>
+        <div style="font-size: 14px; color: #44403C; line-height: 1.45; margin-bottom: 10px">Requirements read best when every word earns its place.</div>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap"><button class="btn main">Use “use”</button><button class="btn">Ignore</button><button class="btn" aria-label="Why is this shown">Why?</button></div>
+      </div>
+
+      <div style="border: 1px solid #E2DDD7; border-radius: 14px; padding: 12px 14px">
+        <div style="display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: #1D4ED8"><span style="width: 8px; height: 8px; border-radius: 50%; background: #2563EB"></span>Missing for this type</div>
+        <div style="font-size: 15px; margin: 6px 0 10px 0; line-height: 1.45">No <b>Acceptance criteria</b> section yet.</div>
+        <div style="display: flex; gap: 8px"><button class="btn">Add the section</button></div>
+      </div>
+
+      <button style="display: flex; align-items: center; justify-content: space-between; height: 48px; padding: 0 14px; border-radius: 14px; border: 1px solid #E2DDD7; background: #fff; font: 600 15px Figtree, sans-serif; color: #1C1917; cursor: pointer">
+        <span style="display: inline-flex; align-items: center; gap: 10px"><svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#C2410C" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m21.64 3.64-1.28-1.28a1.21 1.21 0 0 0-1.72 0L2.36 18.64a1.21 1.21 0 0 0 0 1.72l1.28 1.28a1.2 1.2 0 0 0 1.72 0L21.64 5.36a1.2 1.2 0 0 0 0-1.72"/><path d="m14 7 3 3"/></svg>Improve with AI</span>
+        <svg aria-hidden="true" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#78716C" stroke-width="2" stroke-linecap="round"><path d="m9 18 6-6-6-6"/></svg>
+      </button>
+    </aside>
+  </div>
+
+  <!-- Status bar -->
+  <footer style="display: flex; flex-wrap: wrap; gap: 18px; align-items: center; padding: 8px 20px; font-size: 13.5px; color: #44403C; border-top: 1px solid #E2DDD7; background: #F7F5F2">
+    <span>Page 1 of 4</span><span>1,284 words</span><span>English (UK)</span>
+    <span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 8px; height: 8px; border-radius: 50%; background: #C2410C"></span>3 to look at</span>
+    <span style="flex: 1 1 0"></span>
+    <span>Saved · Markdown</span>
+    <span>100%</span>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

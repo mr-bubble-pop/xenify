@@ -1,0 +1,24 @@
+{
+  "name": "xenify",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "runArgs": [
+    "--device=/dev/dri",
+    "--group-add=video"
+  ],
+  "mounts": [
+    "source=ignite-claude-config,target=/home/vscode/.claude,type=volume",
+    "source=/tmp/.X11-unix,target=/tmp/.X11-unix,type=bind",
+    "source=/usr/share/fonts,target=/usr/local/share/fonts/host,type=bind,readonly"
+  ],
+  "containerEnv": {
+    "DISPLAY": "${localEnv:DISPLAY}",
+    "CLAUDE_CONFIG_DIR": "/home/vscode/.claude",
+    "LANG": "${localEnv:LANG:en_US.UTF-8}"
+  },
+  "remoteEnv": {
+    "PATH": "${containerEnv:PATH}:/home/vscode/.local/bin"
+  },
+  "postCreateCommand": "sudo chown -R vscode:vscode /home/vscode/.claude && { [ -f /home/vscode/.claude/settings.json ] || printf '{\\n  \"permissions\": {\\n    \"defaultMode\": \"bypassPermissions\"\\n  }\\n}\\n' > /home/vscode/.claude/settings.json; } && curl -fsSL https://claude.ai/install.sh | bash"
+}

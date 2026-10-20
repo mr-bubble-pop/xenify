@@ -1,0 +1,22 @@
+[package]
+name = "xenify-platform"
+description = "Platform services (files, video encoding) behind traits, with native implementations (web later)"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+thiserror.workspace = true
+xenify-anim.workspace = true
+xenify-audio.workspace = true
+xenify-doc.workspace = true
+
+[target.'cfg(not(target_arch = "wasm32"))'.dependencies]
+# OS credential store: Secret Service (GNOME Keyring / KWallet) on Linux,
+# Keychain on macOS, Credential Manager on Windows.
+keyring = "4.2"
+# System clipboard (images, files); egui-winit already pulls it in for text.
+arboard = { version = "3.6", default-features = false, features = ["image-data"] }
+serde_json.workspace = true
+# On-demand downloads (animated emoji).
+ureq.workspace = true

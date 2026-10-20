@@ -1,0 +1,18 @@
+# Real-word typo: "asses" for "assess". Pattern from published lists of
+# mistakes spell-checkers miss; examples are ours.
+# why: Assess (to evaluate) has a double s at the end; without it the word becomes the plural of ass.
+expr main [<(asses [the, your, my, our, their, his, her, its, whether, how, what, which, if, each, every, all, any, risk, risks, skills, damage, progress, performance, impact, impacts, situation, needs, quality, value, students, candidates, applicants, patients, options, results, data, this, that, these, those]), asses>, <([to, will, would, can, could, must, should, may, might, (we'll), (I'll), (let's), (we), (they), (please), (help), (helps)] asses), asses>]
+
+let message "Did you mean `assess`?"
+let description "Catches the typo `asses` where `assess` (to evaluate) was meant."
+let kind "Typo"
+let becomes "assess"
+let strategy "MatchCase"
+
+test "We need to asses the damage." "We need to assess the damage."
+test "The panel will asses each application." "The panel will assess each application."
+test "Please asses whether it works." "Please assess whether it works."
+test "This form helps asses risk." "This form helps assess risk."
+
+allows "The farmer kept two asses and a mule."
+allows "We need to assess the damage."

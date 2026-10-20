@@ -1,0 +1,367 @@
+# Sound-alike and look-alike words that get swapped. One set per line:
+#   word = meaning | word = meaning | ...
+# A "!" before a word ("!pi") means it's never suggested for another word of
+# the set (it's rare), though it's still checked where it's written.
+# Written for Xenify Write from general knowledge of English (no list was
+# copied). The meanings feed the corpus prompts and the checker's messages.
+
+!beer = an alcoholic drink brewed from grain | bear = a large wild animal; to carry, put up with or support | bare = uncovered or naked; to uncover
+their = belonging to them | there = in or at that place; used in "there is/are" | they're = short for "they are"
+your = belonging to you | you're = short for "you are"
+whose = belonging to which person | who's = short for "who is" or "who has"
+to = towards; part of a verb like "to go" | too = also; more than enough | two = the number 2
+then = at that time; next | than = used in comparisons
+affect = to influence (verb) | effect = a result (noun); to bring about
+accept = to agree to or receive | except = apart from
+lose = to misplace or fail to win | loose = not tight
+weather = rain, sun, wind and temperature | whether = if (introducing a choice)
+principal = main; the head of a school | principle = a rule or belief
+complement = something that completes or goes well with | compliment = praise
+stationary = not moving | stationery = writing paper and envelopes
+peak = the top; highest point | peek = a quick look | pique = to arouse interest; irritation
+brake = a device that slows a vehicle; to slow down | break = to smash or a pause
+breath = air taken in (noun) | breathe = to take in air (verb)
+desert = a dry sandy place; to abandon | dessert = a sweet course after a meal
+lead = to guide (present); a heavy metal | led = guided (past of lead)
+past = gone by in time; beyond | passed = went by; succeeded in (past of pass)
+piece = a part or bit | peace = calm; no war
+plain = simple; a flat area of land | plane = an aircraft; a flat surface
+right = correct; the opposite of left | write = to put words on paper | rite = a ceremony
+role = a part played or a job | roll = to turn over; a small loaf; a list of names
+sight = vision; something seen | site = a place or website | cite = to quote as evidence
+some = an amount of | sum = a total; an arithmetic problem
+steal = to take without permission | steel = a strong metal
+tail = the end part of an animal | tale = a story
+waist = the middle of the body | waste = to use carelessly; rubbish
+wait = to stay until something happens | weight = how heavy something is
+weak = not strong | week = seven days
+wear = to have clothes on | where = in or to what place | were = past of "are"
+which = what one | witch = a woman with magic powers
+whole = complete; all of | hole = an opening or gap
+hour = sixty minutes | our = belonging to us
+knew = past of know | new = not old
+know = to be aware of | no = the opposite of yes; not any
+night = the time of darkness | knight = an armoured soldier; a chess piece
+hear = to perceive sound | here = in this place
+heard = past of hear | herd = a group of animals
+meat = animal flesh as food | meet = to come together with
+pair = two of something | pear = a fruit | pare = to trim or peel
+flour = ground grain for baking | flower = a bloom on a plant
+mail = letters and post; email | male = a man or boy; masculine
+sail = a sheet that catches wind on a boat; to travel by boat | sale = selling; a discount event
+cell = a small room; a unit of life; a phone | sell = to exchange for money
+dear = loved; expensive | deer = a forest animal with antlers
+die = to stop living | dye = colouring; to colour
+fair = just; a festival; light in colour | fare = the price of a journey; food
+grate = to shred; a metal frame | great = very good; large
+hair = strands growing on the head | hare = an animal like a large rabbit
+higher = more high | hire = to employ or rent
+idle = not working; lazy | idol = someone or something admired; a statue worshipped
+allowed = permitted | aloud = out loud
+altar = a table in a church | alter = to change
+board = a flat piece of wood; a committee; to get on | bored = not interested
+capital = a main city; a large letter; money | capitol = a building where a legislature meets
+cereal = a breakfast food made from grain | serial = in a series
+coarse = rough | course = a path; a class; of course
+council = a group that governs | counsel = advice; to advise; a lawyer
+discreet = careful not to attract attention | discrete = separate and distinct
+elicit = to draw out a response | illicit = illegal
+ensure = to make certain | insure = to buy insurance for
+fourth = number four in order | forth = forward; onward
+horse = a large riding animal | hoarse = rough-voiced
+loan = money lent | lone = alone; single
+miner = someone who works in a mine | minor = small; under-age
+morning = the early part of the day | mourning = grieving
+patience = calm endurance | patients = people receiving medical care
+pause = a short stop | paws = an animal's feet
+poor = having little money | pour = to make liquid flow | pore = a tiny opening in skin; to study closely
+pray = to speak to a god | prey = an animal hunted for food
+presence = being present | presents = gifts
+rain = water falling from clouds | reign = rule as a monarch | rein = a strap to control a horse
+real = genuine | reel = a spool; to stagger
+seam = a line where fabric is joined | seem = to appear to be
+scene = a view; part of a play | seen = past participle of see
+sole = only; the bottom of a foot or shoe; a fish | soul = the spirit
+stair = a step | stare = to look fixedly
+suite = a set of rooms or matching items | sweet = sugary; kind
+threw = past of throw | through = from one side to the other
+throne = a royal seat | thrown = past participle of throw
+vain = conceited; useless | vein = a blood vessel | vane = a blade that turns in wind
+way = a method; a route | weigh = to measure weight
+yolk = the yellow part of an egg | yoke = a wooden harness for animals
+aisle = a passage between seats | isle = an island | I'll = short for "I will"
+blew = past of blow | blue = a colour
+cent = a coin | scent = a smell | sent = past of send
+chord = musical notes together | cord = a thin rope or cable
+dual = double | duel = a fight between two people
+faze = to disturb or unsettle | phase = a stage
+heal = to make healthy | heel = the back of the foot or shoe
+hall = a corridor or large room | haul = to drag; a quantity taken
+lessen = to make less | lesson = a period of teaching
+muscle = body tissue that moves | mussel = a shellfish
+naval = to do with a navy | navel = the belly button
+pedal = a foot lever | peddle = to sell goods
+pole = a long rod; a geographic pole | poll = a survey; a vote
+prophet = someone who predicts | profit = money gained
+rode = past of ride | road = a street | rowed = past of row
+root = the underground part of a plant | route = a way to go
+sore = painful | soar = to fly high
+tide = the rise and fall of the sea | tied = fastened
+toe = a digit of the foot | tow = to pull
+vary = to change | very = extremely
+wood = material from trees | would = used for wishes or conditions
+advice = a recommendation (noun) | advise = to recommend (verb)
+quiet = making little noise | quite = fairly; completely
+choose = to pick (present) | chose = picked (past) | chews = bites and grinds with the teeth
+lightning = flashes in a storm | lightening = making lighter
+precede = to come before | proceed = to go on
+emigrate = to leave a country | immigrate = to come into a country
+ad = an advertisement | add = to put together or increase
+aid = help; to help | aide = an assistant
+ail = to trouble or be ill | ale = a kind of beer
+ant = a small insect | aunt = a parent's sister
+arc = a curve | ark = a large boat; a chest
+ascent = a climb | assent = agreement
+ate = past of eat | eight = the number 8
+attendance = being present; how many came | attendants = people who attend or serve
+aural = to do with hearing | oral = spoken; to do with the mouth
+bail = money for release from jail; to scoop water out | bale = a large bundle
+ball = a round object; a dance | bawl = to cry loudly
+band = a music group; a strip | banned = forbidden
+baron = a nobleman | barren = unable to produce; bare
+base = the bottom; a starting point | bass = low in pitch; a fish
+bazaar = a market | bizarre = very strange
+be = to exist | bee = a stinging insect
+beach = the sandy shore | beech = a kind of tree
+beat = to hit; to win against; a rhythm | beet = a red root vegetable
+berry = a small fruit | bury = to put in the ground
+berth = a bed on a ship or train; a docking place | birth = being born
+billed = charged | build = to construct
+bite = to cut with teeth | byte = a unit of computer data
+bloc = a group of countries or voters | block = a solid piece; to obstruct
+boar = a wild pig | bore = to make someone bored; to drill
+bold = brave; thick type | bowled = past of bowl
+bolder = braver | boulder = a large rock
+born = brought into life | borne = carried; endured
+borough = a town or district | burrow = an animal's hole; to dig
+bow = to bend forward; a knot with loops; the front of a ship | bough = a tree branch | beau = a boyfriend
+boy = a male child | buoy = a floating marker
+bridal = to do with a bride | bridle = a horse's headgear
+broach = to bring up a subject | brooch = a decorative pin
+buy = to purchase | by = beside; through | bye = goodbye
+cache = a hidden store; stored data | cash = money
+callous = unfeeling | callus = hard skin
+canvas = strong cloth | canvass = to ask for votes or opinions
+carat = a unit of weight for gems | carrot = an orange vegetable | caret = the ^ mark
+ceiling = the top of a room; an upper limit | sealing = closing tightly
+cellar = an underground room | seller = someone who sells
+censor = to remove unacceptable parts | sensor = a device that detects
+cheap = low in price | cheep = a bird's chirp
+chili = a hot pepper; a spicy stew | chilly = cold
+clause = part of a sentence or contract | claws = sharp nails of an animal
+colonel = an army officer | kernel = a seed; the core
+creak = a squeaking sound | creek = a small stream
+crews = teams of workers | cruise = a sea voyage; to travel steadily
+currant = a small dried fruit | current = present; a flow of water or electricity
+days = plural of day | daze = a confused state
+dew = drops of water on grass | due = owed; expected | do = to carry out or perform
+doe = a female deer | dough = a mixture for bread
+earn = to gain by working | urn = a vase; a large container
+feat = an achievement | feet = plural of foot
+find = to discover | fined = charged a penalty
+fir = an evergreen tree | fur = animal hair
+flea = a small jumping insect | flee = to run away
+flew = past of fly | flu = influenza
+for = intended for; because | four = the number 4 | fore = at the front
+foul = unpleasant; against the rules | fowl = a bird such as a chicken
+gait = a way of walking | gate = an opening in a fence
+genes = units of heredity | jeans = denim trousers
+gilt = covered in gold | guilt = responsibility for wrongdoing
+groan = a low sound of pain | grown = past participle of grow
+guessed = past of guess | guest = a visitor
+hay = dried grass | hey = an informal greeting
+hi = hello | high = tall; far up
+him = that man or boy | hymn = a religious song
+hoard = a hidden store; to stockpile | horde = a large crowd
+holy = sacred | wholly = completely | holey = full of holes
+in = inside | inn = a small hotel or pub
+knead = to work dough | need = to require
+knot = a tie in rope | not = used to make a negative
+knows = is aware of | nose = the part of the face for smelling
+lain = past participle of lie | lane = a narrow road
+lay = to put down | lei = a garland of flowers
+leak = an escape of liquid or information | leek = a vegetable like an onion
+links = connections | lynx = a wild cat
+made = past of make | maid = a female servant
+main = most important | mane = long hair on a horse or lion
+manner = a way of doing something | manor = a large country house
+marshal = an officer; to gather | martial = to do with war or fighting
+medal = an award | meddle = to interfere
+might = may (possibility); strength | mite = a tiny creature
+mind = the thinking part of a person; to care | mined = dug from the ground
+missed = failed to catch or reach; felt the absence of | mist = fine water droplets in the air
+moose = a large deer | mousse = a light creamy dessert; hair foam
+none = not any | nun = a member of a religious order
+oar = a paddle | or = used for alternatives | ore = rock containing metal
+one = the number 1 | won = past of win
+overdo = to do too much | overdue = late
+packed = filled | pact = an agreement
+pail = a bucket | pale = light in colour
+pain = hurt | pane = a sheet of glass
+palate = the roof of the mouth; sense of taste | palette = a board for mixing paint; a range of colours | pallet = a wooden platform for goods
+peal = the ringing of bells | peel = skin of fruit; to remove skin
+pearl = a gem from an oyster | purl = a knitting stitch
+!pi = the number 3.14159… | pie = a baked dish with a crust
+pier = a platform over water | peer = an equal; to look closely
+plum = a fruit | plumb = exactly vertical; to measure depth
+pros = advantages; professionals | prose = ordinary writing, not poetry
+quarts = units of liquid | quartz = a mineral
+rap = a type of music; a sharp knock | wrap = to cover or fold around
+read = past of read | red = the colour | reed = a tall grass; part of a woodwind instrument
+ring = a circle; to make a bell sound | wring = to twist and squeeze
+rote = repetition from memory | wrote = past of write
+rung = a step of a ladder; past participle of ring | wrung = past of wring
+rye = a grain | wry = dryly humorous
+sauce = a liquid for food | source = where something comes from
+sea = a large body of salt water | see = to look
+seas = plural of sea | sees = looks at | seize = to grab
+sew = to stitch | so = therefore; very | sow = to plant seeds
+shear = to cut wool | sheer = complete; very steep; thin
+shoe = footwear | shoo = to chase away
+side = an edge or surface | sighed = breathed out sadly
+sighs = breathes out sadly | size = how big
+slay = to kill | sleigh = a sled
+son = a male child | sun = the star that gives us light
+stake = a post; a share | steak = a slice of beef
+symbol = a sign | cymbal = a brass instrument
+taught = past of teach | taut = pulled tight
+tea = a hot drink | tee = a peg for a golf ball
+team = a group working together | teem = to be full of
+tear = a drop from the eye | tier = a level or layer
+tern = a seabird | turn = to rotate; a go
+thyme = a herb | time = minutes and hours
+toad = an amphibian | towed = pulled behind
+told = past of tell | tolled = rang (a bell)
+troop = a group of soldiers | troupe = a group of performers
+vial = a small bottle | vile = disgusting
+wail = to cry out | whale = a large sea mammal
+war = armed conflict | wore = past of wear
+warn = to alert to danger | worn = past participle of wear
+wave = to move a hand; a moving ridge of water | waive = to give up a right
+whine = to complain; a high sound | wine = an alcoholic drink from grapes
+boarder = someone who lodges | border = an edge; a boundary
+bread = baked food | bred = raised (animals); past of breed
+cast = to throw; the actors in a show | caste = a social class
+coward = someone without courage | cowered = crouched in fear
+dam = a barrier across water | damn = a curse
+faint = weak; to pass out | feint = a pretend attack
+fairy = a magical creature | ferry = a boat that carries people across water
+flair = natural talent | flare = a bright flame; to widen
+gorilla = a large ape | guerrilla = an irregular fighter
+grisly = horrible | grizzly = a large bear
+hangar = a building for aircraft | hanger = a hook for clothes
+heroin = an illegal drug | heroine = a female hero
+hostel = cheap lodging | hostile = unfriendly
+incite = to stir up | insight = deep understanding
+ordinance = a law or rule | ordnance = military weapons
+air = the gas we breathe | heir = someone who inherits | ere = before (old-fashioned)
+allusion = an indirect reference | illusion = a false impression
+bases = plural of base | basis = the foundation or reason for something
+close = to shut; near | clothes = things you wear
+eminent = famous and respected | imminent = about to happen
+ewe = a female sheep | you = the person spoken to
+facts = things known to be true | fax = a document sent by phone line
+foreword = an introduction to a book | forward = towards the front; onward
+gene = a unit of heredity | jean = denim cloth
+grease = oil or fat | greece = the country in southern Europe
+halve = to divide in two | have = to own or hold
+leased = rented out | least = the smallest amount
+material = what something is made of | materiel = military equipment and supplies
+marry = to wed | merry = cheerful
+mince = to chop finely; minced meat | mints = sweets flavoured with mint
+oh = an exclamation | owe = to be in debt
+rose = a flower; past of rise | rows = lines of things
+we = you and I; the group including me | wee = small (Scottish)
+
+# Sets below: words that sound the same in the CMU Pronouncing Dictionary
+# (BSD-2-Clause, see CMUDICT-LICENSE.txt), kept when common in public-domain
+# books, then checked by an AI reviewer and by hand (2026-10-15). Meanings
+# written for Xenify Write. Made by crates/xenify-wp-corpus/train/
+# homophone_sets.py and curate_homophones.py.
+but = except; however | butt = end of something; to push with head
+heart = organ that pumps blood | hart = male deer
+straight = not curved; direct; heterosexual | strait = narrow area of water
+raised = lifted; brought up | razed = completely destroyed
+died = passed away | dyed = coloured fabric or hair
+rough = not smooth; harsh | ruff = a stiff collar; a bird's neck feathers
+bell = a ringing metal object | belle = beautiful woman
+please = to make happy; used politely | pleas = legal cases; requests
+wet = covered in water; damp | whet = to sharpen; to make eager
+fate = what will happen; destiny | fete = a party or celebration
+nights = the time when it is dark outside | knights = medieval warriors or title of honor
+stayed = remained in place or condition | staid = calm, serious, and reserved in manner
+key = tool to open locks or music note | quay = a platform where ships dock
+bearing = relation or tolerance; carrying something | baring = exposing or uncovering something
+waved = moved hand or object back and forth | waived = gave up a right or claim
+doc = doctor or written document | dock = a platform for ships or to cut short
+manners = polite ways of behaving | manors = large country houses or estates
+souls = spirit of a person | soles = bottom of feet or shoes
+rights = moral or legal entitlements | writes = puts words on paper or in digital form | rites = ceremonial acts or procedures
+veil = thin cloth worn over the face | vale = a valley between hills
+tales = stories, often imaginary | tails = rear end of an animal
+pains = efforts or physical suffering | panes = sections of window glass
+wit = mental sharpness; humor | whit = a tiny amount
+sons = male children | suns = stars, especially the center of the solar system
+reins = straps used to control a horse | rains = precipitation from clouds
+reeds = tall grasses in wet areas | reads = looks at and understands written words
+ringing = making a clear resonant sound | wringing = squeezing out liquid
+cents = pennies; units of currency | scents = smells
+keys = islands; lock openers | quays = docks; wharves
+mantle = cloak; layer in the earth | mantel = shelf above a fireplace
+rained = past tense of rain; water fell from clouds | reigned = ruled as a king or queen | reined = controlled or stopped a horse
+sails = cloth sheets that catch wind on a boat | sales = exchange of goods for money
+hale = healthy and strong | hail = greet someone; frozen rain drops
+cannon = large gun that fires heavy balls | canon = official set of sacred or literary works
+sewing = making or repairing clothes with needle and thread | sowing = planting seeds in soil
+praying = talking to God or a deity | preying = hunting or attacking as a predator
+wears = has clothing on the body | wares = goods for sale
+roots = parts of a plant below ground | routes = paths or ways from one place to another
+vice = immoral behavior; a bad habit | vise = tool that holds objects tightly
+cords = thick strings or electrical cables | chords = musical notes played together
+breaks = pauses; or damages something | brakes = device for stopping or slowing a vehicle
+principles = moral rules or beliefs | principals = main persons; school leaders
+corps = group of people in military or service | core = central or most important part
+raining = water falling from the sky | reigning = ruling as a monarch | reining = controlling a horse
+chased = ran after someone or something | chaste = not having sex; pure in behavior
+moat = deep ditch around a castle | mote = a tiny particle of dust
+francs = former currency units in France and others | franks = people from Germany or Europe; to send mail free
+pairs = two things of the same kind | pears = a type of sweet fruit
+bears = large wild animals; to carry | bares = shows something naked; removes covering
+hue = color; shade | hew = to cut or chop
+furs = animal skins with hair used in clothing | firs = a type of evergreen tree
+healed = got better from injury or illness | heeled = wore shoes with heels; had a heel
+borders = edges; lines between countries | boarders = people who live and eat at a school
+fairies = imaginary magical creatures | ferries = boats that carry people across water
+airs = pretentious behavior; the atmosphere | heirs = people who inherit money or title
+dies = stops living; machines that shape metal | dyes = colors used to change appearance
+meets = comes together; satisfies a need | meats = animal flesh eaten as food
+tax = money paid to government | tacks = sharp pins; sudden changes in direction
+tease = to make fun of in a playful way | teas = hot drinks made from leaves steeped in water
+hairs = strands growing from the skin of people or animals | hares = wild animals like large rabbits
+waits = stays until something happens | weights = measures of how heavy something is
+piers = structures extending into water for docking boats | peers = people of the same age or status
+cellars = rooms below ground level, often for storage | sellers = people or things that sell
+sweets = candy; sugary treats | suites = sets of rooms or matching software
+councils = groups that give advice or govern | counsels = gives advice; recommends
+wraps = covers or encloses something | raps = quick knocks; or musical speech
+wastes = uses carelessly; or land with no use | waists = middle part of the body
+isles = small islands | aisles = passages between rows of seats
+freeze = to turn to ice; stop | frieze = a carved decorative band on a wall
+sown = past participle of sow, as seeds | sewn = stitched; past participle of sew
+baited = lured with food; tormented | bated = reduced; in suspense (as in bated breath)
+males = male persons or animals | mails = sends letters; postal deliveries
+cue = a signal; a pool stick | queue = a line of people waiting
+fairs = events with games and rides | fares = prices for travel or food
+aired = broadcast on TV or radio | erred = made a mistake
+flees = runs away from danger | fleas = small jumping insects that bite
+hordes = large groups of people | hoards = large stored collections of things

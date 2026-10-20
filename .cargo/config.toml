@@ -1,0 +1,4 @@
+# Browser builds: getrandom (used by the spelling checker's dependencies)
+# takes its randomness from the browser's crypto.getRandomValues.
+[target.wasm32-unknown-unknown]
+rustflags = ['--cfg', 'getrandom_backend="wasm_js"']

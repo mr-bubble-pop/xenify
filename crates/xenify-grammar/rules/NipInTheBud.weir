@@ -1,0 +1,15 @@
+# Eggcorns (misheard fixed phrases). Patterns from published eggcorn lists
+# (e.g. tckpublishing.com, cjr.org); examples are ours.
+# why: The phrase comes from gardening: pinch off a bud before it flowers, i.e. stop something early. Butt is a mishearing.
+expr main <(nip [it, this, that, them] in the butt), butt>
+
+let message "The phrase is `nip it in the bud` (stop it early, like a flower bud)."
+let description "Fixes the misheard phrase `nip it in the butt` → `nip it in the bud`."
+let kind "Eggcorn"
+let becomes "bud"
+let strategy "MatchCase"
+
+test "Let's nip it in the butt." "Let's nip it in the bud."
+test "We should nip this in the butt now." "We should nip this in the bud now."
+
+allows "Let's nip it in the bud."

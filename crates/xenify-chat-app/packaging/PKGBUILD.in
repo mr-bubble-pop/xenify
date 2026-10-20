@@ -1,0 +1,18 @@
+# Arch Linux / Manjaro: makepkg -si (next to the tarball from scripts/package-app.sh).
+pkgname=xenify-chat
+pkgver=@VERSION@
+pkgrel=1
+pkgdesc="Chat, email and calendar in one place, with spelling and grammar checked on this computer"
+arch=('x86_64')
+license=('MIT')
+depends=('webkit2gtk-4.1' 'gtk3' 'libsoup3')
+source=("xenify-chat-$pkgver-x86_64.tar.gz")
+sha256sums=('@SHA256@')
+
+package() {
+    cd "xenify-chat-$pkgver"
+    install -Dm755 xenify-chat xenify-checker -t "$pkgdir/usr/bin/"
+    install -Dm644 xenify-chat.desktop "$pkgdir/usr/share/applications/xenify-chat.desktop"
+    install -Dm644 xenify-chat.png "$pkgdir/usr/share/icons/hicolor/256x256/apps/xenify-chat.png"
+    install -Dm644 LICENSE THIRD_PARTY_LICENSES.txt -t "$pkgdir/usr/share/licenses/xenify-chat/"
+}

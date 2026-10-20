@@ -1,0 +1,27 @@
+# Real-word typo: "manger" (a feeding trough) for "manager". Pattern from
+# published lists of mistakes spell-checkers miss; examples are ours.
+# why: A manger is a feeding trough for animals; a manager runs a team. Missing the a is easy to do and a spell-checker won't notice.
+expr roles [lab, great, good, bad, new, best, worst, former, previous, current, interim, acting, deputy, project, general, store, office, account, accounts, branch, hiring, line, regional, sales, product, program, programme, team, operations, marketing, property, case, community, media, finance, brand, assistant, senior, junior, district, area, shift, restaurant, hotel, plant, site, IT, HR, engineering, delivery, release, campaign, client, portfolio, risk, facilities, floor, duty, stage, production, research, fund, warehouse, bank, campus, care, ward, practice, department, payroll, events, content, social, kitchen, bar, front, retail, country]
+expr verbs [approved, approves, said, says, will, asked, asks, told, tells, wants, needs, has, had, called, calls, emailed, emails, decided, decides, signed, signs, agreed, agrees, mentioned, confirmed, confirms, suggested, suggests, sent, sends, should, would, can, could, must, may, might]
+expr main [<(@roles manger), manger>, <([my, your, our, their, his, her] manger), manger>, <([to] [the, my, your, our, their, his, her] manger), manger>, <(manger [of, for, at]), manger>, <(the manger @verbs), manger>, <([have, ask, tell, call, email, contact, see, (let)] the manger), manger>, <(the manger [meeting, meetings, sign, signs, to]), manger>]
+
+let message "Did you mean `manager`? (A `manger` is an animal feeding trough.)"
+let description "Catches `manger` where `manager` was meant (project manger, my manger, the manger approved)."
+let kind "Typo"
+let becomes "manager"
+let strategy "MatchCase"
+
+test "Please ask your manger first." "Please ask your manager first."
+test "The project manger will send the plan." "The project manager will send the plan."
+test "I spoke to the manger about it." "I spoke to the manager about it."
+test "The manger approved the budget." "The manager approved the budget."
+test "She is the manger of the Leeds branch." "She is the manager of the Leeds branch."
+
+allows "The baby lay in a manger."
+allows "Away in a manger, no crib for a bed."
+allows "The horses ate hay from the manger."
+allows "Please ask your manager first."
+
+test "The lab manger asked us to wait." "The lab manager asked us to wait."
+test "Please have the manger sign it." "Please have the manager sign it."
+test "I have a great manger now." "I have a great manager now."

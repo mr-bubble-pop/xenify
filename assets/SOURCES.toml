@@ -1,0 +1,416 @@
+# Where every asset came from, and the licence it is used under.
+#
+# This is the single record. It feeds:
+#   - the test crates/xenify-export/tests/provenance.rs, which fails when a
+#     file under assets/ has no entry, when its SHA-256 no longer matches, or
+#     when its licence isn't one we accept (see ACCEPTED in
+#     crates/xenify-export/src/sources.rs);
+#   - Help › Credits & Licences in the app (compiled in at build time);
+#   - scripts/licenses.sh, which appends each licence_file to
+#     THIRD_PARTY_LICENSES.txt.
+#
+# One [[asset]] per bundled file (or file group), per on-demand download, and
+# per piece of generated media or built-in artwork.
+#
+# Fields:
+#   path          the file under assets/ (absent for artwork that only lives in code)
+#   name          what it is, as shown in the credits
+#   source        "download" (default) or "generated"
+#   source_url    where it was downloaded from (download)
+#   generator     the code that makes it (generated): a path, plus the function
+#   version       release, commit or font version
+#   license       SPDX id
+#   license_file  the licence text, itself listed below
+#   attribution   the exact credit text, when the licence needs one
+#   fetched       date it was downloaded or generated (YYYY-MM-DD)
+#   sha256        of the file at `path` (`sha256sum <file>`)
+#   notes         changes we made (subset, recompression…), and for generated
+#                 media a statement that no third-party material was used
+#
+# Adding an asset: prefer MIT, Apache-2.0, BSD, ISC, Zlib, CC0-1.0 or OFL-1.1.
+# Anything CC BY needs visible attribution. Downloaded sets come from a fetch
+# script (scripts/fetch-*.sh) that pins the URL or commit, checks the hash and
+# writes the entry here; nothing is copied in by hand.
+
+[[asset]]
+path = "assets/fonts/Inter.ttf"
+name = "Inter font"
+source_url = "https://github.com/rsms/inter"
+version = "4.001 (from the font's head table)"
+license = "OFL-1.1"
+license_file = "assets/fonts/OFL.txt"
+attribution = "Inter, © The Inter Project Authors (Rasmus Andersson)"
+fetched = "before 2026-09-26 (exact date not recorded)"
+sha256 = "29160a80ff49ddcab2c97711247e08b1fab27a484a329ce8b813d820dc559031"
+notes = "Unmodified. Embedded in xenify-render for text layers and exports."
+
+[[asset]]
+path = "assets/fonts/OFL.txt"
+name = "Inter font licence"
+source_url = "https://github.com/rsms/inter"
+version = "same as Inter.ttf"
+license = "OFL-1.1"
+attribution = "Licence text for Inter"
+fetched = "before 2026-09-26 (exact date not recorded)"
+sha256 = "5b9321a4298cfeb6b34354164a1c3afc3db114569984c502b9b35d988fd58c57"
+
+[[asset]]
+path = "assets/fonts/STIXTwoMath-Regular.ttf"
+name = "STIX Two Math font"
+source_url = "https://github.com/stipub/stixfonts/tree/v2.13b171"
+version = "v2.13b171"
+license = "OFL-1.1"
+license_file = "assets/fonts/OFL-STIX.txt"
+attribution = "STIX Two Math, © 2001-2021 The STIX Fonts Project Authors"
+fetched = "2026-10-14"
+sha256 = "49b22767985171bce579307b21d98f4d35012fa39e316acc4ffcab8644dfb69b"
+notes = "Unmodified. Fetched by scripts/fetch-stix.sh. Xenify Write: fallback for symbols (arrows, maths, Greek) and equations."
+
+[[asset]]
+path = "assets/fonts/OFL-STIX.txt"
+name = "STIX Two licence"
+source_url = "https://github.com/stipub/stixfonts/tree/v2.13b171"
+version = "v2.13b171"
+license = "OFL-1.1"
+attribution = "Licence text for STIX Two"
+fetched = "2026-10-14"
+sha256 = "0c8825913b60d858aacdb33c4ca6660a7d64b0d6464702efbb19313f5765861a"
+
+[[asset]]
+path = "assets/fonts/cmunrm.otf"
+name = "CMU Serif Roman font (Computer Modern Unicode)"
+source_url = "https://ctan.org/pkg/cm-unicode"
+version = "0.7.0 (CTAN)"
+license = "OFL-1.1"
+license_file = "assets/fonts/OFL-CMU.txt"
+attribution = "Computer Modern Unicode fonts, © 2003-2009 Andrey V. Panov; after Donald E. Knuth's Computer Modern and the authors listed in the licence"
+fetched = "2026-10-14"
+sha256 = "5089693f81ed5b83435be7167bf2f93c2608ce92fb3a7e13f6be238a733c38f2"
+notes = "Unmodified. Fetched by scripts/fetch-cmu.sh. Xenify Write: the classic LaTeX look (Scientific paper template)."
+
+[[asset]]
+path = "assets/fonts/cmunti.otf"
+name = "CMU Serif Italic font (Computer Modern Unicode)"
+source_url = "https://ctan.org/pkg/cm-unicode"
+version = "0.7.0 (CTAN)"
+license = "OFL-1.1"
+license_file = "assets/fonts/OFL-CMU.txt"
+attribution = "Computer Modern Unicode fonts, © 2003-2009 Andrey V. Panov; after Donald E. Knuth's Computer Modern and the authors listed in the licence"
+fetched = "2026-10-14"
+sha256 = "fc38ce9ea06e49bda118a8be9f053791d043a547c248ae30c9e4fad956de3267"
+notes = "Unmodified. Fetched by scripts/fetch-cmu.sh. Xenify Write: the classic LaTeX look (Scientific paper template)."
+
+[[asset]]
+path = "assets/fonts/cmunbx.otf"
+name = "CMU Serif Bold font (Computer Modern Unicode)"
+source_url = "https://ctan.org/pkg/cm-unicode"
+version = "0.7.0 (CTAN)"
+license = "OFL-1.1"
+license_file = "assets/fonts/OFL-CMU.txt"
+attribution = "Computer Modern Unicode fonts, © 2003-2009 Andrey V. Panov; after Donald E. Knuth's Computer Modern and the authors listed in the licence"
+fetched = "2026-10-14"
+sha256 = "e956d496776533b0ca1b6e1acaeac896b81b81b908667cbf49840048ed16bd0c"
+notes = "Unmodified. Fetched by scripts/fetch-cmu.sh. Xenify Write: the classic LaTeX look (Scientific paper template)."
+
+[[asset]]
+path = "assets/fonts/cmunbi.otf"
+name = "CMU Serif Bold Italic font (Computer Modern Unicode)"
+source_url = "https://ctan.org/pkg/cm-unicode"
+version = "0.7.0 (CTAN)"
+license = "OFL-1.1"
+license_file = "assets/fonts/OFL-CMU.txt"
+attribution = "Computer Modern Unicode fonts, © 2003-2009 Andrey V. Panov; after Donald E. Knuth's Computer Modern and the authors listed in the licence"
+fetched = "2026-10-14"
+sha256 = "690cc3c1511a98e79f5bde8a58868405160da1b7d99f3482324c6a915b496b02"
+notes = "Unmodified. Fetched by scripts/fetch-cmu.sh. Xenify Write: the classic LaTeX look (Scientific paper template)."
+
+[[asset]]
+path = "assets/fonts/OFL-CMU.txt"
+name = "Computer Modern Unicode licence"
+source_url = "https://ctan.org/pkg/cm-unicode"
+version = "0.7.0 (CTAN)"
+license = "OFL-1.1"
+attribution = "Licence text for the Computer Modern Unicode fonts"
+fetched = "2026-10-14"
+sha256 = "73273dffdefe2e5f1e138084d4a4b65b1c50df2ab0179f78484f31beefe30d84"
+
+[[asset]]
+name = "Diagram shape library: 56 flowchart, network, cloud & software and BPMN shapes"
+source = "generated"
+generator = "crates/xenify-ops/src/library.rs"
+license = "MIT"
+fetched = "2026-09-29"
+notes = """Original. Drawn for this program from plain geometry (rectangles, ellipses, arcs, lines). \
+No outside icon sets, logos or trademarks were copied or traced; vendor icons (cloud providers, \
+network equipment makers) are deliberately not included. Flowchart and BPMN symbol shapes follow \
+the generic conventions of ISO 5807 and the OMG BPMN 2.0 spec (shapes, not copied artwork)."""
+
+[[asset]]
+name = "Arrowheads and connector line jumps"
+source = "generated"
+generator = "crates/xenify-anim/src/diagram.rs, crates/xenify-route/src/jumps.rs"
+license = "MIT"
+fetched = "2026-09-29"
+notes = "Original, generated geometry. No third-party material."
+
+[[asset]]
+name = "Toolbar icons"
+source = "generated"
+generator = "crates/xenify-ui/src/widgets.rs (paint_icon)"
+license = "MIT"
+fetched = "2026-09-26"
+notes = "Original, drawn with egui painter calls. No third-party material."
+
+[[asset]]
+name = "Sound effects and music beds (Layer › New Sound, Slide › Soundtrack › music)"
+source = "generated"
+generator = "crates/xenify-audio/src/synth.rs (Recipe::render)"
+license = "MIT"
+fetched = "2026-09-29"
+notes = """Original. Synthesized by the program from a recipe and a seed (oscillators, filtered noise, \
+envelopes, a small Schroeder room); no recordings, samples or third-party material. The recipe is saved \
+with each sound so it can be made again."""
+
+[[asset]]
+name = "Noto Emoji Animation (animated emoji, downloaded when first used)"
+source_url = "https://googlefonts.github.io/noto-emoji-animation/"
+version = "latest (the list from googlefonts.github.io/noto-emoji-animation/data/api.json, each animation from fonts.gstatic.com/s/e/notoemoji/latest/<code points>/lottie.json)"
+license = "CC-BY-4.0"
+attribution = "Animated emoji: Noto Emoji Animation © Google LLC, CC BY 4.0"
+fetched = "on demand, first used 2026-09-30"
+notes = """Not bundled. The Emoji panel's Animated tab and the AI's add_emoji (animated) download an \
+animation only when it's used, into the data folder (downloads/noto-emoji-animation/), and log each \
+download (date, URL, file, size) in downloads/downloads.log. The Lottie files are imported unmodified as \
+editable layers; the credit is shown in the panel, the status line and Help › Credits."""
+
+# GIPHY (Layer › New › GIF, AI add_gif) is not an asset source of ours: users
+# search with their own API key and add GIFs they choose, and they're
+# responsible for the rights (the panel says so and shows "Powered by GIPHY").
+# Each GIF's title and maker are kept as the image's name. Nothing is bundled.
+
+# BEGIN fetch-emoji.sh (written by scripts/fetch-emoji.sh; don't edit by hand)
+[[asset]]
+path = "assets/emoji/fluent-emoji.json.z"
+name = "Fluent Emoji (flat), 770 emoji"
+source_url = "https://github.com/microsoft/fluentui-emoji"
+version = "commit 1ffb34c752ecf5d402f04cfb4b392c77f57c54bc"
+license = "MIT"
+license_file = "assets/emoji/LICENSE"
+attribution = "Fluent Emoji © Microsoft Corporation, MIT License"
+fetched = "2026-09-30"
+sha256 = "a5201b2271eabd1efe11e92a3e0654f4e4b32e97a635b7235776c21fdcf027a3"
+notes = "The flat SVGs (default skin tone) of the groups Smileys & Emotion, Activities, Animals & Nature, Food & Drink and common symbols/objects, with their names, groups and keywords, packed into one zlib-compressed JSON file. The SVGs are unmodified."
+
+[[asset]]
+path = "assets/emoji/LICENSE"
+name = "Fluent Emoji licence"
+source_url = "https://github.com/microsoft/fluentui-emoji"
+version = "commit 1ffb34c752ecf5d402f04cfb4b392c77f57c54bc"
+license = "MIT"
+attribution = "Licence text for Fluent Emoji"
+fetched = "2026-09-30"
+sha256 = "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383"
+# END fetch-emoji.sh
+
+# BEGIN build-showcase.sh (written by scripts/build-showcase.sh; don't edit by hand)
+[[asset]]
+path = "assets/showcase.xenify"
+name = "The showcase presentation (Help › Showcase)"
+source = "generated"
+generator = "crates/xenify-showcase/src/lib.rs (build_with), crates/xenify-audio/src/synth.rs"
+license = "MIT"
+fetched = "2026-09-30"
+sha256 = "95a4a3361923c07e70ba600434fd14967875011307b9a9bb4380465348a3deb1"
+notes = """Original. Built by the program's own editing operations (scripts/build-showcase.sh, product name \
+"Spark"): shapes, text, particles, 3D and diagrams drawn in code; its video clips are rendered from its \
+own compositions; every sound and the music bed come from the built-in synthesizer. The only outside material is the \
+bundled Fluent Emoji (MIT, see its entry). No third-party material otherwise; no GIPHY or downloaded content."""
+# END build-showcase.sh
+
+[[asset]]
+path = "assets/proofing/test-set.jsonl"
+name = "Proofing test set: 939 short passages with and without mistakes (Xenify Write regression test)"
+source = "generated"
+generator = "crates/xenify-wp-corpus/src/ai.rs, crates/xenify-wp-corpus/src/taxonomy.rs"
+license = "MIT"
+fetched = "2026-10-09"
+sha256 = "d83bb2eb246235229e2e2712e728ff59287a5618ef0cdb2278b3779499976f7d"
+notes = """Original: AI-generated text, no third-party material copied. Written by deepseek/deepseek-v4-flash (MIT-licensed weights) from our own prompts and our own list of mistake kinds and writing settings, checked by qwen/qwen3-235b-a22b-2507 (Apache-2.0), both through OpenRouter zero-data-retention endpoints. A seeded sample of the held-out round (never used while writing rules). Used only by crates/xenify-grammar/tests/corpus.rs; not shipped in the app."""
+
+[[asset]]
+name = "Sound-alike context model (crates/xenify-grammar/rules/homophones/model.tsv)"
+source = "generated"
+generator = "crates/xenify-wp-corpus/src/sounds.rs, crates/xenify-grammar/src/sound_alike.rs"
+license = "MIT"
+fetched = "2026-10-09"
+notes = """Original: context-word counts learned by `xenify-wp-corpus sounds train` from about 95,000 AI-generated example sentences (deepseek/deepseek-v4-flash, MIT-licensed weights; checked by qwen/qwen3-235b-a22b-2507, Apache-2.0; both via OpenRouter zero-data-retention endpoints), written from the 356 confusable sets in rules/homophones/sets.txt (retrained 2026-10-15). Only the counts ship; no third-party material."""
+
+[[asset]]
+path = "crates/xenify-grammar/rules/homophones/freq.tsv"
+name = "Sound-alike word frequencies"
+source = "generated"
+generator = "docs/grammar-checker.md (counted for Xenify from the training books and passages; the one-off counting script wasn't kept)"
+license = "MIT"
+fetched = "2026-10-18"
+sha256 = "2edc730c27979597d89343d6f3f5cb2a1cead556a87ad2367d08d022eccd6150"
+notes = """Original: how often each sound-alike word appears in our public-domain (Project Gutenberg) training books and our AI-generated passages. Only the counts ship, no text. Used so a much rarer word needs more evidence before it's suggested."""
+
+# BEGIN fetch-oewn.sh (written by scripts/fetch-oewn.sh; don't edit by hand)
+[[asset]]
+path = "assets/lexicon/oewn.txt.z"
+name = "Open English WordNet 2025: dictionary and thesaurus (107519 meanings, 135969 words)"
+source_url = "https://en-word.net (https://github.com/globalwordnet/english-wordnet/releases/download/2025-edition/english-wordnet-2025-json.zip)"
+version = "2025 edition"
+license = "CC-BY-4.0"
+license_file = "assets/lexicon/LICENSE"
+attribution = "Open English WordNet (https://en-word.net), © the Open English WordNet team, CC BY 4.0; derived from Princeton WordNet 3.0, © 2006 Princeton University, WordNet License"
+fetched = "2026-10-11"
+sha256 = "f566739bf28b3c3997bf0b8a77b3183c919b521cb2f63d53bc197fbbe0b044a5"
+notes = "Repacked by scripts/fetch-oewn.sh: definitions, up to two examples, words, broader and similar meanings, US pronunciations, antonyms and irregular forms, as zlib-compressed text. Other relations and the remaining examples are left out; the wording is unchanged."
+
+[[asset]]
+path = "assets/lexicon/LICENSE"
+name = "Open English WordNet licence"
+source_url = "https://github.com/globalwordnet/english-wordnet"
+version = "2025 edition"
+license = "CC-BY-4.0"
+attribution = "Licence text for Open English WordNet (CC BY 4.0) and Princeton WordNet (WordNet License)"
+fetched = "2026-10-11"
+sha256 = "39beac44990b80d7195cc7d629d02d3a356e86ce5597f90e26c998987394473e"
+# END fetch-oewn.sh
+
+# BEGIN fetch-lucide.sh (written by scripts/fetch-lucide.sh; don't edit by hand)
+[[asset]]
+path = "assets/icons/lucide.json"
+name = "Lucide icons, 109 icons (Xenify Write menus and toolbar)"
+source_url = "https://lucide.dev (https://registry.npmjs.org/lucide-static/-/lucide-static-1.55.0.tgz)"
+version = "lucide-static 1.55.0"
+license = "ISC"
+license_file = "assets/icons/LICENSE"
+attribution = "Lucide icons © Lucide Icons and Contributors (ISC); icons derived from Feather © Cole Bemis (MIT)"
+fetched = "2026-10-14"
+sha256 = "a4e8dbbd398377630e2be08936478d5dcbfa6e36bc04c9a967def1acee925c1a"
+notes = "The shapes (paths, lines, circles, rectangles) of the icons Write uses, copied unmodified from the package's icon-nodes.json into one file. Drawn in the app in the theme's text colour."
+
+[[asset]]
+path = "assets/icons/LICENSE"
+name = "Lucide icons licence"
+source_url = "https://lucide.dev"
+version = "lucide-static 1.55.0"
+license = "ISC"
+attribution = "Licence text for Lucide (ISC) and Feather (MIT)"
+fetched = "2026-10-14"
+sha256 = "b495047bd93a9b06913511076f504daba17d5bbeb3e0650f3bb53a4220329c57"
+# END fetch-lucide.sh
+
+[[asset]]
+path = "crates/xenify-grammar/rules/homophones/sets.txt"
+name = "Sound-alike word sets (part)"
+source_url = "https://github.com/cmusphinx/cmudict"
+version = "cmudict master, fetched 2026-10-15"
+license = "BSD-2-Clause"
+license_file = "crates/xenify-grammar/rules/homophones/CMUDICT-LICENSE.txt"
+attribution = "Includes word sets derived from the CMU Pronouncing Dictionary, Copyright (C) 1993-2015 Carnegie Mellon University"
+fetched = "2026-10-15"
+sha256 = "1a5ca9b0165df15c29de1aa1cb3bb09e5196746905c65bb17d841b0f19b61bab"
+notes = "The 77 sets after the CMU note in sets.txt: same-sounding words from the dictionary, filtered (common in public-domain books, WordNet word), curated by an AI reviewer (Qwen3-235B) and by hand; meanings written for Xenify. The dictionary itself isn't shipped. The other sets were written for Xenify."
+
+[[asset]]
+path = "crates/xenify-grammar/rules/homophones/CMUDICT-LICENSE.txt"
+name = "CMU Pronouncing Dictionary licence"
+source_url = "https://github.com/cmusphinx/cmudict"
+version = "same as sets.txt"
+license = "BSD-2-Clause"
+attribution = "Licence text for the CMU Pronouncing Dictionary"
+fetched = "2026-10-15"
+sha256 = "bd4ce8e44170a5f9f481310ca85c51de3c4f851a65e679b40e603b143bd3542a"
+
+[[asset]]
+path = "crates/xenify-chat-app/ui/fonts/Figtree.ttf"
+name = "Figtree font (variable weight)"
+source_url = "https://github.com/google/fonts/tree/47d54ca1ebb14fd864695f1d39dc734f39017c33/ofl/figtree"
+version = "google/fonts at 47d54ca1 (file Figtree[wght].ttf)"
+license = "OFL-1.1"
+license_file = "crates/xenify-chat-app/ui/fonts/OFL-Figtree.txt"
+attribution = "Figtree, © 2022 The Figtree Project Authors (Erik Kennedy)"
+fetched = "2026-10-18"
+sha256 = "26ad3db9b31ff7dde67a91ff515d022d2f495cd506590699cf264f0bfe6fb714"
+notes = "Unmodified, renamed to Figtree.ttf. The Xenify desktop app's interface font."
+
+[[asset]]
+path = "crates/xenify-chat-app/ui/fonts/OFL-Figtree.txt"
+name = "Figtree licence"
+source_url = "https://github.com/google/fonts/tree/47d54ca1ebb14fd864695f1d39dc734f39017c33/ofl/figtree"
+version = "same as Figtree.ttf"
+license = "OFL-1.1"
+attribution = "Licence text for Figtree"
+fetched = "2026-10-18"
+sha256 = "140d37233e7f3ce7313798befa9600893bcceaf41a55fa0fa5ad52f7f657a268"
+
+[[asset]]
+path = "crates/xenify-chat-app/icons/icon.png"
+name = "Xenify desktop app icon"
+source_url = "generated"
+version = "1"
+license = "MIT"
+attribution = "Drawn by a script in this repository (an ember rounded square with a white flame); no outside artwork"
+fetched = "2026-10-18"
+sha256 = "c31e801f8645f0d185b680b84f46a4952e921297594190a2523938915f1cdf99"
+notes = "Placeholder icon; replace with a designed one before release."
+
+[[asset]]
+path = "crates/xenify-write-app/ui/fonts/Figtree.ttf"
+name = "Figtree font (variable weight), for Xenify Write's HTML screens"
+source_url = "https://github.com/google/fonts/tree/47d54ca1ebb14fd864695f1d39dc734f39017c33/ofl/figtree"
+version = "google/fonts at 47d54ca1 (same file as crates/xenify-chat-app/ui/fonts/Figtree.ttf)"
+license = "OFL-1.1"
+license_file = "crates/xenify-write-app/ui/fonts/OFL-Figtree.txt"
+attribution = "Figtree, © 2022 The Figtree Project Authors (Erik Kennedy)"
+fetched = "2026-10-18"
+sha256 = "26ad3db9b31ff7dde67a91ff515d022d2f495cd506590699cf264f0bfe6fb714"
+notes = "Copied unmodified from the chat app. The interface font of the HTML Xenify Write."
+
+[[asset]]
+path = "crates/xenify-write-app/ui/fonts/OFL-Figtree.txt"
+name = "Figtree licence"
+source_url = "https://github.com/google/fonts/tree/47d54ca1ebb14fd864695f1d39dc734f39017c33/ofl/figtree"
+version = "same as Figtree.ttf"
+license = "OFL-1.1"
+attribution = "Licence text for Figtree"
+fetched = "2026-10-18"
+sha256 = "140d37233e7f3ce7313798befa9600893bcceaf41a55fa0fa5ad52f7f657a268"
+
+[[asset]]
+path = "crates/xenify-write-app/icons/icon.png"
+name = "Xenify Write (HTML) app icon"
+source_url = "generated"
+version = "1"
+license = "MIT"
+attribution = "Made with ImageMagick in this repository: an ember rounded square with a white W set in Figtree (OFL); no outside artwork"
+fetched = "2026-10-18"
+sha256 = "5bb26ba9eaaa5da89158d6e08c5fb4cf43e48f3bb224d46ac161d1dd2df374df"
+notes = "Placeholder icon; replace with a designed one before release."
+
+[[asset]]
+path = "crates/xenify-write-app/ui/icons.js"
+name = "Line icons for Xenify Write's HTML screens"
+source_url = "https://lucide.dev"
+version = "path data copied from Lucide icons (the same set as assets/icons/lucide.json)"
+license = "ISC"
+attribution = "Lucide icons, © Lucide Contributors (ISC); some © Cole Bemis (Feather, MIT)"
+fetched = "2026-10-18"
+sha256 = "6f311d77705edd75199e5fe1ac35a337e041181d4ba3567173dc76d61c0c8d7d"
+notes = "The `spacing` icon is Xenify's own (MIT), drawn in the same style."
+
+
+[[asset]]
+name = "Mistake spotter model B7 (bundled with Xenify Write; downloaded by the web version)"
+source = "generated"
+generator = "crates/xenify-wp-corpus/train/spotter.py (fine-tuning), scripts/stage-spotter.sh (packaging)"
+version = "B7"
+license = "MIT"
+fetched = "2026-10-14"
+notes = """Original fine-tune made for this program from DeBERTa-v3-xsmall (Microsoft, MIT licence). Trained on the Xenify proofing \
+corpus (synthetic, CC0-1.0) and on passages derived from Wikipedia edits (WikEd Error Corpus; Wikipedia \
+text is CC BY-SA 4.0); the raw edits are never shipped. Credits ship with the model in \
+crates/xenify-grammar-spotter/model/README.md."""

@@ -1,0 +1,105 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "Xenify Write",
+  "mainBinaryName": "xenify-write",
+  "identifier": "app.xenify.write",
+  "build": {
+    "frontendDist": "ui"
+  },
+  "app": {
+    "withGlobalTauri": true,
+    "windows": [],
+    "security": {
+      "csp": "default-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob:"
+    }
+  },
+  "bundle": {
+    "active": true,
+    "publisher": "Xenify",
+    "copyright": "MIT licence",
+    "license": "MIT",
+    "licenseFile": "../../LICENSE",
+    "category": "Productivity",
+    "shortDescription": "Word processor with private spelling and grammar checks",
+    "longDescription": "Write documents (Markdown, Word, PDF), with spelling, grammar and style checked on this computer, examples to start from, and optional AI help with your own key.",
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico",
+      "icons/icon.png"
+    ],
+    "resources": {
+      "../../target/spotter/config.json": "spotter/config.json",
+      "../../target/spotter/tokenizer.json": "spotter/tokenizer.json",
+      "../../target/spotter/model.f16.safetensors": "spotter/model.f16.safetensors",
+      "../../target/spotter/README.md": "spotter/README.md",
+      "../../THIRD_PARTY_LICENSES.txt": "THIRD_PARTY_LICENSES.txt"
+    },
+    "fileAssociations": [
+      {
+        "ext": [
+          "md",
+          "markdown"
+        ],
+        "name": "Markdown document",
+        "description": "Markdown document",
+        "role": "Editor",
+        "mimeType": "text/markdown"
+      },
+      {
+        "ext": [
+          "docx"
+        ],
+        "name": "Word document",
+        "description": "Word document",
+        "role": "Editor",
+        "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+      },
+      {
+        "ext": [
+          "igdoc"
+        ],
+        "name": "Xenify Write document",
+        "description": "Xenify Write document",
+        "role": "Editor",
+        "mimeType": "application/x-xenify-write"
+      }
+    ],
+    "linux": {
+      "deb": {
+        "depends": [
+          "libwebkit2gtk-4.1-0",
+          "libgtk-3-0",
+          "libsoup-3.0-0"
+        ],
+        "section": "editors",
+        "desktopTemplate": "packaging/linux.desktop.hbs"
+      },
+      "rpm": {
+        "depends": [
+          "webkit2gtk4.1",
+          "gtk3",
+          "libsoup3"
+        ],
+        "desktopTemplate": "packaging/linux.desktop.hbs"
+      }
+    },
+    "windows": {
+      "webviewInstallMode": {
+        "type": "downloadBootstrapper",
+        "silent": true
+      },
+      "nsis": {
+        "installMode": "currentUser",
+        "displayLanguageSelector": false
+      }
+    },
+    "macOS": {
+      "minimumSystemVersion": "11.0",
+      "signingIdentity": "-",
+      "dmg": {}
+    }
+  }
+}

@@ -1,0 +1,83 @@
+# Builds Xenify Write's packages on each system: Linux (.deb, .rpm,
+# .AppImage, .tar.gz), Windows (setup .exe), macOS (.dmg for Apple silicon
+# and Intel) and the browser version (a folder for any static host).
+# Run it from the Actions tab, or push a tag like write-v0.1.0.
+#
+# Repository settings it uses (Settings › Secrets and variables › Actions):
+#   variable SPOTTER_URL      where to download the mistake-spotter model (B7.tgz,
+#                             e.g. an asset of a GitHub release); required
+#   variable SPOTTER_SHA256   its SHA-256 (checkpoints/SHA256SUMS); recommended
+#   secrets for signing (optional; without them the packages are unsigned):
+#     macOS:   APPLE_CERTIFICATE (base64 .p12), APPLE_CERTIFICATE_PASSWORD,
+#              APPLE_SIGNING_IDENTITY, and for notarising APPLE_ID,
+#              APPLE_PASSWORD (app-specific), APPLE_TEAM_ID
+#     Windows: see docs/write-packaging.md
+name: Xenify Write packages
+
+on:
+  workflow_dispatch:
+  push:
+    tags: ["write-v*"]
+
+env:
+  SPOTTER_URL: ${{ vars.SPOTTER_URL }}
+  SPOTTER_SHA256: ${{ vars.SPOTTER_SHA256 }}
+  CARGO_TERM_COLOR: always
+
+jobs:
+  desktop:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          # The oldest supported Ubuntu, so the Linux packages run on older systems too.
+          - { os: ubuntu-22.04, system: linux }
+          - { os: windows-latest, system: windows }
+          - { os: macos-14, system: macos }
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+      - name: Linux build tools
+        if: matrix.system == 'linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libwebkit2gtk-4.1-dev libgtk-3-dev libsoup-3.0-dev librsvg2-dev patchelf file rpm
+      - name: Tauri CLI
+        run: cargo install tauri-cli --version "^2" --locked
+      - name: Package
+        shell: bash
+        env:
+          APPLE_CERTIFICATE: ${{ secrets.APPLE_CERTIFICATE }}
+          APPLE_CERTIFICATE_PASSWORD: ${{ secrets.APPLE_CERTIFICATE_PASSWORD }}
+          APPLE_SIGNING_IDENTITY: ${{ secrets.APPLE_SIGNING_IDENTITY }}
+          APPLE_ID: ${{ secrets.APPLE_ID }}
+          APPLE_PASSWORD: ${{ secrets.APPLE_PASSWORD }}
+          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+        run: scripts/package-write.sh ${{ matrix.system }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: xenify-write-${{ matrix.system }}
+          path: dist-write/*
+
+  web:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: wasm32-unknown-unknown
+      - uses: Swatinem/rust-cache@v2
+      - name: Web build tools
+        run: |
+          sudo apt-get install -y brotli imagemagick
+          cargo install wasm-bindgen-cli --version 0.2.128 --locked
+          curl -fsSL https://github.com/WebAssembly/binaryen/releases/download/version_124/binaryen-version_124-x86_64-linux.tar.gz | tar xz -C "$HOME"
+          echo "$HOME/binaryen-version_124/bin" >> "$GITHUB_PATH"
+      - name: Build
+        run: scripts/build-write-web.sh
+      - uses: actions/upload-artifact@v4
+        with:
+          name: xenify-write-web
+          path: target/write-web

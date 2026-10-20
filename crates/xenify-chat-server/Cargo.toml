@@ -1,0 +1,36 @@
+[package]
+name = "xenify-chat-server"
+description = "The Xenify Chat server: accounts, direct chats, groups and channels on PostgreSQL; run several behind a load balancer"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[[bin]]
+name = "xenify-chat-server"
+path = "src/main.rs"
+
+[dependencies]
+xenify-chat-proto = { path = "../xenify-chat-proto" }
+serde.workspace = true
+serde_json.workspace = true
+base64.workspace = true
+sha2.workspace = true
+# Web server and WebSockets (MIT); async runtime (MIT).
+axum = { version = "0.8", features = ["ws"] }
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "net", "sync", "time", "signal"] }
+# PostgreSQL (MIT OR Apache-2.0) and a connection pool.
+tokio-postgres = "0.7"
+deadpool-postgres = "0.14"
+futures-util = { version = "0.3", default-features = false, features = ["std"] }
+# Password hashing (MIT OR Apache-2.0).
+argon2 = "0.5"
+getrandom = "0.3"
+# App webhooks: signing (HMAC-SHA256; MIT OR Apache-2.0), checking the
+# address, and sending (blocking, on a worker thread).
+hmac = "0.13"
+url = "2"
+ureq.workspace = true
+clap = { version = "4", features = ["derive", "env"] }
+
+[dev-dependencies]
+tokio-tungstenite = "0.30"

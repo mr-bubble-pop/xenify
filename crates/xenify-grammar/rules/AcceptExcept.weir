@@ -1,0 +1,19 @@
+# Commonly confused words: "except" where "accept" (take, agree to) is meant.
+# From common confused-word lists; examples are ours.
+# why: Accept means take or agree to. Except means apart from. They sound alike, which is why they get swapped.
+expr main <([we, I, they, you, (will), would, (cannot), (can't), (don't), (do), (does), (doesn't), please, to, gladly, happily, also, now, only, still, not, (we'll), (I'll), (I'd), (we'd)] except [the, your, this, that, my, our, their, his, her, all, any, it, them, him, me, us, payment, payments, cards, card, cash, cheques, checks, returns, bookings, applications, submissions, responsibility, liability, offers, invitations, donations, an, a, credit, debit, visa, mastercard, (Visa), (Mastercard), (PayPal)]), except>
+
+let message "Did you mean `accept` (take, agree to)? `Except` means \"apart from\"."
+let description "Fixes `except` where `accept` is meant: `We except credit cards` → `We accept credit cards`."
+let kind "Malapropism"
+let becomes "accept"
+let strategy "MatchCase"
+
+test "We except credit cards." "We accept credit cards."
+test "Please except my apology." "Please accept my apology."
+test "I would like to except the offer." "I would like to accept the offer."
+
+allows "Everyone came except Tom."
+allows "We are open every day except Sunday."
+allows "We accept credit cards."
+allows "I like all fruit except the bananas."

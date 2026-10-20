@@ -1,0 +1,18 @@
+# "What were left" when "what" (the thing that) is the subject: it takes a
+# singular verb. Our own rule, from a user report; examples are ours.
+# why: Here "what" means "the thing that", which is singular: what was left, what was needed. A plural verb only follows in a direct question ("What were the results?").
+expr done [left, given, needed, said, done, required, missing, wanted, offered, asked, expected, decided, agreed, planned, promised, ordered, bought, sent, owed, lost, saved, found, used]
+expr main <(what were @done), were>
+
+let message "Use `was` here: `what` (the thing that) takes a singular verb."
+let description "Fixes `what were left` → `what was left`."
+let kind "Agreement"
+let becomes "was"
+let strategy "MatchCase"
+
+test "I gave him what were left of the day before." "I gave him what was left of the day before."
+test "We used what were needed for the repair." "We used what was needed for the repair."
+
+allows "I gave him what was left of the day before."
+allows "What were the results of the test?"
+allows "Tell me what were your reasons."

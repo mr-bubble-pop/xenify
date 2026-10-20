@@ -1,0 +1,23 @@
+[package]
+name = "xenify-cli"
+description = "Headless Xenify Vector tools (render projects to video)"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[[bin]]
+name = "xenify-cli"
+path = "src/main.rs"
+
+[dependencies]
+xenify-doc.workspace = true
+xenify-export.workspace = true
+xenify-platform.workspace = true
+xenify-render.workspace = true
+xenify-ai.workspace = true
+xenify-anim.workspace = true
+xenify-ops.workspace = true
+xenify-showcase.workspace = true
+serde_json.workspace = true
+kurbo.workspace = true
+clap = { version = "4", features = ["derive"] }

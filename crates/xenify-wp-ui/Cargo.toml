@@ -1,0 +1,43 @@
+[package]
+name = "xenify-wp-ui"
+description = "Xenify Write editor UI (egui)"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+xenify-wp-doc.workspace = true
+xenify-wp-layout.workspace = true
+xenify-math = { path = "../xenify-math" }
+xenify-wp-io.workspace = true
+xenify-wp-check.workspace = true
+xenify-wp-ai.workspace = true
+xenify-openrouter.workspace = true
+eframe.workspace = true
+egui.workspace = true
+kurbo.workspace = true
+vello.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+# The clipboard's HTML and pictures (egui itself only does plain text). Same
+# version and features egui-winit uses.
+arboard = { version = "3.6", default-features = false, features = ["image-data"] }
+# Decoding pictures (PNG, JPEG, WebP, GIF, BMP).
+image.workspace = true
+
+[target.'cfg(windows)'.dependencies]
+# The local time zone (Windows has no zone file); MIT OR Unlicense.
+jiff = "0.2"
+
+[dev-dependencies]
+skrifa.workspace = true
+# Headless GUI tests (no window, no GPU): drive the app through egui events.
+egui_kittest = { version = "=0.35.0", features = ["eframe", "wgpu"] }
+image.workspace = true
+xenify-wp-io.workspace = true
+# Page pictures without a window (the ignored template screenshot test).
+xenify-wp-layout = { path = "../xenify-wp-layout", features = ["offscreen"] }
+
+[[test]]
+name = "gui"
+path = "tests/gui/main.rs"

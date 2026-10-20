@@ -1,0 +1,30 @@
+[package]
+name = "xenify-write-host"
+description = "Xenify Write's open documents and the calls the HTML screens make on them, for the desktop app and the browser build alike"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[features]
+default = ["checker"]
+# Spelling, grammar and the word Look up built in. The browser's first
+# download leaves it out: there the checker runs in a worker of its own.
+checker = []
+
+[dependencies]
+serde.workspace = true
+serde_json.workspace = true
+xenify-wp-engine.workspace = true
+xenify-wp-doc.workspace = true
+xenify-wp-io.workspace = true
+xenify-wp-layout = { path = "../xenify-wp-layout", default-features = false }
+xenify-grammar.workspace = true
+xenify-wp-check.workspace = true
+xenify-wp-ai.workspace = true
+kurbo.workspace = true
+image.workspace = true
+base64.workspace = true
+
+[target.'cfg(windows)'.dependencies]
+# Local time for "unsaved work from …" (the recovery module, shared with the egui Write).
+jiff = "0.2"

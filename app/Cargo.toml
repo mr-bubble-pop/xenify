@@ -1,0 +1,9 @@
+[package]
+name = "xenify-vector"
+description = "Xenify Vector: vector animation for Linux"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+xenify-ui.workspace = true

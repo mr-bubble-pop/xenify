@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Xenify Write</title>
+<link rel="stylesheet" href="style.css">
+<script src="errors.js"></script>
+<script type="module" src="app.js"></script>
+</head>
+<body>
+<div class="app">
+  <nav class="menubar" aria-label="Menu">
+    <div class="brand"><span class="mark" aria-hidden="true">W</span>Write</div>
+    <div id="menus" class="menus"></div>
+  </nav>
+
+  <div class="tabstrip">
+    <div id="tabs" class="tabs" role="tablist" aria-label="Open documents"></div>
+    <button id="new-tab" class="icon-btn small" aria-label="New document" title="New document (Ctrl+N)"></button>
+  </div>
+
+  <div id="toolbar" class="toolbar" role="toolbar" aria-label="Formatting"></div>
+
+  <div class="work">
+    <nav id="nav" class="navpane" aria-label="Headings" hidden></nav>
+    <main class="doc-area" aria-label="Document">
+      <div id="scroller" class="scroller">
+        <div id="ruler" class="ruler" aria-hidden="true"></div>
+        <div id="stack" class="stack">
+          <div id="overlay" class="overlay">
+            <textarea id="ime" class="ime" aria-label="Document" aria-multiline="true" aria-roledescription="document" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div id="checkbar" class="findbar checkbar" role="region" aria-label="Spelling and grammar" hidden></div>
+  <div id="findbar" class="findbar" role="search" aria-label="Find and replace" hidden></div>
+  <footer id="status" class="status"></footer>
+</div>
+<div id="popups"></div>
+</body>
+</html>

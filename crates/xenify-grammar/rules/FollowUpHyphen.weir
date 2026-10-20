@@ -1,0 +1,15 @@
+# Missing hyphen in compound adjectives before a noun: "a follow up meeting"
+# → "follow-up". From common-error lists (hyphenation); examples are ours.
+# why: Two words working together as one adjective before a noun take a hyphen (a follow-up meeting). As a verb they stay separate (follow up with the client).
+expr main <([a, an, the, this, that, our, your, my, their, his, her, quick, short, brief, second, first, final, formal, written] [(follow up), (sign up), (log in), (check in), (set up), (start up), (clean up), (back up), (warm up), (catch up), (wrap up), (kick off), (hand off), (drop off), (pick up), (roll out), (break out), (one on one), (face to face)] [meeting, meetings, call, calls, email, emails, session, sessions, form, forms, page, pages, process, appointment, appointments, question, questions, visit, visits, plan, plans, task, tasks, conversation, conversations, survey, letter, period, phase, date, deadline, time, list, sheet, guide, screen, details, link, code, fee, costs, cost, routine, exercise, exercises, crew, point, location, service, chat, review, interview, training]), [(follow up), (sign up), (log in), (check in), (set up), (start up), (clean up), (back up), (warm up), (catch up), (wrap up), (kick off), (hand off), (drop off), (pick up), (roll out), (break out), (one on one), (face to face)]>
+
+let message "Before a noun, join these words with hyphens (a `follow-up` meeting); as a verb they stay apart (`follow up` with them)."
+let description "Adds the hyphen in compound adjectives: `a follow up meeting` → `a follow-up meeting`."
+let kind "Punctuation"
+let becomes ["follow-up", "sign-up", "log-in", "check-in", "set-up", "start-up", "clean-up", "backup", "warm-up", "catch-up", "wrap-up", "kick-off", "hand-off", "drop-off", "pick-up", "rollout", "breakout", "one-on-one", "face-to-face"]
+let strategy "MatchCase"
+
+test "Let's schedule a follow up meeting." "Let's schedule a follow-up meeting."
+
+allows "Please follow up with the client."
+allows "Let's schedule a follow-up meeting."

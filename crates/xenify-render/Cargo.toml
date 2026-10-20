@@ -1,0 +1,22 @@
+[package]
+name = "xenify-render"
+description = "Renders evaluated Xenify Vector scenes with Vello (on-screen and offscreen)"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+xenify-anim.workspace = true
+xenify-doc.workspace = true
+kurbo.workspace = true
+vello.workspace = true
+thiserror.workspace = true
+parley.workspace = true
+skrifa.workspace = true
+png.workspace = true
+image.workspace = true
+
+[target.'cfg(not(target_arch = "wasm32"))'.dependencies]
+pollster.workspace = true
+# System font discovery (fontconfig) on desktop; the browser build uses bundled fonts only.
+parley = { workspace = true, features = ["system"] }

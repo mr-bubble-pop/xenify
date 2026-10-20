@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Settings</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#EFECE8}
+a{color:#C2410C}a:hover{color:#9A3412}
+.nav{display:flex;align-items:center;gap:12px;width:100%;height:44px;padding:0 12px;border:0;border-radius:12px;background:transparent;font:500 15px Figtree,sans-serif;color:#292524;cursor:pointer;text-align:left}
+.nav:hover{background:#E6E2DD}
+.nav.on{background:#fff;font-weight:600;box-shadow:0 1px 2px rgba(28,25,23,.08)}
+.nav svg{width:19px;height:19px;flex:none;color:#57534E}
+.nav.on svg{color:#C2410C}
+.search{width:100%;box-sizing:border-box;height:44px;border-radius:12px;border:1px solid #D6D0C9;background:#fff;padding:0 12px 0 40px;font:400 15px Figtree,sans-serif;color:#1C1917}
+.search::placeholder{color:#8A827B}
+.search:focus{outline:2px solid #C2410C;outline-offset:1px;border-color:#C2410C}
+.res{display:flex;flex-direction:column;align-items:flex-start;gap:2px;width:100%;padding:10px 12px;border:0;border-radius:10px;background:transparent;text-align:left;font:inherit;color:inherit;cursor:pointer}
+.res.on,.res:hover{background:#FFF1E8}
+.res mark{background:transparent;color:#9A3412;font-weight:700}
+.row{display:flex;align-items:center;gap:24px;padding:16px 18px;border-radius:12px;scroll-margin:120px}
+.row.wide{flex-direction:column;align-items:stretch;gap:12px}
+.row + .row{border-top:1px solid #EEEAE5}
+.row.hl{background:#FFF1E8;box-shadow:inset 0 0 0 2px #C2410C;border-top-color:transparent;animation:glow 1.1s ease-out 2}
+.row.hl + .row{border-top-color:transparent}
+@keyframes glow{0%{box-shadow:inset 0 0 0 2px #C2410C,0 0 0 0 rgba(194,65,12,.35)}100%{box-shadow:inset 0 0 0 2px #C2410C,0 0 0 12px rgba(194,65,12,0)}}
+@media (prefers-reduced-motion: reduce){.row.hl{animation:none}}
+.sw{position:relative;flex:none;width:48px;height:28px;border-radius:999px;border:0;background:#C9C2BA;cursor:pointer;padding:0}
+.sw::after{content:"";position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.2);transition:left .15s}
+.sw.on{background:#C2410C}
+.sw.on::after{left:23px}
+.sel{height:40px;border-radius:10px;border:1px solid #D6D0C9;background:#fff;padding:0 10px;font:500 15px Figtree,sans-serif;color:#1C1917;min-width:220px;max-width:320px}
+.inp{height:40px;border-radius:10px;border:1px solid #D6D0C9;background:#fff;padding:0 12px;font:400 15px Figtree,sans-serif;color:#1C1917;box-sizing:border-box}
+.inp::placeholder{color:#8A827B}
+.segs{display:flex;gap:4px;padding:4px;background:#F2EFEB;border-radius:12px;flex:none}
+.seg{height:36px;padding:0 14px;border:0;border-radius:9px;background:transparent;font:500 14px Figtree,sans-serif;color:#44403C;cursor:pointer;white-space:nowrap}
+.seg.on{background:#fff;color:#1C1917;font-weight:600;box-shadow:0 1px 2px rgba(28,25,23,.1)}
+.btn{height:40px;padding:0 16px;border-radius:10px;border:1px solid #D6D0C9;background:#fff;font:600 14px Figtree,sans-serif;color:#1C1917;cursor:pointer;white-space:nowrap;flex:none}
+.btn:hover{border-color:#A8A29E}
+.x{width:32px;height:32px;border:0;border-radius:8px;background:transparent;color:#57534E;cursor:pointer;display:inline-flex;align-items:center;justify-content:center}
+.x:hover{background:#F2EFEB;color:#1C1917}
+.word{display:inline-flex;align-items:center;gap:2px;height:36px;padding:0 4px 0 14px;border-radius:999px;background:#F5F3F0;font-size:15px}
+input[type=range]{accent-color:#C2410C;width:200px}
+</style>
+</helmet>
+<div style="min-height: 100vh; box-sizing: border-box; display: flex; flex-wrap: wrap; gap: 16px; padding: 16px; font-family: Figtree, sans-serif; color: #1C1917; background: #EFECE8; align-items: flex-start">
+
+  <!-- Left: search + sections -->
+  <nav aria-label="Settings sections" style="flex: 1 1 260px; max-width: 300px; min-width: 0; display: flex; flex-direction: column; gap: 14px; padding: 8px 4px; position: relative; z-index: 2">
+    <h1 style="margin: 0 8px; font-size: 24px; font-weight: 700">Settings</h1>
+
+    <div style="position: relative">
+      <span aria-hidden="true" style="position: absolute; left: 12px; top: 13px; color: #78716C"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></span>
+      <label for="set-search" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Search settings</label>
+      <input id="set-search" class="search" type="search" role="combobox" aria-expanded="{{open}}" aria-controls="set-results" autocomplete="off" placeholder="Search, e.g. dark, quotes, key" value="{{query}}" onChange="{{onQuery}}" onFocus="{{onFocus}}" onBlur="{{onBlur}}" onKeyDown="{{onKey}}">
+      <sc-if value="{{open}}" hint-placeholder-val="{{ false }}">
+        <div id="set-results" role="listbox" aria-label="Matching settings" style="position: absolute; top: 52px; left: 0; width: 440px; max-width: calc(100vw - 48px); background: #fff; border-radius: 16px; box-shadow: 0 4px 10px rgba(28,25,23,.10), 0 18px 44px rgba(28,25,23,.18); padding: 8px; box-sizing: border-box">
+          <sc-for list="{{results}}" as="m" hint-placeholder-count="4">
+            <button role="option" aria-selected="{{m.active}}" class="{{m.cls}}" onMouseDown="{{m.pick}}">
+              <span style="font-size: 15px">{{m.pre}}<mark>{{m.mid}}</mark>{{m.post}}</span>
+              <span style="font-size: 13px; color: #57534E">{{m.path}}</span>
+            </button>
+          </sc-for>
+          <sc-if value="{{none}}" hint-placeholder-val="{{ false }}">
+            <div style="padding: 12px; font-size: 15px; line-height: 1.5; color: #44403C">No setting matches “{{query}}”.<br>Try <b>theme</b>, <b>language</b> or <b>autosave</b>.</div>
+          </sc-if>
+          <div style="display: flex; gap: 14px; padding: 8px 12px 4px 12px; border-top: 1px solid #EEEAE5; margin-top: 4px; font-size: 12.5px; color: #57534E">
+            <span>↑ ↓ to move</span><span>Enter to open</span><span>Esc to close</span>
+          </div>
+        </div>
+      </sc-if>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 2px">
+      <sc-for list="{{nav}}" as="n" hint-placeholder-count="8">
+        <button class="{{n.cls}}" aria-current="{{n.current}}" onClick="{{n.go}}">
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="{{n.d}}"></path></svg>
+          {{n.name}}
+        </button>
+      </sc-for>
+    </div>
+    <p style="margin: 4px 12px; font-size: 13.5px; color: #57534E; line-height: 1.45">Changes save as you make them. Settings that belong to one document are in its details, not here.</p>
+  </nav>
+
+  <!-- Right: the section -->
+  <main style="flex: 999 1 560px; min-width: 0; background: #fff; border-radius: 20px; padding: 28px 32px 36px 32px; box-sizing: border-box; min-height: calc(100vh - 32px)">
+    <div style="max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 26px">
+      <header>
+        <h2 style="margin: 0; font-size: 26px; font-weight: 700">{{sec.name}}</h2>
+        <p style="margin: 6px 0 0 0; font-size: 15.5px; line-height: 1.5; color: #44403C">{{sec.about}}</p>
+      </header>
+
+      <sc-for list="{{groups}}" as="g" hint-placeholder-count="2">
+        <section>
+          <h3 style="margin: 0 0 4px 0; font-size: 16px; font-weight: 700">{{g.title}}</h3>
+          <sc-if value="{{g.hasNote}}" hint-placeholder-val="{{ false }}">
+            <p style="margin: 0 0 8px 0; font-size: 14.5px; line-height: 1.5; color: #57534E">{{g.note}}</p>
+          </sc-if>
+          <div style="border: 1px solid #E7E2DC; border-radius: 14px; margin-top: 8px">
+            <sc-for list="{{g.rows}}" as="r" hint-placeholder-count="3">
+              <div id="row-{{r.id}}" class="{{r.cls}}">
+                <div style="flex: 1 1 auto; min-width: 0">
+                  <div style="font-size: 15.5px; font-weight: 600; line-height: 1.35">{{r.label}}</div>
+                  <sc-if value="{{r.hasDesc}}" hint-placeholder-val="{{ true }}">
+                    <div style="font-size: 14.5px; line-height: 1.5; color: #57534E; margin-top: 3px">{{r.desc}}</div>
+                  </sc-if>
+                </div>
+
+                <sc-if value="{{r.isToggle}}" hint-placeholder-val="{{ true }}">
+                  <button class="{{r.swCls}}" role="switch" aria-checked="{{r.on}}" aria-label="{{r.label}}" onClick="{{r.toggle}}"></button>
+                </sc-if>
+                <sc-if value="{{r.isSelect}}" hint-placeholder-val="{{ false }}">
+                  <select class="sel" aria-label="{{r.label}}" value="{{r.value}}" onChange="{{r.set}}">
+                    <sc-for list="{{r.options}}" as="o"><option value="{{o}}">{{o}}</option></sc-for>
+                  </select>
+                </sc-if>
+                <sc-if value="{{r.isSeg}}" hint-placeholder-val="{{ false }}">
+                  <div class="segs" role="radiogroup" aria-label="{{r.label}}">
+                    <sc-for list="{{r.segs}}" as="o"><button role="radio" aria-checked="{{o.on}}" class="{{o.cls}}" onClick="{{o.pick}}">{{o.name}}</button></sc-for>
+                  </div>
+                </sc-if>
+                <sc-if value="{{r.isText}}" hint-placeholder-val="{{ false }}">
+                  <input class="inp" style="width: 260px" aria-label="{{r.label}}" placeholder="{{r.eg}}" value="{{r.value}}" onChange="{{r.set}}">
+                </sc-if>
+                <sc-if value="{{r.isSlider}}" hint-placeholder-val="{{ false }}">
+                  <div style="display: flex; align-items: center; gap: 12px; flex: none">
+                    <input type="range" aria-label="{{r.label}}" min="{{r.min}}" max="{{r.max}}" value="{{r.value}}" onChange="{{r.set}}">
+                    <span style="font-size: 15px; font-weight: 600; width: 48px; text-align: right">{{r.valueText}}</span>
+                  </div>
+                </sc-if>
+                <sc-if value="{{r.isButton}}" hint-placeholder-val="{{ false }}">
+                  <button class="btn">{{r.btn}}</button>
+                </sc-if>
+
+                <sc-if value="{{r.isPairs}}" hint-placeholder-val="{{ false }}">
+                  <div style="display: flex; flex-direction: column; gap: 6px">
+                    <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)) 40px; gap: 8px; font-size: 13px; font-weight: 600; color: #57534E; padding: 0 2px"><span>When I type</span><span>Change it to</span><span></span></div>
+                    <sc-for list="{{r.pairs}}" as="p" hint-placeholder-count="4">
+                      <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)) 40px; gap: 8px; align-items: center; font-size: 15px">
+                        <span style="background: #F5F3F0; border-radius: 8px; padding: 8px 12px; font-family: ui-monospace, monospace">{{p.a}}</span>
+                        <span style="background: #F5F3F0; border-radius: 8px; padding: 8px 12px">{{p.b}}</span>
+                        <button class="x" aria-label="Remove {{p.a}}" onClick="{{p.remove}}"><svg aria-hidden="true" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
+                      </div>
+                    </sc-for>
+                    <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)) 40px; gap: 8px; align-items: center">
+                      <input class="inp" aria-label="When I type" placeholder="e.g. adn">
+                      <input class="inp" aria-label="Change it to" placeholder="e.g. and">
+                      <button class="btn" style="padding: 0; width: 40px" aria-label="Add">+</button>
+                    </div>
+                  </div>
+                </sc-if>
+
+                <sc-if value="{{r.isWords}}" hint-placeholder-val="{{ false }}">
+                  <div style="display: flex; flex-direction: column; gap: 12px">
+                    <div style="display: flex; gap: 8px; flex-wrap: wrap">
+                      <input class="inp" style="flex: 1 1 220px" aria-label="Add a word" placeholder="Add a word, e.g. Okafor" value="{{r.draft}}" onChange="{{r.setDraft}}" onKeyDown="{{r.addKey}}">
+                      <button class="btn" onClick="{{r.add}}">Add word</button>
+                    </div>
+                    <div style="display: flex; flex-wrap: wrap; gap: 8px">
+                      <sc-for list="{{r.words}}" as="w" hint-placeholder-count="5">
+                        <span class="word">{{w.w}}<button class="x" aria-label="Remove {{w.w}}" onClick="{{w.remove}}"><svg aria-hidden="true" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button></span>
+                      </sc-for>
+                    </div>
+                  </div>
+                </sc-if>
+              </div>
+            </sc-for>
+          </div>
+        </section>
+      </sc-for>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"startQuery":{"editor":"text","default":""},"$preview":{"width":1440,"height":900}}'>
+function R(id, kind, label, desc, keys, x) { var r = { id: id, kind: kind, label: label, desc: desc || '', keys: keys || '' }; for (var k in (x || {})) r[k] = x[k]; return r; }
+var SECTIONS = [
+  { id: 'general', name: 'General', d: 'M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2 M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z', about: 'Who you are and how Write starts.', groups: [
+    { title: 'You', rows: [R('name', 'text', 'Your name', 'Shown on your comments, tracked changes and change-log entries.', 'author user me signature', { eg: 'e.g. Alex Morgan', value: 'Alex Morgan' })] },
+    { title: 'Starting up', rows: [
+      R('start', 'select', 'When Write opens', 'What you see first.', 'startup launch open reopen session tabs', { options: ['Show New document', 'Reopen what I had open', 'A blank page'] }),
+      R('recent', 'button', 'Recent documents', '12 documents in File › Open recent.', 'history recent clear list', { btn: 'Clear the list' })] },
+    { title: 'Units', rows: [R('units', 'seg', 'Show lengths in', 'Used by the ruler, margins and picture sizes.', 'measurement cm centimetres inches mm points ruler margins', { options: ['Centimetres', 'Inches', 'Points'] })] }
+  ] },
+  { id: 'appearance', name: 'Appearance', d: 'M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z M12 3v18 M12 8h6.5 M12 12h9 M12 16h6.5', about: 'How Write looks around your pages.', groups: [
+    { title: 'Look', rows: [R('theme', 'seg', 'Theme', 'Pages stay white. This changes everything around them.', 'dark mode night light colour color theme', { options: ['Match computer', 'Light', 'Dark'] })] },
+    { title: 'Show', rows: [
+      R('toolbar', 'toggle', 'Toolbar', 'The row of formatting buttons under the tabs.', 'buttons ribbon formatting bar', { on: true }),
+      R('ruler', 'toggle', 'Ruler', 'Drag it to change margins, indents and tab stops.', 'margins indent tabs', { on: true }),
+      R('status', 'toggle', 'Status bar', 'Page number, word count and language along the bottom.', 'word count page number bottom bar', { on: true })] },
+    { title: 'Windows', rows: [R('dialogs', 'toggle', 'Open dialogs in their own windows', 'Off: they open inside the Write window.', 'popup modal window dialog separate', { on: false })] }
+  ] },
+  { id: 'access', name: 'Accessibility', d: 'M12 5.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z M5 8.5l7 1.2 7-1.2 M12 9.7V14 M9 21l3-7 3 7', about: 'Make Write easier to see, read and use.', groups: [
+    { title: 'Size and contrast', rows: [
+      R('uisize', 'slider', 'Size of menus and panels', 'The page has its own zoom: Ctrl and + or −.', 'zoom bigger larger text font size scale interface', { min: 80, max: 160, value: 100, unit: '%' }),
+      R('contrast', 'toggle', 'High contrast', 'Black and white with stronger outlines.', 'contrast vision see colours', { on: false })] },
+    { title: 'Movement', rows: [R('motion', 'toggle', 'Reduce motion', 'A steady cursor, and nothing slides or fades.', 'animation blink caret cursor flashing', { on: false })] },
+    { title: 'Screen readers', rows: [R('sr', 'info', 'Works with Orca, NVDA and VoiceOver', 'They read the document and follow the cursor. Nothing to turn on.', 'screen reader blind narrator orca nvda voiceover')] }
+  ] },
+  { id: 'typing', name: 'Typing', d: 'M4 6h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z M6 10h.01 M10 10h.01 M14 10h.01 M18 10h.01 M8 14h8', about: 'What Write does for you as you type.', groups: [
+    { title: 'Format as you type', note: 'Press Ctrl+Z straight after to undo the formatting and keep what you typed.', rows: [
+      R('bullets', 'toggle', 'Type * and a space to start a bulleted list', '', 'markdown bullet list asterisk dash', { on: true }),
+      R('numbers', 'toggle', 'Type 1. and a space to start a numbered list', '', 'markdown numbered list', { on: true }),
+      R('checklist', 'toggle', 'Type [ ] and a space to start a checklist', '', 'markdown checkbox todo tick', { on: true }),
+      R('headings', 'toggle', 'Type # and a space to make a heading', '## for a level 2 heading, and so on.', 'markdown hash heading title', { on: true }),
+      R('quote', 'toggle', 'Type > and a space to make a quote', '', 'markdown blockquote', { on: false })] },
+    { title: 'Autocorrect', rows: [
+      R('quotes', 'toggle', 'Curly quotes', 'Straight " and \' become “ ” and ‘ ’ as you type.', 'smart quotes apostrophe typographic curly straight', { on: true }),
+      R('caps', 'toggle', 'Capital letter at the start of a sentence', '', 'capitalise capitalize uppercase sentence', { on: false }),
+      R('emoticons', 'toggle', 'Turn :) into a smiley', 'Also ;) and <3, typed on their own.', 'emoji smiley emoticon face', { on: true }),
+      R('replace', 'pairs', 'Replace as I type', 'Fix your usual typos or type shortcuts for symbols.', 'autocorrect replace typo shortcut abbreviation expand', { wide: true, pairs: [['teh', 'the'], ['adn', 'and'], ['(c)', '©'], ['->', '→']] })] }
+  ] },
+  { id: 'spelling', name: 'Spelling and grammar', d: 'M6 16 12 4l6 12 M8 12h8 M16 20l2 2 4-4', about: 'What gets underlined, and how strict to be.', groups: [
+    { title: 'Checking', rows: [
+      R('check', 'toggle', 'Check spelling and grammar as I type', '', 'proofing underline red squiggle spellcheck', { on: true }),
+      R('lang', 'select', 'Language', 'Which spellings count as right, like colour or color.', 'dialect british american english uk us australian language locale', { options: ['Match computer: English (UK)', 'English (US)', 'English (Australia)', 'English (Canada)'] }),
+      R('names', 'toggle', 'Don’t flag names', 'Words you haven’t added that start with a capital mid-sentence are left alone.', 'proper nouns names capital people places', { on: true })] },
+    { title: 'Kinds of writing', note: 'A kind of writing decides what gets pointed out. A school essay is stricter about slang than a work chat. New documents get theirs from the type you pick.', rows: [
+      R('profile', 'select', 'Documents without a type are checked as', '', 'profile default document type style formality strict', { options: ['Standard', 'School essay', 'Academic paper', 'Workplace email', 'Formal or legal letter', 'Technical documentation', 'Creative writing'] }),
+      R('kinds', 'button', 'What each kind points out', 'See or change the checks for a kind, or make your own.', 'profile rules edit custom', { btn: 'Edit kinds…' }),
+      R('rulesoff', 'button', 'Checks you’ve turned off', '2 checks: Oxford comma, Passive voice.', 'rules disabled ignore passive oxford comma turned off', { btn: 'Review' })] },
+    { title: 'Extra checks', note: 'Runs on this computer. Nothing is sent anywhere.', rows: [
+      R('spotter', 'toggle', 'Find mistakes the rules miss', 'A small model looks for missing words, words in the wrong order and comma slips.', 'ai model spotter offline local mistake finder', { on: false }),
+      R('sure', 'slider', 'Only show what it’s at least this sure of', 'Lower shows more, but with more false alarms.', 'confidence threshold certainty false alarms', { min: 50, max: 99, value: 80, unit: '%' })] }
+  ] },
+  { id: 'words', name: 'Your words', d: 'M4 19.5A2.5 2.5 0 0 1 6.5 17H20 M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z', about: 'Words that are right even though Write doesn’t know them.', groups: [
+    { title: 'Words you’ve added', note: 'These are never underlined as spelling mistakes. To add one while writing, right-click it and choose Add to my words.', rows: [
+      R('wordlist', 'words', 'Your word list', '', 'dictionary custom words spelling add learn ignore', { wide: true, words: ['Xenify', 'Figtree', 'OpenRouter', 'Okafor', 'Northwind', 'Priya'] })] },
+    { title: 'Looking words up', note: 'Meanings and other words come from a dictionary on this computer. Right-click any word and choose Look up.', rows: [
+      R('follow', 'toggle', 'Show what a word means when I select it', 'A small card appears next to the word.', 'dictionary thesaurus synonyms definition meaning look up', { on: false })] }
+  ] },
+  { id: 'ai', name: 'AI assistant', d: 'M15 4V2 M15 16v-2 M8 9h2 M20 9h2 M17.8 11.8 19 13 M17.8 6.2 19 5 M3 21l9-9 M12.2 6.2 11 5', about: 'Help with reviewing, rewriting and continuing your text.', groups: [
+    { title: 'Connection', rows: [
+      R('key', 'button', 'OpenRouter key', 'Set up. Kept in this computer’s keyring.', 'api key openrouter token password secret account', { btn: 'Replace key' }),
+      R('model', 'select', 'Model', 'Faster models cost less; careful ones catch more.', 'llm model deepseek claude provider', { options: ['DeepSeek V4 Flash: fast, low cost', 'Claude Sonnet 5.5: careful', 'Another OpenRouter model…'] })] },
+    { title: 'Privacy', rows: [
+      R('askfirst', 'toggle', 'Ask before sending text from a document for the first time', '', 'privacy confirm send', { on: true }),
+      R('zdr', 'info', 'Only the text you ask about is sent', 'And only to providers that don’t keep a copy of it.', 'privacy data retention zdr storage')] }
+  ] },
+  { id: 'saving', name: 'Saving', d: 'M15.2 3a2 2 0 0 1 1.4.6l3.8 3.8a2 2 0 0 1 .6 1.4V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z M17 21v-7a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v7 M7 3v4a1 1 0 0 0 1 1h7', about: 'File types, change notes and getting work back.', groups: [
+    { title: 'Files', rows: [
+      R('format', 'select', 'Save new documents as', 'Markdown opens anywhere; Word keeps every layout detail.', 'default format file type docx markdown word save as igdoc', { options: ['Markdown (.md)', 'Word (.docx)', 'Xenify document (.igdoc)'] }),
+      R('changelog', 'toggle', 'Ask what changed each time I save', 'Adds who changed what, and when, to the document.', 'change log history version notes', { on: false })] },
+    { title: 'If Write closes unexpectedly', rows: [
+      R('recovery', 'info', 'Unsaved work is kept every minute', 'Kept apart from your file and offered back next time you open Write.', 'autosave backup recovery crash restore lost')] }
+  ] }
+];
+var INDEX = [];
+SECTIONS.forEach(function (s) { s.groups.forEach(function (g) { g.rows.forEach(function (r) { INDEX.push({ r: r, s: s, g: g }); }); }); });
+
+function score(e, words) {
+  var label = e.r.label.toLowerCase(), hay = (e.r.keys + ' ' + e.r.desc + ' ' + e.g.title + ' ' + e.s.name).toLowerCase(), total = 0;
+  for (var i = 0; i < words.length; i++) {
+    var w = words[i], s = 0;
+    if (label.indexOf(w) === 0) s = 4; else if (label.indexOf(' ' + w) >= 0) s = 3; else if (label.indexOf(w) >= 0) s = 2;
+    else if ((' ' + hay).indexOf(' ' + w) >= 0) s = 1.5; else if (hay.indexOf(w) >= 0) s = 0.5;
+    if (!s) return 0;
+    total += s;
+  }
+  return total;
+}
+
+class Component extends DCLogic {
+  constructor(p) {
+    super(p);
+    var q = (p && p.startQuery) || '';
+    this.state = { section: 'general', hl: null, query: q, open: !!q, active: 0, vals: {}, draft: '' };
+  }
+  componentDidUpdate(_, prev) {
+    if (this.state.hl && this.state.hl !== prev.hl) {
+      var el = document.getElementById('row-' + this.state.hl);
+      if (el) el.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    }
+  }
+  results() {
+    var words = this.state.query.trim().toLowerCase().split(/\s+/).filter(Boolean);
+    if (!words.length) return [];
+    return INDEX.map(function (e) { return { e: e, s: score(e, words) }; })
+      .filter(function (x) { return x.s > 0; })
+      .sort(function (a, b) { return b.s - a.s; }).slice(0, 7).map(function (x) { return x.e; });
+  }
+  pick(e) { this.setState({ section: e.s.id, hl: e.r.id, open: false, active: 0 }); }
+  val(r) { var v = this.state.vals[r.id]; return v === undefined ? (r.kind === 'toggle' ? r.on : r.kind === 'select' || r.kind === 'seg' ? r.options[0] : r.kind === 'pairs' ? r.pairs : r.kind === 'words' ? r.words : r.value) : v; }
+  setVal(id, v) { var o = Object.assign({}, this.state.vals); o[id] = v; this.setState({ vals: o, hl: this.state.hl === id ? id : null }); }
+  row(r) {
+    var self = this, v = this.val(r);
+    var out = { id: r.id, label: r.label, desc: r.desc, hasDesc: !!r.desc,
+      cls: 'row' + (r.wide ? ' wide' : '') + (this.state.hl === r.id ? ' hl' : ''),
+      isToggle: r.kind === 'toggle', isSelect: r.kind === 'select', isSeg: r.kind === 'seg', isText: r.kind === 'text',
+      isSlider: r.kind === 'slider', isButton: r.kind === 'button', isPairs: r.kind === 'pairs', isWords: r.kind === 'words',
+      value: v, eg: r.eg || '', btn: r.btn || '', options: r.options || [], min: r.min, max: r.max,
+      valueText: r.kind === 'slider' ? v + (r.unit || '') : '',
+      on: !!v, swCls: v ? 'sw on' : 'sw',
+      toggle: function () { self.setVal(r.id, !v); },
+      set: function (e) { self.setVal(r.id, r.kind === 'slider' ? Number(e.target.value) : e.target.value); } };
+    if (r.kind === 'seg') out.segs = r.options.map(function (o) { return { name: o, on: o === v, cls: o === v ? 'seg on' : 'seg', pick: function () { self.setVal(r.id, o); } }; });
+    if (r.kind === 'pairs') out.pairs = v.map(function (p, i) { return { a: p[0], b: p[1], remove: function () { self.setVal(r.id, v.filter(function (_, j) { return j !== i; })); } }; });
+    if (r.kind === 'words') {
+      var add = function () { var w = self.state.draft.trim(); if (w && v.indexOf(w) < 0) { self.setVal(r.id, [w].concat(v)); } self.setState({ draft: '' }); };
+      out.draft = this.state.draft;
+      out.setDraft = function (e) { self.setState({ draft: e.target.value }); };
+      out.add = add;
+      out.addKey = function (e) { if (e.key === 'Enter') add(); };
+      out.words = v.map(function (w) { return { w: w, remove: function () { self.setVal(r.id, v.filter(function (x) { return x !== w; })); } }; });
+    }
+    return out;
+  }
+  renderVals() {
+    var self = this, s = this.state;
+    var sec = SECTIONS.filter(function (x) { return x.id === s.section; })[0];
+    var found = this.results();
+    var q = s.query.trim().toLowerCase();
+    var results = found.map(function (e, i) {
+      var label = e.r.label, at = q ? label.toLowerCase().indexOf(q) : -1;
+      return { pre: at >= 0 ? label.slice(0, at) : label, mid: at >= 0 ? label.slice(at, at + q.length) : '', post: at >= 0 ? label.slice(at + q.length) : '',
+        path: e.s.name + ' › ' + e.g.title, active: i === s.active, cls: i === s.active ? 'res on' : 'res',
+        pick: function (ev) { ev.preventDefault(); self.pick(e); } };
+    });
+    return {
+      query: s.query, open: s.open && !!q, results: results, none: !!q && found.length === 0,
+      onQuery: function (e) { self.setState({ query: e.target.value, open: true, active: 0 }); },
+      onFocus: function () { self.setState({ open: true }); },
+      onBlur: function () { self.setState({ open: false }); },
+      onKey: function (e) {
+        var n = found.length;
+        if (e.key === 'ArrowDown' && n) { e.preventDefault(); self.setState({ active: (s.active + 1) % n, open: true }); }
+        else if (e.key === 'ArrowUp' && n) { e.preventDefault(); self.setState({ active: (s.active - 1 + n) % n, open: true }); }
+        else if (e.key === 'Enter' && n) { e.preventDefault(); self.pick(found[s.active] || found[0]); }
+        else if (e.key === 'Escape') { self.setState({ open: false }); }
+      },
+      nav: SECTIONS.map(function (x) { var on = x.id === s.section; return { name: x.name, d: x.d, cls: on ? 'nav on' : 'nav', current: on ? 'page' : 'false', go: function () { self.setState({ section: x.id, hl: null }); } }; }),
+      sec: { name: sec.name, about: sec.about },
+      groups: sec.groups.map(function (g) { return { title: g.title, note: g.note || '', hasNote: !!g.note, rows: g.rows.map(function (r) { return self.row(r); }) }; })
+    };
+  }
+}
+</script>
+</body>
+</html>

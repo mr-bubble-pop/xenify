@@ -1,0 +1,13 @@
+target/
+*.mp4
+*.gif
+.env
+/checkpoints
+/dist
+/dist-write
+/.ssh
+/ssh
+/.claude
+/smile-*.png
+__pycache__/
+*.pyc

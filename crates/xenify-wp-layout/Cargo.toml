@@ -1,0 +1,39 @@
+[package]
+name = "xenify-wp-layout"
+description = "Xenify Write layout: rich paragraphs with parley, flows, hit-testing and a display list"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[features]
+default = ["vello"]
+# Paints display lists into a Vello scene.
+vello = ["dep:vello"]
+# Renders pages to pixels without a window (golden tests, thumbnails).
+offscreen = ["vello", "dep:pollster", "dep:png"]
+# Leaves the maths, CMU Serif and emoji files out of the build, to be handed
+# over at run time (provide_late_fonts): the browser's first download is
+# smaller. SYMBOL_FONT and SERIF_FONTS are empty with it.
+late-fonts = []
+
+[dependencies]
+xenify-wp-doc.workspace = true
+xenify-math = { path = "../xenify-math" }
+kurbo.workspace = true
+parley.workspace = true
+# Emoji pictures (Fluent Emoji SVGs) drawn into the page; pure Rust, MIT OR Apache-2.0.
+resvg = { version = "0.48", default-features = false }
+unicode-segmentation.workspace = true
+miniz_oxide.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+vello = { workspace = true, optional = true }
+pollster = { workspace = true, optional = true }
+png = { workspace = true, optional = true }
+
+[dev-dependencies]
+xenify-wp-layout = { path = ".", features = ["offscreen"] }
+
+[target.'cfg(not(target_arch = "wasm32"))'.dependencies]
+# System font discovery (fontconfig) on desktop; the browser build uses bundled fonts only.
+parley = { workspace = true, features = ["system"] }

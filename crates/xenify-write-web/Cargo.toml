@@ -1,0 +1,22 @@
+[package]
+name = "xenify-write-web"
+description = "Xenify Write in the browser: the document engine as WebAssembly, answering the same calls as the desktop app"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+# Without the checker: it runs in a worker of its own (xenify-write-check-web).
+xenify-write-host = { path = "../xenify-write-host", default-features = false }
+serde_json.workspace = true
+xenify-wp-doc.workspace = true
+
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+# Fonts handed over after the first page (see late_fonts). Only for the
+# browser: elsewhere it would take them out of the desktop builds too.
+xenify-wp-layout = { path = "../xenify-wp-layout", default-features = false, features = ["late-fonts"] }
+wasm-bindgen = "0.2.128"
+getrandom = { version = "0.3", features = ["wasm_js"] }

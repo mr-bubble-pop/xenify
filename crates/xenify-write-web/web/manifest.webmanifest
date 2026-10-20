@@ -1,0 +1,23 @@
+{
+  "name": "Xenify Write",
+  "short_name": "Write",
+  "description": "Write documents, with spelling and grammar checked on your own device. Works offline.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#EFECE8",
+  "theme_color": "#EFECE8",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

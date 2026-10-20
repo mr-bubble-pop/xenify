@@ -1,0 +1,12 @@
+[package]
+name = "xenify-anim"
+description = "Evaluates a Xenify Vector composition at a point in time into a flat, renderable scene"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+xenify-doc.workspace = true
+kurbo.workspace = true
+linesweeper.workspace = true
+xenify-route.workspace = true

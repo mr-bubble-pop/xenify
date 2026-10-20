@@ -1,0 +1,18 @@
+# Commonly confused words: compliment (praise) vs complement (completes or
+# goes well with). From common confused-word lists; examples are ours.
+# why: A compliment (with an i) is praise: I like it when you compliment me. A complement (with an e) completes or goes well with something.
+expr praise <([pay, pays, paid, paying, give, gives, gave, giving, receive, receives, received, take, took, nice, lovely, kind, sweet, huge, great, backhanded, (left-handed), big, best, first, many, (a), such, accept, accepted] [complement, complements]), [complement, complements]>
+expr main @praise
+
+let message "`Compliment` means praise; `complement` means something that completes or goes well with another thing."
+let description "Fixes `a nice complement` → `a nice compliment` (praise)."
+let kind "Malapropism"
+let becomes "compliment"
+let strategy "MatchCase"
+
+test "She paid me a nice complement." "She paid me a nice compliment."
+test "Thanks for the kind complement." "Thanks for the kind compliment."
+
+allows "The wine is a perfect complement to the fish."
+allows "She paid me a nice compliment."
+allows "The two colours complement each other."

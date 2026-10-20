@@ -1,0 +1,26 @@
+[package]
+name = "xenify-ai"
+description = "OpenRouter-backed AI assistant that edits Xenify Vector projects through undoable commands"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+xenify-platform.workspace = true
+xenify-openrouter.workspace = true
+xenify-anim.workspace = true
+xenify-doc.workspace = true
+xenify-ops.workspace = true
+xenify-audio.workspace = true
+xenify-export.workspace = true
+kurbo.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+thiserror.workspace = true
+base64.workspace = true
+
+[target.'cfg(not(target_arch = "wasm32"))'.dependencies]
+ureq.workspace = true
+
+[dev-dependencies]
+image.workspace = true
