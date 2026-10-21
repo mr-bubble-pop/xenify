@@ -112,3 +112,8 @@ h3 { font-size: 19px; margin: 0 0 6px; }
   h2 { text-align: left; }
   .download { text-align: left; }
 }
+
+/* While the repo is private (body.soon), hide links into GitHub. */
+.soon-note { display: none; color: var(--muted); font-weight: 600; }
+.soon .soon-note { display: block; }
+.soon .gh { display: none !important; }

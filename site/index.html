@@ -9,14 +9,16 @@
 <link rel="icon" href="img/write-icon.png">
 <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<!-- class="soon": the GitHub repo is still private, so links to it are hidden.
+     Remove it when the repo is public. -->
+<body class="soon">
 
 <header class="top">
   <a class="brand" href="/"><img src="img/write-icon.png" alt="" width="28" height="28">Xenify</a>
   <nav aria-label="Site">
     <a href="#features">Features</a>
     <a href="#download">Download</a>
-    <a href="https://github.com/mr-bubble-pop/xenify">Source code</a>
+    <a class="gh" href="https://github.com/mr-bubble-pop/xenify">Source code</a>
   </nav>
 </header>
 
@@ -88,13 +90,15 @@
       <div class="card">
         <h3>Windows</h3>
         <p>Windows 10 and 11, 64-bit.</p>
-        <a class="btn primary" href="https://github.com/mr-bubble-pop/xenify/releases/latest/download/Xenify-Write-Setup-x64.exe">Download installer (.exe)</a>
-        <p class="note">Windows may say <q>Windows protected your PC</q> because the app isn't signed with a paid certificate. Click <b>More info</b>, then <b>Run anyway</b>.</p>
+        <p class="soon-note">Coming soon.</p>
+        <a class="btn primary gh" href="https://github.com/mr-bubble-pop/xenify/releases/latest/download/Xenify-Write-Setup-x64.exe">Download installer (.exe)</a>
+        <p class="note gh">Windows may say <q>Windows protected your PC</q> because the app isn't signed with a paid certificate. Click <b>More info</b>, then <b>Run anyway</b>.</p>
       </div>
       <div class="card">
         <h3>Linux</h3>
         <p>64-bit (x86-64).</p>
-        <ul class="links">
+        <p class="soon-note">Coming soon.</p>
+        <ul class="links gh">
           <li><a href="https://github.com/mr-bubble-pop/xenify/releases/latest/download/Xenify-Write-amd64.deb">Ubuntu, Debian, Mint (.deb)</a></li>
           <li><a href="https://github.com/mr-bubble-pop/xenify/releases/latest/download/Xenify-Write-x86_64.rpm">Fedora, openSUSE (.rpm)</a></li>
           <li><a href="https://github.com/mr-bubble-pop/xenify/releases/latest/download/Xenify-Write-x86_64.AppImage">Any distribution (.AppImage)</a></li>
@@ -107,12 +111,12 @@
         <a class="btn" href="/write/">Open in browser</a>
       </div>
     </div>
-    <p class="small">All versions and release notes are on the <a href="https://github.com/mr-bubble-pop/xenify/releases">releases page</a>.</p>
+    <p class="small gh">All versions and release notes are on the <a href="https://github.com/mr-bubble-pop/xenify/releases">releases page</a>.</p>
   </section>
 </main>
 
 <footer class="foot">
-  <p>Xenify is free and open source under the <a href="https://github.com/mr-bubble-pop/xenify/blob/main/LICENSE">MIT licence</a>. <a href="https://github.com/mr-bubble-pop/xenify/blob/main/THIRD_PARTY_LICENSES.txt">Third-party licences</a>.</p>
+  <p>Xenify is free and open source under the MIT licence.<span class="gh"> <a href="https://github.com/mr-bubble-pop/xenify/blob/main/LICENSE">Licence</a> · <a href="https://github.com/mr-bubble-pop/xenify/blob/main/THIRD_PARTY_LICENSES.txt">Third-party licences</a>.</span></p>
 </footer>
 
 </body>
