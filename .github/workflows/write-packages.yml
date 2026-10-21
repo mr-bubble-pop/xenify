@@ -48,7 +48,8 @@ jobs:
       - name: Put the model where scripts/stage-spotter.sh looks
         shell: bash
         run: |
-          (cd models-branch && sha256sum -c SHA256SUMS)
+          # Windows checkouts turn line endings into CRLF; drop the CR.
+          (cd models-branch && tr -d '\r' < SHA256SUMS | sha256sum -c -)
           mkdir -p checkpoints/models
           mv models-branch/B7.tgz checkpoints/models/B7.tgz
           rm -rf models-branch
@@ -81,7 +82,8 @@ jobs:
       - name: Put the model where scripts/stage-spotter.sh looks
         shell: bash
         run: |
-          (cd models-branch && sha256sum -c SHA256SUMS)
+          # Windows checkouts turn line endings into CRLF; drop the CR.
+          (cd models-branch && tr -d '\r' < SHA256SUMS | sha256sum -c -)
           mkdir -p checkpoints/models
           mv models-branch/B7.tgz checkpoints/models/B7.tgz
           rm -rf models-branch
@@ -118,6 +120,11 @@ jobs:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: |
+          # Say which secret is missing (without showing either).
+          [ -n "$CLOUDFLARE_API_TOKEN" ] || { echo "::error::The repository secret CLOUDFLARE_API_TOKEN is missing or empty"; missing=1; }
+          [ -n "$CLOUDFLARE_ACCOUNT_ID" ] || { echo "::error::The repository secret CLOUDFLARE_ACCOUNT_ID is missing or empty"; missing=1; }
+          [ -z "${missing:-}" ] || exit 1
+          echo "Account ID is ${#CLOUDFLARE_ACCOUNT_ID} characters (should be 32)"
           # The first run creates the project (xenify.pages.dev).
           npx --yes wrangler@4 pages project list | grep -qw xenify ||
             npx --yes wrangler@4 pages project create xenify --production-branch main
