@@ -7,9 +7,9 @@
 # point at once the release is published.
 #
 # Repository settings it uses (Settings › Secrets and variables › Actions):
-#   variable SPOTTER_URL      where to download the mistake-spotter model (B7.tgz,
-#                             e.g. an asset of a GitHub release); required
-#   variable SPOTTER_SHA256   its SHA-256 (checkpoints/SHA256SUMS); recommended
+#   variable SPOTTER_URL      where to download the mistake-spotter model (B7.tgz);
+#                             optional, defaults to the repo's `models` branch
+#   variable SPOTTER_SHA256   its SHA-256 (checkpoints/SHA256SUMS); set it with SPOTTER_URL
 #   secret CLOUDFLARE_API_TOKEN   a token with only Account › Cloudflare Pages › Edit
 #   secret CLOUDFLARE_ACCOUNT_ID
 # The Mac build is left out for now; see docs/write-packaging.md to add it back.
@@ -21,8 +21,10 @@ on:
     tags: ["write-v*"]
 
 env:
-  SPOTTER_URL: ${{ vars.SPOTTER_URL }}
-  SPOTTER_SHA256: ${{ vars.SPOTTER_SHA256 }}
+  # Unless the repository variables say otherwise, the model comes from the
+  # repo's `models` branch (B7.tgz, MIT; see its README).
+  SPOTTER_URL: ${{ vars.SPOTTER_URL || 'https://github.com/mr-bubble-pop/xenify/raw/models/B7.tgz' }}
+  SPOTTER_SHA256: ${{ vars.SPOTTER_SHA256 || '93e60b346e81b418d07c5302724da8f0b79cbef7ac8b5095928131a756c8e8ae' }}
   CARGO_TERM_COLOR: always
 
 permissions:
