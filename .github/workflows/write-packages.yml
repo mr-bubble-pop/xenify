@@ -7,9 +7,9 @@
 # point at once the release is published.
 #
 # Repository settings it uses (Settings › Secrets and variables › Actions):
-#   variable SPOTTER_URL      where to download the mistake-spotter model (B7.tgz);
-#                             optional, defaults to the repo's `models` branch
-#   variable SPOTTER_SHA256   its SHA-256 (checkpoints/SHA256SUMS); set it with SPOTTER_URL
+# The mistake-spotter model (B7.tgz, MIT) comes from the repo's `models`
+# branch, checked against its SHA256SUMS. To take it from elsewhere instead,
+# delete that step and set the variables SPOTTER_URL and SPOTTER_SHA256.
 #   secret CLOUDFLARE_API_TOKEN   a token with only Account › Cloudflare Pages › Edit
 #   secret CLOUDFLARE_ACCOUNT_ID
 # The Mac build is left out for now; see docs/write-packaging.md to add it back.
@@ -21,10 +21,8 @@ on:
     tags: ["write-v*"]
 
 env:
-  # Unless the repository variables say otherwise, the model comes from the
-  # repo's `models` branch (B7.tgz, MIT; see its README).
-  SPOTTER_URL: ${{ vars.SPOTTER_URL || 'https://github.com/mr-bubble-pop/xenify/raw/models/B7.tgz' }}
-  SPOTTER_SHA256: ${{ vars.SPOTTER_SHA256 || '93e60b346e81b418d07c5302724da8f0b79cbef7ac8b5095928131a756c8e8ae' }}
+  SPOTTER_URL: ${{ vars.SPOTTER_URL }}
+  SPOTTER_SHA256: ${{ vars.SPOTTER_SHA256 }}
   CARGO_TERM_COLOR: always
 
 permissions:
@@ -42,6 +40,18 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
+      - name: Mistake-spotter model (models branch)
+        uses: actions/checkout@v4
+        with:
+          ref: models
+          path: models-branch
+      - name: Put the model where scripts/stage-spotter.sh looks
+        shell: bash
+        run: |
+          (cd models-branch && sha256sum -c SHA256SUMS)
+          mkdir -p checkpoints/models
+          mv models-branch/B7.tgz checkpoints/models/B7.tgz
+          rm -rf models-branch
       - uses: dtolnay/rust-toolchain@stable
       - uses: Swatinem/rust-cache@v2
       - name: Linux build tools
@@ -63,6 +73,18 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
+      - name: Mistake-spotter model (models branch)
+        uses: actions/checkout@v4
+        with:
+          ref: models
+          path: models-branch
+      - name: Put the model where scripts/stage-spotter.sh looks
+        shell: bash
+        run: |
+          (cd models-branch && sha256sum -c SHA256SUMS)
+          mkdir -p checkpoints/models
+          mv models-branch/B7.tgz checkpoints/models/B7.tgz
+          rm -rf models-branch
       - uses: dtolnay/rust-toolchain@stable
         with:
           targets: wasm32-unknown-unknown

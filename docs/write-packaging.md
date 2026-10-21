@@ -45,9 +45,9 @@ xenify-write profiles
   `{ os: macos-14, system: macos }` to its matrix.
 - **All at once:** `.github/workflows/write-packages.yml` builds Linux
   (Ubuntu 22.04), Windows and the browser version on GitHub Actions
-  (github.com/mr-bubble-pop/xenify). It downloads the model `B7.tgz` from
-  the repo's `models` branch, unless the repository variables
-  `SPOTTER_URL` and `SPOTTER_SHA256` point somewhere else.
+  (github.com/mr-bubble-pop/xenify). It takes the model `B7.tgz` from
+  the repo's `models` branch (checked against its `SHA256SUMS`), so it
+  works while the repo is private too.
   - It puts xenify.net on Cloudflare Pages (project `xenify`; the secrets
     `CLOUDFLARE_API_TOKEN`, with only *Cloudflare Pages: Edit*, and
     `CLOUDFLARE_ACCOUNT_ID`).
