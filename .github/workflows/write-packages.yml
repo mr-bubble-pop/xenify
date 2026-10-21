@@ -11,7 +11,7 @@
 # branch, checked against its SHA256SUMS. To take it from elsewhere instead,
 # delete that step and set the variables SPOTTER_URL and SPOTTER_SHA256.
 #   secret CLOUDFLARE_API_TOKEN   a token with only Account › Cloudflare Pages › Edit
-#   secret CLOUDFLARE_ACCOUNT_ID
+#   variable (or secret) CLOUDFLARE_ACCOUNT_ID
 # The Mac build is left out for now; see docs/write-packaging.md to add it back.
 name: Xenify Write packages
 
@@ -118,11 +118,12 @@ jobs:
       - name: Upload to Cloudflare Pages
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          # Not secret: a repository variable is fine (a secret works too).
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID || vars.CLOUDFLARE_ACCOUNT_ID }}
         run: |
           # Say which secret is missing (without showing either).
           [ -n "$CLOUDFLARE_API_TOKEN" ] || { echo "::error::The repository secret CLOUDFLARE_API_TOKEN is missing or empty"; missing=1; }
-          [ -n "$CLOUDFLARE_ACCOUNT_ID" ] || { echo "::error::The repository secret CLOUDFLARE_ACCOUNT_ID is missing or empty"; missing=1; }
+          [ -n "$CLOUDFLARE_ACCOUNT_ID" ] || { echo "::error::CLOUDFLARE_ACCOUNT_ID is missing or empty (add it as a repository variable or secret)"; missing=1; }
           [ -z "${missing:-}" ] || exit 1
           echo "Account ID is ${#CLOUDFLARE_ACCOUNT_ID} characters (should be 32)"
           # The first run creates the project (xenify.pages.dev).
