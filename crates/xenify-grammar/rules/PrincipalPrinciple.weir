@@ -1,0 +1,19 @@
+# Commonly confused words: principal (head; main) vs principle (a rule or
+# belief). From common confused-word lists; examples are ours.
+# why: Principal means main, or the head of a school (your pal). A principle is a rule or belief.
+expr main [<([school, head, assistant, vice, deputy, our, my, your, their] principle [called, said, says, will, has, had, asked, told, sent, wants, announced, emailed, decided, approved]), principle>, <([school, head, assistant, vice, deputy] principle), principle>, <(principle [investigator, investigators, component, components, reason, reasons, cause, causes, author, authors, dancer, dancers, owner, owners, residence, amount, payment, payments, balance, place, office, offices, character, characters, aim, aims, goal, goals, source, sources, concern, concerns, part, parts, role, roles, city, cities, partner, partners, sponsor, sponsors, architect, engineer, consultant, contributor, contributors, applicant, beneficiary]), principle>]
+
+let message "Did you mean `principal` (head of a school, or main)? A `principle` is a rule or belief."
+let description "Fixes `principle` where `principal` is meant: `the school principle`, `the principle reason`."
+let kind "Malapropism"
+let becomes "principal"
+let strategy "MatchCase"
+
+test "The school principle called." "The school principal called."
+test "The principle reason is cost." "The principal reason is cost."
+test "She is the principle investigator." "She is the principal investigator."
+test "Our principle said no." "Our principal said no."
+
+allows "It is a matter of principle."
+allows "The principle of fairness applies."
+allows "The school principal called."

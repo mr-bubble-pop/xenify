@@ -1,0 +1,12 @@
+[package]
+name = "xenify-audio"
+description = "Mixing, analysing and synthesizing sound for Xenify Draw (pure Rust)"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+xenify-anim.workspace = true
+xenify-doc.workspace = true
+serde.workspace = true
+serde_json.workspace = true

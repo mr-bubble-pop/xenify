@@ -1,0 +1,18 @@
+[package]
+name = "xenify-grammar-spotter"
+description = "A small offline model (DeBERTa-v3, run with candle) that marks words that look wrong in English text, with an error code"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+readme = "README.md"
+keywords = ["grammar", "proofreading", "english", "offline", "candle"]
+categories = ["text-processing"]
+
+[dependencies]
+candle-core = "0.11"
+candle-nn = "0.11"
+candle-transformers = "0.11"
+tokenizers = { version = "0.22", default-features = false, features = ["fancy-regex"] }
+serde.workspace = true
+serde_json.workspace = true
+xenify-grammar.workspace = true

@@ -1,0 +1,9 @@
+[package]
+name = "ammonia"
+version = "4.2.0"
+edition = "2021"
+license = "MIT"
+description = "Stand-in for ammonia: escapes HTML instead of sanitising it (see patches/README.md)"
+publish = false
+
+[dependencies]

@@ -1,0 +1,19 @@
+# Real-word typo: "prostrate" (lying face down) for "prostate" (a gland).
+# Pattern from published lists of mistakes spell-checkers miss; examples are ours.
+# why: Prostate is the gland; prostrate means lying face down. Both are real words, so spell-checkers miss the swap.
+expr main [<(prostrate [cancer, cancers, exam, exams, examination, examinations, gland, glands, health, screening, screenings, biopsy, biopsies, surgery, awareness, problem, problems, issue, issues, enlargement, specific, test, tests, check, checks, condition, conditions, disease, diseases, removal, tumor, tumour, tumors, tumours, symptoms]), prostrate>, <(enlarged prostrate), prostrate>, <([his, the, a] prostrate [was, is, had, has]), prostrate>]
+
+let message "Did you mean `prostate` (the gland)? `Prostrate` means lying face down."
+let description "Catches `prostrate` where the gland `prostate` was meant."
+let kind "Typo"
+let becomes "prostate"
+let strategy "MatchCase"
+
+test "He was treated for prostrate cancer." "He was treated for prostate cancer."
+test "Book a prostrate exam today." "Book a prostate exam today."
+test "November is Prostrate Awareness Month." "November is Prostate Awareness Month."
+test "He has an enlarged prostrate." "He has an enlarged prostate."
+
+allows "He lay prostrate on the floor."
+allows "The heat left her prostrate with exhaustion."
+allows "He was treated for prostate cancer."

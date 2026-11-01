@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI in Xenify: on your own graphics card, or a provider you trust</title>
+<meta name="description" content="Xenify's AI checks your writing, answers questions and makes pictures and video clips. Run it on your own graphics card through Xenify Server, or with a provider you trust. Measured times for 16, 24 and 48 GB cards.">
+<meta name="theme-color" content="#F6F3EF">
+<link rel="icon" href="/img/x.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/style.css?v=20261101b">
+<script src="/site.js" defer></script>
+</head>
+<body class="soon">
+
+<header class="wrap top">
+  <a class="brand" href="/"><span class="mark" aria-hidden="true">X</span>Xenify</a>
+  <nav aria-label="Site">
+    <a href="/products/wiki/">Wiki</a>
+    <a href="/products/write/">Write</a>
+    <a href="/products/calc/">Calc</a>
+    <a href="/products/plan/">Plan</a>
+    <a href="/products/chat/">Chat</a>
+    <a href="/products/draw/">Draw</a>
+    <a href="/products/server/">Server</a>
+    <a href="/ai/" aria-current="page">AI</a>
+    <a class="btn main small" href="/download/">Download</a>
+  </nav>
+</header>
+
+<main>
+  <section class="wrap hero">
+    <p class="tag">AI in Xenify</p>
+    <h1>AI on a graphics card you own.</h1>
+    <p class="lede">Check a whole document, ask about it, and make pictures and short clips. Run the models on your own graphics card through Xenify Server, or use a provider you trust. Nothing is sent anywhere until you choose where.</p>
+    <div class="actions"><a class="btn main" href="/download/#ai">Set it up</a><a class="btn ghost" href="#hardware">What hardware you need to run AI locally</a></div>
+  </section>
+
+  <section class="wrap pad-bottom" aria-label="AI is optional">
+    <div class="attention">
+      <b>AI is optional, and off until you turn it on.</b>
+      <p>Nothing is sent anywhere for AI unless you set it up. There are two ways to have it: pay a provider such as OpenRouter with your own key, or run the models yourself on hardware you own. This page is about running them yourself. <a href="/download/#ai">How to set up either</a></p>
+    </div>
+  </section>
+
+  <section class="wrap pad-bottom grid2" aria-label="What the AI does">
+    <div class="box"><span class="tag">Write</span><b>Check the whole document</b><span>Beyond the spelling and grammar checker that always runs on your computer: the AI reads the document and suggests fixes you accept or ignore. Ask it to summarise, rewrite or explain.</span></div>
+    <div class="box"><span class="tag">Draw</span><b>Make and change pictures</b><span>Describe a picture and it's made for you, or paint over part of one and say what should change there.</span></div>
+    <div class="box"><span class="tag">Calc and Plan</span><b>Ask about your sheets and plans</b><span>Ask questions about a spreadsheet or a plan in plain words. In Calc, the AI asks how you work things out before it changes anything.</span></div>
+    <div class="box"><span class="tag">Your choice</span><b>Off until you pick where it runs</b><span>Your team's server with its own graphics card, or a provider such as OpenRouter with your own key. People on a server use its AI with no key of their own.</span></div>
+  </section>
+
+  <section class="band pad" id="hardware" aria-labelledby="hw-title">
+    <div class="wrap copy" style="gap: 28px">
+      <div class="copy center">
+        <p class="tag">Hardware</p>
+        <h2 id="hw-title">What hardware you need to run AI locally.</h2>
+        <p class="lede">We ran the same tests on three graphics cards. Times are once the model is loaded, made the same way on every card. More graphics memory lets you run bigger models; a faster card makes the same thing sooner.</p>
+      </div>
+
+      <div class="specs">
+        <div class="spec"><b>16 GB card</b><span>Tested on a Tesla V100</span><ul class="checks"><li>Write's AI check with Gemma 4 12B</li><li>Pictures in 4 to 16 seconds</li><li>Clips, slowly: about half an hour each</li></ul></div>
+        <div class="spec pick"><b>24 GB card</b><span>Tested on an RTX 3090</span><ul class="checks"><li>Gemma 4 26B, the best checker we tested</li><li>Pictures in 4 to 13 seconds</li><li>Clips in about 20 minutes</li></ul></div>
+        <div class="spec"><b>48 GB card</b><span>Tested on an RTX A6000</span><ul class="checks"><li>Every model here, with room to spare</li><li>Pictures in 3 to 9 seconds</li><li>Clips in about 12 minutes</li></ul></div>
+      </div>
+
+      <h3>Checking a document</h3>
+      <div class="tablebox"><table>
+        <thead><tr><th>Model</th><th class="n">16 GB</th><th class="n">24 GB</th><th class="n">48 GB</th><th class="n">Mistakes found</th><th class="n">Right fixes</th><th class="n">False alarms</th></tr></thead>
+        <tbody>
+          <tr class="pick"><td>Gemma 4 26B</td><td class="n">doesn’t fit</td><td class="n">11 s</td><td class="n">13 s</td><td class="n">95%</td><td class="n">98%</td><td class="n">0%</td></tr>
+          <tr><td>Gemma 4 12B</td><td class="n">30 s</td><td class="n">21 s</td><td class="n">24 s</td><td class="n">88%</td><td class="n">94%</td><td class="n">1%</td></tr>
+          <tr><td>Qwen3.8 27B</td><td class="n">doesn’t fit</td><td class="n">21 s</td><td class="n">25 s</td><td class="n">86%</td><td class="n">97%</td><td class="n">5%</td></tr>
+          <tr><td>Qwen3.5 9B</td><td class="n">30 s</td><td class="n">19 s</td><td class="n">24 s</td><td class="n">70%</td><td class="n">95%</td><td class="n">4%</td></tr>
+        </tbody>
+      </table></div>
+      <p class="note">Seconds to check 1,000 words. Each model was set to answer straight away instead of reasoning step by step first, which is much faster. Mistakes found and right fixes were judged by two other AI models; a false alarm is a correct sentence marked as wrong. A model too big for the card can still run with part of it in the computer's memory, much more slowly: Gemma 4 26B took 89 s per 1,000 words on the 16 GB card. We haven't timed a 12 GB card yet.</p>
+
+      <h3>Pictures</h3>
+      <div class="tablebox"><table>
+        <thead><tr><th>Model</th><th>Size</th><th class="n">16 GB</th><th class="n">24 GB</th><th class="n">48 GB</th></tr></thead>
+        <tbody>
+          <tr class="pick"><td>FLUX.2 klein 4B</td><td>1024 × 1024</td><td class="n">4.0 s</td><td class="n">4.0 s</td><td class="n">3.1 s</td></tr>
+          <tr><td></td><td>1536 × 1024</td><td class="n">6.5 s</td><td class="n">6.0 s</td><td class="n">5.1 s</td></tr>
+          <tr><td>Z-Image Turbo</td><td>1024 × 1024</td><td class="n">9.0 s</td><td class="n">9.0 s</td><td class="n">6.1 s</td></tr>
+          <tr><td></td><td>1536 × 1024</td><td class="n">16.0 s</td><td class="n">13.0 s</td><td class="n">9.0 s</td></tr>
+        </tbody>
+      </table></div>
+
+      <h3>Five-second clips</h3>
+      <div class="tablebox"><table>
+        <thead><tr><th>Model</th><th>Clip</th><th class="n">16 GB</th><th class="n">24 GB</th><th class="n">48 GB</th></tr></thead>
+        <tbody>
+          <tr><td>MiniMax H3</td><td>864 × 480, 124 frames, with sound</td><td class="n">17.5 min</td><td class="n">7.7 min</td><td class="n">6.5 min</td></tr>
+          <tr><td>Wan 2.2 14B</td><td>640 × 640, 81 frames</td><td class="n">29 min</td><td class="n">20 min</td><td class="n">12 min</td></tr>
+        </tbody>
+      </table></div>
+      <p class="note">The test computers had at least 94 GB of memory besides the graphics card; clips need a lot of it. MiniMax H3 is faster and adds sound; read <a href="https://huggingface.co/MiniMaxAI/MiniMax-H3/blob/main/LICENSE">its licence</a> before using it. <a href="/download/#ai">How to set them up</a>.</p>
+    </div>
+  </section>
+
+  <section class="wrap pad" aria-labelledby="out-title">
+    <div class="copy center" style="margin-bottom: 36px">
+      <p class="tag">Examples</p>
+      <h2 id="out-title">Same words, two models.</h2>
+      <p class="lede">Made on the 16 GB card. A bigger card changes the time, not the picture.</p>
+    </div>
+    <div class="examples">
+      <figure class="ex"><p class="prompt">“A realistic photo of a chubby baby with a big curly moustache eating a slice of cherry pie with both hands, sitting on a patterned rug in a living room”</p>
+        <div class="pair"><figure><img src="/media/ai-flux.2-klein-4b-baby-1024x1024.webp" width="900" height="900" loading="lazy" alt="FLUX.2 klein: a baby with a curly moustache eating cherry pie on a patterned rug"><figcaption><b>FLUX.2 klein 4B</b> 4.0 s</figcaption></figure>
+        <figure><img src="/media/ai-z-image-turbo-baby-1024x1024.webp" width="900" height="900" loading="lazy" alt="Z-Image Turbo: a baby with a curly moustache eating cherry pie on a patterned rug"><figcaption><b>Z-Image Turbo</b> 9.0 s</figcaption></figure></div></figure>
+      <figure class="ex"><p class="prompt">“A realistic photo of a baby holding a toy hammer chasing a gorilla down a busy city street, people watching from the pavement”</p>
+        <div class="pair"><figure><img src="/media/ai-flux.2-klein-4b-gorilla-1536x1024.webp" width="900" height="600" loading="lazy" alt="FLUX.2 klein: a toddler with a toy hammer beside a gorilla on a city street, people watching"><figcaption><b>FLUX.2 klein 4B</b> 6.5 s</figcaption></figure>
+        <figure><img src="/media/ai-z-image-turbo-gorilla-1536x1024.webp" width="900" height="600" loading="lazy" alt="Z-Image Turbo: a baby with a toy hammer walking beside a gorilla on a pavement"><figcaption><b>Z-Image Turbo</b> 16.0 s</figcaption></figure></div></figure>
+      <figure class="ex"><p class="prompt">“A realistic photo of a golden retriever wearing a chef's hat, standing at a kitchen stove flipping pancakes in a pan”</p>
+        <div class="pair"><figure><img src="/media/ai-flux.2-klein-4b-dog-1024x1536.webp" width="900" height="1350" loading="lazy" alt="FLUX.2 klein: a golden retriever in a chef's hat and jacket cooking a pancake"><figcaption><b>FLUX.2 klein 4B</b> 7.0 s</figcaption></figure>
+        <figure><img src="/media/ai-z-image-turbo-dog-1024x1536.webp" width="900" height="1350" loading="lazy" alt="Z-Image Turbo: a golden retriever in a chef's hat flipping a stack of pancakes"><figcaption><b>Z-Image Turbo</b> 16.0 s</figcaption></figure></div></figure>
+      <figure class="ex"><p class="prompt">“Realistic video of a chubby baby with a big curly moustache sitting on a patterned rug eating cherry pie with both hands, smiling, crumbs falling”</p>
+        <div class="pair"><figure data-minimax hidden><video data-src="/media/ai-minimax-h3-baby.mp4" poster="/media/ai-minimax-h3-baby.webp" width="864" height="480" controls loop playsinline preload="none" aria-label="MiniMax H3: a baby with a moustache eating cherry pie on a round patterned rug"></video><figcaption><b>MiniMax H3</b> with sound · 48 GB card</figcaption></figure>
+        <figure><video src="/media/ai-wan2.2-baby.mp4" poster="/media/ai-wan2.2-baby.webp" width="832" height="480" controls muted loop playsinline preload="none" aria-label="Wan 2.2: a baby with a moustache sitting on a patterned rug beside a cherry pie"></video><figcaption><b>Wan 2.2 14B</b> 16 GB card, no sound</figcaption></figure></div></figure>
+      <figure class="ex"><p class="prompt">“Realistic video of a baby holding a toy hammer chasing a gorilla down a busy city street, the gorilla running away, people watching from the pavement”</p>
+        <div class="pair"><figure data-minimax hidden><video data-src="/media/ai-minimax-h3-gorilla.mp4" poster="/media/ai-minimax-h3-gorilla.webp" width="864" height="480" controls loop playsinline preload="none" aria-label="MiniMax H3: a toddler with a toy hammer following a gorilla down a busy city street, people watching"></video><figcaption><b>MiniMax H3</b> with sound · 48 GB card</figcaption></figure>
+        <figure><video src="/media/ai-wan2.2-gorilla.mp4" poster="/media/ai-wan2.2-gorilla.webp" width="832" height="480" controls muted loop playsinline preload="none" aria-label="Wan 2.2: a toddler on a city street while a gorilla runs past and people watch"></video><figcaption><b>Wan 2.2 14B</b> 16 GB card, no sound</figcaption></figure></div></figure>
+      <p class="note" data-minimax-off hidden>MiniMax H3’s clips aren’t shown in the US, the EU, the UK or South Korea, because of its licence (or when a privacy blocker stops this page telling where you are).</p>
+    </div>
+  </section>
+
+  <section class="wrap pad-bottom">
+    <div class="cta">
+      <div><h2>Ready to set it up?</h2><p>The guide covers the apps, the server and the AI, step by step, including the programs that run the models.</p></div>
+      <a class="btn white" href="/download/#needs">Set it up</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© Xenify · MIT licence</span>
+    <a href="/download/#needs">Set it up</a>
+    <a href="/write/">Write in your browser</a>
+    <a href="/draw/">Draw in your browser</a>
+    <a href="/calc/">Calc in your browser</a>
+    <a class="gh" href="https://github.com/mr-bubble-pop/xenify">Source code</a>
+    <a href="/download/">Download</a>
+  </div>
+</footer>
+<script>
+// MiniMax H3's licence doesn't cover the US, the EU, the UK or South Korea,
+// including showing its clips there: those visitors (and anyone whose
+// country can't be told) get a note instead, and the clip is never loaded.
+(() => {
+  const off = new Set(('US PR GU VI AS MP UM GB KR AT BE BG HR CY CZ DK EE FI FR DE GR HU IE IT LV LT LU MT NL PL PT RO SK SI ES SE '
+    + 'AX GF GP MQ RE YT MF IC EA').split(' '));
+  const show = (ok) => {
+    for (const el of document.querySelectorAll('[data-minimax]')) {
+      el.hidden = !ok;
+      if (ok) for (const v of el.querySelectorAll('video[data-src]')) v.src = v.dataset.src;
+    }
+    for (const el of document.querySelectorAll('[data-minimax-off]')) el.hidden = ok;
+  };
+  // A privacy blocker may stop the country lookup; then the device's time
+  // zone stands in (none in the Americas, Europe, Korea or the US Pacific).
+  const byZone = () => {
+    let z = '';
+    try { z = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch { /* */ }
+    if (!z || z === 'UTC' || z.startsWith('Etc/')) return false;
+    const offZones = /^(America|Europe|Atlantic|Arctic)\/|^Asia\/(Seoul|Nicosia|Famagusta)$|^Pacific\/(Honolulu|Guam|Saipan|Pago_Pago|Midway|Wake|Johnston)$|^(US|Canada)\//;
+    return !offZones.test(z);
+  };
+  fetch('/cdn-cgi/trace').then((r) => r.text())
+    .then((t) => { const c = (t.match(/^loc=([A-Z]{2})$/m) || [])[1]; show(c && c !== 'XX' ? !off.has(c) : byZone()); })
+    .catch(() => show(byZone()));
+})();
+</script>
+</body>
+</html>

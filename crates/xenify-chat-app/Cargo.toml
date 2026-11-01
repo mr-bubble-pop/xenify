@@ -1,0 +1,88 @@
+[package]
+name = "xenify-chat-app"
+description = "Xenify Chat: chat (and later mail and calendar) on the desktop, with Xenify Write's spelling and grammar checking"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[[bin]]
+name = "xenify-chat"
+path = "src/main.rs"
+
+[features]
+default = ["voice"]
+# Speech to text (whisper.cpp). Windows builds made on Linux with mingw-w64
+# leave it out: its C++ doesn't link there (the release builds on Windows
+# itself have it).
+voice = ["dep:xenify-voice"]
+
+[dependencies]
+# Desktop app shell around the system's web view (MIT OR Apache-2.0).
+# Its build steps use some MPL-2.0 crates (cssparser via dom_query) that
+# never reach the app itself: see patches/README.md.
+# The tray icon: tray-icon and, on Linux, libappindicator's bindings (MIT OR
+# Apache-2.0), which load the desktop's own indicator library when there is one.
+tauri = { version = "2", features = ["tray-icon", "image-png"] }
+# One Chat at a time: opening it again brings the running one forward
+# (several each had a tray icon and sent the same notifications).
+tauri-plugin-single-instance = "2"
+serde.workspace = true
+serde_json.workspace = true
+xenify-chat-proto = { path = "../xenify-chat-proto" }
+# What the app does between its screens and the server, shared with the
+# browser build: signing in, meetings, calendar, address books.
+xenify-chat-core = { path = "../xenify-chat-core" }
+# Random ids and base64.
+xenify-sync = { path = "../xenify-sync" }
+# Following the Hub's server sign-in.
+xenify-hub-core = { path = "../xenify-hub-core" }
+# Email (IMAP, sending, the local copy) and cleaning HTML email for showing.
+xenify-mail-core = { path = "../xenify-mail-core" }
+xenify-safe-html = { path = "../xenify-safe-html" }
+# Calendars: invitations (iCalendar/iTIP), repeat rules, time zones.
+xenify-cal = { path = "../xenify-cal" }
+chrono = { version = "0.4", default-features = false, features = ["std", "clock"] }
+chrono-tz = "0.10"
+# This computer's time zone name (MIT OR Apache-2.0).
+iana-time-zone = "0.1"
+# Attachments arrive from the screens as base64.
+base64.workspace = true
+# Xenify Write's spelling and grammar checker (and its shared AI spotter).
+xenify-wp-check = { path = "../xenify-wp-check" }
+xenify-wp-doc.workspace = true
+futures-util = "0.3"
+tokio = { version = "1", features = ["sync", "time", "macros"] }
+# WebSocket to the chat server; TLS via rustls with the Mozilla roots
+# (webpki-roots: CDLA-Permissive-2.0).
+tokio-tungstenite = { version = "0.30", features = ["rustls-tls-webpki-roots", "rustls-tls-native-roots"] }
+rustls-native-certs = "0.8"
+# The chat connection to a server trusted in the app (its own certificate).
+rustls = { version = "0.23", default-features = false, features = ["ring", "std", "tls12"] }
+webpki-roots = "1"
+xenify-platform = { workspace = true, features = ["trust"] }
+ureq.workspace = true
+# Desktop notifications over D-Bus (MIT OR Apache-2.0; zbus is MIT).
+notify-rust = "4"
+# Reading the calendar and address books earlier versions kept in SQLite
+# (MIT; SQLite itself is public domain).
+rusqlite = { version = "0.37", features = ["bundled"] }
+# Speech to text on this computer, for voice messages and meeting
+# transcripts (whisper.cpp; the model is downloaded on first use).
+xenify-voice = { path = "../xenify-voice", optional = true }
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dev-dependencies]
+# Signing in against a real server in tests.
+xenify-server = { path = "../xenify-server" }
+xenify-server-proto = { path = "../xenify-server-proto" }
+tokio-postgres = "0.7"
+# Authenticator codes for the two-step sign-in test.
+hmac = "0.13"
+sha1 = "0.11"
+tokio = { version = "1", features = ["rt-multi-thread", "macros"] }
+
+[target.'cfg(target_os = "linux")'.dependencies]
+# Turning the camera and microphone on in Linux's web view, for calls (MIT).
+webkit2gtk = "2.0"

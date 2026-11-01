@@ -1,0 +1,10 @@
+{
+  "name": "Xenify Draw",
+  "short_name": "Draw",
+  "description": "Draw posters, pictures and animations, with spelling and grammar checked on your computer.",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#EFECE8",
+  "theme_color": "#EFECE8",
+  "icons": [{ "src": "icon.png", "sizes": "1024x1024", "type": "image/png" }]
+}

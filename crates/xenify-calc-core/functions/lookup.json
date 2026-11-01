@@ -1,0 +1,1453 @@
+[
+  {
+    "name": "CHOOSE",
+    "args": [
+      {
+        "name": "index_num",
+        "about": "which value to give: 1 for the first, 2 for the second…"
+      },
+      {
+        "name": "value1",
+        "about": "the first value to choose from"
+      },
+      {
+        "name": "value2",
+        "about": "more values to choose from",
+        "optional": true
+      }
+    ],
+    "more": true,
+    "about": "Picks one value from a list by its position.",
+    "example": {
+      "cells": [
+        [
+          "Day",
+          "3"
+        ]
+      ],
+      "formula": "=CHOOSE(B1,\"Mon\",\"Tue\",\"Wed\",\"Thu\",\"Fri\")",
+      "result": "Wed",
+      "why": "B1 is 3, so the third value is chosen."
+    }
+  },
+  {
+    "name": "COLUMN",
+    "args": [
+      {
+        "name": "reference",
+        "about": "a cell or range (the formula's own cell if left out)",
+        "optional": true
+      }
+    ],
+    "about": "Gives the column number of a cell.",
+    "example": {
+      "cells": [],
+      "formula": "=COLUMN(D7)",
+      "result": "4",
+      "why": "D is the fourth column."
+    },
+    "notes": "Without a reference it gives the column of the cell it's in."
+  },
+  {
+    "name": "COLUMNS",
+    "args": [
+      {
+        "name": "array",
+        "about": "a range or list of values"
+      }
+    ],
+    "about": "Counts how many columns a range has.",
+    "example": {
+      "cells": [
+        [
+          "Fruit",
+          "Price"
+        ],
+        [
+          "Apple",
+          "0.5"
+        ],
+        [
+          "Pear",
+          "0.8"
+        ],
+        [
+          "Plum",
+          "0.3"
+        ]
+      ],
+      "formula": "=COLUMNS(A1:B4)",
+      "result": "2",
+      "why": "A1:B4 spans columns A and B."
+    },
+    "notes": "ROWS counts rows instead."
+  },
+  {
+    "name": "ADDRESS",
+    "args": [
+      {
+        "name": "row_num",
+        "about": "the row number"
+      },
+      {
+        "name": "column_num",
+        "about": "the column number"
+      },
+      {
+        "name": "abs_num",
+        "about": "1 for $A$1 (the default), 2 for A$1, 3 for $A1, 4 for A1",
+        "optional": true
+      },
+      {
+        "name": "a1",
+        "about": "TRUE for A1 style (the default), FALSE for R1C1",
+        "optional": true
+      },
+      {
+        "name": "sheet_text",
+        "about": "a sheet name to put in front",
+        "optional": true
+      }
+    ],
+    "about": "Writes a cell address as text from a row and column number.",
+    "example": {
+      "cells": [],
+      "formula": "=ADDRESS(2,3)",
+      "result": "$C$2",
+      "why": "Row 2, column 3 is C2, written with $ signs by default."
+    },
+    "notes": "Use INDIRECT to turn the text back into a reference."
+  },
+  {
+    "name": "AREAS",
+    "args": [
+      {
+        "name": "reference",
+        "about": "a reference; several areas go in brackets, like (A1:B2,D1)"
+      }
+    ],
+    "about": "Counts how many separate areas a reference has.",
+    "example": {
+      "cells": [
+        [
+          "Fruit",
+          "Price"
+        ],
+        [
+          "Apple",
+          "0.5"
+        ],
+        [
+          "Pear",
+          "0.8"
+        ],
+        [
+          "Plum",
+          "0.3"
+        ]
+      ],
+      "formula": "=AREAS(A1:B4)",
+      "result": "1",
+      "why": "A1:B4 is one block of cells."
+    }
+  },
+  {
+    "name": "CHOOSECOLS",
+    "args": [
+      {
+        "name": "array",
+        "about": "the range or list to take columns from"
+      },
+      {
+        "name": "col_num1",
+        "about": "the number of a column to keep; negative counts from the right"
+      },
+      {
+        "name": "col_num2",
+        "about": "more columns to keep",
+        "optional": true
+      }
+    ],
+    "more": true,
+    "about": "Keeps only the chosen columns of a range.",
+    "example": {
+      "cells": [
+        [
+          "Name",
+          "Team",
+          "Pay"
+        ],
+        [
+          "Ann",
+          "Sales",
+          "3200"
+        ],
+        [
+          "Bob",
+          "Stock",
+          "2800"
+        ],
+        [
+          "Cat",
+          "Sales",
+          "3500"
+        ],
+        [
+          "Dan",
+          "Stock",
+          "2600"
+        ]
+      ],
+      "formula": "=CHOOSECOLS(A1:C5,3,1)",
+      "result": "Pay",
+      "why": "Column 3 (Pay) then column 1 (Name) spill out as a 5-row, 2-column block; its first cell is Pay."
+    }
+  },
+  {
+    "name": "CHOOSEROWS",
+    "args": [
+      {
+        "name": "array",
+        "about": "the range or list to take rows from"
+      },
+      {
+        "name": "row_num1",
+        "about": "the number of a row to keep; negative counts from the bottom"
+      },
+      {
+        "name": "row_num2",
+        "about": "more rows to keep",
+        "optional": true
+      }
+    ],
+    "more": true,
+    "about": "Keeps only the chosen rows of a range.",
+    "example": {
+      "cells": [
+        [
+          "Name",
+          "Team",
+          "Pay"
+        ],
+        [
+          "Ann",
+          "Sales",
+          "3200"
+        ],
+        [
+          "Bob",
+          "Stock",
+          "2800"
+        ],
+        [
+          "Cat",
+          "Sales",
+          "3500"
+        ],
+        [
+          "Dan",
+          "Stock",
+          "2600"
+        ]
+      ],
+      "formula": "=CHOOSEROWS(A1:C5,1,-1)",
+      "result": "Name",
+      "why": "The first row (headers) and the last row (Dan) spill out as two rows; the first cell is Name."
+    }
+  },
+  {
+    "name": "EXPAND",
+    "args": [
+      {
+        "name": "array",
+        "about": "the range or list to make bigger"
+      },
+      {
+        "name": "rows",
+        "about": "how many rows the result should have"
+      },
+      {
+        "name": "columns",
+        "about": "how many columns (as many as now if left out)",
+        "optional": true
+      },
+      {
+        "name": "pad_with",
+        "about": "what to fill the new cells with (#N/A if left out)",
+        "optional": true
+      }
+    ],
+    "about": "Makes a range bigger, filling the new cells.",
+    "example": {
+      "cells": [
+        [
+          "Apple",
+          "Pear"
+        ]
+      ],
+      "formula": "=EXPAND(A1:B1,2,3,\"-\")",
+      "result": "Apple",
+      "why": "The one row becomes 2 rows by 3 columns: Apple, Pear, - on top and three dashes below."
+    }
+  },
+  {
+    "name": "FILTER",
+    "args": [
+      {
+        "name": "array",
+        "about": "the range to filter"
+      },
+      {
+        "name": "include",
+        "about": "a TRUE/FALSE test for each row, like B2:B5=\"Sales\""
+      },
+      {
+        "name": "if_empty",
+        "about": "what to show when nothing passes",
+        "optional": true
+      }
+    ],
+    "about": "Keeps only the rows that pass a test.",
+    "example": {
+      "cells": [
+        [
+          "Name",
+          "Team",
+          "Pay"
+        ],
+        [
+          "Ann",
+          "Sales",
+          "3200"
+        ],
+        [
+          "Bob",
+          "Stock",
+          "2800"
+        ],
+        [
+          "Cat",
+          "Sales",
+          "3500"
+        ],
+        [
+          "Dan",
+          "Stock",
+          "2600"
+        ]
+      ],
+      "formula": "=FILTER(A2:A5,B2:B5=\"Sales\")",
+      "result": "Ann",
+      "why": "The Sales rows are Ann and Cat, which spill down; the first cell is Ann."
+    }
+  },
+  {
+    "name": "HLOOKUP",
+    "args": [
+      {
+        "name": "lookup_value",
+        "about": "the value to find in the top row"
+      },
+      {
+        "name": "table_array",
+        "about": "the table, with the values to search along its top row"
+      },
+      {
+        "name": "row_index_num",
+        "about": "which row of the table to give back, counting from 1"
+      },
+      {
+        "name": "range_lookup",
+        "about": "FALSE for an exact match; TRUE (the default) for the nearest smaller value in a sorted row",
+        "optional": true
+      }
+    ],
+    "about": "Finds a value in the top row of a table and gives the value below it in the row asked for.",
+    "example": {
+      "cells": [
+        [
+          "Month",
+          "Jan",
+          "Feb",
+          "Mar"
+        ],
+        [
+          "Sales",
+          "120",
+          "80",
+          "150"
+        ]
+      ],
+      "formula": "=HLOOKUP(\"Feb\",B1:D2,2,FALSE)",
+      "result": "80",
+      "why": "Feb is in the second column of the table; row 2 of that column holds 80."
+    },
+    "notes": "XLOOKUP is easier and can look either way."
+  },
+  {
+    "name": "HSTACK",
+    "args": [
+      {
+        "name": "array1",
+        "about": "the first range or list"
+      },
+      {
+        "name": "array2",
+        "about": "more ranges to put to the right",
+        "optional": true
+      }
+    ],
+    "more": true,
+    "about": "Puts ranges side by side into one.",
+    "example": {
+      "cells": [
+        [
+          "Jan",
+          "120"
+        ],
+        [
+          "Feb",
+          "80"
+        ]
+      ],
+      "formula": "=HSTACK(B1:B2,A1:A2)",
+      "result": "120",
+      "why": "The sales column comes first, then the months: a 2 by 2 block starting with 120."
+    }
+  },
+  {
+    "name": "HYPERLINK",
+    "args": [
+      {
+        "name": "link_location",
+        "about": "the web address or place to open"
+      },
+      {
+        "name": "friendly_name",
+        "about": "the text to show (the address if left out)",
+        "optional": true
+      }
+    ],
+    "about": "Shows a link that opens a web page or file.",
+    "example": {
+      "cells": [],
+      "formula": "=HYPERLINK(\"https://example.com\",\"Our site\")",
+      "result": "Our site",
+      "why": "The cell shows the friendly name; the address is behind it."
+    }
+  },
+  {
+    "name": "INDEX",
+    "args": [
+      {
+        "name": "array",
+        "about": "the range to take from"
+      },
+      {
+        "name": "row_num",
+        "about": "the row within the range, counting from 1"
+      },
+      {
+        "name": "column_num",
+        "about": "the column within the range (1 if left out)",
+        "optional": true
+      }
+    ],
+    "about": "Gives the value at a given row and column of a range.",
+    "example": {
+      "cells": [
+        [
+          "Fruit",
+          "Price"
+        ],
+        [
+          "Apple",
+          "0.5"
+        ],
+        [
+          "Pear",
+          "0.8"
+        ],
+        [
+          "Plum",
+          "0.3"
+        ]
+      ],
+      "formula": "=INDEX(A2:B4,2,2)",
+      "result": "0.8",
+      "why": "Row 2 of the range is Pear, column 2 is its price."
+    },
+    "notes": "With MATCH it can look up in any direction."
+  },
+  {
+    "name": "INDIRECT",
+    "args": [
+      {
+        "name": "ref_text",
+        "about": "a cell address written as text, like \"B2\""
+      },
+      {
+        "name": "a1",
+        "about": "TRUE for A1 style (the default), FALSE for R1C1",
+        "optional": true
+      }
+    ],
+    "about": "Turns text like \"B2\" into a reference to that cell.",
+    "example": {
+      "cells": [
+        [
+          "Cell",
+          "B3"
+        ],
+        [
+          "Lamp",
+          "120"
+        ],
+        [
+          "Desk",
+          "300"
+        ]
+      ],
+      "formula": "=INDIRECT(B1)",
+      "result": "300",
+      "why": "B1 holds the text B3, so the formula gives what is in B3."
+    }
+  },
+  {
+    "name": "LOOKUP",
+    "args": [
+      {
+        "name": "lookup_value",
+        "about": "the value to find"
+      },
+      {
+        "name": "lookup_vector",
+        "about": "a sorted row or column to search"
+      },
+      {
+        "name": "result_vector",
+        "about": "the row or column to take the answer from",
+        "optional": true
+      }
+    ],
+    "about": "Finds a value in a sorted list and gives the matching value from another list.",
+    "example": {
+      "cells": [
+        [
+          "Score",
+          "Grade"
+        ],
+        [
+          "0",
+          "F"
+        ],
+        [
+          "50",
+          "C"
+        ],
+        [
+          "70",
+          "B"
+        ],
+        [
+          "85",
+          "A"
+        ]
+      ],
+      "formula": "=LOOKUP(72,A2:A5,B2:B5)",
+      "result": "B",
+      "why": "72 isn't in the list, so the nearest smaller score, 70, is used."
+    },
+    "notes": "The search list must be sorted from small to big. XLOOKUP is more flexible."
+  },
+  {
+    "name": "MATCH",
+    "args": [
+      {
+        "name": "lookup_value",
+        "about": "the value to find"
+      },
+      {
+        "name": "lookup_array",
+        "about": "the row or column to search"
+      },
+      {
+        "name": "match_type",
+        "about": "0 for an exact match; 1 (the default) for the nearest smaller in a list sorted up; -1 for the nearest bigger in a list sorted down",
+        "optional": true
+      }
+    ],
+    "about": "Gives the position of a value in a row or column.",
+    "example": {
+      "cells": [
+        [
+          "Fruit",
+          "Price"
+        ],
+        [
+          "Apple",
+          "0.5"
+        ],
+        [
+          "Pear",
+          "0.8"
+        ],
+        [
+          "Plum",
+          "0.3"
+        ]
+      ],
+      "formula": "=MATCH(\"Pear\",A2:A4,0)",
+      "result": "2",
+      "why": "Pear is the second item in A2:A4."
+    },
+    "notes": "XMATCH has more ways to search."
+  },
+  {
+    "name": "OFFSET",
+    "args": [
+      {
+        "name": "reference",
+        "about": "the cell to start from"
+      },
+      {
+        "name": "rows",
+        "about": "how many rows to move down (up if negative)"
+      },
+      {
+        "name": "cols",
+        "about": "how many columns to move right (left if negative)"
+      },
+      {
+        "name": "height",
+        "about": "how many rows the result has",
+        "optional": true
+      },
+      {
+        "name": "width",
+        "about": "how many columns the result has",
+        "optional": true
+      }
+    ],
+    "about": "Gives the cell or range a number of rows and columns away from a starting cell.",
+    "example": {
+      "cells": [
+        [
+          "Fruit",
+          "Price"
+        ],
+        [
+          "Apple",
+          "0.5"
+        ],
+        [
+          "Pear",
+          "0.8"
+        ],
+        [
+          "Plum",
+          "0.3"
+        ]
+      ],
+      "formula": "=OFFSET(A1,2,1)",
+      "result": "0.8",
+      "why": "Two rows down and one column right of A1 is B3, Pear's price."
+    }
+  },
+  {
+    "name": "ROW",
+    "args": [
+      {
+        "name": "reference",
+        "about": "a cell or range (the formula's own cell if left out)",
+        "optional": true
+      }
+    ],
+    "about": "Gives the row number of a cell.",
+    "example": {
+      "cells": [],
+      "formula": "=ROW(C12)",
+      "result": "12",
+      "why": "C12 is on row 12."
+    },
+    "notes": "Without a reference it gives the row of the cell it's in."
+  },
+  {
+    "name": "ROWS",
+    "args": [
+      {
+        "name": "array",
+        "about": "a range or list of values"
+      }
+    ],
+    "about": "Counts how many rows a range has.",
+    "example": {
+      "cells": [
+        [
+          "Fruit",
+          "Price"
+        ],
+        [
+          "Apple",
+          "0.5"
+        ],
+        [
+          "Pear",
+          "0.8"
+        ],
+        [
+          "Plum",
+          "0.3"
+        ]
+      ],
+      "formula": "=ROWS(A1:B4)",
+      "result": "4",
+      "why": "A1:B4 spans rows 1 to 4."
+    },
+    "notes": "COLUMNS counts columns instead."
+  },
+  {
+    "name": "SORT",
+    "args": [
+      {
+        "name": "array",
+        "about": "the range to sort"
+      },
+      {
+        "name": "sort_index",
+        "about": "which column to sort by (1 if left out)",
+        "optional": true
+      },
+      {
+        "name": "sort_order",
+        "about": "1 for small to big (the default), -1 for big to small",
+        "optional": true
+      },
+      {
+        "name": "by_col",
+        "about": "TRUE to sort columns instead of rows",
+        "optional": true
+      }
+    ],
+    "about": "Sorts a range.",
+    "example": {
+      "cells": [
+        [
+          "Fruit",
+          "Price"
+        ],
+        [
+          "Apple",
+          "0.5"
+        ],
+        [
+          "Pear",
+          "0.8"
+        ],
+        [
+          "Plum",
+          "0.3"
+        ]
+      ],
+      "formula": "=SORT(A2:B4,2,-1)",
+      "result": "Pear",
+      "why": "Sorted by price, dearest first: Pear, Apple, Plum, with their prices beside them."
+    }
+  },
+  {
+    "name": "SORTBY",
+    "args": [
+      {
+        "name": "array",
+        "about": "the range to sort"
+      },
+      {
+        "name": "by_array1",
+        "about": "the range to sort by"
+      },
+      {
+        "name": "sort_order1",
+        "about": "1 for small to big (the default), -1 for big to small",
+        "optional": true
+      },
+      {
+        "name": "by_array2",
+        "about": "more ranges and orders, for ties",
+        "optional": true
+      }
+    ],
+    "more": true,
+    "about": "Sorts a range by the values in another range.",
+    "example": {
+      "cells": [
+        [
+          "Fruit",
+          "Price"
+        ],
+        [
+          "Apple",
+          "0.5"
+        ],
+        [
+          "Pear",
+          "0.8"
+        ],
+        [
+          "Plum",
+          "0.3"
+        ]
+      ],
+      "formula": "=SORTBY(A2:A4,B2:B4,1)",
+      "result": "Plum",
+      "why": "The fruit are put in order of price, cheapest first: Plum, Apple, Pear."
+    }
+  },
+  {
+    "name": "UNIQUE",
+    "args": [
+      {
+        "name": "array",
+        "about": "the range to take values from"
+      },
+      {
+        "name": "by_col",
+        "about": "TRUE to compare columns instead of rows",
+        "optional": true
+      },
+      {
+        "name": "exactly_once",
+        "about": "TRUE to keep only values that appear once",
+        "optional": true
+      }
+    ],
+    "about": "Lists each different value once.",
+    "example": {
+      "cells": [
+        [
+          "Name",
+          "Team",
+          "Pay"
+        ],
+        [
+          "Ann",
+          "Sales",
+          "3200"
+        ],
+        [
+          "Bob",
+          "Stock",
+          "2800"
+        ],
+        [
+          "Cat",
+          "Sales",
+          "3500"
+        ],
+        [
+          "Dan",
+          "Stock",
+          "2600"
+        ]
+      ],
+      "formula": "=UNIQUE(B2:B5)",
+      "result": "Sales",
+      "why": "The teams are Sales and Stock, each listed once going down; the first is Sales."
+    }
+  },
+  {
+    "name": "VLOOKUP",
+    "args": [
+      {
+        "name": "lookup_value",
+        "about": "the value to find in the first column"
+      },
+      {
+        "name": "table_array",
+        "about": "the table, with the values to search in its first column"
+      },
+      {
+        "name": "col_index_num",
+        "about": "which column of the table to give back, counting from 1"
+      },
+      {
+        "name": "range_lookup",
+        "about": "FALSE for an exact match; TRUE (the default) for the nearest smaller value in a sorted column",
+        "optional": true
+      }
+    ],
+    "about": "Finds a value in the first column of a table and gives a value from the same row.",
+    "example": {
+      "cells": [
+        [
+          "Fruit",
+          "Price"
+        ],
+        [
+          "Apple",
+          "0.5"
+        ],
+        [
+          "Pear",
+          "0.8"
+        ],
+        [
+          "Plum",
+          "0.3"
+        ]
+      ],
+      "formula": "=VLOOKUP(\"Pear\",A2:B4,2,FALSE)",
+      "result": "0.8",
+      "why": "Pear is in the second row; column 2 of that row is 0.8."
+    },
+    "notes": "Without FALSE it may match a near value. XLOOKUP is easier and can look either way."
+  },
+  {
+    "name": "VSTACK",
+    "args": [
+      {
+        "name": "array1",
+        "about": "the first range or list"
+      },
+      {
+        "name": "array2",
+        "about": "more ranges to put below",
+        "optional": true
+      }
+    ],
+    "more": true,
+    "about": "Puts ranges one below the other into one.",
+    "example": {
+      "cells": [
+        [
+          "Jan",
+          "120"
+        ],
+        [
+          "Feb",
+          "80"
+        ],
+        [
+          "Mar",
+          "150"
+        ]
+      ],
+      "formula": "=VSTACK(A3:B3,A1:B2)",
+      "result": "Mar",
+      "why": "Mar's row comes first, then Jan's and Feb's: three rows of two columns starting with Mar."
+    }
+  },
+  {
+    "name": "WRAPCOLS",
+    "args": [
+      {
+        "name": "vector",
+        "about": "a single row or column of values"
+      },
+      {
+        "name": "wrap_count",
+        "about": "how many values go in each column"
+      },
+      {
+        "name": "pad_with",
+        "about": "what to fill the gaps with (#N/A if left out)",
+        "optional": true
+      }
+    ],
+    "about": "Splits one long row or column into several columns.",
+    "example": {
+      "cells": [
+        [
+          "1"
+        ],
+        [
+          "2"
+        ],
+        [
+          "3"
+        ],
+        [
+          "4"
+        ],
+        [
+          "5"
+        ]
+      ],
+      "formula": "=WRAPCOLS(A1:A5,2,0)",
+      "result": "1",
+      "why": "The five values fill columns of two: 1,2 then 3,4 then 5,0, so the first cell is 1."
+    }
+  },
+  {
+    "name": "WRAPROWS",
+    "args": [
+      {
+        "name": "vector",
+        "about": "a single row or column of values"
+      },
+      {
+        "name": "wrap_count",
+        "about": "how many values go in each row"
+      },
+      {
+        "name": "pad_with",
+        "about": "what to fill the gaps with (#N/A if left out)",
+        "optional": true
+      }
+    ],
+    "about": "Splits one long row or column into several rows.",
+    "example": {
+      "cells": [
+        [
+          "1"
+        ],
+        [
+          "2"
+        ],
+        [
+          "3"
+        ],
+        [
+          "4"
+        ],
+        [
+          "5"
+        ]
+      ],
+      "formula": "=WRAPROWS(A1:A5,2,0)",
+      "result": "1",
+      "why": "The five values fill rows of two: 1,2 then 3,4 then 5,0, so the first cell is 1."
+    }
+  },
+  {
+    "name": "XLOOKUP",
+    "args": [
+      {
+        "name": "lookup_value",
+        "about": "the value to find"
+      },
+      {
+        "name": "lookup_array",
+        "about": "the row or column to search"
+      },
+      {
+        "name": "return_array",
+        "about": "the row or column to take the answer from"
+      },
+      {
+        "name": "if_not_found",
+        "about": "what to show when nothing matches (#N/A if left out)",
+        "optional": true
+      },
+      {
+        "name": "match_mode",
+        "about": "0 exact (the default), -1 exact or next smaller, 1 exact or next bigger, 2 wildcards",
+        "optional": true
+      },
+      {
+        "name": "search_mode",
+        "about": "1 first to last (the default), -1 last to first, 2 or -2 a fast search of a sorted list",
+        "optional": true
+      }
+    ],
+    "about": "Finds a value in one list and gives the matching value from another.",
+    "example": {
+      "cells": [
+        [
+          "Fruit",
+          "Price"
+        ],
+        [
+          "Apple",
+          "0.5"
+        ],
+        [
+          "Pear",
+          "0.8"
+        ],
+        [
+          "Plum",
+          "0.3"
+        ]
+      ],
+      "formula": "=XLOOKUP(\"Plum\",A2:A4,B2:B4,\"none\")",
+      "result": "0.3",
+      "why": "Plum is third in the fruit list; the third price is 0.3."
+    }
+  },
+  {
+    "name": "XMATCH",
+    "args": [
+      {
+        "name": "lookup_value",
+        "about": "the value to find"
+      },
+      {
+        "name": "lookup_array",
+        "about": "the row or column to search"
+      },
+      {
+        "name": "match_mode",
+        "about": "0 exact (the default), -1 exact or next smaller, 1 exact or next bigger, 2 wildcards",
+        "optional": true
+      },
+      {
+        "name": "search_mode",
+        "about": "1 first to last (the default), -1 last to first, 2 or -2 a fast search of a sorted list",
+        "optional": true
+      }
+    ],
+    "about": "Gives the position of a value in a row or column.",
+    "example": {
+      "cells": [
+        [
+          "Fruit",
+          "Price"
+        ],
+        [
+          "Apple",
+          "0.5"
+        ],
+        [
+          "Pear",
+          "0.8"
+        ],
+        [
+          "Plum",
+          "0.3"
+        ]
+      ],
+      "formula": "=XMATCH(\"Plum\",A2:A4)",
+      "result": "3",
+      "why": "Plum is the third item in A2:A4."
+    },
+    "notes": "Unlike MATCH it looks for an exact match unless told otherwise."
+  },
+  {
+    "name": "TRIMRANGE",
+    "args": [
+      {
+        "name": "range",
+        "about": "the range to trim"
+      },
+      {
+        "name": "trim_rows",
+        "about": "0 none, 1 leading blank rows, 2 trailing, 3 both (the default)",
+        "optional": true
+      },
+      {
+        "name": "trim_cols",
+        "about": "0 none, 1 leading blank columns, 2 trailing, 3 both (the default)",
+        "optional": true
+      }
+    ],
+    "about": "Drops the empty rows and columns around the edge of a range.",
+    "example": {
+      "cells": [
+        [
+          "Apple"
+        ],
+        [
+          "Pear"
+        ],
+        [
+          ""
+        ],
+        [
+          ""
+        ]
+      ],
+      "formula": "=ROWS(TRIMRANGE(A1:A10))",
+      "result": "2",
+      "why": "A1:A10 shrinks to A1:A2, where the values are, which has 2 rows."
+    }
+  },
+  {
+    "name": "TAKE",
+    "args": [
+      {
+        "name": "array",
+        "about": "the range or list to take from"
+      },
+      {
+        "name": "rows",
+        "about": "how many rows to keep from the top (from the bottom if negative)"
+      },
+      {
+        "name": "columns",
+        "about": "how many columns to keep from the left (from the right if negative)",
+        "optional": true
+      }
+    ],
+    "about": "Keeps the first or last rows or columns of a range.",
+    "example": {
+      "cells": [
+        [
+          "Fruit",
+          "Price"
+        ],
+        [
+          "Apple",
+          "0.5"
+        ],
+        [
+          "Pear",
+          "0.8"
+        ],
+        [
+          "Plum",
+          "0.3"
+        ]
+      ],
+      "formula": "=TAKE(A2:B4,-1)",
+      "result": "Plum",
+      "why": "The last row, Plum and 0.3, is kept."
+    }
+  },
+  {
+    "name": "DROP",
+    "args": [
+      {
+        "name": "array",
+        "about": "the range or list to drop from"
+      },
+      {
+        "name": "rows",
+        "about": "how many rows to drop from the top (from the bottom if negative)"
+      },
+      {
+        "name": "columns",
+        "about": "how many columns to drop from the left (from the right if negative)",
+        "optional": true
+      }
+    ],
+    "about": "Leaves out the first or last rows or columns of a range.",
+    "example": {
+      "cells": [
+        [
+          "Fruit",
+          "Price"
+        ],
+        [
+          "Apple",
+          "0.5"
+        ],
+        [
+          "Pear",
+          "0.8"
+        ],
+        [
+          "Plum",
+          "0.3"
+        ]
+      ],
+      "formula": "=DROP(A1:B4,1)",
+      "result": "Apple",
+      "why": "The header row is dropped, leaving the three fruit rows from Apple down."
+    }
+  },
+  {
+    "name": "TOCOL",
+    "args": [
+      {
+        "name": "array",
+        "about": "the range to turn into one column"
+      },
+      {
+        "name": "ignore",
+        "about": "0 keep all (the default), 1 skip blanks, 2 skip errors, 3 skip both",
+        "optional": true
+      },
+      {
+        "name": "scan_by_column",
+        "about": "TRUE to read down each column first",
+        "optional": true
+      }
+    ],
+    "about": "Turns a range into a single column.",
+    "example": {
+      "cells": [
+        [
+          "Jan",
+          "Feb"
+        ],
+        [
+          "120",
+          "80"
+        ]
+      ],
+      "formula": "=TOCOL(A1:B2)",
+      "result": "Jan",
+      "why": "Read row by row: Jan, Feb, 120, 80 spill down one column."
+    }
+  },
+  {
+    "name": "TOROW",
+    "args": [
+      {
+        "name": "array",
+        "about": "the range to turn into one row"
+      },
+      {
+        "name": "ignore",
+        "about": "0 keep all (the default), 1 skip blanks, 2 skip errors, 3 skip both",
+        "optional": true
+      },
+      {
+        "name": "scan_by_column",
+        "about": "TRUE to read down each column first",
+        "optional": true
+      }
+    ],
+    "about": "Turns a range into a single row.",
+    "example": {
+      "cells": [
+        [
+          "Jan",
+          "120"
+        ],
+        [
+          "Feb",
+          "80"
+        ]
+      ],
+      "formula": "=TOROW(A1:B2,0,TRUE)",
+      "result": "Jan",
+      "why": "Read column by column: Jan, Feb, 120, 80 spill along one row."
+    }
+  },
+  {
+    "name": "TRANSPOSE",
+    "args": [
+      {
+        "name": "array",
+        "about": "the range to flip"
+      }
+    ],
+    "about": "Flips a range so rows become columns.",
+    "example": {
+      "cells": [
+        [
+          "Fruit",
+          "Price"
+        ],
+        [
+          "Apple",
+          "0.5"
+        ],
+        [
+          "Pear",
+          "0.8"
+        ],
+        [
+          "Plum",
+          "0.3"
+        ]
+      ],
+      "formula": "=TRANSPOSE(A1:B4)",
+      "result": "Fruit",
+      "why": "The two columns become two rows: Fruit, Apple, Pear, Plum on top and the prices below."
+    }
+  },
+  {
+    "name": "MMULT",
+    "args": [
+      {
+        "name": "array1",
+        "about": "the first matrix"
+      },
+      {
+        "name": "array2",
+        "about": "the second matrix; it needs as many rows as the first has columns"
+      }
+    ],
+    "about": "Multiplies two matrices.",
+    "example": {
+      "cells": [
+        [
+          "Qty",
+          "Price"
+        ],
+        [
+          "2",
+          "4"
+        ],
+        [
+          "3",
+          "5"
+        ]
+      ],
+      "formula": "=MMULT(TRANSPOSE(A2:A3),B2:B3)",
+      "result": "23",
+      "why": "The quantities times the prices, added: 2×4 + 3×5 = 23."
+    },
+    "notes": "SUMPRODUCT does the same for two lists without flipping one."
+  },
+  {
+    "name": "SEQUENCE",
+    "args": [
+      {
+        "name": "rows",
+        "about": "how many rows"
+      },
+      {
+        "name": "columns",
+        "about": "how many columns (1 if left out)",
+        "optional": true
+      },
+      {
+        "name": "start",
+        "about": "the first number (1 if left out)",
+        "optional": true
+      },
+      {
+        "name": "step",
+        "about": "how much to add each time (1 if left out)",
+        "optional": true
+      }
+    ],
+    "about": "Makes a list of numbers that go up in steps.",
+    "example": {
+      "cells": [],
+      "formula": "=SEQUENCE(4,1,10,5)",
+      "result": "10",
+      "why": "10, 15, 20, 25 spill down four rows; the first is 10."
+    }
+  },
+  {
+    "name": "RANDARRAY",
+    "args": [
+      {
+        "name": "rows",
+        "about": "how many rows (1 if left out)",
+        "optional": true
+      },
+      {
+        "name": "columns",
+        "about": "how many columns (1 if left out)",
+        "optional": true
+      },
+      {
+        "name": "min",
+        "about": "the smallest number (0 if left out)",
+        "optional": true
+      },
+      {
+        "name": "max",
+        "about": "the biggest number (1 if left out)",
+        "optional": true
+      },
+      {
+        "name": "whole_number",
+        "about": "TRUE for whole numbers only",
+        "optional": true
+      }
+    ],
+    "about": "Makes a block of random numbers.",
+    "example": {
+      "cells": [],
+      "formula": "=RANDARRAY(3,2,1,6,TRUE)",
+      "result": null,
+      "why": "Six random whole numbers from 1 to 6 spill into 3 rows by 2 columns; they change every time the sheet works out again."
+    }
+  }
+]

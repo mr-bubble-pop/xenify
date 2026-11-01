@@ -1,0 +1,21 @@
+# "in principal" / "a man of principal" where principle (a rule or belief) is
+# meant. Plurals are in PrinciplesPlural.
+# why: A principle is a rule or belief: in principle, a matter of principle. A principal is the head of a school, or the main thing.
+expr single [<(in principal), principal>, <([man, woman, person, people, men, women, matter, question, issue, point] of principal), principal>, <([refuse, refused, refuses, refusing, object, objected, objects, objecting, oppose, opposed, opposes, resign, resigned, resigns, quit, quits] on principal), principal>]
+expr main @single
+
+let message "Did you mean `principle` (a rule or belief)? A `principal` is the head of a school, or the main thing."
+let description "Fixes `in principal` → `in principle` and `a man of principal` → `a man of principle`."
+let kind "Malapropism"
+let becomes "principle"
+let strategy "MatchCase"
+
+test "In principal, I agree." "In principle, I agree."
+test "He is a man of principal." "He is a man of principle."
+test "It's a matter of principal." "It's a matter of principle."
+test "She refused on principal." "She refused on principle."
+
+allows "In principle, I agree."
+allows "The principals of both schools met."
+allows "She was appointed to the office of principal."
+allows "Interest is charged on principal and fees."

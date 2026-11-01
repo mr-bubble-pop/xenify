@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Download and set up Xenify</title>
+<meta name="description" content="Xenify Hub installs Xenify Write, Draw, Calc, Plan, Chat and Server, puts them in your Start menu or Applications, and keeps them up to date. Free for Windows, Mac and Linux. How to set up a server for your team and AI on your own graphics card or with a provider you trust.">
+<meta name="theme-color" content="#F6F3EF">
+<link rel="icon" href="/img/x.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/style.css?v=20261101b">
+<script src="/site.js" defer></script>
+</head>
+<body class="soon">
+
+<header class="wrap top">
+  <a class="brand" href="/"><span class="mark" aria-hidden="true">X</span>Xenify</a>
+  <nav aria-label="Site">
+    <a href="/products/wiki/">Wiki</a>
+    <a href="/products/write/">Write</a>
+    <a href="/products/calc/">Calc</a>
+    <a href="/products/plan/">Plan</a>
+    <a href="/products/chat/">Chat</a>
+    <a href="/products/draw/">Draw</a>
+    <a href="/products/server/">Server</a>
+    <a href="/ai/">AI</a>
+    <a class="btn main small" href="/download/" aria-current="page">Download</a>
+  </nav>
+</header>
+
+<main>
+  <section class="wrap hero">
+    <h1>Download Xenify Hub</h1>
+    <p class="lede">Xenify Hub is the one thing you download. It installs Write, Draw, Calc, Plan, Chat and the server for you, puts them in your Start menu or Applications, and keeps them up to date. The apps aren't downloaded separately.</p>
+  </section>
+
+  <section class="wrap narrow" id="downloads" aria-label="Downloads">
+  <!-- Fixed names on the hub-download release (the Release workflow, .github/workflows/release.yml). -->
+    <section class="systems" aria-label="Systems">
+      <div class="system" data-system="windows">
+        <b>Windows</b>
+        <span>Windows 10 and 11</span>
+        <a class="btn ghost dl" href="https://github.com/mr-bubble-pop/xenify/releases/download/hub-download/Xenify-Hub-setup.exe">Download for Windows</a>
+        <span class="dl">Xenify-Hub-setup.exe</span>
+      </div>
+      <div class="system" data-system="macos">
+        <b>Mac</b>
+        <span>macOS 11 or later, Apple silicon and Intel</span>
+        <a class="btn ghost dl" href="https://github.com/mr-bubble-pop/xenify/releases/download/hub-download/Xenify-Hub.dmg">Download for Mac</a>
+        <span class="dl">Xenify-Hub.dmg</span>
+      </div>
+      <div class="system" data-system="linux">
+        <b>Linux</b>
+        <span>Any distribution, or Ubuntu and Debian</span>
+        <a class="btn ghost dl" href="https://github.com/mr-bubble-pop/xenify/releases/download/hub-download/Xenify-Hub.AppImage">Download AppImage</a>
+        <a class="dl" href="https://github.com/mr-bubble-pop/xenify/releases/download/hub-download/xenify-hub_amd64.deb" style="font-weight: 600; font-size: 15px">or the .deb for Ubuntu and Debian</a>
+        <span class="dl" style="line-height: 1.5">The .deb is easiest on Ubuntu and Debian. For the AppImage, first right-click it › Properties › Allow executing as a program.</span>
+      </div>
+    </section>
+    <p class="note" style="text-align: center; line-height: 1.6; margin-top: 24px">Putting the server on a Linux VPS? You don't need the Hub: <a href="#server">one command</a> installs it.</p>
+    <p class="note" style="text-align: center; line-height: 1.6; margin-top: 10px">The apps aren't signed by Microsoft or Apple yet: Windows may say it doesn't recognise the app (choose More info › Run anyway), and on a Mac right-click the app and choose Open the first time. Every app the Hub installs is checked against Xenify's own signature.</p>
+  </section>
+
+  <section class="wrap hero" aria-label="Setting up">
+    <p class="tag">Then set it up</p>
+    <p class="lede">Start with the apps. Add a server when your team wants to share and work together, and AI when you want it. Each part works without the next.</p>
+    <ul class="highlights" aria-label="On this page"><li><a href="#needs">What you need</a></li><li><a href="#apps">1. The apps</a></li><li><a href="#server">2. A server</a></li><li><a href="#ai">3. AI</a></li></ul>
+  </section>
+
+  <section class="wrap pad-bottom guide" id="needs" aria-labelledby="needs-title">
+    <h2 id="needs-title">What you need.</h2>
+    <div class="specs">
+      <div class="spec"><b>The apps</b><span>Write, Draw, Calc, Plan and Chat</span><ul class="checks">
+        <li>Windows 10 or 11, macOS 11 or later, or 64-bit Linux</li>
+        <li>About 100 MB of disk for each app</li>
+        <li>Any computer from the last ten years: the spelling and grammar checker needs about half a gigabyte of memory</li>
+        <li>Or none of that: they also run in a current web browser</li></ul></div>
+      <div class="spec"><b>A server</b><span>Optional, for a team or a family</span><ul class="checks">
+        <li>A computer that stays on: Windows, Mac or Linux at home or in the office</li>
+        <li>Or a 64-bit Linux VPS with systemd, with no screen</li>
+        <li>Disk for your team's files; the database comes with it</li></ul></div>
+      <div class="spec"><b>AI</b><span>Optional</span><ul class="checks">
+        <li>With a provider: just an account and a key</li>
+        <li>On your own hardware: a graphics card with 16 GB or more, in the server or another computer on your network</li>
+        <li><a href="/ai/#hardware">Which card for which models</a></li></ul></div>
+    </div>
+  </section>
+
+  <section class="band pad guide" id="apps" aria-labelledby="apps-title">
+    <div class="wrap copy">
+      <p class="tag">Step 1</p>
+      <h2 id="apps-title">Install the apps.</h2>
+      <ol class="how">
+        <li><a href="#downloads">Download Xenify Hub</a> for your computer and open it.</li>
+        <li>Click <b>Install</b> beside each app you want. They appear in your Start menu or Applications and keep themselves up to date.</li>
+        <li>That's all you need on your own. Your files stay on your computer.</li>
+      </ol>
+      <p class="note">Every app also has a web version, nothing to install: open <a href="/write/">Write</a>, <a href="/draw/">Draw</a> or <a href="/calc/">Calc</a> here on xenify.net, or any app from your own Xenify server. Plan and Chat need a server, so they open only from yours. They keep working offline.</p>
+    </div>
+  </section>
+
+  <section class="wrap pad guide" id="server" aria-labelledby="server-title">
+    <div class="copy">
+      <p class="tag">Step 2 · optional</p>
+      <h2 id="server-title">Add a server for your team.</h2>
+      <p>The server keeps your team's files and lets people write and draw together, chat and use AI. It runs on a computer you own; we never run one for you.</p>
+    </div>
+    <div class="grid2" style="margin-top: 28px">
+      <div class="box"><span class="tag">On a computer with a screen</span><b>Install it with Xenify Hub</b>
+        <ol class="how">
+          <li>In Xenify Hub, click <b>Install</b> beside Server, then <b>Start</b>. Its database is installed with it.</li>
+          <li>Click <b>Admin pages</b> and name the first admin.</li>
+          <li>In the admin pages, add people. Each gets a link (or a code) to pick their password.</li>
+        </ol></div>
+      <div class="box"><span class="tag">On a Linux VPS</span><b>One command</b>
+        <ol class="how">
+          <li>Run this as root:<pre><code>curl -fsSL https://xenify.net/install-server.sh | sudo sh</code></pre>Or, with a domain name pointing at the computer, this, for an HTTPS certificate:<pre><code>curl -fsSL https://xenify.net/install-server.sh | sudo sh -s -- --domain files.example.com --email you@example.com</code></pre></li>
+          <li>Open the one-time setup link it prints and name the first admin. Without a domain name, the setup pages only open on the VPS itself: first run <code>ssh -L 7700:localhost:7700 you@your-vps</code> on your own computer, then open the link there.</li>
+          <li>Add people in the admin pages.</li>
+        </ol></div>
+    </div>
+    <p class="note" style="margin-top: 20px">To connect an app, type the server's address, such as <code>192.168.1.20</code> or <code>files.example.com</code>, in Write and Draw's <b>Settings › Server</b>, or Calc and Plan's <b>File › Xenify server</b>. On the same network, the Write and Draw apps find it by themselves. A server without a domain name (a VPS reached by its IP address, say) uses its own certificate: each computer trusts it once, from the admin pages' <b>Network › Download this server's certificate</b>, before the apps can connect.</p>
+  </section>
+
+  <section class="band pad guide" id="ai" aria-labelledby="ai-title">
+    <div class="wrap">
+      <div class="copy">
+        <p class="tag">Step 3 · optional</p>
+        <h2 id="ai-title">Add AI.</h2>
+        <p>AI is off until you choose where it runs. On your own graphics card it runs in free programs made by others: install them with their own guides, which stay up to date, then follow our steps to connect them. Or use a provider with your own key.</p>
+      </div>
+
+      <div class="options">
+        <article class="opt rec">
+          <div class="opt-head"><b>Text on your own graphics card: Ollama</b><span class="chip-s">Recommended · text</span></div>
+          <p><a href="https://ollama.com">Ollama</a> is a free program that runs text models, for Write's AI check and Ask in every app. Install it with <a href="https://ollama.com/download">their guide</a>, then download a model: <code>ollama pull gemma4:12b</code> for a 16 GB card, or <code>ollama pull gemma4:26b</code> for 24 GB (<a href="/ai/#hardware">see the times</a>). Then:</p>
+          <ol class="how">
+            <li>If Ollama runs on a different computer from the Xenify server, turn on <b>Expose Ollama to the network</b> in Ollama's settings (or start it with <code>OLLAMA_HOST=0.0.0.0</code>).</li>
+            <li>In the server's admin pages, open <b>AI</b>. Set <b>Program</b> to Ollama and <b>Address</b> to <code>http://localhost:11434/v1</code>, using the other computer's address instead of <code>localhost</code> if it's elsewhere. Click <b>Save</b>.</li>
+            <li>Offer the models people can use, and star the default. Everyone signed in to the server then finds AI in their apps, with no key of their own.</li>
+          </ol>
+          <p class="note">If a model is a little too big for your card, Ollama runs the rest in the computer's memory, more slowly, instead of failing.</p>
+        </article>
+
+        <article class="opt rec">
+          <div class="opt-head"><b>Pictures and clips on your own graphics card: ComfyUI</b><span class="chip-s">Recommended · pictures and clips</span></div>
+          <p><a href="https://www.comfy.org">ComfyUI</a> is a free program that makes pictures and video clips. The easiest way to install it is <a href="https://lykos.ai">Stability Matrix</a>, which installs ComfyUI and finds and downloads its models for you, on Windows, Mac or Linux. Or install ComfyUI on its own with <a href="https://www.comfy.org/download">their guide</a>. Then download the models you want: FLUX.2 klein 4B or Z-Image Turbo for pictures, Wan 2.2 or MiniMax H3 for clips (<a href="/ai/#hardware">see the times</a>).</p>
+          <ol class="how">
+            <li>If ComfyUI runs on a different computer from the Xenify server, let it accept connections from your network: add <code>--listen</code> to ComfyUI's launch options in Stability Matrix.</li>
+            <li>In the server's admin pages, open <b>AI</b>, type <b>ComfyUI's address</b>, usually <code>http://localhost:8188</code>, and click <b>Save</b>. The server shows which of its models ComfyUI can run, and for the others which files to download.</li>
+            <li>Offer the ready models people can use, and star the default.</li>
+          </ol>
+          <p class="note">The server runs FLUX.2 klein 4B, Z-Image Turbo, Wan 2.2 and MiniMax H3, each the way it was <a href="/ai/#hardware">timed on the AI page</a>. For clips, MiniMax H3 is faster and adds sound; read <a href="https://huggingface.co/MiniMaxAI/MiniMax-H3/blob/main/LICENSE">its licence</a> before using it.</p>
+        </article>
+
+        <article class="opt">
+          <div class="opt-head"><b>A provider, with your own key</b><span class="chip-s">No server, no graphics card</span></div>
+          <p><a href="https://openrouter.ai">OpenRouter</a> gives one key for many AI models, paid by use. Create an account and a key with <a href="https://openrouter.ai/docs/quickstart">their guide</a>, then:</p>
+          <ol class="how">
+            <li>In Write, open <b>Settings › Ask AI</b> and paste the key into <b>OpenRouter key</b>. Pick a model, or keep the one chosen for you.</li>
+            <li>In Draw it goes in <b>Settings › Services</b>; in Calc, <b>AI › AI settings</b>; in Plan, <b>File › Settings › AI assistant</b>.</li>
+          </ol>
+          <p class="note">The key is kept in your computer's keyring. Nothing is sent until you ask something. To give the whole team a provider instead, set the server's <b>AI</b> page to Another OpenAI-style service, Address <code>https://openrouter.ai/api/v1</code>, with your key in <b>Key</b>.</p>
+        </article>
+
+        <article class="opt">
+          <div class="opt-head"><b>Other programs</b><span class="chip-s">Also work</span></div>
+          <p>The server also works with <a href="https://lmstudio.ai">LM Studio</a> and <a href="https://localai.io">LocalAI</a>, and with any service that answers like OpenAI's. Install them with their own guides, then in the server's admin pages open <b>AI</b> and pick the program, or Another OpenAI-style service, with its address.</p>
+          <p class="note">LM Studio: turn on its server in the <b>Developer</b> tab (and <b>Serve on Local Network</b> if it's on another computer); its address is usually <code>http://localhost:1234/v1</code>. In our tests Ollama was faster than LocalAI with the recommended models, and LocalAI fails when a model is too big for the card.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© Xenify · MIT licence</span>
+    <a href="/ai/">AI</a>
+    <a href="/write/">Write in your browser</a>
+    <a href="/draw/">Draw in your browser</a>
+    <a href="/calc/">Calc in your browser</a>
+    <a class="gh" href="https://github.com/mr-bubble-pop/xenify">Source code</a>
+  </div>
+</footer>
+</body>
+</html>

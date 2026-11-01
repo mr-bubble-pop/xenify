@@ -1,0 +1,36 @@
+{
+  "name": "xenify",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "runArgs": [
+    "--device=/dev/dri",
+    "--group-add=video",
+    "--device-cgroup-rule=c 81:* rmw"
+  ],
+  "mounts": [
+    "source=ignite-claude-config,target=/home/vscode/.claude,type=volume",
+    "source=/tmp/.X11-unix,target=/tmp/.X11-unix,type=bind",
+    "source=/usr/share/fonts,target=/usr/local/share/fonts/host,type=bind,readonly",
+    "source=/dev,target=/dev/host,type=bind,readonly",
+    "source=${localEnv:XDG_RUNTIME_DIR}/pulse/native,target=/tmp/host-pulse.sock,type=bind"
+  ],
+  "containerEnv": {
+    "DISPLAY": "${localEnv:DISPLAY}",
+    "CLAUDE_CONFIG_DIR": "/home/vscode/.claude",
+    "LANG": "${localEnv:LANG:en_US.UTF-8}",
+    "PULSE_SERVER": "unix:/tmp/host-pulse.sock"
+  },
+  "remoteEnv": {
+    "PATH": "${containerEnv:PATH}:/home/vscode/.local/bin"
+  },
+  "postCreateCommand": "sudo chown -R vscode:vscode /home/vscode/.claude && { [ -f /home/vscode/.claude/settings.json ] || printf '{\\n  \"permissions\": {\\n    \"defaultMode\": \"bypassPermissions\"\\n  }\\n}\\n' > /home/vscode/.claude/settings.json; } && curl -fsSL https://claude.ai/install.sh | bash",
+  "postStartCommand": "sh .devcontainer/media.sh; nohup scripts/clean-target.sh --every 6h > /tmp/clean-target.log 2>&1 &",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "rust-analyzer.cargo.targetDir": true
+      }
+    }
+  }
+}

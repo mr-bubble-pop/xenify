@@ -1,0 +1,19 @@
+[package]
+name = "xenify-plan-core"
+description = "Xenify Plan's engine: tasks, projects, links, people and things at a share of their time, the schedule (by hand or automatic), moves, baselines, history and the .xplan file, as JSON calls"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+serde.workspace = true
+serde_json.workspace = true
+base64.workspace = true
+# .xplan files are zips (the same version Calc uses).
+zip = { version = "9", default-features = false, features = ["deflate"] }
+# Days off: public holidays by country and region, and the date type.
+xenify-holidays = { path = "../xenify-holidays" }
+# Editing together through a Xenify server (adjusting changes made at the same time).
+xenify-collab = { path = "../xenify-collab" }
+# Custom fields: a text field's pattern (small, no Unicode tables).
+regex-lite = "0.1"

@@ -1,0 +1,55 @@
+# Correct English words the spelling dictionary misses or marks as belonging
+# to one dialect only. Found by running the checker over edited published
+# text (public-domain books, 1900–1928) and checking each flagged word.
+#
+# Format: one word per line under a section header.
+#   [all]          accepted in every dialect
+#   [commonwealth] accepted in British, Australian, Canadian and Indian English
+# Lines starting with # are comments. Written for Xenify (MIT licence); no
+# list was copied from another dictionary.
+
+[all]
+afterwards
+axe
+axes
+uncertainly
+grub
+grubs
+gingham
+ginghams
+waiters
+fulfilled
+relived
+shorn
+flyer
+flyers
+whisky
+unearthly
+chaperone
+chaperones
+racquet
+racquets
+hatless
+coatless
+sniggers
+swathed
+ironworks
+footmarks
+briar
+unsuspicious
+untrodden
+
+[commonwealth]
+dreamed
+leant
+learnt
+spoilt
+spelt
+knelt
+smelt
+burnt
+sunburnt
+dwelt
+gaoler
+gaol
+treehouse

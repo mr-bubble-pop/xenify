@@ -1,0 +1,10 @@
+{
+  "bundle": {
+    "externalBin": [
+      "binaries/xenify-checker"
+    ],
+    "macOS": {
+      "infoPlist": "packaging/Info.plist"
+    }
+  }
+}

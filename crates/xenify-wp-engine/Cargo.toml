@@ -1,0 +1,17 @@
+[package]
+name = "xenify-wp-engine"
+description = "Xenify Write without a toolkit: an open document's editing, layout, input handling and page scenes for HTML screens (desktop or browser)"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+xenify-wp-doc.workspace = true
+xenify-wp-layout = { path = "../xenify-wp-layout", default-features = false }
+kurbo.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+# Glyph outlines for the screen's page painter (MIT OR Apache-2.0).
+skrifa = "0.44"
+parley.workspace = true
+xenify-wp-io.workspace = true
