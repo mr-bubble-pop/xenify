@@ -1,0 +1,130 @@
+[package]
+name = "xenify-server"
+description = "The Xenify server people run themselves: accounts, groups, shared files (encrypted by the apps), editing together, chat and AI; PostgreSQL"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+# The integration tests are one program (tests/main.rs), not one per file.
+autotests = false
+
+[[bin]]
+name = "xenify-server"
+path = "src/main.rs"
+
+[[test]]
+name = "server"
+path = "tests/main.rs"
+
+[dependencies]
+xenify-util.workspace = true
+# Public holidays (Admin › Holidays, Plan and Chat's calendar).
+xenify-holidays = { path = "../xenify-holidays" }
+# Plan's engine: the server works every plan out itself (plan/engine.rs).
+xenify-plan-core = { path = "../xenify-plan-core" }
+xenify-server-proto = { path = "../xenify-server-proto" }
+xenify-sync = { path = "../xenify-sync" }
+xenify-hub-core = { path = "../xenify-hub-core" }
+# Write documents as web pages and their words (the Files page's read view, search).
+xenify-wp-io = { path = "../xenify-wp-io" }
+xenify-wp-doc = { path = "../xenify-wp-doc" }
+# Its fonts (Inter, CMU Serif) for those pages in the browser.
+xenify-wp-layout = { path = "../xenify-wp-layout" }
+semver = "1"
+base64.workspace = true
+tokio-util = { version = "0.7", features = ["io", "compat"] }
+zip = { version = "9", default-features = false, features = ["deflate"] }
+# HTTPS certificates from Let's Encrypt for a server with a domain name (MIT OR Apache-2.0).
+rustls-acme = { version = "0.15", default-features = false, features = ["ring", "tokio", "webpki-roots"] }
+# Chat, on the same database and accounts.
+xenify-chat-server = { path = "../xenify-chat-server" }
+serde.workspace = true
+serde_json.workspace = true
+toml.workspace = true
+chrono = { version = "0.4", default-features = false, features = ["std", "clock"] }
+# The server's own email: welcome and reset links, invites (MIT); the same
+# build the desktop mail uses.
+# Encryption at rest: the kernel's fscrypt calls (MIT OR Apache-2.0).
+libc = "0.2"
+# People's own email (Chat's Mail): the desktop app's IMAP, sending and mail
+# copy; invitations read and written as the desktop app does.
+xenify-mail-core = { path = "../xenify-mail-core" }
+xenify-cal = { path = "../xenify-cal", default-features = false }
+xenify-safe-html = { path = "../xenify-safe-html" }
+# Sealing the mail secrets and signing Google's requests (already used for TLS).
+ring = "0.17"
+lettre = { version = "0.11", default-features = false, features = ["smtp-transport", "builder", "rustls-tls", "hostname"] }
+# Two-step sign-in: authenticator codes (RFC 6238; SHA-1 is what the apps
+# use, MIT OR Apache-2.0) and the QR code to scan (MIT).
+sha1 = "0.11"
+qrcodegen = "1.8"
+sha2.workspace = true
+# Web server (MIT); async runtime (MIT).
+axum = { version = "0.8", features = ["ws"] }
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "net", "sync", "time", "signal", "fs", "process", "io-std", "io-util"] }
+# PostgreSQL (MIT OR Apache-2.0) and a connection pool.
+tokio-postgres = { version = "0.7", features = ["with-serde_json-1"] }
+deadpool-postgres = "0.14"
+# Hashing sign-in keys (MIT OR Apache-2.0), as for passwords.
+argon2 = "0.6"
+# Made-up salts for unknown names (MIT OR Apache-2.0).
+hmac = "0.13"
+clap = { version = "4", features = ["derive", "env"] }
+# Listening on a port a newer copy can share during an update (MIT OR Apache-2.0).
+socket2 = { version = "0.6", features = ["all"] }
+# Serving the admin pages (MIT).
+tower = "0.5"
+tower-http = { version = "0.6", features = ["fs", "set-header", "cors"] }
+# HTTPS with the server's own certificate authority, and being found on the
+# network (all MIT OR Apache-2.0; if-addrs MIT OR BSD-3-Clause).
+rcgen = { version = "0.14", default-features = false, features = ["ring", "pem", "x509-parser"] }
+rustls = { version = "0.23", default-features = false, features = ["ring", "std", "tls12"] }
+tokio-rustls = { version = "0.26", default-features = false, features = ["ring", "tls12"] }
+hyper = "1"
+hyper-util = { version = "0.1", features = ["server-auto", "tokio"] }
+time = "0.3"
+mdns-sd = "0.21"
+if-addrs = "0.15"
+# Talking to the AI runner, Hugging Face and Civitai (blocking, on worker threads).
+ureq.workspace = true
+futures-util = { version = "0.3", default-features = false, features = ["std", "sink"] }
+# Calc's data sources: reading other databases (all MIT OR Apache-2.0;
+# SQLite itself is public domain). PostgreSQL goes through tokio-postgres above.
+mysql_async = { version = "0.37", default-features = false, features = ["minimal-rust", "rustls-tls", "ring", "tls12"] }
+# The public certificate authorities, for checking data sources' certificates
+# (CDLA-Permissive-2.0; already used by rustls-acme above).
+webpki-roots = "1"
+tiberius = { version = "0.13", default-features = false, features = ["tds73", "rustls", "chrono"] }
+rusqlite = { version = "0.37", features = ["bundled", "hooks", "column_decltype"] }
+# Chat notifications in browsers with the tab closed: Web Push's message
+# encryption (RFC 8291; MIT OR Apache-2.0), and P-256 signatures for the
+# VAPID key that says it's this server (RustCrypto, MIT OR Apache-2.0).
+web-push-native = { version = "0.5", default-features = false }
+p256 = { version = "0.13", features = ["ecdsa", "pkcs8"] }
+# Quiet hours in each person's own time zone (MIT OR Apache-2.0).
+chrono-tz = "0.10"
+
+# Backups (Admin › Backups): restic's repository format, so restic itself
+# can restore them too (rustic_core: Apache-2.0 OR MIT); S3-compatible
+# storage's request signing (rusty-s3: BSD-2-Clause) over ureq above; SFTP
+# (russh, russh-sftp: Apache-2.0, ring rather than aws-lc).
+rustic_core = "0.13"
+bytes = "1"
+url = "2"
+rusty-s3 = "0.11"
+russh = { version = "0.65", default-features = false, features = ["ring", "rsa"] }
+russh-sftp = "3"
+# A new key for SFTP (the same rand russh uses).
+rand = { version = "0.10", features = ["thread_rng"] }
+
+[dev-dependencies]
+bytes = "1"
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "net", "io-util"] }
+tokio-tungstenite = "0.30"
+futures-util = { version = "0.3", default-features = false, features = ["std", "sink"] }
+xenify-chat-proto = { path = "../xenify-chat-proto" }
+axum = "0.8"
+sha2.workspace = true
+mdns-sd = "0.21"
+
+[target.'cfg(windows)'.dependencies]
+windows-service = "0.8"

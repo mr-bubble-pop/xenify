@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Xenify Draw</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="server.css">
+<link rel="manifest" href="manifest.webmanifest">
+<script src="errors.js"></script>
+<script type="module" src="app.js"></script>
+<style>
+/* Starting: the app's mark at once, "Loading…" if it takes a moment, and the app only once it's ready. */
+#boot { position: fixed; inset: 0; z-index: 2147483647; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px;
+  background: var(--ground, var(--stone, #EFECE8)); color: var(--muted, #57534E); font: 500 14px system-ui, sans-serif; animation: boot-gone 0s 20s forwards; }
+#boot b { width: 56px; height: 56px; border-radius: 16px; background: var(--accent, #C2410C); color: #fff; font: 800 28px system-ui, sans-serif;
+  display: flex; align-items: center; justify-content: center; }
+#boot span, #boot i { opacity: 0; animation: boot-show .2s .4s forwards; }
+#boot i { width: 120px; height: 3px; border-radius: 2px; background: var(--line, #DDD8D2); overflow: hidden; }
+#boot i::after { content: ""; display: block; width: 40%; height: 100%; background: var(--accent, #C2410C); animation: boot-bar 1.2s ease-in-out infinite; }
+html:not(.ready) body > :not(#boot) { visibility: hidden; animation: boot-show 0s 20s forwards; }
+html.ready #boot { display: none; }
+@keyframes boot-show { to { opacity: 1; visibility: visible; } }
+@keyframes boot-gone { to { visibility: hidden; } }
+@keyframes boot-bar { from { transform: translateX(-100%); } to { transform: translateX(250%); } }
+@media (prefers-reduced-motion: reduce) { #boot i::after { animation: none; width: 100%; opacity: .5; } }
+</style>
+</head>
+<body>
+<div id="boot" role="status" aria-label="Loading Draw"><b aria-hidden="true">D</b><span>Loading Draw…</span><i aria-hidden="true"></i></div>
+<div class="app">
+  <nav class="menubar" aria-label="Menu">
+    <div class="brand"><span class="mark" aria-hidden="true">D</span>Draw</div>
+    <div id="menus" class="menus"></div>
+  </nav>
+
+  <div class="tabstrip">
+    <div id="tabs" class="tabs" role="tablist" aria-label="Open canvases"></div>
+    <button id="new-tab" class="icon-btn small" aria-label="New canvas" title="New canvas (Ctrl+N)"></button>
+  </div>
+
+  <div id="toolbar" class="toolbar" role="toolbar" aria-label="Tools"></div>
+
+  <div class="work">
+    <aside id="layers" class="panel layers" aria-label="Layers"></aside>
+    <main id="stage" class="stage" aria-label="Canvas">
+      <canvas id="gl" class="gl"></canvas>
+      <canvas id="overlay" class="overlay"></canvas>
+      <textarea id="text-edit" class="text-edit" aria-label="Text" spellcheck="false" hidden></textarea>
+      <div id="perf" class="perf" role="status" aria-live="off" hidden></div>
+      <div id="zoom" class="zoom"></div>
+    </main>
+    <aside id="side" class="panel side" aria-label="Details"></aside>
+  </div>
+
+  <section id="timeline" class="timeline" aria-label="Timeline"></section>
+  <footer id="status" class="status"></footer>
+</div>
+<div id="popups"></div>
+</body>
+</html>

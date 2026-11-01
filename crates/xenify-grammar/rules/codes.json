@@ -1,0 +1,343 @@
+{
+  "_about": "Explanations for the error codes the mistake spotter (and the rules) use. Written for Xenify; MIT. 'candidates' says how suggestions are found: words to try in the flagged spot, tested against the spotter.",
+  "apostrophe": {
+    "title": "Apostrophe",
+    "text": "Apostrophes show who owns something (the team's results) or a missing letter (it's, don't). Plurals don't take one: apples, not apple's.",
+    "examples": [
+      [
+        "Fresh apple's for sale.",
+        "Fresh apples for sale."
+      ],
+      [
+        "The teams results were good.",
+        "The team's results were good."
+      ]
+    ],
+    "candidates": "apostrophes"
+  },
+  "article_missing": {
+    "title": "Missing a, an or the",
+    "text": "Most single things in English need a, an or the in front: a dog, the station. Plural and uncountable words often don't (dogs, water).",
+    "examples": [
+      [
+        "I have pet dog.",
+        "I have a pet dog."
+      ],
+      [
+        "We met at station.",
+        "We met at the station."
+      ]
+    ],
+    "candidates": "insert:the,a,an"
+  },
+  "article_wrong": {
+    "title": "Wrong a, an or the",
+    "text": "Use an before a vowel sound (an hour, an apple) and a before a consonant sound (a university). The is for something specific; a is for any one.",
+    "examples": [
+      [
+        "It took a hour.",
+        "It took an hour."
+      ]
+    ],
+    "candidates": "replace:a,an,the,"
+  },
+  "comma_intro": {
+    "title": "Comma after an opening phrase",
+    "text": "When a sentence starts with an opening word or clause (However, If you can, When we arrived), a comma marks where the main part begins.",
+    "examples": [
+      [
+        "If you can come let me know.",
+        "If you can come, let me know."
+      ],
+      [
+        "However we decided to wait.",
+        "However, we decided to wait."
+      ]
+    ],
+    "candidates": "commas"
+  },
+  "comma_list_meaning": {
+    "title": "Commas in a list",
+    "text": "Missing commas can join list items into nonsense: \"I love cooking my family and my pets\" means something very different from \"I love cooking, my family and my pets\".",
+    "examples": [
+      [
+        "She enjoys cooking her kids and her dog.",
+        "She enjoys cooking, her kids and her dog."
+      ]
+    ],
+    "candidates": "commas"
+  },
+  "comma_splice": {
+    "title": "Two sentences joined by a comma",
+    "text": "A comma alone can't join two complete sentences. Use a full stop, a semicolon, or a joining word (and, but, so).",
+    "examples": [
+      [
+        "The meeting ran late, we missed the train.",
+        "The meeting ran late, so we missed the train."
+      ]
+    ],
+    "candidates": "splice"
+  },
+  "comma_vocative": {
+    "title": "Comma around a name",
+    "text": "When you speak to someone by name, commas separate the name from the rest: \"Thanks, John.\" Without it the meaning can change: \"Let's eat Grandma.\"",
+    "examples": [
+      [
+        "Let's eat Grandma.",
+        "Let's eat, Grandma."
+      ]
+    ],
+    "candidates": "commas"
+  },
+  "comparative": {
+    "title": "More / most",
+    "text": "Words that already compare (taller, easiest) don't need more or most: more taller → taller.",
+    "examples": [
+      [
+        "This one is more cheaper.",
+        "This one is cheaper."
+      ]
+    ],
+    "candidates": "delete"
+  },
+  "confused_words": {
+    "title": "Commonly confused words",
+    "text": "Some words look or sound alike but mean different things (affect/effect, accept/except, lose/loose). Check which meaning you want.",
+    "examples": [
+      [
+        "The policy will effect everyone.",
+        "The policy will affect everyone."
+      ]
+    ],
+    "candidates": "soundalikes"
+  },
+  "eggcorn": {
+    "title": "Misheard phrase",
+    "text": "Some fixed phrases are often misheard and written wrongly: \"for all intents and purposes\", \"nip it in the bud\", \"should have\" (not \"should of\").",
+    "examples": [
+      [
+        "Let's nip it in the butt.",
+        "Let's nip it in the bud."
+      ]
+    ],
+    "candidates": "none"
+  },
+  "fragment": {
+    "title": "Incomplete sentence",
+    "text": "This reads as part of a sentence on its own (often starting with because, which or although). Join it to the sentence before, or add what's missing.",
+    "examples": [
+      [
+        "We stopped. Because the server was down.",
+        "We stopped because the server was down."
+      ]
+    ],
+    "candidates": "none"
+  },
+  "homophone": {
+    "title": "Words that sound alike",
+    "text": "Words like their/there/they're, your/you're and to/too/two sound the same but mean different things. A spell-checker can't tell them apart.",
+    "examples": [
+      [
+        "Their going to be late.",
+        "They're going to be late."
+      ]
+    ],
+    "candidates": "soundalikes"
+  },
+  "hyphen": {
+    "title": "Hyphen",
+    "text": "Two words working together as one description before a noun take a hyphen (a follow-up meeting, a well-known author). As a verb they stay apart (follow up with them).",
+    "examples": [
+      [
+        "Let's schedule a follow up meeting.",
+        "Let's schedule a follow-up meeting."
+      ]
+    ],
+    "candidates": "hyphen"
+  },
+  "its_its": {
+    "title": "Its or it's",
+    "text": "It's means \"it is\" or \"it has\". Its means \"belonging to it\". If you can say \"it is\", write it's.",
+    "examples": [
+      [
+        "Its raining.",
+        "It's raining."
+      ],
+      [
+        "The dog wagged it's tail.",
+        "The dog wagged its tail."
+      ]
+    ],
+    "candidates": "replace:its,it's"
+  },
+  "missing_word": {
+    "title": "A word is missing",
+    "text": "A small word seems to be missing here, often to, the, of, is or be. Read the sentence aloud and listen for the gap.",
+    "examples": [
+      [
+        "We need finish the draft.",
+        "We need to finish the draft."
+      ]
+    ],
+    "candidates": "insert:to,the,a,of,is,are,be,for,that,it,in,on,with,and,was,have,will,to the,in the,of the,on the,at the,for the,to a,at"
+  },
+  "plural_form": {
+    "title": "Plural or uncountable",
+    "text": "Some words have unusual plurals (child → children) and some can't be counted at all (information, advice): \"more information\", not \"informations\".",
+    "examples": [
+      [
+        "We need more informations.",
+        "We need more information."
+      ]
+    ],
+    "candidates": "inflections"
+  },
+  "preposition": {
+    "title": "Wrong small linking word",
+    "text": "Words like in, on, at, for and to depend on the words around them: in 10 minutes (not on), listen to music (not listen music), depend on (not depend of).",
+    "examples": [
+      [
+        "I'll call you on 10 minutes.",
+        "I'll call you in 10 minutes."
+      ]
+    ],
+    "candidates": "replace:in,on,at,for,to,with,of,from,by,about,"
+  },
+  "pronoun_antecedent": {
+    "title": "Unclear or mismatched pronoun",
+    "text": "A pronoun (he, she, it, they) should clearly point back to one thing and match it: \"the department… it\", not \"the department… he\".",
+    "examples": [
+      [
+        "The fire department arrived, but he couldn't find the source.",
+        "The fire department arrived, but it couldn't find the source."
+      ]
+    ],
+    "candidates": "replace:it,they,he,she,them,its,their"
+  },
+  "pronoun_case": {
+    "title": "I or me? He or him?",
+    "text": "Use I/he/she/we/they as the subject and me/him/her/us/them after verbs and words like for, with and between. Test by removing the other person.",
+    "examples": [
+      [
+        "Me and Sam finished early.",
+        "Sam and I finished early."
+      ],
+      [
+        "This is between you and I.",
+        "This is between you and me."
+      ]
+    ],
+    "candidates": "pronouns"
+  },
+  "pronoun_verb_agreement": {
+    "title": "Verb doesn't match the pronoun",
+    "text": "The verb has to match its subject: he goes, she doesn't, we were.",
+    "examples": [
+      [
+        "She don't like apples.",
+        "She doesn't like apples."
+      ],
+      [
+        "We was late.",
+        "We were late."
+      ]
+    ],
+    "candidates": "verbforms"
+  },
+  "real_word_typo": {
+    "title": "Typo that's a real word",
+    "text": "A slip of the keys has made a different real word (pubic for public, manger for manager, form for from), so a spell-checker didn't notice.",
+    "examples": [
+      [
+        "Contact the pubic safety office.",
+        "Contact the public safety office."
+      ]
+    ],
+    "candidates": "none"
+  },
+  "sign_off": {
+    "title": "Greeting or sign-off",
+    "text": "Check the spelling and punctuation of the greeting and sign-off: Kind regards, Best wishes, Sincerely; and a comma after \"Hi Sam,\".",
+    "examples": [
+      [
+        "Kind regrads,",
+        "Kind regards,"
+      ]
+    ],
+    "candidates": "none"
+  },
+  "subject_verb_agreement": {
+    "title": "Verb doesn't match the subject",
+    "text": "The verb matches the main word of the subject, not the nearest word: \"The results of the test were\", \"Each of the students has\".",
+    "examples": [
+      [
+        "The results of the test was clear.",
+        "The results of the test were clear."
+      ]
+    ],
+    "candidates": "verbforms"
+  },
+  "tense_shift": {
+    "title": "Change of tense",
+    "text": "The sentence switches between past and present without a reason. Keep to one time frame: \"She walked in and said hello.\"",
+    "examples": [
+      [
+        "She walks in and said hello.",
+        "She walked in and said hello."
+      ]
+    ],
+    "candidates": "verbforms"
+  },
+  "verb_form": {
+    "title": "Wrong verb form",
+    "text": "This verb form doesn't fit here: \"I saw\" or \"I have seen\" (not \"I seen\"), \"has gone\" (not \"has went\"), \"to go\" (not \"to going\").",
+    "examples": [
+      [
+        "I seen him there.",
+        "I saw him there."
+      ],
+      [
+        "She has went home.",
+        "She has gone home."
+      ]
+    ],
+    "candidates": "verbforms"
+  },
+  "verb_pattern": {
+    "title": "Verb pattern",
+    "text": "Some verbs need a particular next word or form: look forward to hearing, explain it to me, suggest that he go, let him go.",
+    "examples": [
+      [
+        "I look forward to hear from you.",
+        "I look forward to hearing from you."
+      ]
+    ],
+    "candidates": "verbforms"
+  },
+  "word_order": {
+    "title": "Word order",
+    "text": "The words are in an unusual order. Inside a sentence, a question keeps normal order (\"tell me where the office is\"), and words like always go after am/is/are.",
+    "examples": [
+      [
+        "Can you tell me where is the office?",
+        "Can you tell me where the office is?"
+      ]
+    ],
+    "candidates": "swap"
+  },
+  "garbled": {
+    "title": "Sentence may not make sense",
+    "text": "Part of this sentence doesn't hold together: often words left over from an edit, a missing verb, words in a jumbled order or a sentence that stops too soon. Read it again and rewrite the part that's marked.",
+    "examples": [
+      [
+        "We the meeting to Friday.",
+        "We moved the meeting to Friday."
+      ],
+      [
+        "She sent the report to the.",
+        "She sent the report to the manager."
+      ]
+    ],
+    "candidates": "none"
+  }
+}

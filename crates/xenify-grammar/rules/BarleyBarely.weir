@@ -1,0 +1,22 @@
+# Real-word typo: "barley" (a grain) for "barely". Pattern from published
+# lists of mistakes spell-checkers miss; examples are ours.
+# why: Barely means only just; barley is a grain. Both are real words, so spell-checkers miss the swap.
+expr main [<(barley [any, enough, made, make, able, there, noticeable, noticed, touched, slept, know, knew, passed, managed, legal, visible, audible, breathing, alive, survived, finished, started, even, got, had, been, see, saw, seen, hear, heard, ever, fit, fits, fitted, scraped, recognise, recognize, recognised, recognized, remember, remembered, understand, understood, moved, keep, kept, afford, cover, covers, covered, register, registered, significant, changed, use, used, spoke, speak, said, ate, eat, slept, older, younger, over, under, above, below, out, in, awake, scratched, begun, started, open, opened]), barley>, <([I, (I've), (I'd), he, she, we, they, you, it, was, were, is, are, could, can, (can't), should, would, will, might, may, must, had, have, has, just, so, only] barley [any, enough, made, make, able, there, have, sleep, walk, move, breathe, hear, talk, speak, stand, function, cover, contain, hold, get, pay, manage, cope, slept, know, knew, passed, managed, got, had, see, saw, hear, heard, ever, fit, afford, remember, understand, moved, keep, kept, awake, noticed, alive, breathing, legal, visible, significant, (a), (an), (the), started, finished, slept, spoke, said, eat, ate, use, used, read, opened, open, recognise, recognize]), barley>]
+
+let message "Did you mean `barely`? (`Barley` is a grain.)"
+let description "Catches `barley` where `barely` (only just) was meant."
+let kind "Typo"
+let becomes "barely"
+let strategy "MatchCase"
+
+test "I barley slept last night." "I barely slept last night."
+test "The results were barley significant." "The results were barely significant."
+test "We barley made it on time." "We barely made it on time."
+test "There was barley enough food." "There was barely enough food."
+
+allows "The farm grows barley and wheat."
+allows "Add a cup of pearl barley to the soup."
+allows "I barely slept last night."
+
+test "We should barley have enough time." "We should barely have enough time."
+test "I could barley sleep." "I could barely sleep."

@@ -1,0 +1,18 @@
+# "Much" with things you can count. From ESL and common-error lists; examples are ours.
+# why: Much goes with things you can't count (much time, much water); many goes with things you can count (many people, many mistakes).
+expr counted [people, friends, things, times, students, users, customers, employees, items, mistakes, errors, questions, problems, issues, options, ideas, books, cars, members, participants, children, visitors, guests, reasons, changes, tasks, files, emails, years, days, hours, places, countries]
+expr main <(much @counted), much>
+
+let message "Use `many` with things you can count."
+let description "Fixes `much people` → `many people`."
+let kind "Agreement"
+let becomes "many"
+let strategy "MatchCase"
+
+test "There are much people interested in the course." "There are many people interested in the course."
+test "We found too much mistakes in the draft." "We found too many mistakes in the draft."
+test "How much students signed up?" "How many students signed up?"
+
+allows "There is much interest in the course."
+allows "We had too much time."
+allows "How many students signed up?"

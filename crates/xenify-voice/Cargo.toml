@@ -1,0 +1,19 @@
+[package]
+name = "xenify-voice"
+description = "Speech to text on this computer: Whisper models run with whisper.cpp, downloaded once"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+rust-version.workspace = true
+
+[dependencies]
+# whisper.cpp (MIT, built from source with cmake) through its Rust
+# bindings (Unlicense). The models are OpenAI's Whisper (MIT), converted by
+# whisper.cpp: see assets/SOURCES.toml.
+whisper-rs = "0.16"
+# Downloading the model, checked against its SHA-256.
+ureq.workspace = true
+sha2.workspace = true
+# Xenify's data folder on each system (MIT OR Apache-2.0).
+dirs = "6"
+serde.workspace = true

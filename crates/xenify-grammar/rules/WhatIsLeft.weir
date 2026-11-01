@@ -1,0 +1,18 @@
+# "What are left" when "what" (the thing that) is the subject: it takes a
+# singular verb. Our own rule, from a user report; examples are ours.
+# why: Here "what" means "the thing that", which is singular: what is left, what is needed. A plural verb only follows in a direct question ("What are the results?").
+expr done [left, given, needed, said, done, required, missing, wanted, offered, asked, expected, decided, agreed, planned, promised, ordered, bought, sent, owed, lost, saved, found, used]
+expr main <(what are @done), are>
+
+let message "Use `is` here: `what` (the thing that) takes a singular verb."
+let description "Fixes `what are left` → `what is left`."
+let kind "Agreement"
+let becomes "is"
+let strategy "MatchCase"
+
+test "Take what are left of the cake." "Take what is left of the cake."
+test "Bring what are needed for the visa." "Bring what is needed for the visa."
+
+allows "Take what is left of the cake."
+allows "What are the results of the test?"
+allows "Tell me what are your reasons."

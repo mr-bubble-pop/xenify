@@ -1,0 +1,18 @@
+# "Who's" (who is) for "whose" (belonging to whom). Common-error lists;
+# examples are ours.
+# why: Who's means "who is" or "who has". Whose asks or tells who something belongs to: whose turn, whose name.
+expr owned [name, names, turn, fault, idea, job, car, house, phone, responsibility, book, money, team, dog, kid, kids, child, children, mother, father, parents, number, account, birthday, bag, keys, side, work, coat, seat, office, desk, email, laptop, project, decision]
+expr main <(who's @owned), (who's)>
+
+let message "Did you mean `whose` (belonging to whom)?"
+let description "Fixes `who's turn` → `whose turn`."
+let kind "Grammar"
+let becomes "whose"
+let strategy "MatchCase"
+
+test "Who's turn is it to cook?" "Whose turn is it to cook?"
+test "The officer, who's name was not released, spoke briefly." "The officer, whose name was not released, spoke briefly."
+
+allows "Whose turn is it to cook?"
+allows "Who's coming tonight?"
+allows "Who's been using my laptop?"

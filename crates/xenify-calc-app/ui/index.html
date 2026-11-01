@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Xenify Calc</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="server.css">
+<script src="errors.js"></script>
+<script type="module" src="app.js"></script>
+<style>
+/* Starting: the app's mark at once, "Loading…" if it takes a moment, and the app only once it's ready. */
+#boot { position: fixed; inset: 0; z-index: 2147483647; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px;
+  background: var(--ground, var(--stone, #EFECE8)); color: var(--muted, #57534E); font: 500 14px system-ui, sans-serif; animation: boot-gone 0s 20s forwards; }
+#boot b { width: 56px; height: 56px; border-radius: 16px; background: var(--accent, #C2410C); color: #fff; font: 800 28px system-ui, sans-serif;
+  display: flex; align-items: center; justify-content: center; }
+#boot span, #boot i { opacity: 0; animation: boot-show .2s .4s forwards; }
+#boot i { width: 120px; height: 3px; border-radius: 2px; background: var(--line, #DDD8D2); overflow: hidden; }
+#boot i::after { content: ""; display: block; width: 40%; height: 100%; background: var(--accent, #C2410C); animation: boot-bar 1.2s ease-in-out infinite; }
+html:not(.ready) body > :not(#boot) { visibility: hidden; animation: boot-show 0s 20s forwards; }
+html.ready #boot { display: none; }
+@keyframes boot-show { to { opacity: 1; visibility: visible; } }
+@keyframes boot-gone { to { visibility: hidden; } }
+@keyframes boot-bar { from { transform: translateX(-100%); } to { transform: translateX(250%); } }
+@media (prefers-reduced-motion: reduce) { #boot i::after { animation: none; width: 100%; opacity: .5; } }
+</style>
+</head>
+<body>
+<div id="boot" role="status" aria-label="Loading Calc"><b aria-hidden="true">C</b><span>Loading Calc…</span><i aria-hidden="true"></i></div>
+<div class="app">
+  <nav class="menubar" aria-label="Menu">
+    <div class="brand"><span class="mark" aria-hidden="true">C</span>Calc</div>
+    <div id="menus" class="menus"></div>
+  </nav>
+
+  <div class="tabstrip">
+    <div id="tabs" class="tabs" role="tablist" aria-label="Open books"></div>
+    <button id="new-tab" class="icon-btn small" aria-label="New book" title="New book (Ctrl+N)"></button>
+    <div id="people" class="people" aria-label="Who else is here"></div>
+  </div>
+
+  <div id="toolbar" class="toolbar" role="toolbar" aria-label="Formatting"></div>
+
+  <div class="formulabar">
+    <input id="namebox" class="namebox" aria-label="Cell" spellcheck="false" autocomplete="off">
+    <button id="fx" class="fx" title="Functions: what each does, with examples">fx</button>
+    <input id="formula" class="formula" aria-label="What the cell holds" spellcheck="false" autocomplete="off">
+    <button id="fx-ai" class="fx-ai" title="Write a formula from words, or fix this one (AI)">✦</button>
+  </div>
+  <div id="fxnote" class="fxnote" role="status" hidden></div>
+
+  <div id="lookbar" class="lookbar" role="region" aria-label="Look up" hidden></div>
+  <section id="querypanel" class="querypanel" aria-label="The query" hidden></section>
+  <section id="editbar" class="editbar" aria-label="The database table" hidden></section>
+  <section id="linkbar" class="editbar" aria-label="The linked file" hidden></section>
+
+  <main id="sheet" class="sheet" aria-label="Sheet">
+    <div id="scroller" class="scroller"><div id="spacer" class="spacer"></div></div>
+    <canvas id="grid" class="grid" aria-hidden="true"></canvas>
+    <textarea id="editor" class="editor" aria-label="Cell" spellcheck="false" hidden></textarea>
+    <div id="live" class="sr-only" role="status" aria-live="polite"></div>
+    <section id="lookcard" class="lookcard" aria-label="What the look-up will show" hidden></section>
+  </main>
+
+  <main id="allsheets" class="allsheets" aria-label="All sheets" hidden></main>
+  <main id="reportpage" class="reportpage" aria-label="Report" hidden></main>
+
+  <div id="findbar" class="findbar" role="search" hidden></div>
+
+  <div class="sheetbar">
+    <div id="sheettabs" class="sheettabs" role="tablist" aria-label="Sheets"></div>
+    <button id="add-sheet" class="icon-btn small" aria-label="Add a sheet" title="Add a sheet"></button>
+    <div id="status" class="status" role="status"></div>
+    <button id="all-sheets" class="stab all" title="All sheets, working sheets included"></button>
+  </div>
+</div>
+<div id="popups"></div>
+</body>
+</html>

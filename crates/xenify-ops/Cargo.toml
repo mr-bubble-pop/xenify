@@ -1,0 +1,21 @@
+[package]
+name = "xenify-ops"
+description = "Undoable commands and edit history for Xenify Draw projects"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+# Editing together (no dependencies of its own).
+xenify-collab = { path = "../xenify-collab" }
+xenify-doc.workspace = true
+xenify-anim.workspace = true
+kurbo.workspace = true
+linesweeper.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+thiserror.workspace = true
+# Two people painting one picture at once: their pixels are merged.
+image.workspace = true
+
+[dev-dependencies]

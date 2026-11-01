@@ -1,0 +1,74 @@
+# Config for cargo-about, which generates THIRD_PARTY_LICENSES.txt.
+# Order matters: for dual-licensed crates ("MIT OR Apache-2.0") the first
+# accepted license listed here is the one we use.
+accepted = [
+    "MIT",
+    "Apache-2.0",
+    "Apache-2.0 WITH LLVM-exception",
+    "Zlib",
+    "ISC",
+    "0BSD",
+    "BSD-2-Clause",
+    "BSD-3-Clause",
+    "BSL-1.0",
+    "Unlicense",
+    "CC0-1.0",
+    "Unicode-3.0",
+    "CDLA-Permissive-2.0",
+    "OFL-1.1",
+    "Ubuntu-font-1.0",
+]
+# Only what ships in the exe; dev/build-only crates aren't distributed.
+ignore-dev-dependencies = true
+ignore-build-dependencies = true
+
+# Tauri's code generator (tauri-macros → tauri-codegen → tauri-utils →
+# dom_query) uses these while compiling; none of their code ends up in the
+# app (`cargo tree -p xenify-chat-app -e normal,no-proc-macro -i cssparser`
+# finds no path). cargo-about counts proc-macro dependencies anyway, so they
+# are allowed by name. See patches/README.md.
+[cssparser]
+accepted = ["MPL-2.0"]
+[cssparser-macros]
+accepted = ["MPL-2.0"]
+[dtoa-short]
+accepted = ["MPL-2.0"]
+[selectors]
+accepted = ["MPL-2.0"]
+
+# These crates keep a short licence notice at the top of their source files,
+# and cargo-about's scan took each whole source file for a licence text (the
+# licences list showed Rust and C code). Point it at the crates' licence files.
+[ring.clarify]
+license = "Apache-2.0 AND ISC"
+[[ring.clarify.files]]
+path = "LICENSE-other-bits"
+license = "ISC"
+checksum = "f025ccfb7dfb6bdfedc75ca0f67acc69e6fb4998143d834f7c2f38a29989680f"
+[[ring.clarify.files]]
+path = "LICENSE-BoringSSL"
+license = "Apache-2.0"
+checksum = "005fc765ddc5115da796cca915baa9557abae13ff35e0a47c47affc56f6c414d"
+
+[roots.clarify]
+license = "BSD-2-Clause"
+[[roots.clarify.files]]
+path = "LICENSE"
+license = "BSD-2-Clause"
+checksum = "30046c1fdb02876290d416ca87f9e0bbe703fab78f72a23400d0145c116ad514"
+
+[schemars_derive.clarify]
+license = "MIT"
+[[schemars_derive.clarify.files]]
+path = "LICENSE"
+license = "MIT"
+checksum = "1954992a2b32e8a2af24a4c11b726902e344c1934b947a77f04d404908f8db30"
+
+# Without its "vendored" feature (not used) libdbus-sys links the system's
+# libdbus and ships none of D-Bus's C files, though they're in the crate.
+[libdbus-sys.clarify]
+license = "MIT"
+[[libdbus-sys.clarify.files]]
+path = "LICENSE-MIT"
+license = "MIT"
+checksum = "de3911c2d98c8bd2d701ee721347053d9b55995a11f9a8c955e44d3ca1b376bf"

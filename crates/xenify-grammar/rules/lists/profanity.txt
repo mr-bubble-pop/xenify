@@ -1,0 +1,14 @@
+# Swear words (casual; a profile may flag them).
+damn | (omit)
+dammit | (omit)
+crap | (omit)
+crappy | poor
+shit | (omit)
+shitty | poor
+fuck | (omit)
+fucking | (omit)
+fucked | ruined
+bullshit | nonsense
+asshole | (omit)
+pissed | angry
+bloody hell | (omit)

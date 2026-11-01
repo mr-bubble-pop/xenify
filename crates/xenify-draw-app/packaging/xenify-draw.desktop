@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=Xenify Draw
+GenericName=Drawing and animation
+Comment=Draw pictures, posters and animations, with spelling and grammar checked on this computer
+Exec=xenify-draw %F
+Icon=xenify-draw
+Terminal=false
+Categories=Graphics;VectorGraphics;
+MimeType=application/x-xenify-draw;
+Keywords=draw;vector;animation;poster;illustration;
