@@ -40,18 +40,17 @@ xenify-write profiles
   user with no admin prompt. Checked here: the command line, checker and
   model under Wine. The window itself needs a real Windows.
 - **macOS:** needs a Mac (Apple's SDK can't legally be used elsewhere).
-  Run the script on a Mac. The workflow's Mac job was taken out on
-  2026-10-20 (no Mac release yet); to bring it back, add
-  `{ os: macos-14, system: macos }` to its matrix.
-- **All at once:** the Release workflow on the public
-  mr-bubble-pop/xenify-releases repository (`scripts/start-build.sh
-  release`) builds every app for Linux, plus the browser versions and the
-  Hub installers, and publishes them there (see docs/hub.md). It takes the
+  Run the script on a Mac, or let the Release workflow's macos-14 job
+  build it.
+- **All at once:** the Release workflow (`.github/workflows/release.yml`,
+  started by `scripts/start-build.sh release`) builds every app for Linux,
+  Windows and macOS, plus the browser versions and the Hub installers, and
+  publishes them as releases of this repository (see docs/hub.md). It takes the
   model `B7.tgz` from this repo's `models` branch (checked against its
   `SHA256SUMS`). Its Website workflow (`scripts/start-build.sh site`) puts
   xenify.net on Cloudflare Pages (project `xenify`; the secrets
   `CLOUDFLARE_API_TOKEN`, with only *Cloudflare Pages: Edit*, and
-  `CLOUDFLARE_ACCOUNT_ID`, on that repository).
+  `CLOUDFLARE_ACCOUNT_ID`, on this repository).
 
 ## xenify.net
 

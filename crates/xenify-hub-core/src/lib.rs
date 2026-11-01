@@ -32,9 +32,9 @@ pub const TRUSTED: &[[u8; 32]] = &[
     ],
 ];
 
-/// Xenify's own signed release list (made by the Release workflow on xenify-releases).
+/// Xenify's own signed release list (made by the Release workflow, .github/workflows/release.yml).
 pub const RELEASES: &str =
-    "https://github.com/mr-bubble-pop/xenify-releases/releases/download/hub-releases/manifest.json";
+    "https://github.com/mr-bubble-pop/xenify/releases/download/hub-releases/manifest.json";
 
 /// This computer's system and processor, as release files name them.
 pub fn platform() -> (&'static str, &'static str) {

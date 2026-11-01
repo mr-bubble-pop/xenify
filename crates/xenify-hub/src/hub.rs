@@ -12,7 +12,7 @@ use xenify_hub_core::choose::{self, Local};
 use xenify_hub_core::manifest::{self, Signed};
 use xenify_hub_core::{Choice, Manifest, Policy, Store, UpdateMode};
 
-/// Xenify's release list (published by the Release workflow on mr-bubble-pop/xenify-releases).
+/// Xenify's release list (published by .github/workflows/release.yml).
 pub const SOURCE: &str = xenify_hub_core::RELEASES;
 
 /// Xenify's release keys (the public halves). Builds made elsewhere can add

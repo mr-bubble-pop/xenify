@@ -1,0 +1,339 @@
+# Publishes a Xenify release: builds Write, Draw, Calc, Chat, Plan and the
+# server for Linux, Windows and macOS, plus the apps for the browser (which
+# servers offer), uploads the packages to a release on this repository, adds
+# them to Xenify Hub's release list and signs it.
+#
+# Secret: XENIFY_RELEASE_KEY (the signing key file, base64). The signed list
+# is the `hub-releases` release's manifest.json, which every Hub and server
+# reads:
+#   https://github.com/mr-bubble-pop/xenify/releases/download/hub-releases/manifest.json
+# Xenify Hub itself goes on the `hub-download` release under fixed names,
+# with the server package for install-server.sh.
+#
+# Start it from the Actions tab, or push a tag build-<channel>-<anything>
+# (build-nightly-20261027-1): scripts/start-build.sh does.
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      channel:
+        description: Channel
+        type: choice
+        options: [nightly, preview, release]
+        default: nightly
+  push:
+    tags: ["build-*"]
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+env:
+  CARGO_TERM_COLOR: never
+  # Parts the server needs, downloaded by the Hub from their own releases.
+  POSTGRES_VERSION: 18.6.1
+  # The spelling and grammar model Write and Draw share (model B7), put on
+  # the `hub-parts` release once per version.
+  CHECKER_VERSION: 7.0.0
+  LOCALAI_VERSION: 4.12.1
+
+permissions:
+  contents: read
+
+jobs:
+  version:
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.v.outputs.version }}
+      channel: ${{ steps.v.outputs.channel }}
+      source: ${{ steps.v.outputs.source }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          persist-credentials: false
+      - id: v
+        run: |
+          channel="${{ inputs.channel }}"
+          if [ -z "$channel" ]; then
+            channel=$(echo "${{ github.ref_name }}" | sed -n 's/^build-\(nightly\|preview\|release\)-.*/\1/p')
+            [ -n "$channel" ] || { echo "::error::tag must be build-nightly-…, build-preview-… or build-release-…"; exit 1; }
+          fi
+          base=$(sed -n 's/^version = "\(.*\)"/\1/p' Cargo.toml | head -1)
+          case "$channel" in
+            nightly) v="$base-nightly.$(date -u +%Y%m%d%H%M)" ;;
+            preview) v="$base-preview.${{ github.run_number }}" ;;
+            *) v="$base" ;;
+          esac
+          echo "version=$v" >> "$GITHUB_OUTPUT"
+          echo "channel=$channel" >> "$GITHUB_OUTPUT"
+          # Every job builds this same commit.
+          echo "source=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+          echo "Xenify $v ($channel) from $(git rev-parse --short HEAD)"
+
+  build:
+    needs: version
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { os: ubuntu-22.04, system: linux }
+          - { os: windows-latest, system: windows }
+          - { os: macos-14, system: macos }
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: Free disk space (the runner keeps about 14 GB free; every app shares one build folder)
+        if: matrix.system == 'linux'
+        run: |
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /usr/local/.ghcup /opt/hostedtoolcache/CodeQL /usr/local/share/boost
+          sudo docker image prune --all --force >/dev/null || true
+          df -h /
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          ref: ${{ needs.version.outputs.source }}
+          persist-credentials: false
+      - name: Mistake-spotter model (models branch)
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          ref: models
+          path: models-branch
+          persist-credentials: false
+      - name: Put the model where scripts/stage-spotter.sh looks
+        run: |
+          if command -v sha256sum >/dev/null; then sum="sha256sum"; else sum="shasum -a 256"; fi
+          (cd models-branch && tr -d '\r' < SHA256SUMS | $sum -c -)
+          mkdir -p checkpoints/models
+          mv models-branch/B7.tgz checkpoints/models/B7.tgz
+          rm -rf models-branch
+      - uses: dtolnay/rust-toolchain@b725eda525362e7cf34af9a7243cac1e3f01a7ec # stable
+        with:
+          toolchain: stable
+          targets: wasm32-unknown-unknown
+      - name: Linux build tools
+        if: matrix.system == 'linux'
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq libwebkit2gtk-4.1-dev libgtk-3-dev libsoup-3.0-dev librsvg2-dev libayatana-appindicator3-dev patchelf file rpm >/dev/null
+      - name: Tauri CLI and WebAssembly tools
+        run: |
+          cargo install tauri-cli --version "^2" --locked
+          cargo install wasm-bindgen-cli --version 0.2.128 --locked
+      - name: Xenify Hub installer
+        run: scripts/package-hub.sh ${{ matrix.system }}
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: installer-${{ matrix.system }}
+          path: dist-hub-installers/*
+          retention-days: 1
+      - name: Write
+        run: scripts/package-write.sh ${{ matrix.system }}
+      - name: Draw
+        run: scripts/package-draw.sh ${{ matrix.system }}
+      - name: Calc
+        run: scripts/package-calc.sh ${{ matrix.system }}
+      - name: Chat
+        run: scripts/package-chat.sh ${{ matrix.system }}
+      - name: Plan
+        run: scripts/package-plan.sh ${{ matrix.system }}
+      - name: Hub packages (and the server)
+        run: |
+          df -h . || true
+          for app in write draw calc chat plan server; do
+            scripts/hub-packages.sh $app ${{ matrix.system }} ${{ needs.version.outputs.version }}
+          done
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: hub-${{ matrix.system }}
+          path: dist-hub/*
+          retention-days: 1
+
+  web:
+    # The apps for the browser (the website's build), one package for every
+    # computer: servers download it (Admin › Network) to offer the apps at
+    # their own address.
+    needs: version
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Free disk space
+        run: |
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /usr/local/.ghcup /opt/hostedtoolcache/CodeQL /usr/local/share/boost
+          sudo docker image prune --all --force >/dev/null || true
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          ref: ${{ needs.version.outputs.source }}
+          persist-credentials: false
+      - name: Mistake-spotter model (models branch)
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          ref: models
+          path: models-branch
+          persist-credentials: false
+      - name: Put the model where scripts/stage-spotter.sh looks
+        run: |
+          (cd models-branch && tr -d '\r' < SHA256SUMS | sha256sum -c -)
+          mkdir -p checkpoints/models
+          mv models-branch/B7.tgz checkpoints/models/B7.tgz
+          rm -rf models-branch
+      - uses: dtolnay/rust-toolchain@b725eda525362e7cf34af9a7243cac1e3f01a7ec # stable
+        with:
+          toolchain: stable
+          targets: wasm32-unknown-unknown
+      - name: Web build tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq brotli imagemagick >/dev/null
+          cargo install wasm-bindgen-cli --version 0.2.128 --locked
+          curl -fsSL https://github.com/WebAssembly/binaryen/releases/download/version_124/binaryen-version_124-x86_64-linux.tar.gz | tar xz -C "$HOME"
+          echo "$HOME/binaryen-version_124/bin" >> "$GITHUB_PATH"
+      - name: Build
+        run: |
+          scripts/build-site.sh --rebuild
+          scripts/hub-packages.sh web ${{ needs.version.outputs.version }}
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: hub-web
+          path: dist-hub/*
+          retention-days: 1
+
+  sign:
+    needs: [version, build, web]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+      VERSION: ${{ needs.version.outputs.version }}
+      CHANNEL: ${{ needs.version.outputs.channel }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          ref: ${{ needs.version.outputs.source }}
+          persist-credentials: false
+      - name: Mistake-spotter model (models branch)
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          ref: models
+          path: models-branch
+          persist-credentials: false
+      - name: Put the model where scripts/stage-spotter.sh looks
+        run: |
+          (cd models-branch && tr -d '\r' < SHA256SUMS | sha256sum -c -)
+          mkdir -p checkpoints/models
+          mv models-branch/B7.tgz checkpoints/models/B7.tgz
+          rm -rf models-branch
+      - uses: dtolnay/rust-toolchain@b725eda525362e7cf34af9a7243cac1e3f01a7ec # stable
+        with:
+          toolchain: stable
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
+        with:
+          pattern: hub-*
+          merge-multiple: true
+          path: dist-hub
+      - name: Upload the packages
+        run: |
+          tag="hub-v$VERSION"
+          gh release create "$tag" --title "Xenify $VERSION ($CHANNEL)" \
+            --notes "Packages for Xenify Hub." ${{ needs.version.outputs.channel != 'release' && '--prerelease' || '' }} \
+            $(ls dist-hub/* | grep -v '\.run$')
+          echo "BASE=https://github.com/$GH_REPO/releases/download/$tag" >> "$GITHUB_ENV"
+      - name: The shared spelling and grammar model
+        run: |
+          gh release view hub-parts >/dev/null 2>&1 || gh release create hub-parts --title "Xenify Hub parts" \
+            --notes "Parts Xenify Hub installs once for every app. Don't delete." --prerelease
+          if ! gh release view hub-parts --json assets -q '.assets[].name' | grep -qx "checker-$CHECKER_VERSION.tar.gz"; then
+            mkdir -p parts
+            scripts/hub-packages.sh checker "$CHECKER_VERSION"
+            mv "dist-hub/checker-$CHECKER_VERSION.tar.gz" parts/
+            gh release upload hub-parts "parts/checker-$CHECKER_VERSION.tar.gz"
+          fi
+      - name: The release list so far
+        run: |
+          mkdir -p target/releases
+          gh release download hub-releases -p list.json -D target/releases || echo "starting a new list"
+      - name: Add, describe and sign
+        env:
+          KEY: ${{ secrets.XENIFY_RELEASE_KEY }}
+        run: |
+          test -n "$KEY" || { echo "::error::the XENIFY_RELEASE_KEY secret isn't set"; exit 1; }
+          umask 077
+          key=$(mktemp)
+          trap 'rm -f "$key"' EXIT
+          echo "$KEY" | base64 -d > "$key"
+          cargo build --quiet -p xenify-hub-core --bin xenify-release
+          t=target/debug/xenify-release
+          list=target/releases/list.json
+          XENIFY_RELEASE_KEY="$key" scripts/release.sh "$CHANNEL" "$BASE" dist-hub "$list"
+          $t describe $list write Write "Documents, letters and reports, with spelling and grammar checked on this computer." checker
+          $t describe $list draw Draw "Pictures, animations and slides." checker
+          $t describe $list calc Calc "Spreadsheets with tables that keep their totals. Opens and saves .xlsx files."
+          $t describe $list chat Chat "Chat, calls and whiteboards with people on your Xenify server, plus email and calendar." checker
+          $t describe $list plan Plan "Tasks, boards and Gantt charts, and who is busy across every plan. Edit plans together on your Xenify server."
+          $t describe $list checker "Spelling and grammar" "The spelling and grammar model Write, Draw and Chat share, installed once." part
+          $t describe $list server Server "Share files, edit together and chat with people at home or work. Runs on this computer." postgres
+          $t describe $list postgres PostgreSQL "The server's database." part
+          $t describe $list web "Apps for the browser" "Write, Draw, Calc, Plan and Chat as web pages, for a server to offer at its address." part
+          $t describe $list localai "AI runner" "Runs AI models on this computer's graphics card for the server. About 200 MB, plus models."
+          # Parts from their own releases (added once per version).
+          part() { # product name version os arch url run
+            # Already in the list for this system?
+            python3 -c 'import json,sys; p,v,o,a=sys.argv[2:]; m=json.load(open(sys.argv[1])); sys.exit(0 if any(d["os"]==o and d["arch"]==a for x in m.get("products",[]) if x["id"]==p for r in x.get("releases",[]) if r["version"]==v for d in r["downloads"]) else 1)' \
+              $list "$1" "$3" "$4" "$5" 2>/dev/null && return 0
+            curl -fsSL -o part.bin "$6"
+            $t add $list "$1" "$2" "$3" release "$4" "$5" part.bin "$6" "$7"
+            rm part.bin
+          }
+          pg=https://github.com/theseus-rs/postgresql-binaries/releases/download/$POSTGRES_VERSION
+          part postgres PostgreSQL $POSTGRES_VERSION linux x86_64 $pg/postgresql-$POSTGRES_VERSION-x86_64-unknown-linux-gnu.tar.gz postgresql-$POSTGRES_VERSION-x86_64-unknown-linux-gnu/bin/postgres
+          part postgres PostgreSQL $POSTGRES_VERSION windows x86_64 $pg/postgresql-$POSTGRES_VERSION-x86_64-pc-windows-msvc.zip postgresql-$POSTGRES_VERSION-x86_64-pc-windows-msvc/bin/postgres.exe
+          part postgres PostgreSQL $POSTGRES_VERSION macos aarch64 $pg/postgresql-$POSTGRES_VERSION-aarch64-apple-darwin.tar.gz postgresql-$POSTGRES_VERSION-aarch64-apple-darwin/bin/postgres
+          part postgres PostgreSQL $POSTGRES_VERSION macos x86_64 $pg/postgresql-$POSTGRES_VERSION-x86_64-apple-darwin.tar.gz postgresql-$POSTGRES_VERSION-x86_64-apple-darwin/bin/postgres
+          ck=https://github.com/$GH_REPO/releases/download/hub-parts/checker-$CHECKER_VERSION.tar.gz
+          for sys in "linux x86_64" "linux aarch64" "windows x86_64" "macos aarch64" "macos x86_64"; do
+            part checker "Spelling and grammar" $CHECKER_VERSION $sys $ck spotter/config.json
+          done
+          la=https://github.com/mudler/LocalAI/releases/download/v$LOCALAI_VERSION
+          part localai "AI runner" $LOCALAI_VERSION linux x86_64 $la/local-ai-v$LOCALAI_VERSION-linux-amd64 local-ai
+          part localai "AI runner" $LOCALAI_VERSION linux aarch64 $la/local-ai-v$LOCALAI_VERSION-linux-arm64 local-ai
+          part localai "AI runner" $LOCALAI_VERSION macos aarch64 $la/local-ai-v$LOCALAI_VERSION-darwin-arm64 local-ai
+          $t sign $list "$key" target/releases/manifest.json
+      - name: Publish the list
+        run: |
+          gh release view hub-releases >/dev/null 2>&1 || gh release create hub-releases --title "Xenify Hub release list" \
+            --notes "The signed list of Xenify releases that Xenify Hub reads. Don't delete." --prerelease
+          gh release upload hub-releases target/releases/manifest.json target/releases/list.json --clobber
+
+  installers:
+    # Only a release that signed: the Hub that's offered can read its list.
+    needs: sign
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+    steps:
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
+        with:
+          pattern: installer-*
+          merge-multiple: true
+          path: installers
+      - name: Publish Xenify Hub
+        run: |
+          gh release view hub-download >/dev/null 2>&1 || gh release create hub-download --title "Xenify Hub" \
+            --notes "Xenify Hub: installs and updates Xenify Write, Draw, Calc, Plan, Chat and the server. The website links here."
+          (cd installers && sha256sum * > SHA256SUMS.txt)
+          gh release upload hub-download installers/* --clobber
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
+        with:
+          name: hub-linux
+          path: hub-linux
+      - name: Publish the server for install-server.sh (a VPS without Xenify Hub)
+        run: |
+          pkg=$(ls hub-linux/server-*-linux-x86_64.tar.gz | head -1)
+          cp "$pkg" xenify-server-linux-x86_64.tar.gz
+          sha256sum xenify-server-linux-x86_64.tar.gz > xenify-server-linux-x86_64.tar.gz.sha256
+          gh release upload hub-download xenify-server-linux-x86_64.tar.gz xenify-server-linux-x86_64.tar.gz.sha256 --clobber

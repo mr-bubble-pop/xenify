@@ -82,21 +82,14 @@ versions are removed.
 
 **From GitHub (the usual way).** Push to `main`, then run
 `scripts/start-build.sh release [nightly|preview|release]` (or start
-**Release** from the Actions tab of mr-bubble-pop/xenify-releases).
-
-The workflows live in that public repository, not this one: Actions
-minutes are free for public repositories, and this one's run out fast
-(Windows minutes count double, Mac minutes ten times). They check this
-repository out with the secret **XENIFY_SOURCE_TOKEN** (a fine-grained
-token with Contents: Read on mr-bubble-pop/xenify only) and run every build
-step through `scripts/ci-quiet.sh`, which keeps compiler output, which
-quotes code, out of the public logs. Nothing compiled is cached there.
-`scripts/start-build.sh site` deploys xenify.net the same way. Only Linux
-is built for now.
+**Release** from the Actions tab of mr-bubble-pop/xenify). The workflows
+are in `.github/workflows`; `scripts/start-build.sh site` deploys
+xenify.net the same way. Linux, Windows and macOS are built.
 
 The workflow does the rest:
 
-1. It builds Write, Draw, Calc, Chat, Plan and the server on Linux.
+1. It builds Write, Draw, Calc, Chat, Plan and the server for Linux,
+   Windows and macOS.
    `scripts/hub-packages.sh` turns each build into a Hub package named
    `<app>-<version>-<system>-<arch>.<ext>`, with a `.run` note naming the
    program inside.
@@ -106,7 +99,7 @@ The workflow does the rest:
    their own releases.
 4. It signs the list with the release key and publishes it as
    `manifest.json` on `hub-releases`. The Hub reads it from
-   `https://github.com/mr-bubble-pop/xenify-releases/releases/download/hub-releases/manifest.json`.
+   `https://github.com/mr-bubble-pop/xenify/releases/download/hub-releases/manifest.json`.
 
 Preview and Nightly versions get a suffix, for example
 `1.2.0-nightly.202610241230` or `1.2.0-preview.17`.
@@ -121,14 +114,14 @@ Preview and Nightly versions get a suffix, for example
     Hub update trusts a new key.
   - Never commit it.
   - GitHub gets it as the secret **XENIFY_RELEASE_KEY** on
-    mr-bubble-pop/xenify-releases. Run `base64 -w0 <file>`, then on GitHub
+    mr-bubble-pop/xenify. Run `base64 -w0 <file>`, then on GitHub
     open Settings › Secrets and variables › Actions › New repository secret.
 
 **By hand**, with the key file on your own computer:
 
 ```sh
 XENIFY_RELEASE_KEY=~/xenify-release.key \
-  scripts/release.sh release https://github.com/mr-bubble-pop/xenify-releases/releases/download/v1.2.0 dist-hub/
+  scripts/release.sh release https://github.com/mr-bubble-pop/xenify/releases/download/v1.2.0 dist-hub/
 ```
 
 The `xenify-release` commands:

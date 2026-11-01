@@ -142,8 +142,7 @@ h2 { font-size: clamp(30px, 3.6vw, 44px); line-height: 1.08; font-weight: 800; }
 .system.mine { outline: 2px solid var(--accent); }
 .system.mine .btn.ghost { background: var(--accent); color: #fff; border-color: transparent; }
 
-/* While the source code is private (body.soon): no source links. The
-   downloads are public, on the mr-bubble-pop/xenify-releases repository. */
+/* While the source code is private (body.soon): no source links. */
 .soon-note { display: none; }
 .soon .soon-note { display: block; }
 .soon .gh { display: none !important; }

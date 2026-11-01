@@ -6,7 +6,7 @@ Xenify server so a whole team shares everything in one place. No
 subscription, no account, and nothing is sent to us.
 
 Website and downloads: <https://xenify.net> ·
-Release files: <https://github.com/mr-bubble-pop/xenify-releases>
+Release files: <https://github.com/mr-bubble-pop/xenify/releases>
 
 ## The apps
 

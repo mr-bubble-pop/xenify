@@ -45,7 +45,7 @@ DATABASE=""
 DNS_CHECK=1
 ENCRYPT=""
 PASSPHRASE=""
-RELEASES="https://github.com/mr-bubble-pop/xenify-releases/releases/download/hub-releases/manifest.json"
+RELEASES="https://github.com/mr-bubble-pop/xenify/releases/download/hub-releases/manifest.json"
 # Xenify's release key, the public half (as xenify_hub_core::TRUSTED), and
 # its id (the key's first 8 bytes, hex) as the signed list names it.
 RELEASE_KEY="MCowBQYDK2VwAyEAJHV/+KXNYIB8mAcDDo90b7Ro+HQ6+9VE/qcDtehoL6U="
