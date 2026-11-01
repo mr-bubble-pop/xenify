@@ -1,0 +1,30 @@
+# Regional dialect words and grammar (correct in their own varieties).
+y'all | you all
+ya'll | you all
+all y'all | all of you
+yinz | you all
+youse | you
+yous | you
+might could | might be able to
+might should | might want to
+used to could | used to be able to
+fixing to | about to
+fixin' to | about to
+fixin to | about to
+dinnae | don't
+cannae | can't
+wouldnae | wouldn't
+didnae | didn't
+innit | isn't it
+arvo | afternoon
+brekkie | breakfast
+I'm after | I have just
+yous guys | you all
+hella | very
+yall | you all
+craic | fun
+g'day | hello
+dinkum | genuine
+bonnie | pretty
+ye | you
+me mates | my friends

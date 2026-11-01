@@ -1,0 +1,37 @@
+[package]
+name = "xenify-draw-app"
+description = "Xenify Draw with HTML screens: drawing and animation on the desktop, the same screens and engine as the browser version"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[[bin]]
+name = "xenify-draw-app"
+path = "src/main.rs"
+
+[dependencies]
+# Xenify Hub: a newer version it installed (Help › Restart to use it).
+xenify-hub-core = { path = "../xenify-hub-core" }
+# Desktop app shell around the system's web view (MIT OR Apache-2.0).
+tauri = { version = "2", features = [] }
+tauri-plugin-dialog = "2"
+serde_json.workspace = true
+base64.workspace = true
+# Fetching pictures from the web (checking each address first).
+ureq.workspace = true
+# Spelling and grammar: Xenify Write's checker, with the dictionary shared between the apps.
+xenify-write-host = { path = "../xenify-write-host" }
+xenify-wp-check.workspace = true
+# Exports made here (video, GIF, PNG frames, PDF): rendered with Vello offscreen, encoded by ffmpeg.
+xenify-render.workspace = true
+xenify-export.workspace = true
+xenify-doc.workspace = true
+xenify-platform = { workspace = true, features = ["discover", "trust"] }
+xenify-anim.workspace = true
+
+[target.'cfg(target_os = "linux")'.dependencies]
+# Whether the desktop draws see-through windows (for rounded corners); the same GTK Tauri uses (MIT).
+gtk = "0.18"
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }

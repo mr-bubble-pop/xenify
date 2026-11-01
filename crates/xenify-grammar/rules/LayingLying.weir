@@ -1,0 +1,18 @@
+# Commonly confused words: lay (put something down) vs lie (recline).
+# "I was laying down" → "lying". From common confused-word lists; ours.
+# why: Lie means rest or recline (I was lying down). Lay means put something down and needs an object (laying bricks, laying eggs).
+expr main <([am, is, are, was, were, been, be, (I'm), (you're), (we're), (they're), (he's), (she's), just, still, (keep), (kept), (started), (stop)] laying [down, in, on, around, about, awake, there, here, low, still, back, flat, face, (on), (in)]), laying>
+
+let message "Did you mean `lying` (resting, reclining)? `Laying` means putting something down (laying bricks)."
+let description "Fixes `laying` where `lying` is meant: `I was laying down`."
+let kind "Malapropism"
+let becomes "lying"
+let strategy "MatchCase"
+
+test "I was laying down all day." "I was lying down all day."
+test "She is laying in bed." "She is lying in bed."
+test "The keys were laying on the table." "The keys were lying on the table."
+
+allows "The hens are laying eggs."
+allows "They were laying bricks."
+allows "I was lying down all day."

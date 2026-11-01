@@ -1,0 +1,104 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "Xenify Calc",
+  "mainBinaryName": "xenify-calc",
+  "identifier": "app.xenify.calc",
+  "build": {
+    "frontendDist": "ui"
+  },
+  "app": {
+    "withGlobalTauri": true,
+    "windows": [],
+    "security": {
+      "csp": "default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob:; connect-src 'self' ipc: http://ipc.localhost http: https: ws: wss:; worker-src 'self' blob:"
+    }
+  },
+  "bundle": {
+    "active": true,
+    "publisher": "Xenify",
+    "copyright": "MIT licence",
+    "license": "MIT",
+    "licenseFile": "../../LICENSE",
+    "category": "Productivity",
+    "shortDescription": "Spreadsheets with tables that keep their totals",
+    "longDescription": "Spreadsheets with formulas, tables whose totals grow as rows are added, simple look-ups and summaries. Opens and saves .xlsx files.",
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico",
+      "icons/icon.png"
+    ],
+    "resources": {
+      "../../THIRD_PARTY_LICENSES.txt": "THIRD_PARTY_LICENSES.txt"
+    },
+    "fileAssociations": [
+      {
+        "ext": [
+          "xcalc"
+        ],
+        "name": "Xenify Calc book",
+        "description": "Xenify Calc book",
+        "role": "Editor",
+        "mimeType": "application/x-xenify-calc"
+      },
+      {
+        "ext": [
+          "xlsx",
+          "xlsm",
+          "xls"
+        ],
+        "name": "Spreadsheet (.xlsx)",
+        "description": "Spreadsheet (.xlsx)",
+        "role": "Editor",
+        "rank": "Alternate",
+        "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      },
+      {
+        "ext": [
+          "csv"
+        ],
+        "name": "CSV file",
+        "description": "Comma-separated values",
+        "role": "Editor",
+        "rank": "Alternate",
+        "mimeType": "text/csv"
+      }
+    ],
+    "linux": {
+      "deb": {
+        "depends": [
+          "libwebkit2gtk-4.1-0",
+          "libgtk-3-0",
+          "libsoup-3.0-0"
+        ],
+        "section": "office",
+        "desktopTemplate": "packaging/linux.desktop.hbs"
+      },
+      "rpm": {
+        "depends": [
+          "webkit2gtk4.1",
+          "gtk3",
+          "libsoup3"
+        ],
+        "desktopTemplate": "packaging/linux.desktop.hbs"
+      }
+    },
+    "windows": {
+      "webviewInstallMode": {
+        "type": "downloadBootstrapper",
+        "silent": true
+      },
+      "nsis": {
+        "installMode": "currentUser",
+        "displayLanguageSelector": false
+      }
+    },
+    "macOS": {
+      "minimumSystemVersion": "11.0",
+      "signingIdentity": "-",
+      "dmg": {}
+    }
+  }
+}

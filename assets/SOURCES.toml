@@ -1,0 +1,1331 @@
+# Where every asset came from, and the licence it is used under.
+#
+# This is the single record. It feeds:
+#   - the test crates/xenify-export/tests/provenance.rs, which fails when a
+#     file under assets/ has no entry, when its SHA-256 no longer matches, or
+#     when its licence isn't one we accept (see ACCEPTED in
+#     crates/xenify-export/src/sources.rs);
+#   - Help › Credits & Licences in the app (compiled in at build time);
+#   - scripts/licenses.sh, which appends each licence_file to
+#     THIRD_PARTY_LICENSES.txt.
+#
+# One [[asset]] per bundled file (or file group), per on-demand download, and
+# per piece of generated media or built-in artwork.
+#
+# Fields:
+#   path          the file under assets/ (absent for artwork that only lives in code)
+#   name          what it is, as shown in the credits
+#   source        "download" (default) or "generated"
+#   source_url    where it was downloaded from (download)
+#   generator     the code that makes it (generated): a path, plus the function
+#   version       release, commit or font version
+#   license       SPDX id
+#   license_file  the licence text, itself listed below
+#   attribution   the exact credit text, when the licence needs one
+#   fetched       date it was downloaded or generated (YYYY-MM-DD)
+#   sha256        of the file at `path` (`sha256sum <file>`)
+#   notes         changes we made (subset, recompression…), and for generated
+#                 media a statement that no third-party material was used
+#
+# Adding an asset: prefer MIT, Apache-2.0, BSD, ISC, Zlib, CC0-1.0 or OFL-1.1.
+# Anything CC BY needs visible attribution. Downloaded sets come from a fetch
+# script (scripts/fetch-*.sh) that pins the URL or commit, checks the hash and
+# writes the entry here; nothing is copied in by hand.
+
+[[asset]]
+path = "assets/fonts/Inter.ttf"
+name = "Inter font"
+source_url = "https://github.com/rsms/inter"
+version = "4.001 (from the font's head table)"
+license = "OFL-1.1"
+license_file = "assets/fonts/OFL.txt"
+attribution = "Inter, © The Inter Project Authors (Rasmus Andersson)"
+fetched = "before 2026-09-26 (exact date not recorded)"
+sha256 = "29160a80ff49ddcab2c97711247e08b1fab27a484a329ce8b813d820dc559031"
+notes = "Unmodified. Embedded in xenify-render for text layers and exports."
+
+[[asset]]
+path = "assets/fonts/OFL.txt"
+name = "Inter font licence"
+source_url = "https://github.com/rsms/inter"
+version = "same as Inter.ttf"
+license = "OFL-1.1"
+attribution = "Licence text for Inter"
+fetched = "before 2026-09-26 (exact date not recorded)"
+sha256 = "5b9321a4298cfeb6b34354164a1c3afc3db114569984c502b9b35d988fd58c57"
+
+[[asset]]
+path = "assets/fonts/STIXTwoMath-Regular.ttf"
+name = "STIX Two Math font"
+source_url = "https://github.com/stipub/stixfonts/tree/v2.13b171"
+version = "v2.13b171"
+license = "OFL-1.1"
+license_file = "assets/fonts/OFL-STIX.txt"
+attribution = "STIX Two Math, © 2001-2021 The STIX Fonts Project Authors"
+fetched = "2026-10-14"
+sha256 = "49b22767985171bce579307b21d98f4d35012fa39e316acc4ffcab8644dfb69b"
+notes = "Unmodified. Fetched by scripts/fetch-stix.sh. Xenify Write: fallback for symbols (arrows, maths, Greek) and equations."
+
+[[asset]]
+path = "assets/fonts/OFL-STIX.txt"
+name = "STIX Two licence"
+source_url = "https://github.com/stipub/stixfonts/tree/v2.13b171"
+version = "v2.13b171"
+license = "OFL-1.1"
+attribution = "Licence text for STIX Two"
+fetched = "2026-10-14"
+sha256 = "0c8825913b60d858aacdb33c4ca6660a7d64b0d6464702efbb19313f5765861a"
+
+[[asset]]
+path = "assets/fonts/cmunrm.otf"
+name = "CMU Serif Roman font (Computer Modern Unicode)"
+source_url = "https://ctan.org/pkg/cm-unicode"
+version = "0.7.0 (CTAN)"
+license = "OFL-1.1"
+license_file = "assets/fonts/OFL-CMU.txt"
+attribution = "Computer Modern Unicode fonts, © 2003-2009 Andrey V. Panov; after Donald E. Knuth's Computer Modern and the authors listed in the licence"
+fetched = "2026-10-14"
+sha256 = "5089693f81ed5b83435be7167bf2f93c2608ce92fb3a7e13f6be238a733c38f2"
+notes = "Unmodified. Fetched by scripts/fetch-cmu.sh. Xenify Write: the classic LaTeX look (Scientific paper template)."
+
+[[asset]]
+path = "assets/fonts/cmunti.otf"
+name = "CMU Serif Italic font (Computer Modern Unicode)"
+source_url = "https://ctan.org/pkg/cm-unicode"
+version = "0.7.0 (CTAN)"
+license = "OFL-1.1"
+license_file = "assets/fonts/OFL-CMU.txt"
+attribution = "Computer Modern Unicode fonts, © 2003-2009 Andrey V. Panov; after Donald E. Knuth's Computer Modern and the authors listed in the licence"
+fetched = "2026-10-14"
+sha256 = "fc38ce9ea06e49bda118a8be9f053791d043a547c248ae30c9e4fad956de3267"
+notes = "Unmodified. Fetched by scripts/fetch-cmu.sh. Xenify Write: the classic LaTeX look (Scientific paper template)."
+
+[[asset]]
+path = "assets/fonts/cmunbx.otf"
+name = "CMU Serif Bold font (Computer Modern Unicode)"
+source_url = "https://ctan.org/pkg/cm-unicode"
+version = "0.7.0 (CTAN)"
+license = "OFL-1.1"
+license_file = "assets/fonts/OFL-CMU.txt"
+attribution = "Computer Modern Unicode fonts, © 2003-2009 Andrey V. Panov; after Donald E. Knuth's Computer Modern and the authors listed in the licence"
+fetched = "2026-10-14"
+sha256 = "e956d496776533b0ca1b6e1acaeac896b81b81b908667cbf49840048ed16bd0c"
+notes = "Unmodified. Fetched by scripts/fetch-cmu.sh. Xenify Write: the classic LaTeX look (Scientific paper template)."
+
+[[asset]]
+path = "assets/fonts/cmunbi.otf"
+name = "CMU Serif Bold Italic font (Computer Modern Unicode)"
+source_url = "https://ctan.org/pkg/cm-unicode"
+version = "0.7.0 (CTAN)"
+license = "OFL-1.1"
+license_file = "assets/fonts/OFL-CMU.txt"
+attribution = "Computer Modern Unicode fonts, © 2003-2009 Andrey V. Panov; after Donald E. Knuth's Computer Modern and the authors listed in the licence"
+fetched = "2026-10-14"
+sha256 = "690cc3c1511a98e79f5bde8a58868405160da1b7d99f3482324c6a915b496b02"
+notes = "Unmodified. Fetched by scripts/fetch-cmu.sh. Xenify Write: the classic LaTeX look (Scientific paper template)."
+
+[[asset]]
+path = "assets/fonts/OFL-CMU.txt"
+name = "Computer Modern Unicode licence"
+source_url = "https://ctan.org/pkg/cm-unicode"
+version = "0.7.0 (CTAN)"
+license = "OFL-1.1"
+attribution = "Licence text for the Computer Modern Unicode fonts"
+fetched = "2026-10-14"
+sha256 = "73273dffdefe2e5f1e138084d4a4b65b1c50df2ab0179f78484f31beefe30d84"
+
+[[asset]]
+name = "Diagram shape library: 76 flowchart, network, cloud & software, BPMN and UML shapes"
+source = "generated"
+generator = "crates/xenify-ops/src/library.rs"
+license = "MIT"
+fetched = "2026-09-29"
+notes = """Original. Drawn for this program from plain geometry (rectangles, ellipses, arcs, lines). \
+No outside icon sets, logos or trademarks were copied or traced; vendor icons (cloud providers, \
+network equipment makers) are deliberately not included. Flowchart and BPMN symbol shapes follow \
+the generic conventions of ISO 5807 and the OMG BPMN 2.0 spec (shapes, not copied artwork). \
+UML shapes (class, interface, package, component, node, actor, use case, states, lifeline and so on, \
+added 2026-10-23) follow the generic notation of the OMG UML 2 spec, drawn from the same plain \
+geometry."""
+
+[[asset]]
+name = "Arrowheads and connector line jumps"
+source = "generated"
+generator = "crates/xenify-anim/src/diagram.rs, crates/xenify-route/src/jumps.rs"
+license = "MIT"
+fetched = "2026-09-29"
+notes = "Original, generated geometry. No third-party material."
+
+[[asset]]
+name = "Sound effects and music beds (Layer › New Sound, Slide › Soundtrack › music)"
+source = "generated"
+generator = "crates/xenify-audio/src/synth.rs (Recipe::render)"
+license = "MIT"
+fetched = "2026-09-29"
+notes = """Original. Synthesized by the program from a recipe and a seed (oscillators, filtered noise, \
+envelopes, a small Schroeder room); no recordings, samples or third-party material. The recipe is saved \
+with each sound so it can be made again."""
+
+[[asset]]
+name = "Noto Emoji Animation (animated emoji, downloaded when first used)"
+source_url = "https://googlefonts.github.io/noto-emoji-animation/"
+version = "latest (the list from googlefonts.github.io/noto-emoji-animation/data/api.json, each animation from fonts.gstatic.com/s/e/notoemoji/latest/<code points>/lottie.json)"
+license = "CC-BY-4.0"
+attribution = "Animated emoji: Noto Emoji Animation © Google LLC, CC BY 4.0"
+fetched = "on demand, first used 2026-09-30"
+notes = """Not bundled. The Emoji panel's Animated tab and the AI's add_emoji (animated) download an \
+animation only when it's used, into the data folder (downloads/noto-emoji-animation/), and log each \
+download (date, URL, file, size) in downloads/downloads.log. The Lottie files are imported unmodified as \
+editable layers; the credit is shown in the panel, the status line and Help › Credits."""
+
+# GIPHY (Layer › New › GIF, AI add_gif) is not an asset source of ours: users
+# search with their own API key and add GIFs they choose, and they're
+# responsible for the rights (the panel says so and shows "Powered by GIPHY").
+# Each GIF's title and maker are kept as the image's name. Nothing is bundled.
+
+# BEGIN fetch-emoji.sh (written by scripts/fetch-emoji.sh; don't edit by hand)
+[[asset]]
+path = "assets/emoji/fluent-emoji.json.z"
+name = "Fluent Emoji (flat), 770 emoji"
+source_url = "https://github.com/microsoft/fluentui-emoji"
+version = "commit 1ffb34c752ecf5d402f04cfb4b392c77f57c54bc"
+license = "MIT"
+license_file = "assets/emoji/LICENSE"
+attribution = "Fluent Emoji © Microsoft Corporation, MIT License"
+fetched = "2026-09-30"
+sha256 = "a5201b2271eabd1efe11e92a3e0654f4e4b32e97a635b7235776c21fdcf027a3"
+notes = "The flat SVGs (default skin tone) of the groups Smileys & Emotion, Activities, Animals & Nature, Food & Drink and common symbols/objects, with their names, groups and keywords, packed into one zlib-compressed JSON file. The SVGs are unmodified."
+
+[[asset]]
+path = "assets/emoji/LICENSE"
+name = "Fluent Emoji licence"
+source_url = "https://github.com/microsoft/fluentui-emoji"
+version = "commit 1ffb34c752ecf5d402f04cfb4b392c77f57c54bc"
+license = "MIT"
+attribution = "Licence text for Fluent Emoji"
+fetched = "2026-09-30"
+sha256 = "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383"
+# END fetch-emoji.sh
+
+
+[[asset]]
+path = "assets/proofing/test-set.jsonl"
+name = "Proofing test set: 939 short passages with and without mistakes (Xenify Write regression test)"
+source = "generated"
+generator = "crates/xenify-wp-corpus/src/ai.rs, crates/xenify-wp-corpus/src/taxonomy.rs"
+license = "MIT"
+fetched = "2026-10-09"
+sha256 = "d83bb2eb246235229e2e2712e728ff59287a5618ef0cdb2278b3779499976f7d"
+notes = """Original: AI-generated text, no third-party material copied. Written by deepseek/deepseek-v4-flash (MIT-licensed weights) from our own prompts and our own list of mistake kinds and writing settings, checked by qwen/qwen3-235b-a22b-2507 (Apache-2.0), both through OpenRouter zero-data-retention endpoints. A seeded sample of the held-out round (never used while writing rules). Used only by crates/xenify-grammar/tests/corpus.rs; not shipped in the app."""
+
+[[asset]]
+name = "Sound-alike context model (crates/xenify-grammar/rules/homophones/model.tsv)"
+source = "generated"
+generator = "crates/xenify-wp-corpus/src/sounds.rs, crates/xenify-grammar/src/sound_alike.rs"
+license = "MIT"
+fetched = "2026-10-09"
+notes = """Original: context-word counts learned by `xenify-wp-corpus sounds train` from about 95,000 AI-generated example sentences (deepseek/deepseek-v4-flash, MIT-licensed weights; checked by qwen/qwen3-235b-a22b-2507, Apache-2.0; both via OpenRouter zero-data-retention endpoints), written from the 356 confusable sets in rules/homophones/sets.txt (retrained 2026-10-15). Only the counts ship; no third-party material."""
+
+[[asset]]
+path = "crates/xenify-grammar/rules/homophones/freq.tsv"
+name = "Sound-alike word frequencies"
+source = "generated"
+generator = "docs/grammar-checker.md (counted for Xenify from the training books and passages; the one-off counting script wasn't kept)"
+license = "MIT"
+fetched = "2026-10-18"
+sha256 = "2edc730c27979597d89343d6f3f5cb2a1cead556a87ad2367d08d022eccd6150"
+notes = """Original: how often each sound-alike word appears in our public-domain (Project Gutenberg) training books and our AI-generated passages. Only the counts ship, no text. Used so a much rarer word needs more evidence before it's suggested."""
+
+# BEGIN fetch-oewn.sh (written by scripts/fetch-oewn.sh; don't edit by hand)
+[[asset]]
+path = "assets/lexicon/oewn.txt.z"
+name = "Open English WordNet 2025: dictionary and thesaurus (107519 meanings, 135969 words)"
+source_url = "https://en-word.net (https://github.com/globalwordnet/english-wordnet/releases/download/2025-edition/english-wordnet-2025-json.zip)"
+version = "2025 edition"
+license = "CC-BY-4.0"
+license_file = "assets/lexicon/LICENSE"
+attribution = "Open English WordNet (https://en-word.net), © the Open English WordNet team, CC BY 4.0; derived from Princeton WordNet 3.0, © 2006 Princeton University, WordNet License"
+fetched = "2026-10-11"
+sha256 = "f566739bf28b3c3997bf0b8a77b3183c919b521cb2f63d53bc197fbbe0b044a5"
+notes = "Repacked by scripts/fetch-oewn.sh: definitions, up to two examples, words, broader and similar meanings, US pronunciations, antonyms and irregular forms, as zlib-compressed text. Other relations and the remaining examples are left out; the wording is unchanged."
+
+[[asset]]
+path = "assets/lexicon/LICENSE"
+name = "Open English WordNet licence"
+source_url = "https://github.com/globalwordnet/english-wordnet"
+version = "2025 edition"
+license = "CC-BY-4.0"
+attribution = "Licence text for Open English WordNet (CC BY 4.0) and Princeton WordNet (WordNet License)"
+fetched = "2026-10-11"
+sha256 = "39beac44990b80d7195cc7d629d02d3a356e86ce5597f90e26c998987394473e"
+# END fetch-oewn.sh
+
+# BEGIN fetch-lucide.sh (written by scripts/fetch-lucide.sh; don't edit by hand)
+[[asset]]
+path = "assets/icons/lucide.json"
+name = "Lucide icons, 109 icons (Xenify Write menus and toolbar)"
+source_url = "https://lucide.dev (https://registry.npmjs.org/lucide-static/-/lucide-static-1.55.0.tgz)"
+version = "lucide-static 1.55.0"
+license = "ISC"
+license_file = "assets/icons/LICENSE"
+attribution = "Lucide icons © Lucide Icons and Contributors (ISC); icons derived from Feather © Cole Bemis (MIT)"
+fetched = "2026-10-14"
+sha256 = "a4e8dbbd398377630e2be08936478d5dcbfa6e36bc04c9a967def1acee925c1a"
+notes = "The shapes (paths, lines, circles, rectangles) of the icons Write uses, copied unmodified from the package's icon-nodes.json into one file. Drawn in the app in the theme's text colour."
+
+[[asset]]
+path = "assets/icons/LICENSE"
+name = "Lucide icons licence"
+source_url = "https://lucide.dev"
+version = "lucide-static 1.55.0"
+license = "ISC"
+attribution = "Licence text for Lucide (ISC) and Feather (MIT)"
+fetched = "2026-10-14"
+sha256 = "b495047bd93a9b06913511076f504daba17d5bbeb3e0650f3bb53a4220329c57"
+# END fetch-lucide.sh
+
+[[asset]]
+name = "Lucide icon shapes in Draw, Calc, Plan, the Hub and the server's pages"
+source_url = "https://lucide.dev"
+version = "lucide-static 1.55.0"
+license = "ISC"
+attribution = "Lucide icons © Lucide Icons and Contributors (ISC); icons derived from Feather © Cole Bemis (MIT)"
+fetched = "2026-10-14"
+notes = "A few icon paths copied unmodified into the apps' code: crates/xenify-draw-app/ui/icons.js, the Hub's window buttons (crates/xenify-hub/ui/app.js), the server icon in each app's serverui.js and the database icon in crates/xenify-server/web/app.js. Each place credits Lucide in a comment. The licence text is the Lucide licence above, shipped in THIRD_PARTY_LICENSES.txt with every app."
+
+[[asset]]
+path = "crates/xenify-grammar/rules/homophones/sets.txt"
+name = "Sound-alike word sets (part)"
+source_url = "https://github.com/cmusphinx/cmudict"
+version = "cmudict master, fetched 2026-10-15"
+license = "BSD-2-Clause"
+license_file = "crates/xenify-grammar/rules/homophones/CMUDICT-LICENSE.txt"
+attribution = "Includes word sets derived from the CMU Pronouncing Dictionary, Copyright (C) 1993-2015 Carnegie Mellon University"
+fetched = "2026-10-15"
+sha256 = "1a5ca9b0165df15c29de1aa1cb3bb09e5196746905c65bb17d841b0f19b61bab"
+notes = "The 77 sets after the CMU note in sets.txt: same-sounding words from the dictionary, filtered (common in public-domain books, WordNet word), curated by an AI reviewer (Qwen3-235B) and by hand; meanings written for Xenify. The dictionary itself isn't shipped. The other sets were written for Xenify."
+
+[[asset]]
+path = "crates/xenify-grammar/rules/homophones/CMUDICT-LICENSE.txt"
+name = "CMU Pronouncing Dictionary licence"
+source_url = "https://github.com/cmusphinx/cmudict"
+version = "same as sets.txt"
+license = "BSD-2-Clause"
+attribution = "Licence text for the CMU Pronouncing Dictionary"
+fetched = "2026-10-15"
+sha256 = "bd4ce8e44170a5f9f481310ca85c51de3c4f851a65e679b40e603b143bd3542a"
+
+[[asset]]
+path = "crates/xenify-chat-app/ui/fonts/Figtree.ttf"
+name = "Figtree font (variable weight)"
+source_url = "https://github.com/google/fonts/tree/47d54ca1ebb14fd864695f1d39dc734f39017c33/ofl/figtree"
+version = "google/fonts at 47d54ca1 (file Figtree[wght].ttf)"
+license = "OFL-1.1"
+license_file = "crates/xenify-chat-app/ui/fonts/OFL-Figtree.txt"
+attribution = "Figtree, © 2022 The Figtree Project Authors (Erik Kennedy)"
+fetched = "2026-10-18"
+sha256 = "26ad3db9b31ff7dde67a91ff515d022d2f495cd506590699cf264f0bfe6fb714"
+notes = "Unmodified, renamed to Figtree.ttf. The Xenify desktop app's interface font."
+
+[[asset]]
+path = "crates/xenify-chat-app/ui/fonts/OFL-Figtree.txt"
+name = "Figtree licence"
+source_url = "https://github.com/google/fonts/tree/47d54ca1ebb14fd864695f1d39dc734f39017c33/ofl/figtree"
+version = "same as Figtree.ttf"
+license = "OFL-1.1"
+attribution = "Licence text for Figtree"
+fetched = "2026-10-18"
+sha256 = "140d37233e7f3ce7313798befa9600893bcceaf41a55fa0fa5ad52f7f657a268"
+
+[[asset]]
+path = "crates/xenify-chat-app/icons/icon.png"
+name = "Xenify Chat icon (icon.png; 32x32, 128x128, 128x128@2x, icon.ico and icon.icns are made from the same drawing)"
+source = "generated"
+generator = "scripts/make-chat-icons.sh"
+license = "MIT"
+fetched = "2026-11-02"
+sha256 = "0e43c22d09c36cd539fb44305e3303f944b11e925cea2201475947b9205e8a5c"
+notes = "Original icon drawn by the script (a blue rounded square with a white speech bubble and three dots); no outside artwork. Replaces the placeholder flame."
+
+[[asset]]
+path = "crates/xenify-chat-app/icons/tray.png"
+name = "Xenify Chat tray icon"
+source = "generated"
+generator = "scripts/make-chat-icons.sh"
+license = "MIT"
+fetched = "2026-11-02"
+sha256 = "de7aaff81b5457dca45106af4dd7d88b6a5f19f20d83cbe7e9b8a443612160ba"
+notes = "The Chat icon with a clear margin, so it doesn't touch its neighbours in a system tray."
+
+[[asset]]
+path = "crates/xenify-hub/icons/tray.png"
+name = "Xenify Hub tray icon"
+source = "generated"
+generator = "scripts/make-hub-icons.sh"
+license = "MIT"
+fetched = "2026-11-02"
+sha256 = "29a845945025905a1b594901cd065577edd8e4ed65be007f176325f79c9b2d47"
+notes = "The Hub icon with a clear margin for system trays. The letter X is set in Figtree (OFL-1.1 allows using the font in images)."
+
+[[asset]]
+path = "crates/xenify-write-app/ui/fonts/Figtree.ttf"
+name = "Figtree font (variable weight), for Xenify Write's HTML screens"
+source_url = "https://github.com/google/fonts/tree/47d54ca1ebb14fd864695f1d39dc734f39017c33/ofl/figtree"
+version = "google/fonts at 47d54ca1 (same file as crates/xenify-chat-app/ui/fonts/Figtree.ttf)"
+license = "OFL-1.1"
+license_file = "crates/xenify-write-app/ui/fonts/OFL-Figtree.txt"
+attribution = "Figtree, © 2022 The Figtree Project Authors (Erik Kennedy)"
+fetched = "2026-10-18"
+sha256 = "26ad3db9b31ff7dde67a91ff515d022d2f495cd506590699cf264f0bfe6fb714"
+notes = "Copied unmodified from the chat app. The interface font of the HTML Xenify Write."
+
+[[asset]]
+path = "crates/xenify-write-app/ui/fonts/OFL-Figtree.txt"
+name = "Figtree licence"
+source_url = "https://github.com/google/fonts/tree/47d54ca1ebb14fd864695f1d39dc734f39017c33/ofl/figtree"
+version = "same as Figtree.ttf"
+license = "OFL-1.1"
+attribution = "Licence text for Figtree"
+fetched = "2026-10-18"
+sha256 = "140d37233e7f3ce7313798befa9600893bcceaf41a55fa0fa5ad52f7f657a268"
+
+[[asset]]
+path = "crates/xenify-write-app/icons/icon.png"
+name = "Xenify Write (HTML) app icon"
+source_url = "generated"
+version = "1"
+license = "MIT"
+attribution = "Made with ImageMagick in this repository: an ember rounded square with a white W set in Figtree (OFL); no outside artwork"
+fetched = "2026-10-18"
+sha256 = "5bb26ba9eaaa5da89158d6e08c5fb4cf43e48f3bb224d46ac161d1dd2df374df"
+notes = "Placeholder icon; replace with a designed one before release."
+
+[[asset]]
+path = "crates/xenify-write-app/ui/icons.js"
+name = "Line icons for Xenify Write's HTML screens"
+source_url = "https://lucide.dev"
+version = "path data copied from Lucide icons (the same set as assets/icons/lucide.json)"
+license = "ISC"
+attribution = "Lucide icons, © Lucide Contributors (ISC); some © Cole Bemis (Feather, MIT)"
+fetched = "2026-10-18"
+sha256 = "58e01c454c7e136e7dc5639ff42c667bfb8c1509f0f1e5c5bf9ff51f41664a66"
+notes = "The `spacing` icon is Xenify's own (MIT), drawn in the same style. The `server` icon is Lucide's \"server\" (ISC), added 2026-10-24."
+
+
+[[asset]]
+name = "Mistake spotter model B7 (bundled with Xenify Write; downloaded by the web version)"
+source = "generated"
+generator = "crates/xenify-wp-corpus/train/spotter.py (fine-tuning), scripts/stage-spotter.sh (packaging)"
+version = "B7"
+license = "MIT"
+fetched = "2026-10-14"
+notes = """Original fine-tune made for this program from DeBERTa-v3-xsmall (Microsoft, MIT licence). Trained on the Xenify proofing \
+corpus (synthetic, CC0-1.0) and on passages derived from Wikipedia edits (WikEd Error Corpus; Wikipedia \
+text is CC BY-SA 4.0); the raw edits are never shipped. Credits ship with the model in \
+crates/xenify-grammar-spotter/model/README.md."""
+
+[[asset]]
+path = "assets/licenses/deberta-LICENSE.txt"
+name = "DeBERTa licence (base model of the mistake spotter B7)"
+source_url = "https://github.com/microsoft/DeBERTa/blob/master/LICENSE"
+version = "master"
+license = "MIT"
+license_file = "assets/licenses/deberta-LICENSE.txt"
+attribution = "Mistake spotter base model: DeBERTa-v3 © Microsoft Corporation, MIT"
+fetched = "2026-11-01"
+sha256 = "7df20dcdf9197e9945c14858d41c60f11b52b93e5b69e2b63416b874d598d322"
+
+[[asset]]
+path = "site/fonts/Figtree.ttf"
+name = "Figtree font (variable weight), for the xenify.net feature page"
+source_url = "https://github.com/google/fonts/tree/47d54ca1ebb14fd864695f1d39dc734f39017c33/ofl/figtree"
+version = "google/fonts at 47d54ca1 (same file as crates/xenify-write-app/ui/fonts/Figtree.ttf)"
+license = "OFL-1.1"
+license_file = "site/fonts/OFL-Figtree.txt"
+attribution = "Figtree, © 2022 The Figtree Project Authors (Erik Kennedy)"
+fetched = "2026-10-20"
+sha256 = "26ad3db9b31ff7dde67a91ff515d022d2f495cd506590699cf264f0bfe6fb714"
+
+[[asset]]
+path = "site/fonts/OFL-Figtree.txt"
+name = "Figtree font licence (xenify.net feature page)"
+source_url = "https://github.com/google/fonts/tree/47d54ca1ebb14fd864695f1d39dc734f39017c33/ofl/figtree"
+version = "same as site/fonts/Figtree.ttf"
+license = "OFL-1.1"
+attribution = "Licence text for Figtree"
+fetched = "2026-10-20"
+sha256 = "140d37233e7f3ce7313798befa9600893bcceaf41a55fa0fa5ad52f7f657a268"
+
+[[asset]]
+path = "crates/xenify-draw-app/ui/fonts/Figtree.ttf"
+name = "Figtree font (variable weight), for Xenify Draw's HTML screens"
+source_url = "https://github.com/google/fonts/tree/47d54ca1ebb14fd864695f1d39dc734f39017c33/ofl/figtree"
+version = "google/fonts at 47d54ca1 (same file as crates/xenify-write-app/ui/fonts/Figtree.ttf)"
+license = "OFL-1.1"
+license_file = "crates/xenify-draw-app/ui/fonts/OFL-Figtree.txt"
+attribution = "Figtree, © 2022 The Figtree Project Authors (Erik Kennedy)"
+fetched = "2026-10-21"
+sha256 = "26ad3db9b31ff7dde67a91ff515d022d2f495cd506590699cf264f0bfe6fb714"
+notes = "Copied unmodified from Xenify Write. The interface font of the HTML Xenify Draw."
+
+[[asset]]
+path = "crates/xenify-draw-app/ui/fonts/OFL-Figtree.txt"
+name = "Figtree licence (Xenify Draw)"
+source_url = "https://github.com/google/fonts/tree/47d54ca1ebb14fd864695f1d39dc734f39017c33/ofl/figtree"
+version = "same as Figtree.ttf"
+license = "OFL-1.1"
+attribution = "Licence text for Figtree"
+fetched = "2026-10-21"
+sha256 = "140d37233e7f3ce7313798befa9600893bcceaf41a55fa0fa5ad52f7f657a268"
+
+[[asset]]
+path = "crates/xenify-draw-app/ui/fonts/Inter.ttf"
+name = "Inter font, for typing on Xenify Draw's canvas"
+source_url = "https://github.com/rsms/inter"
+version = "same file as assets/fonts/Inter.ttf"
+license = "OFL-1.1"
+license_file = "crates/xenify-draw-app/ui/fonts/OFL-Inter.txt"
+attribution = "Inter, © The Inter Project Authors (Rasmus Andersson)"
+fetched = "2026-10-21"
+sha256 = "29160a80ff49ddcab2c97711247e08b1fab27a484a329ce8b813d820dc559031"
+notes = "Unmodified copy of assets/fonts/Inter.ttf: the text box shown while typing on the canvas uses the same font the engine draws with."
+
+[[asset]]
+path = "crates/xenify-draw-app/ui/fonts/OFL-Inter.txt"
+name = "Inter font licence (Xenify Draw)"
+source_url = "https://github.com/rsms/inter"
+version = "same as assets/fonts/OFL.txt"
+license = "OFL-1.1"
+attribution = "Licence text for Inter"
+fetched = "2026-10-21"
+sha256 = "5b9321a4298cfeb6b34354164a1c3afc3db114569984c502b9b35d988fd58c57"
+
+[[asset]]
+path = "crates/xenify-draw-app/icons/icon.png"
+name = "Xenify Draw (HTML) app icon"
+source_url = "generated"
+version = "1"
+license = "MIT"
+attribution = "Made with ImageMagick in this repository: an ember rounded square with a white D set in Figtree (OFL); no outside artwork"
+fetched = "2026-10-21"
+sha256 = "c67832a2db4c1c34ceb07910bb8a0a1221c7f80e00e1645928018625f2fe97f2"
+notes = "Placeholder icon in the same style as Xenify Write's; replace with a designed one before release. The other sizes in icons/ are made from it by `cargo tauri icon`."
+
+[[asset]]
+path = "crates/xenify-draw-app/ui/icons.js"
+name = "Line icons for Xenify Draw's HTML screens"
+source_url = "https://lucide.dev"
+version = "path data copied from Lucide icons (the same set as assets/icons/lucide.json)"
+license = "ISC"
+attribution = "Lucide icons, © Lucide Contributors (ISC); some © Cole Bemis (Feather, MIT). The icons after the comment \"Drawn for Xenify Draw\" (tools, shapes, align, combine, sound, 3D…) were drawn for this program on 2026-10-22 (MIT, like the rest of it); so were knife, toPath, simplify, subdivide, outlineStroke, offsetPath and flipV (2026-10-23). The `server` icon is Lucide's \"server\" (ISC), added 2026-10-24."
+fetched = "2026-10-21"
+sha256 = "97211d04541efc593e40eb8fcd9f9b1fa26a8bb30dcdb8327c2b0a07433e6823"
+
+[[asset]]
+path = "crates/xenify-server/web/fonts/Figtree.ttf"
+name = "Figtree font (variable weight)"
+source_url = "https://github.com/google/fonts/tree/47d54ca1ebb14fd864695f1d39dc734f39017c33/ofl/figtree"
+version = "google/fonts at 47d54ca1 (file Figtree[wght].ttf)"
+license = "OFL-1.1"
+license_file = "crates/xenify-server/web/fonts/OFL-Figtree.txt"
+attribution = "Figtree, © 2022 The Figtree Project Authors (Erik Kennedy)"
+fetched = "2026-10-18"
+sha256 = "26ad3db9b31ff7dde67a91ff515d022d2f495cd506590699cf264f0bfe6fb714"
+notes = "Unmodified copy of the chat app's Figtree.ttf. The Xenify server's admin pages' font (served by the server, so pages work without the internet)."
+
+[[asset]]
+path = "crates/xenify-hub/ui/fonts/Figtree.ttf"
+name = "Figtree font (variable weight)"
+source_url = "https://github.com/google/fonts/tree/47d54ca1ebb14fd864695f1d39dc734f39017c33/ofl/figtree"
+version = "google/fonts at 47d54ca1 (file Figtree[wght].ttf)"
+license = "OFL-1.1"
+license_file = "crates/xenify-hub/ui/fonts/OFL-Figtree.txt"
+attribution = "Figtree, © 2022 The Figtree Project Authors (Erik Kennedy)"
+fetched = "2026-10-18"
+sha256 = "26ad3db9b31ff7dde67a91ff515d022d2f495cd506590699cf264f0bfe6fb714"
+notes = "Unmodified copy of the server admin pages' Figtree.ttf. Xenify Hub's font (bundled, so it works without the internet)."
+
+[[asset]]
+path = "crates/xenify-hub/ui/fonts/OFL-Figtree.txt"
+name = "Figtree licence"
+source_url = "https://github.com/google/fonts/tree/47d54ca1ebb14fd864695f1d39dc734f39017c33/ofl/figtree"
+version = "same as Figtree.ttf"
+license = "OFL-1.1"
+attribution = "Licence text for Figtree"
+fetched = "2026-10-18"
+sha256 = "140d37233e7f3ce7313798befa9600893bcceaf41a55fa0fa5ad52f7f657a268"
+
+[[asset]]
+path = "crates/xenify-server/web/fonts/OFL-Figtree.txt"
+name = "Figtree licence"
+source_url = "https://github.com/google/fonts/tree/47d54ca1ebb14fd864695f1d39dc734f39017c33/ofl/figtree"
+version = "same as Figtree.ttf"
+license = "OFL-1.1"
+attribution = "Licence text for Figtree"
+fetched = "2026-10-18"
+sha256 = "140d37233e7f3ce7313798befa9600893bcceaf41a55fa0fa5ad52f7f657a268"
+
+[[asset]]
+path = "crates/xenify-hub/icons/icon.png"
+name = "Xenify Hub icon (icon.png)"
+source = "generated"
+generator = "scripts/make-hub-icons.sh"
+license = "MIT"
+fetched = "2026-10-24"
+sha256 = "a09a3d7e2299aae71f53441a5b066cdbcff469354068fc03cec383c44e985509"
+notes = "Original icon made for Xenify Hub. The only outside material is the letter X in Figtree (OFL-1.1 allows using the font in images)."
+
+[[asset]]
+path = "crates/xenify-hub/icons/32x32.png"
+name = "Xenify Hub icon (32x32.png)"
+source = "generated"
+generator = "scripts/make-hub-icons.sh"
+license = "MIT"
+fetched = "2026-10-24"
+sha256 = "af5669dfd92a9fd32551e3adb3335b1261c40356a243686c220f3ce843a47a63"
+notes = "Original icon made for Xenify Hub. The only outside material is the letter X in Figtree (OFL-1.1 allows using the font in images)."
+
+[[asset]]
+path = "crates/xenify-hub/icons/128x128.png"
+name = "Xenify Hub icon (128x128.png)"
+source = "generated"
+generator = "scripts/make-hub-icons.sh"
+license = "MIT"
+fetched = "2026-10-24"
+sha256 = "6840790447ba9c0aa00d192eba587e24c5993a342bc0a5d2c491bfb2bb65df07"
+notes = "Original icon made for Xenify Hub. The only outside material is the letter X in Figtree (OFL-1.1 allows using the font in images)."
+
+[[asset]]
+path = "crates/xenify-hub/icons/128x128@2x.png"
+name = "Xenify Hub icon (128x128@2x.png)"
+source = "generated"
+generator = "scripts/make-hub-icons.sh"
+license = "MIT"
+fetched = "2026-10-24"
+sha256 = "9de56184747c89e50b3fe3395fa9d327ec49766d967a67dce5918c614f0a8eb6"
+notes = "Original icon made for Xenify Hub. The only outside material is the letter X in Figtree (OFL-1.1 allows using the font in images)."
+
+[[asset]]
+path = "crates/xenify-hub/icons/icon.ico"
+name = "Xenify Hub icon (icon.ico)"
+source = "generated"
+generator = "scripts/make-hub-icons.sh"
+license = "MIT"
+fetched = "2026-10-24"
+sha256 = "258c3ea658f03b799478d917d58dd4b93d0bec3e5b24453b50ed9b3bf723c425"
+notes = "Original icon made for Xenify Hub, converted by cargo tauri icon from crates/xenify-hub/icons/icon.png. The only outside material is the letter X in Figtree (OFL-1.1)."
+
+[[asset]]
+path = "crates/xenify-hub/icons/icon.icns"
+name = "Xenify Hub icon (icon.icns)"
+source = "generated"
+generator = "scripts/make-hub-icons.sh"
+license = "MIT"
+fetched = "2026-10-24"
+sha256 = "ff1b02c8c42c54907fdb5604cb53854cc20c480641bdb2e4b615dc06b0e741bb"
+notes = "Original icon made for Xenify Hub, converted by cargo tauri icon from crates/xenify-hub/icons/icon.png. The only outside material is the letter X in Figtree (OFL-1.1)."
+
+[[asset]]
+path = "site/img/x.svg"
+name = "Xenify mark (orange X) for xenify.net"
+source = "generated"
+generator = "site/img/x.svg (drawn by hand as SVG)"
+license = "MIT"
+fetched = "2026-10-24"
+sha256 = "a134d10f0e38d61e42711b77c4b19b966dd780f310dc2eb78fee5e4edf9b0243"
+notes = "Original. Two strokes on a rounded square in the apps' accent colour."
+
+[[asset]]
+path = "site/media/write-checking.webm"
+name = "Recording of Xenify Write for xenify.net: typing a paragraph with mistakes, fixed with right-click (sample text written for it); video"
+source = "generated"
+generator = "crates/xenify-write-app (the desktop app recorded under Xvfb with ffmpeg x11grab and driven by a test script)"
+license = "MIT"
+fetched = "2026-10-24"
+sha256 = "55a01982d372353e5a3f0ebae584c498c0c491ceb8a83ddfd3d8cdc284510626"
+notes = "Original footage of this program. \"Tick Tock\" is a made-up brand. The only outside material shown is the fonts recorded in this file (Figtree, Inter, Source Serif 4; OFL-1.1)."
+
+[[asset]]
+path = "site/media/write-checking.mp4"
+name = "Recording of Xenify Write for xenify.net: typing a paragraph with mistakes, fixed with right-click (sample text written for it); video (fallback)"
+source = "generated"
+generator = "crates/xenify-write-app (the desktop app recorded under Xvfb with ffmpeg x11grab and driven by a test script)"
+license = "MIT"
+fetched = "2026-10-24"
+sha256 = "45712efc5f5a18095ea6f8022f888e3be3fda78d38c26d255775297f85bdd42b"
+notes = "Original footage of this program. \"Tick Tock\" is a made-up brand. The only outside material shown is the fonts recorded in this file (Figtree, Inter, Source Serif 4; OFL-1.1)."
+
+[[asset]]
+path = "site/media/write-checking.webp"
+name = "Recording of Xenify Write for xenify.net: typing a paragraph with mistakes, fixed with right-click (sample text written for it); poster frame"
+source = "generated"
+generator = "crates/xenify-write-app (the desktop app recorded under Xvfb with ffmpeg x11grab and driven by a test script)"
+license = "MIT"
+fetched = "2026-10-24"
+sha256 = "30f59d62ef8ede9beccafd46ddd3a33e28c85bea44bf589cbcfb93afc60f159b"
+notes = "Original footage of this program. \"Tick Tock\" is a made-up brand. The only outside material shown is the fonts recorded in this file (Figtree, Inter, Source Serif 4; OFL-1.1)."
+
+[[asset]]
+path = "site/media/write-together.webm"
+name = "Recording of Xenify Write for xenify.net: two windows editing one document through a test Xenify Server (sample text written for it); video"
+source = "generated"
+generator = "crates/xenify-write-app (two of the desktop app recorded under Xvfb with ffmpeg x11grab and driven by test scripts), crates/xenify-server (a test server between them)"
+license = "MIT"
+fetched = "2026-10-24"
+sha256 = "0a2cb6d3668040c29e1fa5dea4341b3c9cb77a0883711be6c07c7591306824e3"
+notes = "Original footage of this program. \"Tick Tock\" is a made-up brand. The only outside material shown is the fonts recorded in this file (Figtree, Inter, Source Serif 4; OFL-1.1)."
+
+[[asset]]
+path = "site/media/write-together.mp4"
+name = "Recording of Xenify Write for xenify.net: two windows editing one document through a test Xenify Server (sample text written for it); video (fallback)"
+source = "generated"
+generator = "crates/xenify-write-app (two of the desktop app recorded under Xvfb with ffmpeg x11grab and driven by test scripts), crates/xenify-server (a test server between them)"
+license = "MIT"
+fetched = "2026-10-24"
+sha256 = "59f170ab85f95e82f7ab1bb0c36e739f3ed5988477b7b0d999b4d35c0f2c4878"
+notes = "Original footage of this program. \"Tick Tock\" is a made-up brand. The only outside material shown is the fonts recorded in this file (Figtree, Inter, Source Serif 4; OFL-1.1)."
+
+[[asset]]
+path = "site/media/write-together.webp"
+name = "Recording of Xenify Write for xenify.net: two windows editing one document through a test Xenify Server (sample text written for it); poster frame"
+source = "generated"
+generator = "crates/xenify-write-app (two of the desktop app recorded under Xvfb with ffmpeg x11grab and driven by test scripts), crates/xenify-server (a test server between them)"
+license = "MIT"
+fetched = "2026-10-24"
+sha256 = "350c781f3495a6dfb220d7a09da64f835724e9ac5ce5f730240695a469434c0b"
+notes = "Original footage of this program. \"Tick Tock\" is a made-up brand. The only outside material shown is the fonts recorded in this file (Figtree, Inter, Source Serif 4; OFL-1.1)."
+
+[[asset]]
+path = "site/media/hub.webp"
+name = "Screenshot of Xenify Hub for xenify.net: Write, Calc, Draw and Chat installed, Plan and the Server offered"
+source = "generated"
+generator = "crates/xenify-hub/ui (unmodified page, script and styles) in headless Chromium, with a stand-in for the desktop side giving made-up versions, converted with ffmpeg"
+license = "MIT"
+fetched = "2026-11-01"
+sha256 = "7e92eefc839cb991350c9e9cc303b03cb5134cbc15c42ac4b6664e406c742e11"
+notes = "Original screenshot of this program; the versions and server name are made up. No third-party material other than the Figtree font (OFL-1.1) recorded in this file."
+
+[[asset]]
+path = "site/media/server-admin.webp"
+name = "Screenshot of Xenify Server's admin pages (People & groups) for xenify.net, with made-up people"
+source = "generated"
+generator = "crates/xenify-server/tests/demo.rs (a made-up studio's people, chats, email, files and plans on a test Xenify server), the browser apps captured in headless Chromium over DevTools, converted with ffmpeg"
+license = "MIT"
+fetched = "2026-11-01"
+sha256 = "266bc46376a958bcd63859b8f0201d96ce2a50d8a327291b1baf38487db72a60"
+notes = "Original screenshot of this program; the company, people, emails, documents and plans are made up. No third-party material other than the fonts recorded in this file (Figtree, Inter, Source Serif 4; OFL-1.1)."
+
+[[asset]]
+path = "site/media/draw-film.webm"
+name = "Three slides made in Xenify Draw for xenify.net (a leaf drawn with the pen, a ball swinging between two keyframes, slides arriving); video"
+source = "generated"
+generator = "crates/xenify-showcase/examples/drawn.rs (rendered with xenify-cli render --deck)"
+license = "MIT"
+fetched = "2026-10-24"
+sha256 = "718a9186941644a5198c53ab8f012b2e41b6cd3310757ca6a4a479e1e62845b3"
+notes = "Original. The only outside material shown is the fonts recorded in this file (Figtree and Inter; OFL-1.1)."
+
+[[asset]]
+path = "site/media/draw-editing.webm"
+name = "Recording of Xenify Draw for xenify.net: recolouring the leaf and the sun on the canvas above, then playing its second slide; video"
+source = "generated"
+generator = "crates/xenify-draw-app (the desktop app recorded under Xvfb with ffmpeg x11grab), crates/xenify-showcase/examples/drawn.rs (the canvas)"
+license = "MIT"
+fetched = "2026-10-24"
+sha256 = "7785d19aceb5b539a7e711352d02242bcdee1caf35e93f01c6e9c981448dffc4"
+notes = "Original footage of this program. The only outside material shown is the fonts recorded in this file (Figtree and Inter; OFL-1.1)."
+
+[[asset]]
+path = "site/media/draw-film.mp4"
+name = "Three slides made in Xenify Draw for xenify.net (a leaf drawn with the pen, a ball swinging between two keyframes, slides arriving); video (fallback)"
+source = "generated"
+generator = "crates/xenify-showcase/examples/drawn.rs (rendered with xenify-cli render --deck)"
+license = "MIT"
+fetched = "2026-10-24"
+sha256 = "b8586b76c53c775282d89f2d8b2207110991e24a8643347374df08be0d2e142b"
+notes = "Original. The only outside material shown is the fonts recorded in this file (Figtree and Inter; OFL-1.1)."
+
+[[asset]]
+path = "site/media/draw-editing.mp4"
+name = "Recording of Xenify Draw for xenify.net: recolouring the leaf and the sun on the canvas above, then playing its second slide; video (fallback)"
+source = "generated"
+generator = "crates/xenify-draw-app (the desktop app recorded under Xvfb with ffmpeg x11grab), crates/xenify-showcase/examples/drawn.rs (the canvas)"
+license = "MIT"
+fetched = "2026-10-24"
+sha256 = "cda605a3264533e3025d089292f381068cf6890cb7a477395804ce4035f15bb3"
+notes = "Original footage of this program. The only outside material shown is the fonts recorded in this file (Figtree and Inter; OFL-1.1)."
+
+[[asset]]
+path = "site/media/draw-film.webp"
+name = "Three slides made in Xenify Draw for xenify.net (a leaf drawn with the pen, a ball swinging between two keyframes, slides arriving); poster frame"
+source = "generated"
+generator = "crates/xenify-showcase/examples/drawn.rs (rendered with xenify-cli render --deck)"
+license = "MIT"
+fetched = "2026-10-24"
+sha256 = "342928e0e857c249c9d0a309034825021bd13510a9568cb0ea646c89e7fca034"
+notes = "Original. The only outside material shown is the fonts recorded in this file (Figtree and Inter; OFL-1.1)."
+
+[[asset]]
+path = "site/media/draw-editing.webp"
+name = "Recording of Xenify Draw for xenify.net: recolouring the leaf and the sun on the canvas above, then playing its second slide; poster frame"
+source = "generated"
+generator = "crates/xenify-draw-app (the desktop app recorded under Xvfb with ffmpeg x11grab), crates/xenify-showcase/examples/drawn.rs (the canvas)"
+license = "MIT"
+fetched = "2026-10-24"
+sha256 = "5b721343a34ef0d1b22501c191dfde5e0417360760eacf617559d670ab408a02"
+notes = "Original footage of this program. The only outside material shown is the fonts recorded in this file (Figtree and Inter; OFL-1.1)."
+
+[[asset]]
+path = "crates/xenify-calc-app/ui/fonts/Figtree.ttf"
+name = "Figtree font (variable weight), for Xenify Calc's screens"
+source_url = "https://github.com/google/fonts/tree/47d54ca1ebb14fd864695f1d39dc734f39017c33/ofl/figtree"
+version = "google/fonts at 47d54ca1 (same file as crates/xenify-write-app/ui/fonts/Figtree.ttf)"
+license = "OFL-1.1"
+license_file = "crates/xenify-calc-app/ui/fonts/OFL-Figtree.txt"
+attribution = "Figtree, © 2022 The Figtree Project Authors (Erik Kennedy)"
+fetched = "2026-10-25"
+sha256 = "26ad3db9b31ff7dde67a91ff515d022d2f495cd506590699cf264f0bfe6fb714"
+notes = "Copied unmodified from Xenify Draw. The interface font of Xenify Calc, also used for cells in the default font."
+
+[[asset]]
+path = "crates/xenify-calc-app/ui/fonts/OFL-Figtree.txt"
+name = "Figtree licence (Xenify Calc)"
+source_url = "https://github.com/google/fonts/tree/47d54ca1ebb14fd864695f1d39dc734f39017c33/ofl/figtree"
+version = "same as Figtree.ttf"
+license = "OFL-1.1"
+attribution = "Licence text for Figtree"
+fetched = "2026-10-25"
+sha256 = "140d37233e7f3ce7313798befa9600893bcceaf41a55fa0fa5ad52f7f657a268"
+
+[[asset]]
+path = "crates/xenify-calc-app/icons/icon.png"
+name = "Xenify Calc app icon"
+source_url = "generated"
+version = "1"
+license = "MIT"
+attribution = "Made with ImageMagick in this repository (scripts/make-calc-icons.sh): an ember rounded square with a white C set in Figtree (OFL); no outside artwork"
+fetched = "2026-10-25"
+sha256 = "1e0e2564fbcbfee4db2174376d6e8b042e26565b201a02cb5003e4bd3d8d9194"
+notes = "Placeholder icon in the same style as Xenify Write's and Draw's; replace with a designed one before release. The other sizes in icons/ are made from it by `cargo tauri icon`."
+
+[[asset]]
+path = "crates/xenify-calc-app/ui/icons.js"
+name = "Line icons for Xenify Calc's screens"
+source_url = "generated"
+version = "1"
+license = "MIT"
+attribution = "Drawn for Xenify Calc as simple SVG paths (24×24 grid) in the style of the other Xenify apps; no outside icon set copied"
+fetched = "2026-10-25"
+sha256 = "5a5c52f71be5f366f066290055f3f66c5b180262a4dea65920a4d6ef6928b219"
+notes = "The icon paths are in the P table."
+
+[[asset]]
+name = "Public holiday rules (crates/xenify-holidays/data/*.toml)"
+source_url = "https://github.com/vacanza/holidays"
+version = "0.107"
+license = "MIT"
+attribution = "Holiday dates from python-holidays, Copyright (c) Vacanza Team and individual contributors (see crates/xenify-holidays/data/LICENSE-python-holidays.txt)"
+fetched = "2026-10-25"
+notes = "Not copied code: scripts/holidays/infer.py works out rules (fixed day, nth weekday, Easter offsets, weekend moves) from python-holidays' dates for 2000–2075, and scripts/holidays/check.py compares the Rust results with it. The licence text ships beside the data."
+
+[[asset]]
+path = "site/media/calc-sheet.webp"
+name = "Screenshot of Xenify Calc for xenify.net: a table of café sales with its totals row and a chart (sample numbers made up for it)"
+source = "generated"
+generator = "crates/xenify-calc-app/ui with the xenify-calc-web engine (the browser build in target/calc-web, filled through the app's own calls by a throwaway script and captured in headless Chromium at 1280x720)"
+license = "MIT"
+fetched = "2026-10-25"
+sha256 = "cdad8b812dd8df56ae18b8ddb3d8d305fe11d9eedafb3945367fdf4c151b8ffe"
+notes = "Original screenshot of this program, made for the website. The only outside material shown is the Figtree font recorded in this file (OFL-1.1)."
+
+[[asset]]
+path = "site/media/calc-report.webp"
+name = "Screenshot of Xenify Calc for xenify.net: a report page with a title, two big numbers and a chart (sample numbers made up for it)"
+source = "generated"
+generator = "crates/xenify-calc-app/ui with the xenify-calc-web engine (the browser build in target/calc-web, filled through the app's own calls by a throwaway script and captured in headless Chromium at 1280x720)"
+license = "MIT"
+fetched = "2026-10-25"
+sha256 = "0d58de0daf46d193d4a33039595b409ae4aee9021111170143593108e3b41277"
+notes = "Original screenshot of this program, made for the website. The only outside material shown is the Figtree font recorded in this file (OFL-1.1)."
+
+[[asset]]
+path = "crates/xenify-plan-app/ui/fonts/Figtree.ttf"
+name = "Figtree font (variable weight), for Xenify Plan's screens"
+source_url = "https://github.com/google/fonts/tree/47d54ca1ebb14fd864695f1d39dc734f39017c33/ofl/figtree"
+version = "google/fonts at 47d54ca1 (same file as crates/xenify-write-app/ui/fonts/Figtree.ttf)"
+license = "OFL-1.1"
+license_file = "crates/xenify-plan-app/ui/fonts/OFL-Figtree.txt"
+attribution = "Figtree, © 2022 The Figtree Project Authors (Erik Kennedy)"
+fetched = "2026-10-25"
+sha256 = "26ad3db9b31ff7dde67a91ff515d022d2f495cd506590699cf264f0bfe6fb714"
+notes = "Copied unmodified from Xenify Calc. The interface font of Xenify Plan."
+
+[[asset]]
+path = "crates/xenify-plan-app/ui/fonts/OFL-Figtree.txt"
+name = "Figtree licence (Xenify Plan)"
+source_url = "https://github.com/google/fonts/tree/47d54ca1ebb14fd864695f1d39dc734f39017c33/ofl/figtree"
+version = "same as Figtree.ttf"
+license = "OFL-1.1"
+attribution = "Licence text for Figtree"
+fetched = "2026-10-25"
+sha256 = "140d37233e7f3ce7313798befa9600893bcceaf41a55fa0fa5ad52f7f657a268"
+
+[[asset]]
+path = "crates/xenify-plan-app/icons/icon.png"
+name = "Xenify Plan app icon"
+source_url = "generated"
+version = "1"
+license = "MIT"
+attribution = "Made with ImageMagick in this repository (scripts/make-plan-icons.sh): an ember rounded square with a white P set in Figtree (OFL); no outside artwork"
+fetched = "2026-10-25"
+sha256 = "a0efd2b7d30f6d7e70737df6e8ea3333a77669ea0da239006bef29cafd394172"
+notes = "Placeholder icon in the same style as Xenify Write's, Draw's and Calc's; replace with a designed one before release. The other sizes in icons/ are made from it by `cargo tauri icon`."
+
+[[asset]]
+path = "crates/xenify-plan-app/ui/icons.js"
+name = "Line icons for Xenify Plan's screens"
+source_url = "generated"
+version = "1"
+license = "MIT"
+attribution = "Drawn for Xenify Plan as simple SVG paths (24×24 grid) in the style of the other Xenify apps; no outside icon set copied"
+fetched = "2026-10-25"
+sha256 = "ffe54b5a37f9e3ef949b54e725729ab914ef189face04f64edd7ce45d6a5d943"
+notes = "The icon paths are in the P table."
+
+[[asset]]
+name = "Whisper speech-to-text models (Xenify Chat's voice messages and meeting transcripts, downloaded when first used)"
+source_url = "https://huggingface.co/ggerganov/whisper.cpp"
+version = "ggml-tiny-q8_0.bin (sha256 c2085835d3f50733e2ff6e4b41ae8a2b8d8110461e18821b09a15c40c42d1cca), ggml-base-q5_1.bin (sha256 422f1ae452ade6f30a004d7e5c6a43195e4433bc370bf23fac9cc591f01a8898), ggml-small-q5_1.bin (sha256 ae85e4a935d7a567bd102fe55afc16bb595bdb618e11b2fc7591bc08120411bb)"
+license = "MIT"
+license_file = "assets/licenses/whisper-LICENSE.txt"
+attribution = "Speech to text: Whisper © 2022 OpenAI, MIT; converted for whisper.cpp by the ggml authors"
+fetched = "on demand, first used 2026-10-26"
+notes = """Not bundled. OpenAI's Whisper models (tiny, base, small), converted and quantised by the \
+whisper.cpp project. Xenify Chat downloads the one chosen in Settings › Voice and transcripts the first \
+time speech is turned into text, checks its SHA-256 (pinned in crates/xenify-voice/src/lib.rs) before \
+keeping it, and logs each download (time, URL, file, size, hash) in models/whisper/downloads.log in the \
+data folder. Used unmodified."""
+
+[[asset]]
+path = "assets/licenses/whisper-LICENSE.txt"
+name = "Whisper licence"
+source_url = "https://github.com/openai/whisper/blob/main/LICENSE"
+version = "main, 2026-10-26"
+license = "MIT"
+attribution = "Licence text for OpenAI's Whisper models"
+fetched = "2026-10-26"
+sha256 = "b5d65a59060e68c4ff940e1eddfa6f94b2d68fdf58ed7f4dd57721c997e35e9d"
+
+[[asset]]
+name = "whisper.cpp (built into Xenify Chat, for speech to text)"
+source_url = "https://github.com/ggml-org/whisper.cpp (inside the whisper-rs-sys 0.15.0 crate)"
+version = "1.8.3"
+license = "MIT"
+license_file = "assets/licenses/whisper.cpp-LICENSE.txt"
+attribution = "whisper.cpp and ggml © 2023-2024 The ggml authors, MIT"
+fetched = "2026-10-26"
+notes = """C/C++ code compiled into the app through the whisper-rs crates (Unlicense), which list only their \
+own licence; whisper.cpp's MIT notice is reproduced from here."""
+
+[[asset]]
+path = "assets/licenses/whisper.cpp-LICENSE.txt"
+name = "whisper.cpp licence"
+source_url = "https://github.com/ggml-org/whisper.cpp/blob/master/LICENSE"
+version = "1.8.3 (as in whisper-rs-sys 0.15.0)"
+license = "MIT"
+attribution = "Licence text for whisper.cpp and ggml"
+fetched = "2026-10-26"
+sha256 = "e562a2ddfaf8280537795ac5ecd34e3012b6582a147ef69ba6a6a5c08c84757d"
+
+[[asset]]
+path = "site/media/ai-flux.2-klein-4b-baby-1024x1024.webp"
+name = "AI picture for xenify.net's AI page: baby with a moustache eating cherry pie"
+source = "generated"
+generator = "FLUX.2 klein 4B (Black Forest Labs), on a rented Tesla V100 (scripts/pod-bench, ComfyUI), prompt as shown on the page"
+model_source_url = "https://huggingface.co/black-forest-labs/FLUX.2-klein-4B"
+license = "Apache-2.0"
+fetched = "2026-10-26"
+sha256 = "28eae0e3d659c313e111a814c49bb7c5c43eb083359ab782a6deec329fafdc24"
+notes = "Made from Xenify's own showcase prompts; checked by eye for logos and real brands (none). No third-party material. Licence: the model's licence; its outputs carry no conditions."
+
+[[asset]]
+path = "site/media/ai-flux.2-klein-4b-dog-1024x1536.webp"
+name = "AI picture for xenify.net's AI page: golden retriever in a chef's hat making pancakes"
+source = "generated"
+generator = "FLUX.2 klein 4B (Black Forest Labs), on a rented Tesla V100 (scripts/pod-bench, ComfyUI), prompt as shown on the page"
+model_source_url = "https://huggingface.co/black-forest-labs/FLUX.2-klein-4B"
+license = "Apache-2.0"
+fetched = "2026-10-26"
+sha256 = "cf5233f48ab94c75532ff0b8a40065d7c872103c611529a286d0b03012076201"
+notes = "Made from Xenify's own showcase prompts; checked by eye for logos and real brands (none). No third-party material. Licence: the model's licence; its outputs carry no conditions."
+
+[[asset]]
+path = "site/media/ai-flux.2-klein-4b-gorilla-1536x1024.webp"
+name = "AI picture for xenify.net's AI page: baby with a toy hammer and a gorilla on a city street"
+source = "generated"
+generator = "FLUX.2 klein 4B (Black Forest Labs), on a rented Tesla V100 (scripts/pod-bench, ComfyUI), prompt as shown on the page"
+model_source_url = "https://huggingface.co/black-forest-labs/FLUX.2-klein-4B"
+license = "Apache-2.0"
+fetched = "2026-10-26"
+sha256 = "dd0d7a393e50198ccffadd3a0c62702da17f0de2ef0702c38d7a91447fea1915"
+notes = "Made from Xenify's own showcase prompts; checked by eye for logos and real brands (none). No third-party material. Licence: the model's licence; its outputs carry no conditions."
+
+[[asset]]
+path = "site/media/ai-wan2.2-baby.mp4"
+name = "AI clip for xenify.net's AI page: baby with a moustache eating cherry pie"
+source = "generated"
+generator = "Wan 2.2 T2V A14B (Wan-AI), on a rented Tesla V100 (scripts/pod-bench, ComfyUI), prompt as shown on the page"
+model_source_url = "https://huggingface.co/Wan-AI/Wan2.2-T2V-A14B"
+license = "Apache-2.0"
+fetched = "2026-10-26"
+sha256 = "89d0ce16ef292f3e3e5b44ed275ecf77e0bcf3c4f5efd7e752e41d3ffb5f6798"
+notes = "Made from Xenify's own showcase prompts; checked by eye for logos and real brands (none). No third-party material. Licence: the model's licence; its outputs carry no conditions."
+
+[[asset]]
+path = "site/media/ai-wan2.2-baby.webp"
+name = "AI poster frame of a clip for xenify.net's AI page: baby with a moustache eating cherry pie"
+source = "generated"
+generator = "Wan 2.2 T2V A14B (Wan-AI), on a rented Tesla V100 (scripts/pod-bench, ComfyUI), prompt as shown on the page"
+model_source_url = "https://huggingface.co/Wan-AI/Wan2.2-T2V-A14B"
+license = "Apache-2.0"
+fetched = "2026-10-26"
+sha256 = "46b3942634e79ca84652a2f784d2c8e0c151fadac093832dd71414315cdb828a"
+notes = "Made from Xenify's own showcase prompts; checked by eye for logos and real brands (none). No third-party material. Licence: the model's licence; its outputs carry no conditions."
+
+[[asset]]
+path = "site/media/ai-wan2.2-gorilla.mp4"
+name = "AI clip for xenify.net's AI page: baby with a toy hammer and a gorilla on a city street"
+source = "generated"
+generator = "Wan 2.2 T2V A14B (Wan-AI), on a rented Tesla V100 (scripts/pod-bench, ComfyUI), prompt as shown on the page"
+model_source_url = "https://huggingface.co/Wan-AI/Wan2.2-T2V-A14B"
+license = "Apache-2.0"
+fetched = "2026-10-26"
+sha256 = "67bddfaece5342bf0d2a1782e67d5ef7c0ac59a2a1040a97803f3fc017968d6f"
+notes = "Made from Xenify's own showcase prompts; checked by eye for logos and real brands (none). No third-party material. Licence: the model's licence; its outputs carry no conditions."
+
+[[asset]]
+path = "site/media/ai-wan2.2-gorilla.webp"
+name = "AI poster frame of a clip for xenify.net's AI page: baby with a toy hammer and a gorilla on a city street"
+source = "generated"
+generator = "Wan 2.2 T2V A14B (Wan-AI), on a rented Tesla V100 (scripts/pod-bench, ComfyUI), prompt as shown on the page"
+model_source_url = "https://huggingface.co/Wan-AI/Wan2.2-T2V-A14B"
+license = "Apache-2.0"
+fetched = "2026-10-26"
+sha256 = "8b786b0a7ae43d48467ed41ed97b47a94d41d2106fe18d41882500cfb8492239"
+notes = "Made from Xenify's own showcase prompts; checked by eye for logos and real brands (none). No third-party material. Licence: the model's licence; its outputs carry no conditions."
+
+[[asset]]
+path = "site/media/ai-z-image-turbo-baby-1024x1024.webp"
+name = "AI picture for xenify.net's AI page: baby with a moustache eating cherry pie"
+source = "generated"
+generator = "Z-Image Turbo (Tongyi-MAI), on a rented Tesla V100 (scripts/pod-bench, ComfyUI), prompt as shown on the page"
+model_source_url = "https://huggingface.co/Tongyi-MAI/Z-Image-Turbo"
+license = "Apache-2.0"
+fetched = "2026-10-26"
+sha256 = "35941995be8bc2240b6733f4469c1f233d0510853478b7d36d0b815ea88ba0af"
+notes = "Made from Xenify's own showcase prompts; checked by eye for logos and real brands (none). No third-party material. Licence: the model's licence; its outputs carry no conditions."
+
+[[asset]]
+path = "site/media/ai-z-image-turbo-dog-1024x1536.webp"
+name = "AI picture for xenify.net's AI page: golden retriever in a chef's hat making pancakes"
+source = "generated"
+generator = "Z-Image Turbo (Tongyi-MAI), on a rented Tesla V100 (scripts/pod-bench, ComfyUI), prompt as shown on the page"
+model_source_url = "https://huggingface.co/Tongyi-MAI/Z-Image-Turbo"
+license = "Apache-2.0"
+fetched = "2026-10-26"
+sha256 = "da3e053f9ef88c11d1a321d065297577e2639e7af8199870e583954da9a8c1f5"
+notes = "Made from Xenify's own showcase prompts; checked by eye for logos and real brands (none). No third-party material. Licence: the model's licence; its outputs carry no conditions."
+
+[[asset]]
+path = "site/media/ai-z-image-turbo-gorilla-1536x1024.webp"
+name = "AI picture for xenify.net's AI page: baby with a toy hammer and a gorilla on a city street"
+source = "generated"
+generator = "Z-Image Turbo (Tongyi-MAI), on a rented Tesla V100 (scripts/pod-bench, ComfyUI), prompt as shown on the page"
+model_source_url = "https://huggingface.co/Tongyi-MAI/Z-Image-Turbo"
+license = "Apache-2.0"
+fetched = "2026-10-26"
+sha256 = "cca241ffd104b7d30626552d9b249d259a454ff678348f94ce609a0d1e94fd82"
+notes = "Made from Xenify's own showcase prompts; checked by eye for logos and real brands (none). No third-party material. Licence: the model's licence; its outputs carry no conditions."
+
+
+[[asset]]
+path = "site/media/ai-minimax-h3-baby.mp4"
+name = "AI clip with sound for xenify.net's AI page: baby with a moustache eating cherry pie"
+source = "generated"
+generator = "MiniMax H3 (open weights, ComfyUI's default text-to-video template, 864x480, 20 steps) on a rented NVIDIA A40 in Montréal, Canada (scripts/pod-bench, run.sh minimax)"
+model_source_url = "https://huggingface.co/MiniMaxAI/MiniMax-H3"
+license = "MiniMax H3 Community License Agreement (outputs: MiniMax claims no rights; may not be used or shown in the US, EU, UK or South Korea)"
+fetched = "2026-10-26"
+sha256 = "361de90cee49cf5a1dcee88d3b5fb2b34e62f83b0c2528e2ccfd470ac22d06b7"
+notes = "Made in Canada, inside the licence's Applicable Territory. site/ai/ only loads it for visitors outside the US, EU, UK and South Korea (Cloudflare's /cdn-cgi/trace); everyone else sees the Wan 2.2 clip and a note. Checked by eye: no logos or real brands. No third-party material."
+
+[[asset]]
+path = "site/media/ai-minimax-h3-baby.webp"
+name = "AI poster frame of a clip for xenify.net's AI page: baby with a moustache eating cherry pie"
+source = "generated"
+generator = "MiniMax H3 (open weights, ComfyUI's default text-to-video template, 864x480, 20 steps) on a rented NVIDIA A40 in Montréal, Canada (scripts/pod-bench, run.sh minimax)"
+model_source_url = "https://huggingface.co/MiniMaxAI/MiniMax-H3"
+license = "MiniMax H3 Community License Agreement (outputs: MiniMax claims no rights; may not be used or shown in the US, EU, UK or South Korea)"
+fetched = "2026-10-26"
+sha256 = "94e4cbb5c0803c18a9947d33e7c3da5407e131834e8f5ae7b5ba2f6898000441"
+notes = "Made in Canada, inside the licence's Applicable Territory. site/ai/ only loads it for visitors outside the US, EU, UK and South Korea (Cloudflare's /cdn-cgi/trace); everyone else sees the Wan 2.2 clip and a note. Checked by eye: no logos or real brands. No third-party material."
+
+[[asset]]
+path = "site/media/ai-minimax-h3-gorilla.mp4"
+name = "AI clip with sound for xenify.net's AI page: toddler with a toy hammer and a gorilla on a city street"
+source = "generated"
+generator = "MiniMax H3 (open weights, ComfyUI's default text-to-video template, 864x480, 20 steps) on a rented NVIDIA A40 in Montréal, Canada (scripts/pod-bench, run.sh minimax)"
+model_source_url = "https://huggingface.co/MiniMaxAI/MiniMax-H3"
+license = "MiniMax H3 Community License Agreement (outputs: MiniMax claims no rights; may not be used or shown in the US, EU, UK or South Korea)"
+fetched = "2026-10-26"
+sha256 = "c2741944365bf0a644e83d8bd26948fa761753561ad89e37639ea0e2ca18b738"
+notes = "Made in Canada, inside the licence's Applicable Territory. site/ai/ only loads it for visitors outside the US, EU, UK and South Korea (Cloudflare's /cdn-cgi/trace); everyone else sees the Wan 2.2 clip and a note. Checked by eye: no logos or real brands. No third-party material."
+
+[[asset]]
+path = "site/media/ai-minimax-h3-gorilla.webp"
+name = "AI poster frame of a clip for xenify.net's AI page: toddler with a toy hammer and a gorilla on a city street"
+source = "generated"
+generator = "MiniMax H3 (open weights, ComfyUI's default text-to-video template, 864x480, 20 steps) on a rented NVIDIA A40 in Montréal, Canada (scripts/pod-bench, run.sh minimax)"
+model_source_url = "https://huggingface.co/MiniMaxAI/MiniMax-H3"
+license = "MiniMax H3 Community License Agreement (outputs: MiniMax claims no rights; may not be used or shown in the US, EU, UK or South Korea)"
+fetched = "2026-10-26"
+sha256 = "78ffa962f0ff450827eeafe576687880946fef0b0cc923b524607caa81a5dddf"
+notes = "Made in Canada, inside the licence's Applicable Territory. site/ai/ only loads it for visitors outside the US, EU, UK and South Korea (Cloudflare's /cdn-cgi/trace); everyone else sees the Wan 2.2 clip and a note. Checked by eye: no logos or real brands. No third-party material."
+
+
+[[asset]]
+path = "crates/xenify-server/comfy/video_minimax_h3_t2v.json"
+name = "ComfyUI workflow: MiniMax H3 text-to-video (API format), used by Xenify Server's ComfyUI connection"
+source_url = "https://github.com/Comfy-Org/workflow_templates/blob/main/benchmarks/video_minimax_h3_t2v.json"
+version = "commit 67984637eefcd4825dcf5c134e39034785be1682"
+license = "MIT"
+license_file = "crates/xenify-server/comfy/LICENSE-workflow_templates.txt"
+attribution = "Comfy-Org/workflow_templates, MIT"
+fetched = "2026-10-26"
+sha256 = "fd8ff2e893d010adb7e59ea0054477b08d6def2f82271d9dc310bda26d6545d7"
+notes = "Unchanged; the server puts the person's words, the size and a seed into it at run time (src/comfy.rs)."
+
+[[asset]]
+path = "crates/xenify-server/comfy/video_wan2_2_14B_t2v.json"
+name = "ComfyUI workflow: Wan 2.2 14B text-to-video (API format), used by Xenify Server's ComfyUI connection"
+source_url = "https://github.com/Comfy-Org/workflow_templates/blob/main/benchmarks/video_wan2_2_14B_t2v.json"
+version = "commit 67984637eefcd4825dcf5c134e39034785be1682"
+license = "MIT"
+license_file = "crates/xenify-server/comfy/LICENSE-workflow_templates.txt"
+attribution = "Comfy-Org/workflow_templates, MIT"
+fetched = "2026-10-26"
+sha256 = "1312389bb72ca92369a72d04def2b6ad95f19354e64069a0212e4dd783ad9389"
+notes = "Unchanged; the server puts the person's words, the size and a seed into it at run time (src/comfy.rs)."
+
+[[asset]]
+path = "crates/xenify-server/comfy/image_z_image_turbo.json"
+name = "ComfyUI workflow: Z-Image Turbo text-to-image (API format), used by Xenify Server's ComfyUI connection"
+source_url = "https://github.com/Comfy-Org/workflow_templates/blob/main/benchmarks/image_z_image_turbo.json"
+version = "commit 67984637eefcd4825dcf5c134e39034785be1682"
+license = "MIT"
+license_file = "crates/xenify-server/comfy/LICENSE-workflow_templates.txt"
+attribution = "Comfy-Org/workflow_templates, MIT"
+fetched = "2026-10-26"
+sha256 = "580c5140318b5cd15769e67cd8ccedbf1fb1df8e68d8d1e4c60dd4e2fcb3498b"
+notes = "Unchanged; the server puts the person's words, the size and a seed into it at run time (src/comfy.rs)."
+
+[[asset]]
+path = "crates/xenify-server/comfy/LICENSE-workflow_templates.txt"
+name = "Comfy-Org/workflow_templates licence"
+source_url = "https://github.com/Comfy-Org/workflow_templates/blob/main/LICENSE"
+version = "commit 67984637eefcd4825dcf5c134e39034785be1682"
+license = "MIT"
+attribution = "Licence text for the ComfyUI workflow templates"
+fetched = "2026-10-26"
+sha256 = "5dccd61c80c847cd6b22fa98124010163ab8646e573557a16a5cae31122f2056"
+
+
+[[asset]]
+path = "site/media/plan-board.webp"
+name = "Screenshot of Xenify Plan for xenify.net: the board of a made-up spring campaign"
+source = "generated"
+generator = "crates/xenify-server/tests/demo.rs (a made-up studio's people, chats, email, files and plans on a test Xenify server), the browser apps captured in headless Chromium over DevTools, converted with ffmpeg"
+license = "MIT"
+fetched = "2026-11-01"
+sha256 = "2ab4067669582da45660f745a077cf9dd83424b2257df994bbfbb31a1f26bea3"
+notes = "Original screenshot of this program; the company, people, emails, documents and plans are made up. No third-party material other than the fonts recorded in this file (Figtree, Inter, Source Serif 4; OFL-1.1)."
+
+[[asset]]
+path = "site/media/plan-timeline.webp"
+name = "Screenshot of Xenify Plan for xenify.net: the timeline of a made-up spring campaign, by weeks"
+source = "generated"
+generator = "crates/xenify-server/tests/demo.rs (a made-up studio's people, chats, email, files and plans on a test Xenify server), the browser apps captured in headless Chromium over DevTools, converted with ffmpeg"
+license = "MIT"
+fetched = "2026-11-01"
+sha256 = "60939218dd14813c130101681fbf7d0522d16b519af9a898a3412eb76d25e957"
+notes = "Original screenshot of this program; the company, people, emails, documents and plans are made up. No third-party material other than the fonts recorded in this file (Figtree, Inter, Source Serif 4; OFL-1.1)."
+
+[[asset]]
+path = "site/media/plan-people.webp"
+name = "Screenshot of Xenify Plan for xenify.net: hours booked against hours free, week by week, for the people in a plan"
+source = "generated"
+generator = "crates/xenify-plan-app web build on a test Xenify server (made-up people and plans), headless Chromium over DevTools, converted with ImageMagick"
+license = "MIT"
+fetched = "2026-10-28"
+sha256 = "5faaa2373ad6f01d9f79c701394d77f55277f2b067681972b097ca7dc57d24aa"
+notes = "Original screenshot of this program; the plans, people and issues are made up. No third-party material other than the Figtree font (OFL-1.1) recorded in this file."
+
+[[asset]]
+path = "site/media/plan-program.webp"
+name = "Screenshot of Xenify Plan for xenify.net: a made-up website plan's timeline, one task split around the same person's work on another plan"
+source = "generated"
+generator = "crates/xenify-server/tests/demo.rs (a made-up studio's people, chats, email, files and plans on a test Xenify server), the browser apps captured in headless Chromium over DevTools, converted with ffmpeg"
+license = "MIT"
+fetched = "2026-11-01"
+sha256 = "4a279d3a673491522acd402c18a4f66f31e30ac982a980e0412604a3a9a53e5e"
+notes = "Original screenshot of this program; the company, people, emails, documents and plans are made up. No third-party material other than the fonts recorded in this file (Figtree, Inter, Source Serif 4; OFL-1.1)."
+
+[[asset]]
+path = "site/media/wiki-handbook.webp"
+name = "Screenshot of Xenify Server's Files for xenify.net: a made-up studio's handbook wiki, its page tree and welcome page"
+source = "generated"
+generator = "crates/xenify-server/tests/demo.rs (a made-up studio's people, chats, email, files and plans on a test Xenify server), the browser apps captured in headless Chromium over DevTools, converted with ffmpeg"
+license = "MIT"
+fetched = "2026-11-01"
+sha256 = "fdda39376bee56a0e4f32d0c68e7642ef5afa15421b5dcb41707c6f5a3c8c431"
+notes = "Original screenshot of this program; the company, people, emails, documents and plans are made up. No third-party material other than the fonts recorded in this file (Figtree, Inter, Source Serif 4; OFL-1.1)."
+
+[[asset]]
+path = "site/media/wiki-spaces.webp"
+name = "Screenshot of Xenify Server's Files for xenify.net: a Client projects space with folders and two plans"
+source = "generated"
+generator = "crates/xenify-server/tests/demo.rs (a made-up studio's people, chats, email, files and plans on a test Xenify server), the browser apps captured in headless Chromium over DevTools, converted with ffmpeg"
+license = "MIT"
+fetched = "2026-11-01"
+sha256 = "b0f99515a520605f53ac1c1cad18822debbf4752cac6c0ba3bf53b8330e798d1"
+notes = "Original screenshot of this program; the company, people, emails, documents and plans are made up. No third-party material other than the fonts recorded in this file (Figtree, Inter, Source Serif 4; OFL-1.1)."
+
+[[asset]]
+path = "site/media/wiki-read.webp"
+name = "Screenshot of Xenify Server's Files for xenify.net: a Calc book of made-up sales opened as a page"
+source = "generated"
+generator = "crates/xenify-server/tests/demo.rs (a made-up studio's people, chats, email, files and plans on a test Xenify server), the browser apps captured in headless Chromium over DevTools, converted with ffmpeg"
+license = "MIT"
+fetched = "2026-11-01"
+sha256 = "2cd954b17ad4ce047d063789289d8c092c8e3e67d241092b48f90842ed980554"
+notes = "Original screenshot of this program; the company, people, emails, documents and plans are made up. No third-party material other than the fonts recorded in this file (Figtree, Inter, Source Serif 4; OFL-1.1)."
+
+[[asset]]
+path = "site/media/chat-chats.webp"
+name = "Screenshot of Xenify Chat in the browser for xenify.net: a made-up team's group chat"
+source = "generated"
+generator = "crates/xenify-server/tests/demo.rs (a made-up studio's people, chats, email, files and plans on a test Xenify server), the browser apps captured in headless Chromium over DevTools, converted with ffmpeg"
+license = "MIT"
+fetched = "2026-11-01"
+sha256 = "af4000d7e151c4db3b0a52378cd77653f740175078cb87bdf3373cc415f0417f"
+notes = "Original screenshot of this program; the company, people, emails, documents and plans are made up. No third-party material other than the fonts recorded in this file (Figtree, Inter, Source Serif 4; OFL-1.1)."
+
+[[asset]]
+path = "site/media/chat-mail.webp"
+name = "Screenshot of Xenify Chat in the browser for xenify.net: the inbox beside the chats, a made-up client's email open"
+source = "generated"
+generator = "crates/xenify-server/tests/demo.rs (a made-up studio's people, chats, email, files and plans on a test Xenify server), the browser apps captured in headless Chromium over DevTools, converted with ffmpeg"
+license = "MIT"
+fetched = "2026-11-01"
+sha256 = "48d387240a07dae4b7b5ea8818e0dff657c46f5bf0c993e98e90c88691fea880"
+notes = "Original screenshot of this program; the company, people, emails, documents and plans are made up. No third-party material other than the fonts recorded in this file (Figtree, Inter, Source Serif 4; OFL-1.1)."
+
+[[asset]]
+path = "site/media/chat-invite.webp"
+name = "Screenshot of Xenify Chat in the browser for xenify.net: a meeting invitation in an email with Going, Maybe and Not going"
+source = "generated"
+generator = "crates/xenify-server/tests/demo.rs (a made-up studio's people, chats, email, files and plans on a test Xenify server), the browser apps captured in headless Chromium over DevTools, converted with ffmpeg"
+license = "MIT"
+fetched = "2026-11-01"
+sha256 = "8853757ebdb62383debf4bb02b6f13e2f00b32927d65b3163f6b543410918d9a"
+notes = "Original screenshot of this program; the company, people, emails, documents and plans are made up. No third-party material other than the fonts recorded in this file (Figtree, Inter, Source Serif 4; OFL-1.1)."
+
+[[asset]]
+path = "site/media/chat-calendar.webp"
+name = "Screenshot of Xenify Chat in the browser for xenify.net: a week of made-up meetings in the calendar"
+source = "generated"
+generator = "crates/xenify-server/tests/demo.rs (a made-up studio's people, chats, email, files and plans on a test Xenify server), the browser apps captured in headless Chromium over DevTools, converted with ffmpeg"
+license = "MIT"
+fetched = "2026-11-01"
+sha256 = "460a67ff8c5b7a4a24be2fd99576bf439d49c85592fdcb6a2985063b593171d1"
+notes = "Original screenshot of this program; the company, people, emails, documents and plans are made up. No third-party material other than the fonts recorded in this file (Figtree, Inter, Source Serif 4; OFL-1.1)."
+
+[[asset]]
+path = "site/media/tour.mp4"
+name = "Tour film of Xenify for xenify.net (title cards and the site's own app recordings and screenshots); video"
+source = "generated"
+generator = "scripts/tour/build.py from scripts/tour/chunks/*.json (ffmpeg; text in Figtree)"
+license = "MIT"
+fetched = "2026-11-01"
+sha256 = "81bcc063a3203c74d011bc82eb33dfce44c5d796e2b5ed21e8f75d503c15a8e4"
+notes = "Original. Made only from Xenify's own recordings and screenshots in site/media and text in the Figtree font (OFL-1.1)."
+
+[[asset]]
+path = "site/media/tour.webm"
+name = "Tour film of Xenify for xenify.net (title cards and the site's own app recordings and screenshots); video"
+source = "generated"
+generator = "scripts/tour/build.py from scripts/tour/chunks/*.json (ffmpeg; text in Figtree)"
+license = "MIT"
+fetched = "2026-11-01"
+sha256 = "c2be0e1bc5d519990a86b56850502bf8bb1c0d7b555304ee05e5e8e999ebb873"
+notes = "Original. Made only from Xenify's own recordings and screenshots in site/media and text in the Figtree font (OFL-1.1)."
+
+[[asset]]
+path = "site/media/tour.webp"
+name = "Tour film of Xenify for xenify.net; poster frame"
+source = "generated"
+generator = "scripts/tour/build.py"
+license = "MIT"
+fetched = "2026-11-01"
+sha256 = "3c9042e63ec424ab3d54a8a10cd709d2daacb1e77ec1d7aba030e303164a1fe5"
+notes = "Original. Made only from Xenify's own screenshots and the Figtree font (OFL-1.1)."
+
+[[asset]]
+path = "site/media/write-kinds.webp"
+name = "Screenshot of Xenify Write in the browser for xenify.net: Settings, Kinds of writing"
+source = "generated"
+generator = "crates/xenify-write-app web build in headless Chromium, converted with ffmpeg"
+license = "MIT"
+fetched = "2026-11-01"
+sha256 = "ff8214483d662778373fd801b05cf206d8403d4a390869608491ef1d71a56e9d"
+notes = "Original screenshot of this program. No third-party material other than the fonts recorded in this file (Figtree, Inter; OFL-1.1)."
+
+[[asset]]
+path = "site/media/write-template.mp4"
+name = "Recording of Xenify Write in the browser for xenify.net: a quote takes a letterhead template, the template gets a new logo, the quote follows; video"
+source = "generated"
+generator = "crates/xenify-write-app web build on a test Xenify server (crates/xenify-server/tests/demo.rs), frames captured in headless Chromium over DevTools with a drawn pointer, joined with ffmpeg"
+license = "MIT"
+fetched = "2026-11-01"
+sha256 = "0026578fe9e199d2dc892d6e3eb7ebd9ac3bd9cc002ca60c21bcde0c477828c1"
+notes = "Original footage of this program; the company, people, quote and logos are made up (logos drawn for it in HTML with the Figtree font). No third-party material other than the fonts recorded in this file (Figtree, Inter; OFL-1.1)."
+
+[[asset]]
+path = "site/media/write-template.webm"
+name = "Recording of Xenify Write in the browser for xenify.net: a quote takes a letterhead template, the template gets a new logo, the quote follows; video"
+source = "generated"
+generator = "crates/xenify-write-app web build on a test Xenify server (crates/xenify-server/tests/demo.rs), frames captured in headless Chromium over DevTools with a drawn pointer, joined with ffmpeg"
+license = "MIT"
+fetched = "2026-11-01"
+sha256 = "e5cba293c52b710292b3fc7465ceb331535f63c018c5fb08512355f03f6d802b"
+notes = "Original footage of this program; the company, people, quote and logos are made up. No third-party material other than the fonts recorded in this file (Figtree, Inter; OFL-1.1)."
+
+[[asset]]
+path = "site/media/write-template.webp"
+name = "Recording of Xenify Write in the browser for xenify.net: using a template; poster frame"
+source = "generated"
+generator = "crates/xenify-write-app web build on a test Xenify server, captured in headless Chromium, converted with ffmpeg"
+license = "MIT"
+fetched = "2026-11-01"
+sha256 = "60fbd7cd3370005154945d3c1a13fe7850e3b95be4d19dafdcb587dbf983fd4b"
+notes = "Original screenshot of this program; the company and logos are made up. No third-party material other than the fonts recorded in this file (Figtree, Inter; OFL-1.1)."
+
+[[asset]]
+path = "site/media/draw-example.webp"
+name = "Screenshot of Xenify Draw presenting its example deck for xenify.net (What we do)"
+source = "generated"
+generator = "crates/xenify-draw-app web build presenting the built-in example crates/xenify-draw-core/src/samples.rs (studio pitch), headless Chromium, converted with ffmpeg"
+license = "MIT"
+fetched = "2026-11-01"
+sha256 = "400d2566e3e5e45b3466250c1b8fbf1574d7763c77eee79dc809e68d46f80891"
+notes = "Original; the studio and numbers are made up, drawn with Draw's own shapes. No third-party material other than the Figtree font (OFL-1.1) recorded in this file."

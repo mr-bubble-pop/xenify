@@ -1,0 +1,9 @@
+{
+  "section": "Plan",
+  "shots": [
+    {"card": {"tag": "Plan", "title": "Plans that work out the dates.", "sub": "Tasks, people and timelines, for every team."}, "seconds": 3},
+    {"still": "site/media/plan-board.webp", "seconds": 4, "caption": "Tasks on a board, and who's doing what"},
+    {"still": "site/media/plan-timeline.webp", "seconds": 4.5, "caption": "A timeline worked out from estimates and who has time"},
+    {"still": "site/media/plan-program.webp", "seconds": 4, "caption": "Every team's plans share the same people's time"}
+  ]
+}

@@ -1,0 +1,14 @@
+# Split words: "incase" for "in case". From common-error lists; examples are ours.
+# why: "In case" (meaning "if it happens that" or "as a precaution") is always two words. "Incase" isn't a standard word; "encase" means to enclose something.
+expr main <([incase, (in-case)]), [incase, (in-case)]>
+
+let message "`In case` is two words."
+let description "Fixes `incase` → `in case` (just in case)."
+let kind "BoundaryError"
+let becomes "in case"
+let strategy "MatchCase"
+
+test "Bring a coat just incase it rains." "Bring a coat just in case it rains."
+test "Incase you missed it, here is the link." "In case you missed it, here is the link."
+
+allows "Bring a coat just in case it rains."

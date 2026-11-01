@@ -1,0 +1,16 @@
+# "Oh deer" (the animal) for "oh dear". Common-error lists; examples are ours.
+# why: Oh dear is an exclamation of surprise or worry. A deer is an animal, so a spell-checker can't tell them apart.
+expr main [<(oh deer), deer>, <(deer me), deer>, <(deer oh deer), deer>]
+
+let message "Did you mean `dear` (oh dear)? A deer is the animal."
+let description "Fixes `oh deer` → `oh dear`."
+let kind "Malapropism"
+let becomes "dear"
+let strategy "MatchCase"
+
+test "Oh deer, I forgot my keys." "Oh dear, I forgot my keys."
+test "oh deer how are you today." "oh dear how are you today."
+
+allows "Oh dear, I forgot my keys."
+allows "We saw a deer in the woods."
+allows "Oh, a deer!"

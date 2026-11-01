@@ -1,0 +1,58 @@
+# Spellings that follow speech.
+gonna | going to
+wanna | want to
+gotta | have to
+hafta | have to
+kinda | kind of
+sorta | sort of
+lemme | let me
+gimme | give me
+dunno | don't know
+outta | out of
+lotta | lot of
+alotta | a lot of
+coulda | could have
+shoulda | should have
+woulda | would have
+musta | must have
+finna | about to
+tryna | trying to
+boutta | about to
+dat | that
+yer | your
+nothin' | nothing
+somethin' | something
+nothin | nothing
+somethin | something
+goin' | going
+doin' | doing
+comin' | coming
+runnin' | running
+tryin' | trying
+lookin' | looking
+talkin' | talking
+'bout | about
+'em | them
+y'know | you know
+ya know | you know
+whatcha | what are you
+gotcha | I understand
+betcha | I bet
+c'mon | come on
+'cause | because
+tho | though
+thru | through
+nite | night
+gon | going to
+# Real but rare words (wot = "to know", wat = temple, wen = cyst) that are
+# far more often a spelling of the common word.
+wot | what
+wat | what
+wen | when
+wuz | was
+enuf | enough
+luv | love
+tonite | tonight
+wiv | with
+fing | thing
+sumthin | something

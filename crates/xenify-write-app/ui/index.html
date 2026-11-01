@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Xenify Write</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="server.css">
+<script src="errors.js"></script>
+<script type="module" src="app.js"></script>
+<style>
+/* Starting: the app's mark at once, "Loading…" if it takes a moment, and the app only once it's ready. */
+#boot { position: fixed; inset: 0; z-index: 2147483647; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px;
+  background: var(--ground, var(--stone, #EFECE8)); color: var(--muted, #57534E); font: 500 14px system-ui, sans-serif; animation: boot-gone 0s 20s forwards; }
+#boot b { width: 56px; height: 56px; border-radius: 16px; background: var(--accent, #C2410C); color: #fff; font: 800 28px system-ui, sans-serif;
+  display: flex; align-items: center; justify-content: center; }
+#boot span, #boot i { opacity: 0; animation: boot-show .2s .4s forwards; }
+#boot i { width: 120px; height: 3px; border-radius: 2px; background: var(--line, #DDD8D2); overflow: hidden; }
+#boot i::after { content: ""; display: block; width: 40%; height: 100%; background: var(--accent, #C2410C); animation: boot-bar 1.2s ease-in-out infinite; }
+html:not(.ready) body > :not(#boot) { visibility: hidden; animation: boot-show 0s 20s forwards; }
+html.ready #boot { display: none; }
+@keyframes boot-show { to { opacity: 1; visibility: visible; } }
+@keyframes boot-gone { to { visibility: hidden; } }
+@keyframes boot-bar { from { transform: translateX(-100%); } to { transform: translateX(250%); } }
+@media (prefers-reduced-motion: reduce) { #boot i::after { animation: none; width: 100%; opacity: .5; } }
+</style>
+</head>
+<body>
+<div id="boot" role="status" aria-label="Loading Write"><b aria-hidden="true">W</b><span>Loading Write…</span><i aria-hidden="true"></i></div>
+<div class="app">
+  <nav class="menubar" aria-label="Menu">
+    <div class="brand"><span class="mark" aria-hidden="true">W</span>Write</div>
+    <div id="menus" class="menus"></div>
+  </nav>
+
+  <div class="tabstrip">
+    <div id="tabs" class="tabs" role="tablist" aria-label="Open documents"></div>
+    <button id="new-tab" class="icon-btn small" aria-label="New document" title="New document (Ctrl+N)"></button>
+  </div>
+
+  <div id="toolbar" class="toolbar" role="toolbar" aria-label="Formatting"></div>
+
+  <div class="work">
+    <nav id="nav" class="navpane" aria-label="Headings" hidden></nav>
+    <main class="doc-area" aria-label="Document">
+      <div id="scroller" class="scroller">
+        <div id="ruler" class="ruler" aria-hidden="true"></div>
+        <div id="stack" class="stack">
+          <div id="overlay" class="overlay">
+            <textarea id="ime" class="ime" aria-label="Document" aria-multiline="true" aria-roledescription="document" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div id="checkbar" class="findbar checkbar" role="region" aria-label="Spelling and grammar" hidden></div>
+  <div id="findbar" class="findbar" role="search" aria-label="Find and replace" hidden></div>
+  <footer id="status" class="status"></footer>
+</div>
+<div id="popups"></div>
+</body>
+</html>
