@@ -1,0 +1,20 @@
+[package]
+name = "xenify-ai"
+description = "OpenRouter-backed AI assistant that edits Xenify Draw projects through undoable commands"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+xenify-openrouter.workspace = true
+xenify-anim.workspace = true
+xenify-doc.workspace = true
+xenify-ops.workspace = true
+xenify-audio.workspace = true
+xenify-export = { workspace = true, default-features = false }
+kurbo.workspace = true
+serde_json.workspace = true
+base64.workspace = true
+
+[dev-dependencies]
+image.workspace = true

@@ -1,0 +1,28 @@
+target/
+# The grammar checker's training data and test sets (big, not rebuildable; kept out of target/ so cargo clean can't delete it).
+data/
+*.mp4
+*.gif
+.env
+/checkpoints
+/dist
+/dist-write
+/.ssh
+/ssh
+/.claude
+/smile-*.png
+__pycache__/
+*.pyc
+/dist-draw
+/dist-calc
+/dist-chat
+/dist-plan
+crates/xenify-draw-app/ui/pkg/
+crates/xenify-calc-app/ui/pkg/
+/dist-hub
+/dist-hub-installers
+# The website's videos (Safari fallback beside the .webm).
+!site/media/*.mp4
+# Draw for chat whiteboards (scripts/build-chat-draw.sh)
+crates/xenify-chat-app/ui/draw/
+crates/xenify-plan-app/ui/pkg/

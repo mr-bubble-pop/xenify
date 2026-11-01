@@ -1,0 +1,10 @@
+{
+  "section": "Write",
+  "shots": [
+    {"card": {"tag": "Write", "title": "Your letterhead on every document.", "sub": "Change the template once, and every document follows."}, "seconds": 3.5},
+    {"clip": "site/media/write-template.mp4", "from": 0.5, "to": 12.8, "speed": 1.2, "caption": "Use a template: the quote keeps its words and takes the letterhead"},
+    {"card": {"title": "Later, the company gets a new logo\nand changes it in the template.", "sub": "Nothing else to do."}, "seconds": 3},
+    {"clip": "site/media/write-template.mp4", "from": 16.2, "to": 22.6, "caption": "The same quote, opened again, has the new logo"},
+    {"clip": "site/media/calc-write.mp4", "from": 20, "to": 37, "speed": 1.6, "caption": "Tables from your spreadsheets stay up to date by themselves"}
+  ]
+}

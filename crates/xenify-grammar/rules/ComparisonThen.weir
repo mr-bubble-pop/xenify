@@ -1,0 +1,21 @@
+# Commonly confused words: "then" in a comparison where "than" is meant.
+# From common confused-word lists; examples are ours.
+# why: Than compares (bigger than, rather than). Then is about time or order (first this, then that).
+expr main [<([rather, sooner, more, less, fewer, better, worse, bigger, smaller, larger, higher, lower, longer, shorter, faster, slower, older, younger, easier, harder, cheaper, greater, other, further, farther, earlier, later, quicker, stronger, weaker, happier, worse, nicer, safer, richer, poorer, smarter, louder, quieter, warmer, colder, hotter, closer, simpler, wider, deeper, heavier, lighter, newer] then [I, me, you, he, she, we, they, him, her, us, them, it, the, a, an, my, your, his, our, their, this, that, ever, before, usual, expected, planned, last, anyone, anything, everyone, everything, most, many, any, one, two, three, ten, half, average, normal, necessary, needed, required, drive, walk, wait, pay, go, stay, buy, rent, work]), then>, <(rather [VERB] then), then>]
+
+let message "In comparisons, use `than` (`more than`, `rather than`); `then` is about time or order."
+let description "Fixes `then` in comparisons: `bigger then`, `rather walk then drive`."
+let kind "Malapropism"
+let becomes "than"
+let strategy "MatchCase"
+
+test "I'd rather walk then drive." "I'd rather walk than drive."
+test "This is better then before." "This is better than before."
+test "She is older then me." "She is older than me."
+test "It took longer then expected." "It took longer than expected."
+
+
+allows "We ate, and then we left."
+allows "Finish the draft first, then send it."
+allows "It got better, then worse."
+allows "If it's later then that's fine."

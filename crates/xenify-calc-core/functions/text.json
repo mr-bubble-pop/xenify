@@ -1,0 +1,1394 @@
+[
+  {
+    "name": "CONCAT",
+    "args": [
+      {
+        "name": "text1",
+        "about": "text, a cell or a range of cells to join"
+      },
+      {
+        "name": "text2",
+        "about": "more text, cells or ranges",
+        "optional": true
+      }
+    ],
+    "more": true,
+    "about": "Joins pieces of text into one, with nothing between them.",
+    "example": {
+      "cells": [
+        [
+          "First",
+          "Last"
+        ],
+        [
+          "Ada",
+          "Lovelace"
+        ]
+      ],
+      "formula": "=CONCAT(A2,\" \",B2)",
+      "result": "Ada Lovelace",
+      "why": "Ada, a space and Lovelace are joined end to end."
+    },
+    "notes": "TEXTJOIN puts a separator between the pieces and can skip empty cells."
+  },
+  {
+    "name": "TEXTSPLIT",
+    "args": [
+      {
+        "name": "text",
+        "about": "the text to cut up"
+      },
+      {
+        "name": "col_delimiter",
+        "about": "what separates the columns, like \",\""
+      },
+      {
+        "name": "row_delimiter",
+        "about": "what separates the rows",
+        "optional": true
+      },
+      {
+        "name": "ignore_empty",
+        "about": "TRUE to skip empty pieces (FALSE if left out)",
+        "optional": true
+      },
+      {
+        "name": "match_mode",
+        "about": "1 to ignore upper and lower case (0 if left out)",
+        "optional": true
+      },
+      {
+        "name": "pad_with",
+        "about": "what fills gaps in short rows (#N/A if left out)",
+        "optional": true
+      }
+    ],
+    "about": "Cuts text into pieces at a separator and spreads them across cells.",
+    "example": {
+      "cells": [
+        [
+          "Colours"
+        ],
+        [
+          "red,green,blue"
+        ]
+      ],
+      "formula": "=TEXTSPLIT(A2,\",\")",
+      "result": "red",
+      "why": "The text is cut at each comma; red shows here and green and blue spill into the next two cells."
+    }
+  },
+  {
+    "name": "CONCATENATE",
+    "args": [
+      {
+        "name": "text1",
+        "about": "text or a cell to join"
+      },
+      {
+        "name": "text2",
+        "about": "more text or cells",
+        "optional": true
+      }
+    ],
+    "more": true,
+    "about": "Joins pieces of text into one, with nothing between them.",
+    "example": {
+      "cells": [
+        [
+          "First",
+          "Last"
+        ],
+        [
+          "Ada",
+          "Lovelace"
+        ]
+      ],
+      "formula": "=CONCATENATE(B2,\", \",A2)",
+      "result": "Lovelace, Ada",
+      "why": "Lovelace, a comma and space, and Ada are joined end to end."
+    },
+    "notes": "An older name: use CONCAT, which also takes ranges, or TEXTJOIN."
+  },
+  {
+    "name": "EXACT",
+    "args": [
+      {
+        "name": "text1",
+        "about": "the first text"
+      },
+      {
+        "name": "text2",
+        "about": "the second text"
+      }
+    ],
+    "about": "Tells whether two pieces of text are exactly the same, upper and lower case included.",
+    "example": {
+      "cells": [
+        [
+          "Typed",
+          "Code"
+        ],
+        [
+          "abc12",
+          "ABC12"
+        ]
+      ],
+      "formula": "=EXACT(A2,B2)",
+      "result": "FALSE",
+      "why": "The letters match but abc is lower case and ABC is upper case."
+    },
+    "notes": "To compare without caring about case, use =A2=B2."
+  },
+  {
+    "name": "FIND",
+    "args": [
+      {
+        "name": "find_text",
+        "about": "the text to look for"
+      },
+      {
+        "name": "within_text",
+        "about": "the text to look in"
+      },
+      {
+        "name": "start_num",
+        "about": "which character to start from (1 if left out)",
+        "optional": true
+      }
+    ],
+    "about": "Gives the position where one piece of text first appears inside another, minding upper and lower case.",
+    "example": {
+      "cells": [
+        [
+          "Email"
+        ],
+        [
+          "ada@example.com"
+        ]
+      ],
+      "formula": "=FIND(\"@\",A2)",
+      "result": "4",
+      "why": "The @ is the fourth character of ada@example.com."
+    },
+    "notes": "Gives #VALUE! when the text isn't found. SEARCH ignores case and allows wildcards."
+  },
+  {
+    "name": "LEFT",
+    "args": [
+      {
+        "name": "text",
+        "about": "the text to take from"
+      },
+      {
+        "name": "num_chars",
+        "about": "how many characters (1 if left out)",
+        "optional": true
+      }
+    ],
+    "about": "Gives the first few characters of a piece of text.",
+    "example": {
+      "cells": [
+        [
+          "Code"
+        ],
+        [
+          "UK-1042"
+        ]
+      ],
+      "formula": "=LEFT(A2,2)",
+      "result": "UK",
+      "why": "The first two characters of UK-1042."
+    }
+  },
+  {
+    "name": "LEN",
+    "args": [
+      {
+        "name": "text",
+        "about": "the text to count"
+      }
+    ],
+    "about": "Counts the characters in a piece of text, spaces included.",
+    "example": {
+      "cells": [
+        [
+          "Product"
+        ],
+        [
+          "Desk lamp"
+        ]
+      ],
+      "formula": "=LEN(A2)",
+      "result": "9",
+      "why": "Desk lamp has eight letters and a space."
+    }
+  },
+  {
+    "name": "LOWER",
+    "args": [
+      {
+        "name": "text",
+        "about": "the text to change"
+      }
+    ],
+    "about": "Turns all the letters in a piece of text into lower case.",
+    "example": {
+      "cells": [
+        [
+          "Name"
+        ],
+        [
+          "Ada LOVELACE"
+        ]
+      ],
+      "formula": "=LOWER(A2)",
+      "result": "ada lovelace",
+      "why": "Every capital letter becomes small."
+    }
+  },
+  {
+    "name": "MID",
+    "args": [
+      {
+        "name": "text",
+        "about": "the text to take from"
+      },
+      {
+        "name": "start_num",
+        "about": "the position of the first character to take"
+      },
+      {
+        "name": "num_chars",
+        "about": "how many characters"
+      }
+    ],
+    "about": "Gives some characters from the middle of a piece of text.",
+    "example": {
+      "cells": [
+        [
+          "Code"
+        ],
+        [
+          "UK-1042-B"
+        ]
+      ],
+      "formula": "=MID(A2,4,4)",
+      "result": "1042",
+      "why": "Four characters starting at the fourth: 1042."
+    }
+  },
+  {
+    "name": "REPT",
+    "args": [
+      {
+        "name": "text",
+        "about": "the text to repeat"
+      },
+      {
+        "name": "number_times",
+        "about": "how many times"
+      }
+    ],
+    "about": "Repeats a piece of text a number of times.",
+    "example": {
+      "cells": [
+        [
+          "Stars"
+        ],
+        [
+          "3"
+        ]
+      ],
+      "formula": "=REPT(\"*\",A2)",
+      "result": "***",
+      "why": "The star is written 3 times."
+    }
+  },
+  {
+    "name": "RIGHT",
+    "args": [
+      {
+        "name": "text",
+        "about": "the text to take from"
+      },
+      {
+        "name": "num_chars",
+        "about": "how many characters (1 if left out)",
+        "optional": true
+      }
+    ],
+    "about": "Gives the last few characters of a piece of text.",
+    "example": {
+      "cells": [
+        [
+          "Code"
+        ],
+        [
+          "UK-1042"
+        ]
+      ],
+      "formula": "=RIGHT(A2,4)",
+      "result": "1042",
+      "why": "The last four characters of UK-1042."
+    }
+  },
+  {
+    "name": "SEARCH",
+    "args": [
+      {
+        "name": "find_text",
+        "about": "the text to look for; ? stands for any one character and * for any run"
+      },
+      {
+        "name": "within_text",
+        "about": "the text to look in"
+      },
+      {
+        "name": "start_num",
+        "about": "which character to start from (1 if left out)",
+        "optional": true
+      }
+    ],
+    "about": "Gives the position where one piece of text first appears inside another, ignoring upper and lower case.",
+    "example": {
+      "cells": [
+        [
+          "Title"
+        ],
+        [
+          "The Big Apple"
+        ]
+      ],
+      "formula": "=SEARCH(\"apple\",A2)",
+      "result": "9",
+      "why": "Apple starts at the ninth character; the capital A doesn't matter."
+    },
+    "notes": "Gives #VALUE! when the text isn't found. FIND minds case."
+  },
+  {
+    "name": "SUBSTITUTE",
+    "args": [
+      {
+        "name": "text",
+        "about": "the text to change"
+      },
+      {
+        "name": "old_text",
+        "about": "the text to replace"
+      },
+      {
+        "name": "new_text",
+        "about": "what to put instead"
+      },
+      {
+        "name": "instance_num",
+        "about": "which one to replace (all if left out)",
+        "optional": true
+      }
+    ],
+    "about": "Replaces some text with other text wherever it appears.",
+    "example": {
+      "cells": [
+        [
+          "Phone"
+        ],
+        [
+          "020-7946-0018"
+        ]
+      ],
+      "formula": "=SUBSTITUTE(A2,\"-\",\" \")",
+      "result": "020 7946 0018",
+      "why": "Every dash becomes a space."
+    },
+    "notes": "REPLACE changes text at a given position instead."
+  },
+  {
+    "name": "REGEXEXTRACT",
+    "args": [
+      {
+        "name": "text",
+        "about": "the text to search"
+      },
+      {
+        "name": "pattern",
+        "about": "the regular expression to look for"
+      },
+      {
+        "name": "return_mode",
+        "about": "0 for the first match, 1 for all matches, 2 for the parts of the first match (0 if left out)",
+        "optional": true
+      },
+      {
+        "name": "case_sensitivity",
+        "about": "1 to ignore upper and lower case (0 if left out)",
+        "optional": true
+      }
+    ],
+    "about": "Gives the part of a piece of text that matches a regular expression.",
+    "example": {
+      "cells": [
+        [
+          "Order"
+        ],
+        [
+          "Order 4521 shipped"
+        ]
+      ],
+      "formula": "=REGEXEXTRACT(A2,\"[0-9]+\")",
+      "result": "4521",
+      "why": "[0-9]+ matches a run of digits: 4521."
+    }
+  },
+  {
+    "name": "REGEXREPLACE",
+    "args": [
+      {
+        "name": "text",
+        "about": "the text to change"
+      },
+      {
+        "name": "pattern",
+        "about": "the regular expression to look for"
+      },
+      {
+        "name": "replacement",
+        "about": "what to put instead"
+      },
+      {
+        "name": "occurrence",
+        "about": "which match to replace (all if left out)",
+        "optional": true
+      },
+      {
+        "name": "case_sensitivity",
+        "about": "1 to ignore upper and lower case (0 if left out)",
+        "optional": true
+      }
+    ],
+    "about": "Replaces the parts of a piece of text that match a regular expression.",
+    "example": {
+      "cells": [
+        [
+          "Phone"
+        ],
+        [
+          "020 7946 0018"
+        ]
+      ],
+      "formula": "=REGEXREPLACE(A2,\" \",\"\")",
+      "result": "02079460018",
+      "why": "Every space matches and is replaced by nothing."
+    }
+  },
+  {
+    "name": "REGEXTEST",
+    "args": [
+      {
+        "name": "text",
+        "about": "the text to test"
+      },
+      {
+        "name": "pattern",
+        "about": "the regular expression to look for"
+      },
+      {
+        "name": "case_sensitivity",
+        "about": "1 to ignore upper and lower case (0 if left out)",
+        "optional": true
+      }
+    ],
+    "about": "Tells whether a piece of text matches a regular expression.",
+    "example": {
+      "cells": [
+        [
+          "Postcode"
+        ],
+        [
+          "SW1A 1AA"
+        ]
+      ],
+      "formula": "=REGEXTEST(A2,\"^[A-Z]{1,2}[0-9]\")",
+      "result": "TRUE",
+      "why": "SW1A starts with two capitals then a digit."
+    }
+  },
+  {
+    "name": "T",
+    "args": [
+      {
+        "name": "value",
+        "about": "the value to check"
+      }
+    ],
+    "about": "Gives the value if it is text, and empty text otherwise.",
+    "example": {
+      "cells": [
+        [
+          "Item",
+          "Price"
+        ],
+        [
+          "Lamp",
+          "120"
+        ]
+      ],
+      "formula": "=T(A2)",
+      "result": "Lamp",
+      "why": "Lamp is text, so it comes back as it is; =T(B2) would give empty text."
+    }
+  },
+  {
+    "name": "TEXT",
+    "args": [
+      {
+        "name": "value",
+        "about": "the number or date to show"
+      },
+      {
+        "name": "format_text",
+        "about": "the format, like \"0.00\" or \"dd/mm/yyyy\""
+      }
+    ],
+    "about": "Shows a number as text in a format you choose.",
+    "example": {
+      "cells": [
+        [
+          "Price"
+        ],
+        [
+          "1234.5"
+        ]
+      ],
+      "formula": "=TEXT(A2,\"#,##0.00\")",
+      "result": "1,234.50",
+      "why": "The number gets a thousands comma and two decimal places."
+    }
+  },
+  {
+    "name": "TEXTAFTER",
+    "args": [
+      {
+        "name": "text",
+        "about": "the text to search"
+      },
+      {
+        "name": "delimiter",
+        "about": "the text to look for"
+      },
+      {
+        "name": "instance_num",
+        "about": "which one to take the text after; negative counts from the end (1 if left out)",
+        "optional": true
+      },
+      {
+        "name": "match_mode",
+        "about": "1 to ignore upper and lower case (0 if left out)",
+        "optional": true
+      },
+      {
+        "name": "match_end",
+        "about": "1 to treat the end of the text as a delimiter (0 if left out)",
+        "optional": true
+      },
+      {
+        "name": "if_not_found",
+        "about": "what to give when the delimiter isn't there (#N/A if left out)",
+        "optional": true
+      }
+    ],
+    "about": "Gives the text that comes after a delimiter.",
+    "example": {
+      "cells": [
+        [
+          "Email"
+        ],
+        [
+          "ada@example.com"
+        ]
+      ],
+      "formula": "=TEXTAFTER(A2,\"@\")",
+      "result": "example.com",
+      "why": "Everything after the @."
+    }
+  },
+  {
+    "name": "TEXTBEFORE",
+    "args": [
+      {
+        "name": "text",
+        "about": "the text to search"
+      },
+      {
+        "name": "delimiter",
+        "about": "the text to look for"
+      },
+      {
+        "name": "instance_num",
+        "about": "which one to take the text before; negative counts from the end (1 if left out)",
+        "optional": true
+      },
+      {
+        "name": "match_mode",
+        "about": "1 to ignore upper and lower case (0 if left out)",
+        "optional": true
+      },
+      {
+        "name": "match_end",
+        "about": "1 to treat the end of the text as a delimiter (0 if left out)",
+        "optional": true
+      },
+      {
+        "name": "if_not_found",
+        "about": "what to give when the delimiter isn't there (#N/A if left out)",
+        "optional": true
+      }
+    ],
+    "about": "Gives the text that comes before a delimiter.",
+    "example": {
+      "cells": [
+        [
+          "Email"
+        ],
+        [
+          "ada@example.com"
+        ]
+      ],
+      "formula": "=TEXTBEFORE(A2,\"@\")",
+      "result": "ada",
+      "why": "Everything before the @."
+    }
+  },
+  {
+    "name": "TEXTJOIN",
+    "args": [
+      {
+        "name": "delimiter",
+        "about": "what to put between the pieces, like \", \""
+      },
+      {
+        "name": "ignore_empty",
+        "about": "TRUE to skip empty cells"
+      },
+      {
+        "name": "text1",
+        "about": "text, a cell or a range to join"
+      },
+      {
+        "name": "text2",
+        "about": "more text, cells or ranges",
+        "optional": true
+      }
+    ],
+    "more": true,
+    "about": "Joins pieces of text into one, with a separator between them.",
+    "example": {
+      "cells": [
+        [
+          "Fruit"
+        ],
+        [
+          "Apple"
+        ],
+        [
+          ""
+        ],
+        [
+          "Pear"
+        ],
+        [
+          "Plum"
+        ]
+      ],
+      "formula": "=TEXTJOIN(\", \",TRUE,A2:A5)",
+      "result": "Apple, Pear, Plum",
+      "why": "The empty cell is skipped and the rest are joined with a comma and space."
+    }
+  },
+  {
+    "name": "TRIM",
+    "args": [
+      {
+        "name": "text",
+        "about": "the text to tidy"
+      }
+    ],
+    "about": "Takes away spaces at the start and end, and leaves single spaces between words.",
+    "example": {
+      "cells": [
+        [
+          "Name"
+        ],
+        [
+          "  Ada   Lovelace "
+        ]
+      ],
+      "formula": "=TRIM(A2)",
+      "result": "Ada Lovelace",
+      "why": "The outer spaces go and the run of three between the words becomes one."
+    }
+  },
+  {
+    "name": "UNICODE",
+    "args": [
+      {
+        "name": "text",
+        "about": "the text whose first character to look at"
+      }
+    ],
+    "about": "Gives the Unicode number of the first character of a piece of text.",
+    "example": {
+      "cells": [
+        [
+          "Symbol"
+        ],
+        [
+          "€"
+        ]
+      ],
+      "formula": "=UNICODE(A2)",
+      "result": "8364",
+      "why": "The euro sign is Unicode character 8364."
+    },
+    "notes": "UNICHAR does the opposite."
+  },
+  {
+    "name": "UNICHAR",
+    "args": [
+      {
+        "name": "number",
+        "about": "a Unicode number"
+      }
+    ],
+    "about": "Gives the character with a Unicode number.",
+    "example": {
+      "cells": [
+        [
+          "Code"
+        ],
+        [
+          "8364"
+        ]
+      ],
+      "formula": "=UNICHAR(A2)",
+      "result": "€",
+      "why": "Unicode character 8364 is the euro sign."
+    },
+    "notes": "UNICODE does the opposite."
+  },
+  {
+    "name": "CHAR",
+    "args": [
+      {
+        "name": "number",
+        "about": "a number from 1 to 255"
+      }
+    ],
+    "about": "Gives the character with a code number from 1 to 255.",
+    "example": {
+      "cells": [
+        [
+          "Code"
+        ],
+        [
+          "65"
+        ]
+      ],
+      "formula": "=CHAR(A2)",
+      "result": "A",
+      "why": "Character 65 is a capital A."
+    },
+    "notes": "For characters beyond 255 use UNICHAR. CODE does the opposite."
+  },
+  {
+    "name": "CLEAN",
+    "args": [
+      {
+        "name": "text",
+        "about": "the text to tidy"
+      }
+    ],
+    "about": "Takes away characters that can't be printed, like line breaks.",
+    "example": {
+      "cells": [],
+      "formula": "=CLEAN(\"Line one\"&CHAR(10)&\"line two\")",
+      "result": "Line oneline two",
+      "why": "CHAR(10) is a line break, which can't be printed, so it is taken away."
+    },
+    "notes": "TRIM takes away extra spaces."
+  },
+  {
+    "name": "CODE",
+    "args": [
+      {
+        "name": "text",
+        "about": "the text whose first character to look at"
+      }
+    ],
+    "about": "Gives the code number of the first character of a piece of text.",
+    "example": {
+      "cells": [
+        [
+          "Letter"
+        ],
+        [
+          "Apple"
+        ]
+      ],
+      "formula": "=CODE(A2)",
+      "result": "65",
+      "why": "The first character, A, has code 65."
+    },
+    "notes": "CHAR does the opposite. For characters beyond 255 use UNICODE."
+  },
+  {
+    "name": "ASC",
+    "args": [
+      {
+        "name": "text",
+        "about": "the text to change"
+      }
+    ],
+    "about": "Changes full-width (double-byte) letters and digits into normal half-width ones.",
+    "example": {
+      "cells": [
+        [
+          "Typed"
+        ],
+        [
+          "ＡＢＣ１２３"
+        ]
+      ],
+      "formula": "=ASC(A2)",
+      "result": "ABC123",
+      "why": "The wide characters typed in a Japanese, Chinese or Korean layout become ordinary ones."
+    },
+    "notes": "Ordinary text is left as it is."
+  },
+  {
+    "name": "ARRAYTOTEXT",
+    "args": [
+      {
+        "name": "array",
+        "about": "the cells to turn into text"
+      },
+      {
+        "name": "format",
+        "about": "0 for a short list, 1 for the form you'd type in a formula (0 if left out)",
+        "optional": true
+      }
+    ],
+    "about": "Turns a range of cells into one piece of text.",
+    "example": {
+      "cells": [
+        [
+          "Fruit"
+        ],
+        [
+          "Apple"
+        ],
+        [
+          "Pear"
+        ]
+      ],
+      "formula": "=ARRAYTOTEXT(A2:A3)",
+      "result": "Apple, Pear",
+      "why": "The values are joined with a comma and a space."
+    }
+  },
+  {
+    "name": "DOLLAR",
+    "args": [
+      {
+        "name": "number",
+        "about": "the number to show"
+      },
+      {
+        "name": "decimals",
+        "about": "how many decimal places (2 if left out)",
+        "optional": true
+      }
+    ],
+    "about": "Shows a number as money text, with a currency sign and thousands commas.",
+    "example": {
+      "cells": [
+        [
+          "Price"
+        ],
+        [
+          "1234.567"
+        ]
+      ],
+      "formula": "=DOLLAR(A2)",
+      "result": "$1,234.57",
+      "why": "The number is rounded to two places and gets a dollar sign and a comma."
+    }
+  },
+  {
+    "name": "ENCODEURL",
+    "args": [
+      {
+        "name": "text",
+        "about": "the text to put in a web address"
+      }
+    ],
+    "about": "Makes text safe to use in a web address, by writing spaces and symbols as % codes.",
+    "example": {
+      "cells": [
+        [
+          "Search"
+        ],
+        [
+          "fish & chips"
+        ]
+      ],
+      "formula": "=ENCODEURL(A2)",
+      "result": "fish%20%26%20chips",
+      "why": "Each space becomes %20 and the & becomes %26."
+    }
+  },
+  {
+    "name": "ECMA.CEILING",
+    "args": [
+      {
+        "name": "number",
+        "about": "the number to round"
+      },
+      {
+        "name": "significance",
+        "about": "the multiple to round up to"
+      }
+    ],
+    "about": "Rounds a number up to the nearest multiple of another number.",
+    "example": {
+      "cells": [
+        [
+          "Price"
+        ],
+        [
+          "4.32"
+        ]
+      ],
+      "formula": "=ECMA.CEILING(A2,0.5)",
+      "result": "4.5",
+      "why": "The next multiple of 0.5 above 4.32 is 4.5."
+    },
+    "notes": "CEILING.MATH and CEILING do the same."
+  },
+  {
+    "name": "FINDB",
+    "args": [
+      {
+        "name": "find_text",
+        "about": "the text to look for"
+      },
+      {
+        "name": "within_text",
+        "about": "the text to look in"
+      },
+      {
+        "name": "start_num",
+        "about": "which character to start from (1 if left out)",
+        "optional": true
+      }
+    ],
+    "about": "The same as FIND: in Calc it counts characters, not bytes.",
+    "example": {
+      "cells": [
+        [
+          "Email"
+        ],
+        [
+          "ada@example.com"
+        ]
+      ],
+      "formula": "=FINDB(\"@\",A2)",
+      "result": "4",
+      "why": "With ordinary letters every character is one byte, so the @ is at 4 as with FIND."
+    },
+    "notes": "In some other spreadsheet apps, with Chinese, Japanese or Korean set as the editing language, FINDB counts each double-byte character as two. Calc always counts every character as one, so FINDB gives the same as FIND. Use FIND."
+  },
+  {
+    "name": "FIXED",
+    "args": [
+      {
+        "name": "number",
+        "about": "the number to show"
+      },
+      {
+        "name": "decimals",
+        "about": "how many decimal places (2 if left out)",
+        "optional": true
+      },
+      {
+        "name": "no_commas",
+        "about": "TRUE to leave out the thousands commas (FALSE if left out)",
+        "optional": true
+      }
+    ],
+    "about": "Shows a number as text, rounded to some decimal places, with thousands commas.",
+    "example": {
+      "cells": [
+        [
+          "Distance"
+        ],
+        [
+          "12345.678"
+        ]
+      ],
+      "formula": "=FIXED(A2,1)",
+      "result": "12,345.7",
+      "why": "Rounded to one place, with a comma for the thousands."
+    }
+  },
+  {
+    "name": "LEFTB",
+    "args": [
+      {
+        "name": "text",
+        "about": "the text to take from"
+      },
+      {
+        "name": "num_bytes",
+        "about": "how many characters (1 if left out)",
+        "optional": true
+      }
+    ],
+    "about": "The same as LEFT: in Calc it counts characters, not bytes.",
+    "example": {
+      "cells": [
+        [
+          "Code"
+        ],
+        [
+          "UK-1042"
+        ]
+      ],
+      "formula": "=LEFTB(A2,2)",
+      "result": "UK",
+      "why": "With ordinary letters every character is one byte, so this gives the first two characters."
+    },
+    "notes": "In some other spreadsheet apps, with Chinese, Japanese or Korean set as the editing language, LEFTB counts each double-byte character as two. Calc always counts every character as one, so LEFTB gives the same as LEFT. Use LEFT."
+  },
+  {
+    "name": "LENB",
+    "args": [
+      {
+        "name": "text",
+        "about": "the text to count"
+      }
+    ],
+    "about": "The same as LEN: in Calc it counts characters, not bytes.",
+    "example": {
+      "cells": [
+        [
+          "Product"
+        ],
+        [
+          "Desk lamp"
+        ]
+      ],
+      "formula": "=LENB(A2)",
+      "result": "9",
+      "why": "Ordinary letters and spaces are one byte each."
+    },
+    "notes": "In some other spreadsheet apps, with Chinese, Japanese or Korean set as the editing language, LENB counts each double-byte character as two. Calc always counts every character as one, so LENB gives the same as LEN. Use LEN."
+  },
+  {
+    "name": "MIDB",
+    "args": [
+      {
+        "name": "text",
+        "about": "the text to take from"
+      },
+      {
+        "name": "start_num",
+        "about": "the character to start from"
+      },
+      {
+        "name": "num_bytes",
+        "about": "how many characters"
+      }
+    ],
+    "about": "The same as MID: in Calc it counts characters, not bytes.",
+    "example": {
+      "cells": [
+        [
+          "Code"
+        ],
+        [
+          "UK-1042-B"
+        ]
+      ],
+      "formula": "=MIDB(A2,4,4)",
+      "result": "1042",
+      "why": "With ordinary letters every character is one byte, so this is the same as MID."
+    },
+    "notes": "In some other spreadsheet apps, with Chinese, Japanese or Korean set as the editing language, MIDB counts each double-byte character as two. Calc always counts every character as one, so MIDB gives the same as MID. Use MID."
+  },
+  {
+    "name": "NUMBERVALUE",
+    "args": [
+      {
+        "name": "text",
+        "about": "the text to turn into a number"
+      },
+      {
+        "name": "decimal_separator",
+        "about": "the character used for the decimal point",
+        "optional": true
+      },
+      {
+        "name": "group_separator",
+        "about": "the character used between thousands",
+        "optional": true
+      }
+    ],
+    "about": "Turns text into a number, with the decimal and thousands separators you say.",
+    "example": {
+      "cells": [
+        [
+          "Amount"
+        ],
+        [
+          "'1.234,5"
+        ]
+      ],
+      "formula": "=NUMBERVALUE(A2,\",\",\".\")",
+      "result": "1234.5",
+      "why": "The comma is the decimal point and the dot separates thousands."
+    }
+  },
+  {
+    "name": "PROPER",
+    "args": [
+      {
+        "name": "text",
+        "about": "the text to change"
+      }
+    ],
+    "about": "Gives each word a capital first letter and makes the rest small.",
+    "example": {
+      "cells": [
+        [
+          "Name"
+        ],
+        [
+          "ada LOVELACE"
+        ]
+      ],
+      "formula": "=PROPER(A2)",
+      "result": "Ada Lovelace",
+      "why": "Each word starts with a capital and the other letters become small."
+    }
+  },
+  {
+    "name": "REPLACE",
+    "args": [
+      {
+        "name": "old_text",
+        "about": "the text to change"
+      },
+      {
+        "name": "start_num",
+        "about": "the position of the first character to replace"
+      },
+      {
+        "name": "num_chars",
+        "about": "how many characters to replace"
+      },
+      {
+        "name": "new_text",
+        "about": "what to put instead"
+      }
+    ],
+    "about": "Replaces some characters at a given position with other text.",
+    "example": {
+      "cells": [
+        [
+          "Code"
+        ],
+        [
+          "UK-1042"
+        ]
+      ],
+      "formula": "=REPLACE(A2,1,2,\"FR\")",
+      "result": "FR-1042",
+      "why": "The first two characters, UK, become FR."
+    },
+    "notes": "SUBSTITUTE replaces by matching text instead of by position."
+  },
+  {
+    "name": "REPLACEB",
+    "args": [
+      {
+        "name": "old_text",
+        "about": "the text to change"
+      },
+      {
+        "name": "start_num",
+        "about": "the character to start from"
+      },
+      {
+        "name": "num_bytes",
+        "about": "how many characters to replace"
+      },
+      {
+        "name": "new_text",
+        "about": "what to put instead"
+      }
+    ],
+    "about": "The same as REPLACE: in Calc it counts characters, not bytes.",
+    "example": {
+      "cells": [
+        [
+          "Code"
+        ],
+        [
+          "UK-1042"
+        ]
+      ],
+      "formula": "=REPLACEB(A2,1,2,\"FR\")",
+      "result": "FR-1042",
+      "why": "With ordinary letters every character is one byte, so this is the same as REPLACE."
+    },
+    "notes": "In some other spreadsheet apps, with Chinese, Japanese or Korean set as the editing language, REPLACEB counts each double-byte character as two. Calc always counts every character as one, so REPLACEB gives the same as REPLACE. Use REPLACE."
+  },
+  {
+    "name": "RIGHTB",
+    "args": [
+      {
+        "name": "text",
+        "about": "the text to take from"
+      },
+      {
+        "name": "num_bytes",
+        "about": "how many characters (1 if left out)",
+        "optional": true
+      }
+    ],
+    "about": "The same as RIGHT: in Calc it counts characters, not bytes.",
+    "example": {
+      "cells": [
+        [
+          "Code"
+        ],
+        [
+          "UK-1042"
+        ]
+      ],
+      "formula": "=RIGHTB(A2,4)",
+      "result": "1042",
+      "why": "With ordinary letters every character is one byte, so this is the same as RIGHT."
+    },
+    "notes": "In some other spreadsheet apps, with Chinese, Japanese or Korean set as the editing language, RIGHTB counts each double-byte character as two. Calc always counts every character as one, so RIGHTB gives the same as RIGHT. Use RIGHT."
+  },
+  {
+    "name": "SEARCHB",
+    "args": [
+      {
+        "name": "find_text",
+        "about": "the text to look for; ? and * work as wildcards"
+      },
+      {
+        "name": "within_text",
+        "about": "the text to look in"
+      },
+      {
+        "name": "start_num",
+        "about": "which character to start from (1 if left out)",
+        "optional": true
+      }
+    ],
+    "about": "The same as SEARCH: in Calc it counts characters, not bytes.",
+    "example": {
+      "cells": [
+        [
+          "Title"
+        ],
+        [
+          "The Big Apple"
+        ]
+      ],
+      "formula": "=SEARCHB(\"apple\",A2)",
+      "result": "9",
+      "why": "With ordinary letters every character is one byte, so Apple is found at 9 as with SEARCH."
+    },
+    "notes": "In some other spreadsheet apps, with Chinese, Japanese or Korean set as the editing language, SEARCHB counts each double-byte character as two. Calc always counts every character as one, so SEARCHB gives the same as SEARCH. Use SEARCH."
+  },
+  {
+    "name": "UPPER",
+    "args": [
+      {
+        "name": "text",
+        "about": "the text to change"
+      }
+    ],
+    "about": "Turns all the letters in a piece of text into capitals.",
+    "example": {
+      "cells": [
+        [
+          "Code"
+        ],
+        [
+          "uk-1042-b"
+        ]
+      ],
+      "formula": "=UPPER(A2)",
+      "result": "UK-1042-B",
+      "why": "Every small letter becomes a capital."
+    }
+  },
+  {
+    "name": "VALUE",
+    "args": [
+      {
+        "name": "text",
+        "about": "text that looks like a number"
+      }
+    ],
+    "about": "Turns text that looks like a number into a number.",
+    "example": {
+      "cells": [
+        [
+          "Typed"
+        ],
+        [
+          "'42.5"
+        ]
+      ],
+      "formula": "=VALUE(A2)*2",
+      "result": "85",
+      "why": "The text 42.5 becomes the number 42.5, which can then be doubled."
+    },
+    "notes": "NUMBERVALUE lets you say which decimal separator the text uses."
+  },
+  {
+    "name": "VALUETOTEXT",
+    "args": [
+      {
+        "name": "value",
+        "about": "the value to turn into text"
+      },
+      {
+        "name": "format",
+        "about": "0 for plain, 1 to put text in quotes (0 if left out)",
+        "optional": true
+      }
+    ],
+    "about": "Turns any value into text.",
+    "example": {
+      "cells": [
+        [
+          "Price"
+        ],
+        [
+          "120"
+        ]
+      ],
+      "formula": "=VALUETOTEXT(A2)&\" pounds\"",
+      "result": "120 pounds",
+      "why": "The number 120 becomes the text 120, then words are joined on."
+    }
+  }
+]

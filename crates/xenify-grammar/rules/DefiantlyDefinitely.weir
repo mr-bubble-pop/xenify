@@ -1,0 +1,29 @@
+# Real-word typo: "defiantly" (in open resistance) for "definitely". Common
+# autocorrect slip; pattern from published lists; examples are ours.
+# why: Definitely means certainly; defiantly means in open resistance. Autocorrect often swaps them, and the result can sound rude.
+expr defiance [refuse, refused, refuses, refusing, reject, rejected, rejects, ignore, ignored, ignores, resist, resisted, resists, defy, defied, defies, stare, stared, stares, stand, stood, stands, raise, raised, raises, shout, shouted, shouts, march, marched, insist, insisted, insists, cross, crossed, lift, lifted, fold, folded, glare, glared, lean, leaned, jut, jutted, shake, shook, hold, held, keep, kept, remain, remained, continue, continued, sit, sat, walk, walked, toss, tossed, tilt, tilted, meet, met]
+expr modal <([will, would, should, could, can, must, might, may, (we'll), (I'll), (you'll), (they'll), (he'll), (she'll), to, I, we, you, (we're), (I'm), (they're), have, has, had] defiantly !@defiance), defiantly>
+expr main [@modal, <(defiantly [be, recommend, recommended, agree, worth, interested, going, coming, want, need, try, check, consider, help, the, a, an, one, more, better, worse, possible, true, right, (gonna), getting, happening, ready, sure, keen, confident, certain, positive, glad, happy, excited, thrilled, open, available, capable, qualified, able, planning, looking, love, buying, attending, joining, coming, interested, will, (would), (won't), (will), have, had, has, there, here, not, been, think, beat, order, address, finish, restart, attend, express, deducted, on, off]), defiantly>]
+
+let message "Did you mean `definitely`? `Defiantly` means in open resistance."
+let description "Catches `defiantly` where `definitely` was meant (I will defiantly be there)."
+let kind "Typo"
+let becomes "definitely"
+let strategy "MatchCase"
+
+test "I am defiantly confident in my skills." "I am definitely confident in my skills."
+test "I will defiantly be there." "I will definitely be there."
+test "This is defiantly worth a visit." "This is definitely worth a visit."
+test "I'm defiantly interested in the role." "I'm definitely interested in the role."
+test "We would defiantly recommend them." "We would definitely recommend them."
+test "That was defiantly the best part." "That was definitely the best part."
+
+allows "She defiantly refused to leave."
+allows "He stared defiantly at the referee."
+allows "The protesters stood defiantly in the rain."
+
+test "The team will defiantly finish on time." "The team will definitely finish on time."
+test "I have defiantly been putting it off." "I have definitely been putting it off."
+test "I was defiantly not impressed." "I was definitely not impressed."
+allows "She will defiantly refuse to comply."
+allows "He was defiantly staring back."

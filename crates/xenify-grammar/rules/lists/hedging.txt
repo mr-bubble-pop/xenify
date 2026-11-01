@@ -1,0 +1,6 @@
+# Hedges and fillers.
+basically | (omit)
+literally | (omit)
+i guess | (omit)
+just saying | (omit)
+or whatever | (omit)

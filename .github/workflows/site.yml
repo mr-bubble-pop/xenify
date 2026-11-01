@@ -1,0 +1,84 @@
+# Builds xenify.net: the marketing pages, Write, Draw, Calc, Plan and Chat
+# in the browser, and the checker they share, then puts it on Cloudflare
+# Pages (project `xenify`).
+#
+# Secrets: CLOUDFLARE_API_TOKEN (only Account › Cloudflare Pages › Edit) and
+# CLOUDFLARE_ACCOUNT_ID (or a variable). Start it from the Actions tab, or
+# push a tag site-<anything>: scripts/start-build.sh site does.
+name: Website
+
+on:
+  workflow_dispatch:
+  push:
+    tags: ["site-*"]
+
+concurrency:
+  group: website
+  cancel-in-progress: true
+
+env:
+  CARGO_TERM_COLOR: never
+  # The mistake-spotter model (B7, MIT) Write and Draw ship, kept on the
+  # `hub-parts` release under this name and checked against this sum.
+  SPOTTER_MODEL: spotter-B7.tgz
+  SPOTTER_SHA256: 93e60b346e81b418d07c5302724da8f0b79cbef7ac8b5095928131a756c8e8ae
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          persist-credentials: false
+      - name: Mistake-spotter model (from the hub-parts release)
+        shell: bash
+        run: |
+          mkdir -p checkpoints/models
+          curl -fsSL --retry 3 -o checkpoints/models/B7.tgz "https://github.com/${{ github.repository }}/releases/download/hub-parts/$SPOTTER_MODEL"
+          if command -v sha256sum >/dev/null; then sum="sha256sum"; else sum="shasum -a 256"; fi
+          echo "$SPOTTER_SHA256  checkpoints/models/B7.tgz" | $sum -c -
+          echo "Site from $(git rev-parse --short HEAD)"
+      - uses: dtolnay/rust-toolchain@b725eda525362e7cf34af9a7243cac1e3f01a7ec # stable
+        with:
+          toolchain: stable
+          targets: wasm32-unknown-unknown
+      - name: Web build tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq brotli imagemagick >/dev/null
+          cargo install wasm-bindgen-cli --version 0.2.128 --locked
+          curl -fsSL https://github.com/WebAssembly/binaryen/releases/download/version_124/binaryen-version_124-x86_64-linux.tar.gz | tar xz -C "$HOME"
+          echo "$HOME/binaryen-version_124/bin" >> "$GITHUB_PATH"
+      - name: Build
+        run: scripts/build-site.sh --rebuild
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: xenify-site
+          path: target/site
+          retention-days: 1
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
+        with:
+          name: xenify-site
+          path: site
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 22
+      - name: Upload to Cloudflare Pages
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID || vars.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          [ -n "$CLOUDFLARE_API_TOKEN" ] || { echo "::error::The secret CLOUDFLARE_API_TOKEN is missing or empty"; missing=1; }
+          [ -n "$CLOUDFLARE_ACCOUNT_ID" ] || { echo "::error::CLOUDFLARE_ACCOUNT_ID is missing or empty (add it as a variable or secret)"; missing=1; }
+          [ -z "${missing:-}" ] || exit 1
+          npx --yes wrangler@4.45.0 pages project list | grep -qw xenify ||
+            npx --yes wrangler@4.45.0 pages project create xenify --production-branch main
+          npx --yes wrangler@4.45.0 pages deploy site --project-name xenify --branch main

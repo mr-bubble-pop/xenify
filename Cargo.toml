@@ -1,0 +1,124 @@
+[workspace]
+resolver = "3"
+members = ["crates/*"]
+exclude = ["patches"]
+
+[workspace.package]
+version = "0.1.5"
+edition = "2024"
+license = "MIT"
+rust-version = "1.85"
+
+[workspace.dependencies]
+xenify-doc = { path = "crates/xenify-doc" }
+xenify-util = { path = "crates/xenify-util" }
+xenify-anim = { path = "crates/xenify-anim" }
+xenify-ops = { path = "crates/xenify-ops" }
+xenify-render = { path = "crates/xenify-render" }
+xenify-platform = { path = "crates/xenify-platform" }
+xenify-export = { path = "crates/xenify-export" }
+xenify-ai = { path = "crates/xenify-ai" }
+xenify-route = { path = "crates/xenify-route" }
+xenify-audio = { path = "crates/xenify-audio" }
+xenify-showcase = { path = "crates/xenify-showcase" }
+xenify-openrouter = { path = "crates/xenify-openrouter" }
+xenify-wp-doc = { path = "crates/xenify-wp-doc" }
+xenify-wp-layout = { path = "crates/xenify-wp-layout" }
+xenify-wp-engine = { path = "crates/xenify-wp-engine" }
+xenify-wp-io = { path = "crates/xenify-wp-io" }
+xenify-wp-check = { path = "crates/xenify-wp-check" }
+xenify-grammar = { path = "crates/xenify-grammar" }
+xenify-wp-ai = { path = "crates/xenify-wp-ai" }
+
+kurbo = { version = "0.13", features = ["serde"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = { version = "1", features = ["float_roundtrip"] }
+thiserror = "2"
+
+# Graphics: Vello (wgpu 29) for offscreen rendering and exports.
+vello = "0.10"
+# Vello's colour/brush types on their own (the browser build has no `vello`); the same 0.6 vello uses.
+peniko = "0.6.1"
+# Vello Hybrid: draws the same scenes with WebGL2 in the HTML apps; shares kurbo 0.13 and peniko 0.6.
+vello_hybrid = { version = "0.2.0", default-features = false }
+vello_common = { version = "0.2.0", default-features = false, features = ["std"] }
+pollster = "0.4"
+ureq = "3"
+base64 = "0.22"
+png = "0.18"
+# Boolean path operations (curves stay curves); shares kurbo 0.13.
+linesweeper = "0.4"
+# Raster tracing (image → vector) and image decoding.
+vtracer = "0.6"
+visioncortex = "0.8"
+image = { version = "0.25", default-features = false, features = ["png", "jpeg", "webp", "gif", "bmp"] }
+# SVG parsing (import); text is converted to outlines with system fonts.
+usvg = { version = "0.48", default-features = false, features = ["text", "system-fonts", "memmap-fonts"] }
+# Text layout; 0.11 shares peniko 0.6 with vello 0.10.
+parley = { version = "0.11", default-features = false, features = ["std"] }
+# Same version Vello uses; for glyph outlines (text → paths).
+skrifa = { version = "0.44", default-features = false, features = ["std"] }
+# 3D model import: 3MF files are zipped XML.
+miniz_oxide = "0.8"
+roxmltree = "0.21"
+# assets/SOURCES.toml (asset provenance).
+toml = "1"
+sha2 = "0.11"
+# Xenify Write (word processor).
+unicode-segmentation = "1"
+# Find › Regular expressions (MIT OR Apache-2.0).
+regex = "1"
+crc32fast = "1"
+# Xenify Calc: the spreadsheet engine (MIT OR Apache-2.0) and its xlsx reader/writer.
+ironcalc_base = "0.9.1"
+ironcalc = "0.9.1"
+
+# Keep debug builds small: full debuginfo made each test binary ~700 MB and
+# target/ grew to ~95 GB. Line tables keep file:line in backtraces.
+[profile.dev]
+debug = "line-tables-only"
+
+[profile.dev.package."*"]
+debug = false
+
+# Speech to text is far too slow unoptimised, even while developing (the
+# cmake build follows this: Release).
+[profile.dev.package.whisper-rs-sys]
+opt-level = 3
+
+# MIT stand-ins for unused dependencies that would ship copyleft code
+# (ammonia pulls in MPL-2.0 cssparser; colored and option-ext are MPL-2.0). See patches/README.md.
+[patch.crates-io]
+ammonia = { path = "patches/ammonia" }
+colored = { path = "patches/colored" }
+option-ext = { path = "patches/option-ext" }
+# IronCalc with tables that grow: structured references are kept, and numbers
+# are exact decimals (see patches/README.md).
+ironcalc_base = { path = "patches/ironcalc_base" }
+# IronCalc's xlsx reading and writing, for the exact numbers.
+ironcalc = { path = "patches/ironcalc" }
+
+# The browser build (scripts/build-write-web.sh): small downloads first.
+# Code is optimised for size, except the maths the mistake spotter runs.
+[profile.web]
+inherits = "release"
+opt-level = "s"
+lto = true
+codegen-units = 1
+panic = "abort"
+
+# The checker's worker: built for speed (the spotter's maths, the rules).
+[profile.web-checker]
+inherits = "web"
+opt-level = 3
+
+[profile.web.package.candle-core]
+opt-level = 3
+[profile.web.package.candle-nn]
+opt-level = 3
+[profile.web.package.candle-transformers]
+opt-level = 3
+[profile.web.package.gemm-common]
+opt-level = 3
+[profile.web.package.gemm-f32]
+opt-level = 3

@@ -1,0 +1,19 @@
+# "Weather" (rain, sun) for "whether" (if). Common-error lists; examples are ours.
+# why: Whether means "if" (I'm not sure whether it's ready). Weather is rain, wind and sunshine.
+expr asking [unsure, uncertain, wondering, wonder, wondered, wonders, decide, decides, decided, deciding, determine, determines, determined, doubt, doubtful, ask, asked, asking, asks, regardless, confirm, confirmed, sure, debate, debated, question, questioned, about, of, to]
+expr main [<(@asking weather [the, it, they, we, you, he, she, I, this, that, there, our, your, their, or, to]), weather>, <(weather or not), weather>]
+
+let message "Did you mean `whether` (if)?"
+let description "Fixes `unsure weather it will rain` → `unsure whether it will rain`, and `weather or not`."
+let kind "Malapropism"
+let becomes "whether"
+let strategy "MatchCase"
+
+test "Officials are still unsure weather the law will pass." "Officials are still unsure whether the law will pass."
+test "I wonder weather it will be ready." "I wonder whether it will be ready."
+test "We'll go weather or not it rains." "We'll go whether or not it rains."
+
+allows "We checked the weather before leaving."
+allows "I'm unsure whether the law will pass."
+allows "We talked about weather patterns."
+allows "The weather or the traffic made us late."

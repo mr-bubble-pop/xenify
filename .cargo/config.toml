@@ -1,0 +1,5 @@
+# Browser builds: getrandom (used by the spelling checker's dependencies)
+# takes its randomness from the browser's crypto.getRandomValues. (Draw's
+# engine is built with SIMD as well: scripts/build-draw-web.sh.)
+[target.wasm32-unknown-unknown]
+rustflags = ['--cfg', 'getrandom_backend="wasm_js"']

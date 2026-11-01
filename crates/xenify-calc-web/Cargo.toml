@@ -1,0 +1,18 @@
+[package]
+name = "xenify-calc-web"
+description = "Xenify Calc's engine as WebAssembly, for the desktop app's web view and the browser"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+xenify-calc-core = { path = "../xenify-calc-core" }
+serde_json.workspace = true
+
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+wasm-bindgen = "0.2.128"
+js-sys = "0.3.105"
+getrandom = { version = "0.3", features = ["wasm_js"] }

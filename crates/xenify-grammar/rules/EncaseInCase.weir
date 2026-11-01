@@ -1,0 +1,15 @@
+# Sound-alike: "encase" (to enclose) written for "in case". Examples are ours.
+# why: "Encase" means to put something inside a case or cover. "In case" (two words) means "if it happens that" or "as a precaution".
+expr main <([(just encase), (encase of)]), encase>
+
+let message "`Encase` means to enclose something; here it's `in case`."
+let description "Fixes `just encase it rains` → `just in case it rains`."
+let kind "Malapropism"
+let becomes "in case"
+let strategy "MatchCase"
+
+test "Take an umbrella just encase it rains." "Take an umbrella just in case it rains."
+test "Encase of fire, use the stairs." "In case of fire, use the stairs."
+
+allows "Encase the wires in plastic before burying them."
+allows "Take an umbrella just in case it rains."
