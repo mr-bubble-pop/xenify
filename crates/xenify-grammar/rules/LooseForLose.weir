@@ -1,0 +1,21 @@
+# "Loose" (not tight) for "lose" (misplace, not win). Common-error lists;
+# examples are ours.
+# why: Lose is the verb: lose weight, lose a game, lose focus. Loose means not tight: a loose screw, loose clothes.
+expr doer [will, would, could, might, can, may, must, should, (won't), (don't), (didn't), (doesn't), never, we, they, I, you, (gonna), to]
+expr fine [fit, fitting, ends, end, change, connection, leaf, threads, thread, cannon, gravel, tea]
+expr main <(@doer loose !@fine), loose>
+
+let message "Did you mean `lose` (misplace, not win)?"
+let description "Fixes `if we loose focus` → `if we lose focus`."
+let kind "Malapropism"
+let becomes "lose"
+let strategy "MatchCase"
+
+test "If we loose focus, the experiment will fail." "If we lose focus, the experiment will fail."
+test "I don't want to loose my keys." "I don't want to lose my keys."
+test "You will loose points for late work." "You will lose points for late work."
+
+allows "If we lose focus, the experiment will fail."
+allows "The dog broke loose."
+allows "Let loose and have fun."
+allows "They cut loose after the exam."

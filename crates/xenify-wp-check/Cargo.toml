@@ -1,0 +1,16 @@
+[package]
+name = "xenify-wp-check"
+description = "Xenify Write proofing: spelling and grammar (Harper) plus readability checks"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+xenify-grammar.workspace = true
+xenify-grammar-spotter = { path = "../xenify-grammar-spotter" }
+xenify-checker = { path = "../xenify-checker" }
+xenify-wp-doc.workspace = true
+serde.workspace = true
+# The standard folders on each system; MIT OR Apache-2.0.
+dirs = "6"
+miniz_oxide.workspace = true

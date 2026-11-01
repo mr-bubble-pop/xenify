@@ -1,0 +1,8 @@
+{
+  "section": "Calc",
+  "shots": [
+    {"card": {"tag": "Calc", "title": "Spreadsheets that stay current.", "sub": "Like the ones you know, linked to your data."}, "seconds": 3},
+    {"clip": "site/media/calc-database.mp4", "from": 0.4, "to": 20, "speed": 1.6, "caption": "Link a sheet to a database table, or a CSV file"},
+    {"clip": "site/media/calc-lookup.mp4", "from": 0.4, "to": 11, "speed": 1.3, "caption": "Fill a column from another table in three clicks"}
+  ]
+}

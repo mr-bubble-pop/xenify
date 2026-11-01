@@ -1,0 +1,31 @@
+[package]
+name = "xenify-draw-web"
+description = "Xenify Draw's engine as WebAssembly: the canvas, drawn with WebGL2 (Vello Hybrid), for the desktop app's web view and the browser"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+xenify-draw-core = { path = "../xenify-draw-core" }
+serde_json.workspace = true
+xenify-audio.workspace = true
+xenify-anim.workspace = true
+xenify-doc.workspace = true
+kurbo.workspace = true
+
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+xenify-render = { path = "../xenify-render", default-features = false, features = ["hybrid"] }
+vello_hybrid = { workspace = true, features = ["webgl"] }
+vello_common.workspace = true
+peniko.workspace = true
+wasm-bindgen = "0.2.128"
+js-sys = "0.3.105"
+web-sys = { version = "0.3.105", features = ["HtmlCanvasElement", "Window", "Performance", "console", "WebGl2RenderingContext"] }
+getrandom = { version = "0.3", features = ["wasm_js"] }
+# Animated GIFs made in the browser (the desktop uses ffmpeg).
+image.workspace = true
+# PDF in the browser (layers with effects are drawn here with WebGL).
+xenify-export = { workspace = true, default-features = false }

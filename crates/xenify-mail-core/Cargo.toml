@@ -1,0 +1,34 @@
+[package]
+name = "xenify-mail-core"
+description = "Email for Xenify Chat without a user interface: accounts, IMAP, sending, the local mail store and sync"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+xenify-wp-check.workspace = true
+xenify-safe-html = { path = "../xenify-safe-html" }
+serde.workspace = true
+serde_json.workspace = true
+# MIME parsing (Apache-2.0 OR MIT); full_encoding reads every charset.
+mail-parser = { version = "0.11", features = ["full_encoding"] }
+base64.workspace = true
+thiserror.workspace = true
+# IMAP: response parsing (MIT OR Apache-2.0); TLS with the same rustls,
+# ring and Mozilla roots ureq already uses.
+imap-proto = "0.17"
+nom = "8"
+rustls = { version = "0.23", default-features = false, features = ["ring", "std", "tls12"] }
+webpki-roots = "1"
+# Sending (SMTP) and building messages (MIME), MIT; TLS through the same
+# rustls/ring/Mozilla roots.
+lettre = { version = "0.11", default-features = false, features = ["smtp-transport", "builder", "rustls-tls", "hostname"] }
+# Random Message-IDs (MIT OR Apache-2.0; lettre uses it too).
+fastrand = "2"
+# The local mail store: SQLite (public domain) built in, with full-text search.
+rusqlite = { version = "0.37", features = ["bundled"] }
+# Passwords in the system keyring (the same store Write's AI key uses).
+xenify-openrouter.workspace = true
+ureq.workspace = true
+# Reading provider settings (Thunderbird autoconfig XML).
+roxmltree.workspace = true

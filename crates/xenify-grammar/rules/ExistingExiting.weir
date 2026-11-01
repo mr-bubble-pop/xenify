@@ -1,0 +1,19 @@
+# Real-word typo: "existing" for "exiting" (leaving). Pattern from published
+# lists of sign and notice mistakes; examples are ours.
+# why: Exiting means leaving; existing means being. The extra s turns a sign about leaving into something else.
+expr main [<(existing [the, a, an, this, that, your, our, their, his, her, my]), existing>, <(when existing), existing>, <([before, after, upon, while] existing [the, a, an, this, that, your, our, their, his, her, my, (via), (through), (from), (onto)]), existing>]
+
+let message "Did you mean `exiting` (leaving)?"
+let description "Catches `existing` where `exiting` was meant (Look both ways when existing the car park)."
+let kind "Typo"
+let becomes "exiting"
+let strategy "MatchCase"
+
+test "Pay before existing the car park." "Pay before exiting the car park."
+test "Take all belongings when existing the train." "Take all belongings when exiting the train."
+test "Look both ways when existing." "Look both ways when exiting."
+test "We are existing the market next year." "We are exiting the market next year."
+
+allows "This replaces the existing system."
+allows "Existing customers keep their discount."
+allows "Before existing customers renew, send them a reminder."

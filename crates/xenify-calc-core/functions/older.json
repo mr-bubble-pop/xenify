@@ -1,0 +1,1487 @@
+[
+  {
+    "name": "BETADIST",
+    "args": [
+      {
+        "name": "x",
+        "about": "the value to work out the function at"
+      },
+      {
+        "name": "alpha",
+        "about": "the alpha shape value, above 0"
+      },
+      {
+        "name": "beta",
+        "about": "the beta shape value, above 0"
+      },
+      {
+        "name": "A",
+        "about": "the lowest value (0 if left out)",
+        "optional": true
+      },
+      {
+        "name": "B",
+        "about": "the highest value (1 if left out)",
+        "optional": true
+      }
+    ],
+    "about": "Gives the chance of a value up to x in a beta spread.",
+    "example": {
+      "cells": [
+        [
+          "x",
+          "Alpha",
+          "Beta"
+        ],
+        [
+          "0.4",
+          "2",
+          "3"
+        ]
+      ],
+      "formula": "=BETADIST(A2,B2,C2)",
+      "result": "0.5248",
+      "why": "For a beta spread with alpha 2 and beta 3, the chance of 0.4 or less is 0.5248."
+    },
+    "notes": "An older name kept for old spreadsheets: use BETA.DIST instead. It always gives the cumulative chance."
+  },
+  {
+    "name": "HYPGEOMDIST",
+    "args": [
+      {
+        "name": "sample_s",
+        "about": "how many successes in the sample"
+      },
+      {
+        "name": "number_sample",
+        "about": "the size of the sample"
+      },
+      {
+        "name": "population_s",
+        "about": "how many successes in the whole group"
+      },
+      {
+        "name": "number_pop",
+        "about": "the size of the whole group"
+      }
+    ],
+    "about": "Gives the chance of exactly so many successes when drawing without putting back.",
+    "example": {
+      "cells": [
+        [
+          "Hits",
+          "Drawn",
+          "Red",
+          "Total"
+        ],
+        [
+          "1",
+          "4",
+          "8",
+          "20"
+        ]
+      ],
+      "formula": "=HYPGEOMDIST(A2,B2,C2,D2)",
+      "result": "0.363261094",
+      "why": "Drawing 4 balls from 20 with 8 red, the chance of exactly 1 red is about 0.363."
+    },
+    "notes": "An older name kept for old spreadsheets: use HYPGEOM.DIST instead."
+  },
+  {
+    "name": "LOGNORMDIST",
+    "args": [
+      {
+        "name": "x",
+        "about": "the value to work out the function at"
+      },
+      {
+        "name": "mean",
+        "about": "the average of the spread"
+      },
+      {
+        "name": "standard_dev",
+        "about": "how spread out it is, above 0"
+      }
+    ],
+    "about": "Gives the chance of a value up to x when its logarithm follows a bell curve.",
+    "example": {
+      "cells": [
+        [
+          "x",
+          "Mean",
+          "SD"
+        ],
+        [
+          "4",
+          "3.5",
+          "1.2"
+        ]
+      ],
+      "formula": "=LOGNORMDIST(A2,B2,C2)",
+      "result": "0.039083556",
+      "why": "ln 4 is 1.386, which is 1.76 spreads below 3.5, so the chance is about 0.039."
+    },
+    "notes": "An older name kept for old spreadsheets: use LOGNORM.DIST instead. It always gives the cumulative chance."
+  },
+  {
+    "name": "NEGBINOMDIST",
+    "args": [
+      {
+        "name": "number_f",
+        "about": "how many failures"
+      },
+      {
+        "name": "number_s",
+        "about": "how many successes wanted"
+      },
+      {
+        "name": "probability_s",
+        "about": "the chance of success each time"
+      }
+    ],
+    "about": "Gives the chance of so many failures before a number of successes.",
+    "example": {
+      "cells": [
+        [
+          "Failures",
+          "Successes",
+          "Chance"
+        ],
+        [
+          "10",
+          "5",
+          "0.25"
+        ]
+      ],
+      "formula": "=NEGBINOMDIST(A2,B2,C2)",
+      "result": "0.05504866",
+      "why": "With a 1 in 4 chance each time, the chance of exactly 10 failures before the 5th success is about 0.055."
+    },
+    "notes": "An older name kept for old spreadsheets: use NEGBINOM.DIST instead."
+  },
+  {
+    "name": "NORMSDIST",
+    "args": [
+      {
+        "name": "z",
+        "about": "how many spreads from the average"
+      }
+    ],
+    "about": "Gives the chance of a value up to z on the standard bell curve.",
+    "example": {
+      "cells": [
+        [
+          "z"
+        ],
+        [
+          "1"
+        ]
+      ],
+      "formula": "=NORMSDIST(A2)",
+      "result": "0.841344746",
+      "why": "84% of the standard bell curve lies below 1."
+    },
+    "notes": "An older name kept for old spreadsheets: use NORM.S.DIST instead."
+  },
+  {
+    "name": "TDIST",
+    "args": [
+      {
+        "name": "x",
+        "about": "the value to work out the function at"
+      },
+      {
+        "name": "deg_freedom",
+        "about": "the degrees of freedom, a whole number"
+      },
+      {
+        "name": "tails",
+        "about": "1 for one tail, 2 for both tails"
+      }
+    ],
+    "about": "Gives the chance of a t value beyond x, in one or both tails.",
+    "example": {
+      "cells": [
+        [
+          "t",
+          "Df"
+        ],
+        [
+          "1.96",
+          "60"
+        ]
+      ],
+      "formula": "=TDIST(A2,B2,2)",
+      "result": "0.05464493",
+      "why": "With 60 degrees of freedom, the chance of a t further from 0 than 1.96 is about 0.055."
+    },
+    "notes": "An older name kept for old spreadsheets: use T.DIST.2T or T.DIST.RT instead."
+  },
+  {
+    "name": "BETAINV",
+    "args": [
+      {
+        "name": "probability",
+        "about": "a chance between 0 and 1"
+      },
+      {
+        "name": "alpha",
+        "about": "the alpha shape value, above 0"
+      },
+      {
+        "name": "beta",
+        "about": "the beta shape value, above 0"
+      },
+      {
+        "name": "A",
+        "about": "the lowest value (0 if left out)",
+        "optional": true
+      },
+      {
+        "name": "B",
+        "about": "the highest value (1 if left out)",
+        "optional": true
+      }
+    ],
+    "about": "Gives the value with a given chance below it in a beta spread.",
+    "example": {
+      "cells": [
+        [
+          "Chance",
+          "Alpha",
+          "Beta"
+        ],
+        [
+          "0.5248",
+          "2",
+          "3"
+        ]
+      ],
+      "formula": "=BETAINV(A2,B2,C2)",
+      "result": "0.4",
+      "why": "In a beta spread with alpha 2 and beta 3, 52.48% lies below 0.4."
+    },
+    "notes": "An older name kept for old spreadsheets: use BETA.INV instead."
+  },
+  {
+    "name": "BINOMDIST",
+    "args": [
+      {
+        "name": "number_s",
+        "about": "how many successes"
+      },
+      {
+        "name": "trials",
+        "about": "how many tries"
+      },
+      {
+        "name": "probability_s",
+        "about": "the chance of success each time"
+      },
+      {
+        "name": "cumulative",
+        "about": "TRUE for the chance of up to x, FALSE for the chance of exactly x"
+      }
+    ],
+    "about": "Gives the chance of so many successes in a number of tries.",
+    "example": {
+      "cells": [
+        [
+          "Heads",
+          "Tosses",
+          "Chance"
+        ],
+        [
+          "6",
+          "10",
+          "0.5"
+        ]
+      ],
+      "formula": "=BINOMDIST(A2,B2,C2,FALSE)",
+      "result": "0.205078125",
+      "why": "Tossing a coin 10 times, the chance of exactly 6 heads is 210/1024."
+    },
+    "notes": "An older name kept for old spreadsheets: use BINOM.DIST instead."
+  },
+  {
+    "name": "CHIDIST",
+    "args": [
+      {
+        "name": "x",
+        "about": "the value to work out the function at"
+      },
+      {
+        "name": "deg_freedom",
+        "about": "the degrees of freedom, a whole number"
+      }
+    ],
+    "about": "Gives the chance of a chi-squared value above x (the right tail).",
+    "example": {
+      "cells": [
+        [
+          "x",
+          "Df"
+        ],
+        [
+          "18.307",
+          "10"
+        ]
+      ],
+      "formula": "=CHIDIST(A2,B2)",
+      "result": "0.050000589",
+      "why": "With 10 degrees of freedom, 5% of chi-squared values are above 18.307."
+    },
+    "notes": "An older name kept for old spreadsheets: use CHISQ.DIST.RT instead."
+  },
+  {
+    "name": "CHIINV",
+    "args": [
+      {
+        "name": "probability",
+        "about": "a chance between 0 and 1"
+      },
+      {
+        "name": "deg_freedom",
+        "about": "the degrees of freedom, a whole number"
+      }
+    ],
+    "about": "Gives the chi-squared value with a given chance above it.",
+    "example": {
+      "cells": [
+        [
+          "Chance",
+          "Df"
+        ],
+        [
+          "0.05",
+          "10"
+        ]
+      ],
+      "formula": "=CHIINV(A2,B2)",
+      "result": "18.307038053",
+      "why": "With 10 degrees of freedom, 5% of chi-squared values are above 18.307."
+    },
+    "notes": "An older name kept for old spreadsheets: use CHISQ.INV.RT instead."
+  },
+  {
+    "name": "CHITEST",
+    "args": [
+      {
+        "name": "actual_range",
+        "about": "the counts you saw"
+      },
+      {
+        "name": "expected_range",
+        "about": "the counts you expected"
+      }
+    ],
+    "about": "Tests whether counts you saw differ from what you expected, giving the chance it's luck.",
+    "example": {
+      "cells": [
+        [
+          "Seen",
+          "Expected"
+        ],
+        [
+          "58",
+          "50"
+        ],
+        [
+          "35",
+          "45"
+        ],
+        [
+          "57",
+          "55"
+        ]
+      ],
+      "formula": "=CHITEST(A2:A4,B2:B4)",
+      "result": "0.167382319",
+      "why": "The gaps from the expected counts give a chi-squared of 3.57 on 2 degrees of freedom, a 17% chance."
+    },
+    "notes": "An older name kept for old spreadsheets: use CHISQ.TEST instead."
+  },
+  {
+    "name": "CONFIDENCE",
+    "args": [
+      {
+        "name": "alpha",
+        "about": "how much chance of being wrong, like 0.05"
+      },
+      {
+        "name": "standard_dev",
+        "about": "how spread out it is, above 0"
+      },
+      {
+        "name": "size",
+        "about": "how many in the sample"
+      }
+    ],
+    "about": "Gives the margin either side of a sample average for a confidence interval, using the bell curve.",
+    "example": {
+      "cells": [
+        [
+          "Alpha",
+          "SD",
+          "Size"
+        ],
+        [
+          "0.05",
+          "2.5",
+          "50"
+        ]
+      ],
+      "formula": "=CONFIDENCE(A2,B2,C2)",
+      "result": "0.692951912",
+      "why": "1.96 × 2.5 / √50 = 0.693, so the average is within ±0.693 with 95% confidence."
+    },
+    "notes": "An older name kept for old spreadsheets: use CONFIDENCE.NORM instead."
+  },
+  {
+    "name": "COVAR",
+    "args": [
+      {
+        "name": "array1",
+        "about": "the first set of numbers"
+      },
+      {
+        "name": "array2",
+        "about": "the second set, the same size"
+      }
+    ],
+    "about": "Gives how two sets of numbers vary together (population covariance).",
+    "example": {
+      "cells": [
+        [
+          "Ads",
+          "Sales"
+        ],
+        [
+          "2",
+          "20"
+        ],
+        [
+          "4",
+          "28"
+        ],
+        [
+          "6",
+          "40"
+        ]
+      ],
+      "formula": "=COVAR(A2:A4,B2:B4)",
+      "result": "13.333333333",
+      "why": "The products of each pair's distance from its average, averaged over the 3 pairs."
+    },
+    "notes": "An older name kept for old spreadsheets: use COVARIANCE.P instead."
+  },
+  {
+    "name": "CRITBINOM",
+    "args": [
+      {
+        "name": "trials",
+        "about": "how many tries"
+      },
+      {
+        "name": "probability_s",
+        "about": "the chance of success each time"
+      },
+      {
+        "name": "alpha",
+        "about": "the chance to reach, between 0 and 1"
+      }
+    ],
+    "about": "Gives the smallest number of successes whose cumulative chance reaches alpha.",
+    "example": {
+      "cells": [
+        [
+          "Tries",
+          "Chance",
+          "Alpha"
+        ],
+        [
+          "6",
+          "0.5",
+          "0.75"
+        ]
+      ],
+      "formula": "=CRITBINOM(A2,B2,C2)",
+      "result": "4",
+      "why": "With 6 coin tosses, the chance of 4 or fewer heads is the first to reach 75%."
+    },
+    "notes": "An older name kept for old spreadsheets: use BINOM.INV instead."
+  },
+  {
+    "name": "EXPONDIST",
+    "args": [
+      {
+        "name": "x",
+        "about": "the value to work out the function at"
+      },
+      {
+        "name": "lambda",
+        "about": "how often things happen, above 0"
+      },
+      {
+        "name": "cumulative",
+        "about": "TRUE for the chance of up to x, FALSE for the chance of exactly x"
+      }
+    ],
+    "about": "Gives the chance for a waiting time in an exponential spread.",
+    "example": {
+      "cells": [
+        [
+          "Hours",
+          "Rate"
+        ],
+        [
+          "0.2",
+          "10"
+        ]
+      ],
+      "formula": "=EXPONDIST(A2,B2,TRUE)",
+      "result": "0.864664717",
+      "why": "At 10 an hour, the chance of waiting 0.2 hours or less is 1 − e^-2 = 0.865."
+    },
+    "notes": "An older name kept for old spreadsheets: use EXPON.DIST instead."
+  },
+  {
+    "name": "FDIST",
+    "args": [
+      {
+        "name": "x",
+        "about": "the value to work out the function at"
+      },
+      {
+        "name": "deg_freedom1",
+        "about": "the degrees of freedom on top"
+      },
+      {
+        "name": "deg_freedom2",
+        "about": "the degrees of freedom underneath"
+      }
+    ],
+    "about": "Gives the chance of an F value above x (the right tail).",
+    "example": {
+      "cells": [
+        [
+          "F",
+          "Df1",
+          "Df2"
+        ],
+        [
+          "15.2069",
+          "6",
+          "4"
+        ]
+      ],
+      "formula": "=FDIST(A2,B2,C2)",
+      "result": "0.009999957",
+      "why": "With 6 and 4 degrees of freedom, 1% of F values are above 15.2."
+    },
+    "notes": "An older name kept for old spreadsheets: use F.DIST.RT instead."
+  },
+  {
+    "name": "FINV",
+    "args": [
+      {
+        "name": "probability",
+        "about": "a chance between 0 and 1"
+      },
+      {
+        "name": "deg_freedom1",
+        "about": "the degrees of freedom on top"
+      },
+      {
+        "name": "deg_freedom2",
+        "about": "the degrees of freedom underneath"
+      }
+    ],
+    "about": "Gives the F value with a given chance above it.",
+    "example": {
+      "cells": [
+        [
+          "Chance",
+          "Df1",
+          "Df2"
+        ],
+        [
+          "0.01",
+          "6",
+          "4"
+        ]
+      ],
+      "formula": "=FINV(A2,B2,C2)",
+      "result": "15.206864861",
+      "why": "With 6 and 4 degrees of freedom, 1% of F values are above 15.2."
+    },
+    "notes": "An older name kept for old spreadsheets: use F.INV.RT instead."
+  },
+  {
+    "name": "FTEST",
+    "args": [
+      {
+        "name": "array1",
+        "about": "the first set of numbers"
+      },
+      {
+        "name": "array2",
+        "about": "the second set"
+      }
+    ],
+    "about": "Tests whether two sets of numbers are equally spread, giving the chance it's luck.",
+    "example": {
+      "cells": [
+        [
+          "Group A",
+          "Group B"
+        ],
+        [
+          "6",
+          "20"
+        ],
+        [
+          "7",
+          "28"
+        ],
+        [
+          "9",
+          "31"
+        ],
+        [
+          "15",
+          "38"
+        ],
+        [
+          "21",
+          "40"
+        ]
+      ],
+      "formula": "=FTEST(A2:A6,B2:B6)",
+      "result": "0.648317847",
+      "why": "The two spreads are close enough that the chance they differ by luck is about 65%."
+    },
+    "notes": "An older name kept for old spreadsheets: use F.TEST instead. Both tails are counted."
+  },
+  {
+    "name": "GAMMADIST",
+    "args": [
+      {
+        "name": "x",
+        "about": "the value to work out the function at"
+      },
+      {
+        "name": "alpha",
+        "about": "the alpha shape value, above 0"
+      },
+      {
+        "name": "beta",
+        "about": "the beta shape value, above 0"
+      },
+      {
+        "name": "cumulative",
+        "about": "TRUE for the chance of up to x, FALSE for the chance of exactly x"
+      }
+    ],
+    "about": "Gives the chance for a value in a gamma spread.",
+    "example": {
+      "cells": [
+        [
+          "x",
+          "Alpha",
+          "Beta"
+        ],
+        [
+          "10",
+          "9",
+          "2"
+        ]
+      ],
+      "formula": "=GAMMADIST(A2,B2,C2,TRUE)",
+      "result": "0.068093635",
+      "why": "In a gamma spread with alpha 9 and beta 2, the chance of 10 or less is about 0.068."
+    },
+    "notes": "An older name kept for old spreadsheets: use GAMMA.DIST instead."
+  },
+  {
+    "name": "GAMMAINV",
+    "args": [
+      {
+        "name": "probability",
+        "about": "a chance between 0 and 1"
+      },
+      {
+        "name": "alpha",
+        "about": "the alpha shape value, above 0"
+      },
+      {
+        "name": "beta",
+        "about": "the beta shape value, above 0"
+      }
+    ],
+    "about": "Gives the value with a given chance below it in a gamma spread.",
+    "example": {
+      "cells": [
+        [
+          "Chance",
+          "Alpha",
+          "Beta"
+        ],
+        [
+          "0.068094",
+          "9",
+          "2"
+        ]
+      ],
+      "formula": "=GAMMAINV(A2,B2,C2)",
+      "result": "10.000011191",
+      "why": "In a gamma spread with alpha 9 and beta 2, 6.81% lies below 10."
+    },
+    "notes": "An older name kept for old spreadsheets: use GAMMA.INV instead."
+  },
+  {
+    "name": "LOGINV",
+    "args": [
+      {
+        "name": "probability",
+        "about": "a chance between 0 and 1"
+      },
+      {
+        "name": "mean",
+        "about": "the average of the spread"
+      },
+      {
+        "name": "standard_dev",
+        "about": "how spread out it is, above 0"
+      }
+    ],
+    "about": "Gives the value with a given chance below it when its logarithm follows a bell curve.",
+    "example": {
+      "cells": [
+        [
+          "Chance",
+          "Mean",
+          "SD"
+        ],
+        [
+          "0.039084",
+          "3.5",
+          "1.2"
+        ]
+      ],
+      "formula": "=LOGINV(A2,B2,C2)",
+      "result": "4.000025219",
+      "why": "It undoes LOGNORMDIST: 3.9% of values lie below 4."
+    },
+    "notes": "An older name kept for old spreadsheets: use LOGNORM.INV instead."
+  },
+  {
+    "name": "MODE",
+    "args": [
+      {
+        "name": "number1",
+        "about": "numbers, cells or ranges"
+      },
+      {
+        "name": "number2",
+        "about": "more numbers, cells or ranges",
+        "optional": true
+      }
+    ],
+    "more": true,
+    "about": "Gives the number that comes up most often.",
+    "example": {
+      "cells": [
+        [
+          "Shoe size"
+        ],
+        [
+          "7"
+        ],
+        [
+          "8"
+        ],
+        [
+          "8"
+        ],
+        [
+          "9"
+        ],
+        [
+          "8"
+        ],
+        [
+          "7"
+        ]
+      ],
+      "formula": "=MODE(A2:A7)",
+      "result": "8",
+      "why": "8 comes up three times, more than any other size."
+    },
+    "notes": "An older name kept for old spreadsheets: use MODE.SNGL (or MODE.MULT for every most-common value) instead."
+  },
+  {
+    "name": "NORMDIST",
+    "args": [
+      {
+        "name": "x",
+        "about": "the value to work out the function at"
+      },
+      {
+        "name": "mean",
+        "about": "the average of the spread"
+      },
+      {
+        "name": "standard_dev",
+        "about": "how spread out it is, above 0"
+      },
+      {
+        "name": "cumulative",
+        "about": "TRUE for the chance of up to x, FALSE for the chance of exactly x"
+      }
+    ],
+    "about": "Gives the chance for a value on a bell curve with a given average and spread.",
+    "example": {
+      "cells": [
+        [
+          "Height",
+          "Mean",
+          "SD"
+        ],
+        [
+          "180",
+          "170",
+          "10"
+        ]
+      ],
+      "formula": "=NORMDIST(A2,B2,C2,TRUE)",
+      "result": "0.841344746",
+      "why": "180 is one spread above the average 170, and 84% of the curve lies below that."
+    },
+    "notes": "An older name kept for old spreadsheets: use NORM.DIST instead."
+  },
+  {
+    "name": "NORMINV",
+    "args": [
+      {
+        "name": "probability",
+        "about": "a chance between 0 and 1"
+      },
+      {
+        "name": "mean",
+        "about": "the average of the spread"
+      },
+      {
+        "name": "standard_dev",
+        "about": "how spread out it is, above 0"
+      }
+    ],
+    "about": "Gives the value with a given chance below it on a bell curve.",
+    "example": {
+      "cells": [
+        [
+          "Chance",
+          "Mean",
+          "SD"
+        ],
+        [
+          "0.9",
+          "170",
+          "10"
+        ]
+      ],
+      "formula": "=NORMINV(A2,B2,C2)",
+      "result": "182.815515655",
+      "why": "90% of heights lie below 170 + 1.2816 × 10 = 182.8."
+    },
+    "notes": "An older name kept for old spreadsheets: use NORM.INV instead."
+  },
+  {
+    "name": "NORMSINV",
+    "args": [
+      {
+        "name": "probability",
+        "about": "a chance between 0 and 1"
+      }
+    ],
+    "about": "Gives the z value with a given chance below it on the standard bell curve.",
+    "example": {
+      "cells": [
+        [
+          "Chance"
+        ],
+        [
+          "0.975"
+        ]
+      ],
+      "formula": "=NORMSINV(A2)",
+      "result": "1.959963985",
+      "why": "97.5% of the standard bell curve lies below 1.96."
+    },
+    "notes": "An older name kept for old spreadsheets: use NORM.S.INV instead."
+  },
+  {
+    "name": "PERCENTILE",
+    "args": [
+      {
+        "name": "array",
+        "about": "the numbers"
+      },
+      {
+        "name": "k",
+        "about": "the percentile, from 0 to 1"
+      }
+    ],
+    "about": "Gives the value a given share of the numbers lie below.",
+    "example": {
+      "cells": [
+        [
+          "Score"
+        ],
+        [
+          "62"
+        ],
+        [
+          "70"
+        ],
+        [
+          "75"
+        ],
+        [
+          "81"
+        ],
+        [
+          "88"
+        ],
+        [
+          "91"
+        ]
+      ],
+      "formula": "=PERCENTILE(A2:A7,0.25)",
+      "result": "71.25",
+      "why": "A quarter of the way along the sorted scores falls between 70 and 75."
+    },
+    "notes": "An older name kept for old spreadsheets: use PERCENTILE.INC instead."
+  },
+  {
+    "name": "PERCENTRANK",
+    "args": [
+      {
+        "name": "array",
+        "about": "the numbers"
+      },
+      {
+        "name": "x",
+        "about": "the value to rank"
+      },
+      {
+        "name": "significance",
+        "about": "how many digits to keep (3 if left out)",
+        "optional": true
+      }
+    ],
+    "about": "Gives where a value stands among numbers, as a share from 0 to 1.",
+    "example": {
+      "cells": [
+        [
+          "Score"
+        ],
+        [
+          "62"
+        ],
+        [
+          "70"
+        ],
+        [
+          "75"
+        ],
+        [
+          "81"
+        ],
+        [
+          "88"
+        ],
+        [
+          "91"
+        ]
+      ],
+      "formula": "=PERCENTRANK(A2:A7,75)",
+      "result": "0.4",
+      "why": "75 is the 3rd of 6 scores: 2 of the 5 gaps lie below it, so 0.4."
+    },
+    "notes": "An older name kept for old spreadsheets: use PERCENTRANK.INC instead."
+  },
+  {
+    "name": "POISSON",
+    "args": [
+      {
+        "name": "x",
+        "about": "the value to work out the function at"
+      },
+      {
+        "name": "mean",
+        "about": "the average of the spread"
+      },
+      {
+        "name": "cumulative",
+        "about": "TRUE for the chance of up to x, FALSE for the chance of exactly x"
+      }
+    ],
+    "about": "Gives the chance of so many events when they happen at random at an average rate.",
+    "example": {
+      "cells": [
+        [
+          "Calls",
+          "Average"
+        ],
+        [
+          "2",
+          "5"
+        ]
+      ],
+      "formula": "=POISSON(A2,B2,FALSE)",
+      "result": "0.084224337",
+      "why": "With 5 calls an hour on average, the chance of exactly 2 is 5² e^-5 / 2! = 0.084."
+    },
+    "notes": "An older name kept for old spreadsheets: use POISSON.DIST instead."
+  },
+  {
+    "name": "QUARTILE",
+    "args": [
+      {
+        "name": "array",
+        "about": "the numbers"
+      },
+      {
+        "name": "quart",
+        "about": "0 smallest, 1 first quarter, 2 middle, 3 third quarter, 4 largest"
+      }
+    ],
+    "about": "Gives a quartile of a set of numbers.",
+    "example": {
+      "cells": [
+        [
+          "Score"
+        ],
+        [
+          "62"
+        ],
+        [
+          "70"
+        ],
+        [
+          "75"
+        ],
+        [
+          "81"
+        ],
+        [
+          "88"
+        ],
+        [
+          "91"
+        ]
+      ],
+      "formula": "=QUARTILE(A2:A7,1)",
+      "result": "71.25",
+      "why": "The first quartile lies a quarter of the way along the sorted scores."
+    },
+    "notes": "An older name kept for old spreadsheets: use QUARTILE.INC instead."
+  },
+  {
+    "name": "RANK",
+    "args": [
+      {
+        "name": "number",
+        "about": "the number to rank"
+      },
+      {
+        "name": "ref",
+        "about": "the numbers to rank it among"
+      },
+      {
+        "name": "order",
+        "about": "0 for largest first, 1 for smallest first (0 if left out)",
+        "optional": true
+      }
+    ],
+    "about": "Gives a number's place in a list, 1 being the largest.",
+    "example": {
+      "cells": [
+        [
+          "Runner",
+          "Time"
+        ],
+        [
+          "Ann",
+          "52"
+        ],
+        [
+          "Ben",
+          "47"
+        ],
+        [
+          "Cat",
+          "58"
+        ]
+      ],
+      "formula": "=RANK(B3,B2:B4,1)",
+      "result": "1",
+      "why": "Ranked smallest first, Ben's 47 comes 1st."
+    },
+    "notes": "An older name kept for old spreadsheets: use RANK.EQ instead."
+  },
+  {
+    "name": "STDEVP",
+    "args": [
+      {
+        "name": "number1",
+        "about": "numbers, cells or ranges"
+      },
+      {
+        "name": "number2",
+        "about": "more numbers, cells or ranges",
+        "optional": true
+      }
+    ],
+    "more": true,
+    "about": "Gives how spread out numbers are, treating them as the whole group.",
+    "example": {
+      "cells": [
+        [
+          "Score"
+        ],
+        [
+          "2"
+        ],
+        [
+          "4"
+        ],
+        [
+          "4"
+        ],
+        [
+          "4"
+        ],
+        [
+          "5"
+        ],
+        [
+          "5"
+        ],
+        [
+          "7"
+        ],
+        [
+          "9"
+        ]
+      ],
+      "formula": "=STDEVP(A2:A9)",
+      "result": "2",
+      "why": "The average is 5 and the squared gaps average 4, whose square root is 2."
+    },
+    "notes": "An older name kept for old spreadsheets: use STDEV.P instead."
+  },
+  {
+    "name": "TINV",
+    "args": [
+      {
+        "name": "probability",
+        "about": "a chance between 0 and 1"
+      },
+      {
+        "name": "deg_freedom",
+        "about": "the degrees of freedom, a whole number"
+      }
+    ],
+    "about": "Gives the t value with a given chance beyond it in both tails.",
+    "example": {
+      "cells": [
+        [
+          "Chance",
+          "Df"
+        ],
+        [
+          "0.05",
+          "60"
+        ]
+      ],
+      "formula": "=TINV(A2,B2)",
+      "result": "2.000297822",
+      "why": "With 60 degrees of freedom, 5% of t values are further from 0 than 2.0003."
+    },
+    "notes": "An older name kept for old spreadsheets: use T.INV.2T instead."
+  },
+  {
+    "name": "TTEST",
+    "args": [
+      {
+        "name": "array1",
+        "about": "the first set of numbers"
+      },
+      {
+        "name": "array2",
+        "about": "the second set"
+      },
+      {
+        "name": "tails",
+        "about": "1 for one tail, 2 for both"
+      },
+      {
+        "name": "type",
+        "about": "1 paired, 2 equal spread, 3 unequal spread"
+      }
+    ],
+    "about": "Tests whether two sets of numbers have different averages, giving the chance it's luck.",
+    "example": {
+      "cells": [
+        [
+          "Before",
+          "After"
+        ],
+        [
+          "3",
+          "6"
+        ],
+        [
+          "4",
+          "19"
+        ],
+        [
+          "5",
+          "3"
+        ],
+        [
+          "8",
+          "2"
+        ],
+        [
+          "9",
+          "14"
+        ],
+        [
+          "1",
+          "4"
+        ],
+        [
+          "2",
+          "5"
+        ],
+        [
+          "4",
+          "17"
+        ],
+        [
+          "5",
+          "1"
+        ]
+      ],
+      "formula": "=TTEST(A2:A10,B2:B10,2,1)",
+      "result": "0.196015785",
+      "why": "Paired, the gaps between Before and After could be luck about 20% of the time."
+    },
+    "notes": "An older name kept for old spreadsheets: use T.TEST instead."
+  },
+  {
+    "name": "VAR",
+    "args": [
+      {
+        "name": "number1",
+        "about": "numbers, cells or ranges"
+      },
+      {
+        "name": "number2",
+        "about": "more numbers, cells or ranges",
+        "optional": true
+      }
+    ],
+    "more": true,
+    "about": "Gives how spread out numbers are (variance), treating them as a sample.",
+    "example": {
+      "cells": [
+        [
+          "Score"
+        ],
+        [
+          "2"
+        ],
+        [
+          "4"
+        ],
+        [
+          "4"
+        ],
+        [
+          "4"
+        ],
+        [
+          "5"
+        ],
+        [
+          "5"
+        ],
+        [
+          "7"
+        ],
+        [
+          "9"
+        ]
+      ],
+      "formula": "=VAR(A2:A9)",
+      "result": "4.571428571",
+      "why": "The squared gaps from the average 5 add up to 32; 32 / 7 = 4.571."
+    },
+    "notes": "An older name kept for old spreadsheets: use VAR.S instead."
+  },
+  {
+    "name": "VARP",
+    "args": [
+      {
+        "name": "number1",
+        "about": "numbers, cells or ranges"
+      },
+      {
+        "name": "number2",
+        "about": "more numbers, cells or ranges",
+        "optional": true
+      }
+    ],
+    "more": true,
+    "about": "Gives how spread out numbers are (variance), treating them as the whole group.",
+    "example": {
+      "cells": [
+        [
+          "Score"
+        ],
+        [
+          "2"
+        ],
+        [
+          "4"
+        ],
+        [
+          "4"
+        ],
+        [
+          "4"
+        ],
+        [
+          "5"
+        ],
+        [
+          "5"
+        ],
+        [
+          "7"
+        ],
+        [
+          "9"
+        ]
+      ],
+      "formula": "=VARP(A2:A9)",
+      "result": "4",
+      "why": "The squared gaps from the average 5 add up to 32; 32 / 8 = 4."
+    },
+    "notes": "An older name kept for old spreadsheets: use VAR.P instead."
+  },
+  {
+    "name": "WEIBULL",
+    "args": [
+      {
+        "name": "x",
+        "about": "the value to work out the function at"
+      },
+      {
+        "name": "alpha",
+        "about": "the alpha shape value, above 0"
+      },
+      {
+        "name": "beta",
+        "about": "the beta shape value, above 0"
+      },
+      {
+        "name": "cumulative",
+        "about": "TRUE for the chance of up to x, FALSE for the chance of exactly x"
+      }
+    ],
+    "about": "Gives the chance for a value in a Weibull spread, often used for how long things last.",
+    "example": {
+      "cells": [
+        [
+          "Hours",
+          "Alpha",
+          "Beta"
+        ],
+        [
+          "105",
+          "20",
+          "100"
+        ]
+      ],
+      "formula": "=WEIBULL(A2,B2,C2,TRUE)",
+      "result": "0.92958139",
+      "why": "With shape 20 and scale 100, the chance of failing by 105 hours is about 0.93."
+    },
+    "notes": "An older name kept for old spreadsheets: use WEIBULL.DIST instead."
+  },
+  {
+    "name": "ZTEST",
+    "args": [
+      {
+        "name": "array",
+        "about": "the sample numbers"
+      },
+      {
+        "name": "x",
+        "about": "the average to test against"
+      },
+      {
+        "name": "sigma",
+        "about": "the known spread (the sample's own if left out)",
+        "optional": true
+      }
+    ],
+    "about": "Gives the chance of a sample average this high or higher if the true average were x.",
+    "example": {
+      "cells": [
+        [
+          "Score"
+        ],
+        [
+          "3"
+        ],
+        [
+          "6"
+        ],
+        [
+          "7"
+        ],
+        [
+          "8"
+        ],
+        [
+          "6"
+        ],
+        [
+          "5"
+        ],
+        [
+          "4"
+        ],
+        [
+          "2"
+        ],
+        [
+          "1"
+        ],
+        [
+          "9"
+        ]
+      ],
+      "formula": "=ZTEST(A2:A11,4)",
+      "result": "0.090574197",
+      "why": "The sample average 5.1 is high enough above 4 to happen by luck about 9% of the time."
+    },
+    "notes": "An older name kept for old spreadsheets: use Z.TEST instead. This is one-tailed."
+  }
+]

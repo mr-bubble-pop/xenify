@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=Xenify Calc
+GenericName=Spreadsheet
+Comment=Spreadsheets with tables that keep their totals, simple look-ups and summaries
+Exec=xenify-calc %F
+Icon=xenify-calc
+Terminal=false
+Categories=Office;Spreadsheet;
+MimeType=application/x-xenify-calc;application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;application/vnd.ms-excel.sheet.macroEnabled.12;text/csv;
+Keywords=spreadsheet;table;sheet;numbers;xlsx;

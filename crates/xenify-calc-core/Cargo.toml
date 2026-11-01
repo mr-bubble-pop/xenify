@@ -1,0 +1,24 @@
+[package]
+name = "xenify-calc-core"
+description = "Xenify Calc's engine: a workbook (IronCalc underneath), its edits and undo, tables with totals rows that grow, and the .xcalc file, as JSON calls"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+xenify-util.workspace = true
+# Formulas and cells (patched: see patches/README.md).
+ironcalc_base.workspace = true
+# Opening and saving xlsx (IronCalc's reader and writer; Calc adds tables and keeps what it can't edit).
+ironcalc.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+base64.workspace = true
+# .xcalc files are zips (the same version IronCalc's xlsx reader uses).
+zip = { version = "9", default-features = false, features = ["deflate"] }
+# Reading xlsx parts Calc keeps but doesn't edit (the version IronCalc uses).
+quick-xml = "0.42"
+# Opening old .xls and OpenDocument .ods files: values and formulas (MIT).
+calamine = { version = "0.37", default-features = false }
+# Editing together through a Xenify server (adjusting changes).
+xenify-collab = { path = "../xenify-collab" }

@@ -1,0 +1,36 @@
+[package]
+name = "xenify-wp-io"
+description = "Xenify Write file formats: .igdoc, Markdown, DOCX, HTML, PDF, plain text"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+autotests = false
+
+[dependencies]
+xenify-util.workspace = true
+xenify-wp-doc.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+thiserror.workspace = true
+miniz_oxide.workspace = true
+crc32fast.workspace = true
+pulldown-cmark = { version = "0.13.4", default-features = false }
+saphyr = "0.1.0"
+pdf-writer = "0.15.0"
+subsetter = "0.2.6"
+skrifa.workspace = true
+# No painting (Vello/wgpu): the server reads documents with this crate.
+xenify-wp-layout = { path = "../xenify-wp-layout", default-features = false }
+xenify-math = { path = "../xenify-math" }
+image.workspace = true
+kurbo.workspace = true
+base64.workspace = true
+roxmltree.workspace = true
+
+[dev-dependencies]
+lopdf = "0.45.0"
+
+[[test]]
+name = "wp_io"
+path = "tests/main.rs"
