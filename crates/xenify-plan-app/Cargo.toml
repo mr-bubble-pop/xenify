@@ -1,0 +1,33 @@
+[package]
+name = "xenify-plan-app"
+description = "Xenify Plan: tasks, Gantt charts and who's busy, on the desktop; the same screens and engine as the browser version"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[[bin]]
+name = "xenify-plan-app"
+path = "src/main.rs"
+
+[dependencies]
+# Xenify Hub: a newer version it installed (Help › Restart to use it).
+xenify-hub-core = { path = "../xenify-hub-core" }
+# Desktop app shell around the system's web view (MIT OR Apache-2.0).
+tauri = { version = "2", features = [] }
+tauri-plugin-dialog = "2"
+serde_json.workspace = true
+base64.workspace = true
+# Finding Xenify servers on this network (File › Xenify server).
+xenify-platform = { workspace = true, features = ["discover", "trust"] }
+# MCP: the token for programs connecting in, and tool servers by address (MIT OR Apache-2.0).
+ureq.workspace = true
+getrandom = "0.3"
+# Spelling, grammar and the word Look up: Xenify Write's checker, as Calc and Draw use it.
+xenify-write-host = { path = "../xenify-write-host" }
+
+[target.'cfg(target_os = "linux")'.dependencies]
+# Whether the desktop draws see-through windows (for rounded corners); the same GTK Tauri uses (MIT).
+gtk = "0.18"
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }

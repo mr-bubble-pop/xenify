@@ -1,0 +1,27 @@
+# Real-word typo: "form" for "from". Pattern from published lists of mistakes
+# spell-checkers miss; examples are ours.
+# why: From shows where something starts (from home, from Monday); form is a document or a shape. Swapping the r and o is a classic typo.
+expr main [<(form home), form>, <([working, work, works, worked, study, studying, studied, live, living, lived, travel, travelling, traveling, travelled, traveled, commute, commuting, flew, fly, flying, drove, drive, driving, move, moved, moving, call, calling, called, write, writing, wrote, send, sending, sent, buy, buying, bought] form [the, a, an, my, your, our, their, his, her, home, there, here, London, Paris, abroad]), form>, <([away, apart, far, different, differs, differ, differed, differently, came, comes, come, coming, hear, heard, hearing, back, aside, originate, originates, originated, arrived, arrives, escape, escaped, stems, stem, stemmed, derived, derives, derive, borrowed, separate, separated, apart, distinct, free, safe, protected, absent, missing, removed, received, quit, resigned, retired, graduated, recovering, recovered, suffering, suffers, suffered, benefit, benefits, benefited, benefitted, learn, learned, learnt, (where), downloaded, imported, copied, taken, took, made] form [the, a, an, my, your, our, their, his, her, its, this, that, these, those, home, work, school, there, here, scratch, time, which, whom, all, each, every, any, both, one, two, now, then, (London), (Paris), (New), (China), (Germany), (France), (India), (Japan), (Spain), (Italy), (Canada), (Australia), (Mexico), (Brazil), (Africa), (Europe), (Asia), (America)]), form>, <(form time to time), form>, <([approval, permission, help, support, input, consent, advice, guidance, response, reply, news, word, funding] form [the, our, your, their, his, her, my]), form>, <(form start), form>, <(form the [UK, US, USA, EU, outset]), form>, <(form [January, February, March, April, May, June, July, August, September, October, November, December, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday]), form>, <(as of form), form>, <(form [Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday, January, February, March, April, May, June, July, August, September, October, November, December] [to, until, till, through, onwards, on]), form>]
+
+let message "Did you mean `from`?"
+let description "Catches `form` where `from` was meant (an email form John, apart form that)."
+let kind "Typo"
+let becomes "from"
+let strategy "MatchCase"
+
+test "Apart form that, it went well." "Apart from that, it went well."
+test "I'm working form home today." "I'm working from home today."
+test "She came form London last week." "She came from London last week."
+test "We heard form the client this morning." "We heard from the client this morning."
+test "It changes form time to time." "It changes from time to time."
+test "The office is open form Monday to Friday." "The office is open from Monday to Friday."
+
+allows "Please fill in the form below."
+allows "Water can take the form of ice."
+allows "They form a team every spring."
+allows "The rules form the basis of the policy."
+
+test "It needs approval form the compliance team." "It needs approval from the compliance team."
+test "Read the contract form start to finish." "Read the contract from start to finish."
+test "We are closed form December 24th." "We are closed from December 24th."
+test "I'm looking for players form the UK." "I'm looking for players from the UK."

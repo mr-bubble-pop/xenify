@@ -1,0 +1,16 @@
+# Commonly confused words: "compliment" where "complement" (goes well with) is
+# meant. Split from ComplimentComplement so each rule has one replacement.
+# why: A complement (with an e) completes or goes well with something: wine is a complement to the fish. A compliment (with an i) is praise.
+expr main <([perfect, ideal, natural, great, good, excellent, wonderful, lovely, elegant, fitting, welcome, useful] [compliment, compliments] [(to the), (to a), (to an), (to your), (to any), (to my), (to our), (to their), (to his), (to her), (to this), (to that), (to these), (to those), (for the), (for a), (for any), (for your), (for this), (of the)]), [compliment, compliments]>
+
+let message "Did you mean `complement` (something that goes well with or completes another thing)? `Compliment` means praise."
+let description "Fixes `a perfect compliment to` → `a perfect complement to`."
+let kind "Malapropism"
+let becomes "complement"
+let strategy "MatchCase"
+
+test "That wine is a perfect compliment to the fish." "That wine is a perfect complement to the fish."
+test "The scarf is an ideal compliment to the coat." "The scarf is an ideal complement to the coat."
+
+allows "That wine is a perfect complement to the fish."
+allows "That was a great compliment to receive."

@@ -1,0 +1,17 @@
+# Real-word typo: "untied" for "united". Pattern from published lists of
+# mistakes spell-checkers miss; examples are ours.
+# why: United means joined together; untied is what happens to shoelaces. Swapping two letters gives a different real word.
+expr main [<(untied [States, Kingdom, Nations, Arab, Way, Airlines, Methodist, Reformed, Church, Front, Federation]), untied>, <([Manchester, Leeds, Newcastle, West, Dundee, Sheffield] untied), untied>]
+
+let message "Did you mean `United`?"
+let description "Catches `Untied` where `United` was meant (the Untied States)."
+let kind "Typo"
+let becomes "United"
+let strategy "Exact"
+
+test "She moved to the untied States in 2010." "She moved to the United States in 2010."
+test "The Untied Kingdom left in 2020." "The United Kingdom left in 2020."
+test "Manchester Untied won again." "Manchester United won again."
+
+allows "He untied his shoes."
+allows "The boat came untied in the storm."

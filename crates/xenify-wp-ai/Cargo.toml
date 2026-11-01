@@ -1,0 +1,12 @@
+[package]
+name = "xenify-wp-ai"
+description = "Xenify Write AI features: review, rewrite, continue, chat (request building and response handling)"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+xenify-wp-doc.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+similar = "3.2.0"

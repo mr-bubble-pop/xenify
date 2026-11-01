@@ -1,0 +1,30 @@
+[package]
+name = "xenify-cal"
+description = "Calendars for Xenify Mail: iCalendar (RFC 5545) reading and writing, repeats, time zones, invitations"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[features]
+# Keeping calendars on this computer, subscribing and CalDAV. Without them
+# (the browser): events, repeats, time zones and invitations only.
+default = ["store", "net"]
+store = ["dep:rusqlite"]
+net = ["dep:ureq", "dep:base64", "dep:roxmltree"]
+
+[dependencies]
+# Dates, times and the IANA time zone database (MIT OR Apache-2.0).
+chrono = { version = "0.4", default-features = false, features = ["std", "clock"] }
+chrono-tz = "0.10"
+# Repeat rules (RRULE), tested against RFC 5545's examples (MIT OR Apache-2.0).
+rrule = "0.14"
+# The calendars on this computer (SQLite, public domain; rusqlite MIT).
+rusqlite = { version = "0.37", features = ["bundled"], optional = true }
+# Downloading subscribed calendars and CalDAV.
+ureq = { workspace = true, optional = true }
+base64 = { workspace = true, optional = true }
+roxmltree = { workspace = true, optional = true }
+serde.workspace = true
+thiserror.workspace = true
+
+[dev-dependencies]

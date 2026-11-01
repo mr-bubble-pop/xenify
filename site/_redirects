@@ -1,0 +1,6 @@
+# /start/ was merged into /download/ (its sections keep their ids there).
+/start /download/ 301
+/start/ /download/ 301
+# Chat in the browser opens from your own Xenify server, not here.
+/chat /products/chat/ 301
+/chat/* /products/chat/ 301

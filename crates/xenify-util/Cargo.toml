@@ -1,0 +1,8 @@
+[package]
+name = "xenify-util"
+description = "Small helpers several Xenify crates share (escaping text for XML and HTML, the time in milliseconds); no dependencies, builds for the browser too"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]

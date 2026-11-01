@@ -1,0 +1,15 @@
+[package]
+name = "xenify-doc"
+description = "Xenify Draw document model: projects, compositions, layers and animatable properties"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+kurbo.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+thiserror.workspace = true
+base64.workspace = true
+sha2.workspace = true
+zip = { version = "9", default-features = false, features = ["deflate"] }

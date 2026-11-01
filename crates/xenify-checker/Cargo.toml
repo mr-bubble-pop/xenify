@@ -1,0 +1,19 @@
+[package]
+name = "xenify-checker"
+description = "A small background process that loads the mistake-spotter model once and shares it between Xenify apps over a private local socket; it exits when no app has used it for a while"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+readme = "README.md"
+
+[[bin]]
+name = "xenify-checker"
+path = "src/main.rs"
+
+[dependencies]
+xenify-grammar-spotter = { path = "../xenify-grammar-spotter" }
+serde.workspace = true
+serde_json.workspace = true
+
+[target.'cfg(unix)'.dependencies]
+libc = "0.2"

@@ -1,0 +1,757 @@
+[
+  {
+    "name": "DAVERAGE",
+    "args": [
+      {
+        "name": "database",
+        "about": "the table, with its header row"
+      },
+      {
+        "name": "field",
+        "about": "the column to average: its header in quotes, or its number"
+      },
+      {
+        "name": "criteria",
+        "about": "a range with a header and the conditions below it"
+      }
+    ],
+    "about": "Gives the average of a column, over the rows of a table that match the criteria.",
+    "example": {
+      "cells": [
+        [
+          "Name",
+          "Team",
+          "Pay"
+        ],
+        [
+          "Ann",
+          "Sales",
+          "3200"
+        ],
+        [
+          "Bob",
+          "Stock",
+          "2800"
+        ],
+        [
+          "Cat",
+          "Sales",
+          "3500"
+        ],
+        [
+          "Dan",
+          "Stock",
+          "2600"
+        ],
+        [
+          "",
+          ""
+        ],
+        [
+          "Team",
+          "Name"
+        ],
+        [
+          "Sales",
+          "Bob"
+        ]
+      ],
+      "formula": "=DAVERAGE(A1:C5,\"Pay\",A7:A8)",
+      "result": "3350",
+      "why": "The criteria A7:A8 pick the rows whose Team is Sales: (3200 + 3500) / 2 = 3350."
+    },
+    "notes": "AVERAGEIFS does the same without a criteria block."
+  },
+  {
+    "name": "DCOUNT",
+    "args": [
+      {
+        "name": "database",
+        "about": "the table, with its header row"
+      },
+      {
+        "name": "field",
+        "about": "the column to count numbers in (left out to count matching rows): its header in quotes, or its number"
+      },
+      {
+        "name": "criteria",
+        "about": "a range with a header and the conditions below it"
+      }
+    ],
+    "about": "Counts the numbers in a column, over the rows of a table that match the criteria.",
+    "example": {
+      "cells": [
+        [
+          "Name",
+          "Team",
+          "Pay"
+        ],
+        [
+          "Ann",
+          "Sales",
+          "3200"
+        ],
+        [
+          "Bob",
+          "Stock",
+          "2800"
+        ],
+        [
+          "Cat",
+          "Sales",
+          "3500"
+        ],
+        [
+          "Dan",
+          "Stock",
+          "2600"
+        ],
+        [
+          "",
+          ""
+        ],
+        [
+          "Team",
+          "Name"
+        ],
+        [
+          "Sales",
+          "Bob"
+        ]
+      ],
+      "formula": "=DCOUNT(A1:C5,\"Pay\",A7:A8)",
+      "result": "2",
+      "why": "The criteria A7:A8 pick the rows whose Team is Sales: Ann and Cat, both with a number in Pay."
+    },
+    "notes": "DCOUNTA counts any non-empty cell, not only numbers."
+  },
+  {
+    "name": "DGET",
+    "args": [
+      {
+        "name": "database",
+        "about": "the table, with its header row"
+      },
+      {
+        "name": "field",
+        "about": "the column to read: its header in quotes, or its number"
+      },
+      {
+        "name": "criteria",
+        "about": "a range with a header and the conditions below it"
+      }
+    ],
+    "about": "Gives the one value in a column from the row of a table that matches the criteria.",
+    "example": {
+      "cells": [
+        [
+          "Name",
+          "Team",
+          "Pay"
+        ],
+        [
+          "Ann",
+          "Sales",
+          "3200"
+        ],
+        [
+          "Bob",
+          "Stock",
+          "2800"
+        ],
+        [
+          "Cat",
+          "Sales",
+          "3500"
+        ],
+        [
+          "Dan",
+          "Stock",
+          "2600"
+        ],
+        [
+          "",
+          ""
+        ],
+        [
+          "Team",
+          "Name"
+        ],
+        [
+          "Sales",
+          "Bob"
+        ]
+      ],
+      "formula": "=DGET(A1:C5,\"Pay\",B7:B8)",
+      "result": "2800",
+      "why": "The criteria B7:B8 pick the row whose Name is Bob, and his Pay is 2800."
+    },
+    "notes": "If more than one row matches it gives #NUM!; if none, #VALUE!."
+  },
+  {
+    "name": "DMAX",
+    "args": [
+      {
+        "name": "database",
+        "about": "the table, with its header row"
+      },
+      {
+        "name": "field",
+        "about": "the column to look at: its header in quotes, or its number"
+      },
+      {
+        "name": "criteria",
+        "about": "a range with a header and the conditions below it"
+      }
+    ],
+    "about": "Gives the biggest number in a column, over the rows of a table that match the criteria.",
+    "example": {
+      "cells": [
+        [
+          "Name",
+          "Team",
+          "Pay"
+        ],
+        [
+          "Ann",
+          "Sales",
+          "3200"
+        ],
+        [
+          "Bob",
+          "Stock",
+          "2800"
+        ],
+        [
+          "Cat",
+          "Sales",
+          "3500"
+        ],
+        [
+          "Dan",
+          "Stock",
+          "2600"
+        ],
+        [
+          "",
+          ""
+        ],
+        [
+          "Team",
+          "Name"
+        ],
+        [
+          "Sales",
+          "Bob"
+        ]
+      ],
+      "formula": "=DMAX(A1:C5,\"Pay\",A7:A8)",
+      "result": "3500",
+      "why": "The criteria A7:A8 pick the rows whose Team is Sales; the bigger of 3200 and 3500 is 3500."
+    },
+    "notes": "MAXIFS does the same without a criteria block."
+  },
+  {
+    "name": "DMIN",
+    "args": [
+      {
+        "name": "database",
+        "about": "the table, with its header row"
+      },
+      {
+        "name": "field",
+        "about": "the column to look at: its header in quotes, or its number"
+      },
+      {
+        "name": "criteria",
+        "about": "a range with a header and the conditions below it"
+      }
+    ],
+    "about": "Gives the smallest number in a column, over the rows of a table that match the criteria.",
+    "example": {
+      "cells": [
+        [
+          "Name",
+          "Team",
+          "Pay"
+        ],
+        [
+          "Ann",
+          "Sales",
+          "3200"
+        ],
+        [
+          "Bob",
+          "Stock",
+          "2800"
+        ],
+        [
+          "Cat",
+          "Sales",
+          "3500"
+        ],
+        [
+          "Dan",
+          "Stock",
+          "2600"
+        ],
+        [
+          "",
+          ""
+        ],
+        [
+          "Team",
+          "Name"
+        ],
+        [
+          "Sales",
+          "Bob"
+        ]
+      ],
+      "formula": "=DMIN(A1:C5,\"Pay\",A7:A8)",
+      "result": "3200",
+      "why": "The criteria A7:A8 pick the rows whose Team is Sales; the smaller of 3200 and 3500 is 3200."
+    },
+    "notes": "MINIFS does the same without a criteria block."
+  },
+  {
+    "name": "DSUM",
+    "args": [
+      {
+        "name": "database",
+        "about": "the table, with its header row"
+      },
+      {
+        "name": "field",
+        "about": "the column to add up: its header in quotes, or its number"
+      },
+      {
+        "name": "criteria",
+        "about": "a range with a header and the conditions below it"
+      }
+    ],
+    "about": "Adds up a column, over the rows of a table that match the criteria.",
+    "example": {
+      "cells": [
+        [
+          "Name",
+          "Team",
+          "Pay"
+        ],
+        [
+          "Ann",
+          "Sales",
+          "3200"
+        ],
+        [
+          "Bob",
+          "Stock",
+          "2800"
+        ],
+        [
+          "Cat",
+          "Sales",
+          "3500"
+        ],
+        [
+          "Dan",
+          "Stock",
+          "2600"
+        ],
+        [
+          "",
+          ""
+        ],
+        [
+          "Team",
+          "Name"
+        ],
+        [
+          "Sales",
+          "Bob"
+        ]
+      ],
+      "formula": "=DSUM(A1:C5,\"Pay\",A7:A8)",
+      "result": "6700",
+      "why": "The criteria A7:A8 pick the rows whose Team is Sales: 3200 + 3500 = 6700."
+    },
+    "notes": "SUMIFS does the same without a criteria block."
+  },
+  {
+    "name": "DCOUNTA",
+    "args": [
+      {
+        "name": "database",
+        "about": "the table, with its header row"
+      },
+      {
+        "name": "field",
+        "about": "the column to count: its header in quotes, or its number"
+      },
+      {
+        "name": "criteria",
+        "about": "a range with a header and the conditions below it"
+      }
+    ],
+    "about": "Counts the non-empty cells in a column, over the rows of a table that match the criteria.",
+    "example": {
+      "cells": [
+        [
+          "Name",
+          "Team",
+          "Pay"
+        ],
+        [
+          "Ann",
+          "Sales",
+          "3200"
+        ],
+        [
+          "Bob",
+          "Stock",
+          "2800"
+        ],
+        [
+          "Cat",
+          "Sales",
+          "3500"
+        ],
+        [
+          "Dan",
+          "Stock",
+          "2600"
+        ],
+        [
+          "",
+          ""
+        ],
+        [
+          "Team",
+          "Name"
+        ],
+        [
+          "Sales",
+          "Bob"
+        ]
+      ],
+      "formula": "=DCOUNTA(A1:C5,\"Name\",A7:A8)",
+      "result": "2",
+      "why": "The criteria A7:A8 pick the rows whose Team is Sales: Ann and Cat."
+    },
+    "notes": "DCOUNT counts only numbers."
+  },
+  {
+    "name": "DPRODUCT",
+    "args": [
+      {
+        "name": "database",
+        "about": "the table, with its header row"
+      },
+      {
+        "name": "field",
+        "about": "the column to multiply: its header in quotes, or its number"
+      },
+      {
+        "name": "criteria",
+        "about": "a range with a header and the conditions below it"
+      }
+    ],
+    "about": "Multiplies together a column, over the rows of a table that match the criteria.",
+    "example": {
+      "cells": [
+        [
+          "Name",
+          "Team",
+          "Pay"
+        ],
+        [
+          "Ann",
+          "Sales",
+          "3200"
+        ],
+        [
+          "Bob",
+          "Stock",
+          "2800"
+        ],
+        [
+          "Cat",
+          "Sales",
+          "3500"
+        ],
+        [
+          "Dan",
+          "Stock",
+          "2600"
+        ],
+        [
+          "",
+          ""
+        ],
+        [
+          "Team",
+          "Name"
+        ],
+        [
+          "Sales",
+          "Bob"
+        ]
+      ],
+      "formula": "=DPRODUCT(A1:C5,3,A7:A8)",
+      "result": "11200000",
+      "why": "The criteria A7:A8 pick the rows whose Team is Sales: 3200 × 3500 = 11200000."
+    }
+  },
+  {
+    "name": "DSTDEV",
+    "args": [
+      {
+        "name": "database",
+        "about": "the table, with its header row"
+      },
+      {
+        "name": "field",
+        "about": "the column to look at: its header in quotes, or its number"
+      },
+      {
+        "name": "criteria",
+        "about": "a range with a header and the conditions below it"
+      }
+    ],
+    "about": "Gives the standard deviation of a column, over the rows of a table that match the criteria, treating them as a sample.",
+    "example": {
+      "cells": [
+        [
+          "Name",
+          "Team",
+          "Pay"
+        ],
+        [
+          "Ann",
+          "Sales",
+          "3200"
+        ],
+        [
+          "Bob",
+          "Stock",
+          "2800"
+        ],
+        [
+          "Cat",
+          "Sales",
+          "3500"
+        ],
+        [
+          "Dan",
+          "Stock",
+          "2600"
+        ],
+        [
+          "",
+          ""
+        ],
+        [
+          "Team",
+          "Name"
+        ],
+        [
+          "Sales",
+          "Bob"
+        ]
+      ],
+      "formula": "=DSTDEV(A1:C5,\"Pay\",A7:A8)",
+      "result": "212.132034356",
+      "why": "The criteria A7:A8 pick the rows whose Team is Sales: the pays 3200 and 3500 give a sample variance of 45000, whose square root is about 212.13."
+    },
+    "notes": "DSTDEVP treats the rows as the whole population."
+  },
+  {
+    "name": "DVAR",
+    "args": [
+      {
+        "name": "database",
+        "about": "the table, with its header row"
+      },
+      {
+        "name": "field",
+        "about": "the column to look at: its header in quotes, or its number"
+      },
+      {
+        "name": "criteria",
+        "about": "a range with a header and the conditions below it"
+      }
+    ],
+    "about": "Gives the variance of a column, over the rows of a table that match the criteria, treating them as a sample.",
+    "example": {
+      "cells": [
+        [
+          "Name",
+          "Team",
+          "Pay"
+        ],
+        [
+          "Ann",
+          "Sales",
+          "3200"
+        ],
+        [
+          "Bob",
+          "Stock",
+          "2800"
+        ],
+        [
+          "Cat",
+          "Sales",
+          "3500"
+        ],
+        [
+          "Dan",
+          "Stock",
+          "2600"
+        ],
+        [
+          "",
+          ""
+        ],
+        [
+          "Team",
+          "Name"
+        ],
+        [
+          "Sales",
+          "Bob"
+        ]
+      ],
+      "formula": "=DVAR(A1:C5,\"Pay\",A7:A8)",
+      "result": "45000",
+      "why": "The criteria A7:A8 pick the rows whose Team is Sales: the pays 3200 and 3500 are 150 either side of 3350, so (150² + 150²) / (2 − 1) = 45000."
+    },
+    "notes": "DVARP treats the rows as the whole population."
+  },
+  {
+    "name": "DVARP",
+    "args": [
+      {
+        "name": "database",
+        "about": "the table, with its header row"
+      },
+      {
+        "name": "field",
+        "about": "the column to look at: its header in quotes, or its number"
+      },
+      {
+        "name": "criteria",
+        "about": "a range with a header and the conditions below it"
+      }
+    ],
+    "about": "Gives the variance of a column, over the rows of a table that match the criteria, treating them as the whole population.",
+    "example": {
+      "cells": [
+        [
+          "Name",
+          "Team",
+          "Pay"
+        ],
+        [
+          "Ann",
+          "Sales",
+          "3200"
+        ],
+        [
+          "Bob",
+          "Stock",
+          "2800"
+        ],
+        [
+          "Cat",
+          "Sales",
+          "3500"
+        ],
+        [
+          "Dan",
+          "Stock",
+          "2600"
+        ],
+        [
+          "",
+          ""
+        ],
+        [
+          "Team",
+          "Name"
+        ],
+        [
+          "Sales",
+          "Bob"
+        ]
+      ],
+      "formula": "=DVARP(A1:C5,\"Pay\",A7:A8)",
+      "result": "22500",
+      "why": "The criteria A7:A8 pick the rows whose Team is Sales: the pays are 150 either side of 3350, so (150² + 150²) / 2 = 22500."
+    },
+    "notes": "DVAR treats the rows as a sample."
+  },
+  {
+    "name": "DSTDEVP",
+    "args": [
+      {
+        "name": "database",
+        "about": "the table, with its header row"
+      },
+      {
+        "name": "field",
+        "about": "the column to look at: its header in quotes, or its number"
+      },
+      {
+        "name": "criteria",
+        "about": "a range with a header and the conditions below it"
+      }
+    ],
+    "about": "Gives the standard deviation of a column, over the rows of a table that match the criteria, treating them as the whole population.",
+    "example": {
+      "cells": [
+        [
+          "Name",
+          "Team",
+          "Pay"
+        ],
+        [
+          "Ann",
+          "Sales",
+          "3200"
+        ],
+        [
+          "Bob",
+          "Stock",
+          "2800"
+        ],
+        [
+          "Cat",
+          "Sales",
+          "3500"
+        ],
+        [
+          "Dan",
+          "Stock",
+          "2600"
+        ],
+        [
+          "",
+          ""
+        ],
+        [
+          "Team",
+          "Name"
+        ],
+        [
+          "Sales",
+          "Bob"
+        ]
+      ],
+      "formula": "=DSTDEVP(A1:C5,\"Pay\",A7:A8)",
+      "result": "150",
+      "why": "The criteria A7:A8 pick the rows whose Team is Sales: the pays are 150 either side of their average, so the deviation is 150."
+    },
+    "notes": "DSTDEV treats the rows as a sample."
+  }
+]

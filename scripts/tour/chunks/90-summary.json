@@ -1,0 +1,8 @@
+{
+  "section": "Summary",
+  "shots": [
+    {"card": {"title": "On your own computer,\nor your own server.", "sub": "Free either way. The server brings your whole team together."}, "seconds": 3.5},
+    {"card": {"title": "AI, only if you want it.", "sub": "Run it on your own computer, so your work stays in-house."}, "seconds": 3.5},
+    {"card": {"title": "Xenify", "sub": "Download free at xenify.net", "accent": true}, "seconds": 3}
+  ]
+}
