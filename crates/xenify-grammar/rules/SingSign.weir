@@ -1,0 +1,25 @@
+# Real-word typo: "sing" for "sign". Pattern from published lists of mistakes
+# spell-checkers miss; examples are ours.
+# why: Sign means write your name (or a notice); sing means make music. One wrong letter, and both are real words.
+expr main [<(sing up [for, to, now, here, today, online, at, using, with, below]), sing>, <(sing [the, this, your, our, their, his, her] [contract, contracts, form, forms, document, documents, agreement, agreements, lease, petition, waiver, cheque, check, register, guestbook, card, consent]), sing>, <(sing here), sing>, <(sing the [attached, enclosed, following, license, licence, rental, final, new, revised, updated, signed]), sing>, <(sing up [button, buttons, link, page, form, sheet, process, bonus, flow]), sing>, <([neon, stop, exit, warning, street, road, shop, store, vacancy, (for sale), wooden, painted, handwritten, welcome] sing), sing>, <(a sing [on, above, at, outside, in, saying, that, reading]), sing>, <(sing in [to, with, using]), sing>, <(sing off on), sing>]
+
+let message "Did you mean `sign`?"
+let description "Catches `sing` where `sign` was meant (sing up for the newsletter, sing the contract)."
+let kind "Typo"
+let becomes "sign"
+let strategy "MatchCase"
+
+test "Sing up for our newsletter today." "Sign up for our newsletter today."
+test "Please sing the contract and return it." "Please sign the contract and return it."
+test "Sing here to accept." "Sign here to accept."
+test "Sing in with your work email." "Sign in with your work email."
+
+allows "We sing in the choir on Sundays."
+allows "They sing up a storm at karaoke."
+allows "Let's sing the song again."
+
+test "Please sing the attached addendum." "Please sign the attached addendum."
+test "Click the sing up button." "Click the sign up button."
+test "There was a sing on the door." "There was a sign on the door."
+test "She looked at the neon sing above the bar." "She looked at the neon sign above the bar."
+allows "Let's sing a song on the bus."

@@ -1,0 +1,1422 @@
+[
+  {
+    "name": "BESSELI",
+    "args": [
+      {
+        "name": "x",
+        "about": "the value to work out the function at"
+      },
+      {
+        "name": "n",
+        "about": "the order, a whole number 0 or more"
+      }
+    ],
+    "about": "Gives the modified Bessel function In(x), used for waves in round things.",
+    "example": {
+      "cells": [
+        [
+          "x",
+          "Order"
+        ],
+        [
+          "1.5",
+          "1"
+        ]
+      ],
+      "formula": "=BESSELI(A2,B2)",
+      "result": "0.981666428",
+      "why": "The modified Bessel function of order 1 at 1.5 is about 0.9817."
+    }
+  },
+  {
+    "name": "BESSELJ",
+    "args": [
+      {
+        "name": "x",
+        "about": "the value to work out the function at"
+      },
+      {
+        "name": "n",
+        "about": "the order, a whole number 0 or more"
+      }
+    ],
+    "about": "Gives the Bessel function Jn(x), used for vibrating drums and waves.",
+    "example": {
+      "cells": [
+        [
+          "x",
+          "Order"
+        ],
+        [
+          "1.9",
+          "2"
+        ]
+      ],
+      "formula": "=BESSELJ(A2,B2)",
+      "result": "0.329925728",
+      "why": "The Bessel function of order 2 at 1.9 is about 0.3299."
+    }
+  },
+  {
+    "name": "BESSELK",
+    "args": [
+      {
+        "name": "x",
+        "about": "the value to work out the function at"
+      },
+      {
+        "name": "n",
+        "about": "the order, a whole number 0 or more"
+      }
+    ],
+    "about": "Gives the modified Bessel function Kn(x), which fades away as x grows.",
+    "example": {
+      "cells": [
+        [
+          "x",
+          "Order"
+        ],
+        [
+          "1.5",
+          "1"
+        ]
+      ],
+      "formula": "=BESSELK(A2,B2)",
+      "result": "0.277387804",
+      "why": "The modified Bessel function of the second kind, order 1, at 1.5 is about 0.2774."
+    }
+  },
+  {
+    "name": "BESSELY",
+    "args": [
+      {
+        "name": "x",
+        "about": "the value to work out the function at"
+      },
+      {
+        "name": "n",
+        "about": "the order, a whole number 0 or more"
+      }
+    ],
+    "about": "Gives the Bessel function Yn(x), the second kind of Bessel function.",
+    "example": {
+      "cells": [
+        [
+          "x",
+          "Order"
+        ],
+        [
+          "2.5",
+          "1"
+        ]
+      ],
+      "formula": "=BESSELY(A2,B2)",
+      "result": "0.145918138",
+      "why": "The Bessel function of the second kind, order 1, at 2.5 is about 0.1459."
+    }
+  },
+  {
+    "name": "ERF",
+    "args": [
+      {
+        "name": "lower_limit",
+        "about": "where to start (or the end, from 0, if upper_limit is left out)"
+      },
+      {
+        "name": "upper_limit",
+        "about": "where to stop",
+        "optional": true
+      }
+    ],
+    "about": "Gives the error function, used for the spread of measurement errors.",
+    "example": {
+      "cells": [
+        [
+          "Limit"
+        ],
+        [
+          "1"
+        ]
+      ],
+      "formula": "=ERF(A2)",
+      "result": "0.842700793",
+      "why": "The error function from 0 to 1 is about 0.8427."
+    },
+    "notes": "With two limits it gives the error function between them."
+  },
+  {
+    "name": "ERFC",
+    "args": [
+      {
+        "name": "x",
+        "about": "the value to work out the function at"
+      }
+    ],
+    "about": "Gives 1 minus the error function: the part beyond x.",
+    "example": {
+      "cells": [
+        [
+          "Limit"
+        ],
+        [
+          "1"
+        ]
+      ],
+      "formula": "=ERFC(A2)",
+      "result": "0.157299207",
+      "why": "1 − ERF(1) = 1 − 0.8427 = 0.1573."
+    }
+  },
+  {
+    "name": "ERFC.PRECISE",
+    "args": [
+      {
+        "name": "x",
+        "about": "the value to work out the function at"
+      }
+    ],
+    "about": "Gives 1 minus the error function: the part beyond x.",
+    "example": {
+      "cells": [
+        [
+          "Limit"
+        ],
+        [
+          "1"
+        ]
+      ],
+      "formula": "=ERFC.PRECISE(A2)",
+      "result": "0.157299207",
+      "why": "1 − ERF(1) = 1 − 0.8427 = 0.1573."
+    },
+    "notes": "The same as ERFC."
+  },
+  {
+    "name": "ERF.PRECISE",
+    "args": [
+      {
+        "name": "x",
+        "about": "the value to work out the function at"
+      }
+    ],
+    "about": "Gives the error function from 0 to x.",
+    "example": {
+      "cells": [
+        [
+          "Limit"
+        ],
+        [
+          "1"
+        ]
+      ],
+      "formula": "=ERF.PRECISE(A2)",
+      "result": "0.842700793",
+      "why": "The error function from 0 to 1 is about 0.8427."
+    },
+    "notes": "The same as ERF with one limit."
+  },
+  {
+    "name": "BIN2DEC",
+    "args": [
+      {
+        "name": "number",
+        "about": "a binary number of up to 10 digits"
+      }
+    ],
+    "about": "Turns a binary number into a decimal number.",
+    "example": {
+      "cells": [
+        [
+          "Binary"
+        ],
+        [
+          "1101"
+        ]
+      ],
+      "formula": "=BIN2DEC(A2)",
+      "result": "13",
+      "why": "1101 is 8 + 4 + 1 = 13."
+    },
+    "notes": "Ten digits starting with 1 count as negative."
+  },
+  {
+    "name": "BIN2HEX",
+    "args": [
+      {
+        "name": "number",
+        "about": "a binary number of up to 10 digits"
+      },
+      {
+        "name": "places",
+        "about": "how many digits to show, padded with zeros",
+        "optional": true
+      }
+    ],
+    "about": "Turns a binary number into hexadecimal.",
+    "example": {
+      "cells": [
+        [
+          "Binary"
+        ],
+        [
+          "11111011"
+        ]
+      ],
+      "formula": "=BIN2HEX(A2)",
+      "result": "FB",
+      "why": "11111011 is 251, which is FB in hexadecimal."
+    }
+  },
+  {
+    "name": "BIN2OCT",
+    "args": [
+      {
+        "name": "number",
+        "about": "a binary number of up to 10 digits"
+      },
+      {
+        "name": "places",
+        "about": "how many digits to show, padded with zeros",
+        "optional": true
+      }
+    ],
+    "about": "Turns a binary number into octal.",
+    "example": {
+      "cells": [
+        [
+          "Binary"
+        ],
+        [
+          "1001"
+        ]
+      ],
+      "formula": "=BIN2OCT(A2,3)",
+      "result": "011",
+      "why": "1001 is 9, which is 11 in octal, padded to 3 digits."
+    }
+  },
+  {
+    "name": "DEC2BIN",
+    "args": [
+      {
+        "name": "number",
+        "about": "a whole number from -512 to 511"
+      },
+      {
+        "name": "places",
+        "about": "how many digits to show, padded with zeros",
+        "optional": true
+      }
+    ],
+    "about": "Turns a decimal number into binary.",
+    "example": {
+      "cells": [
+        [
+          "Number"
+        ],
+        [
+          "9"
+        ]
+      ],
+      "formula": "=DEC2BIN(A2,6)",
+      "result": "001001",
+      "why": "9 is 8 + 1, so 1001, padded to 6 digits."
+    }
+  },
+  {
+    "name": "DEC2HEX",
+    "args": [
+      {
+        "name": "number",
+        "about": "a whole number"
+      },
+      {
+        "name": "places",
+        "about": "how many digits to show, padded with zeros",
+        "optional": true
+      }
+    ],
+    "about": "Turns a decimal number into hexadecimal.",
+    "example": {
+      "cells": [
+        [
+          "Number"
+        ],
+        [
+          "255"
+        ]
+      ],
+      "formula": "=DEC2HEX(A2)",
+      "result": "FF",
+      "why": "255 is 15 × 16 + 15, so FF."
+    }
+  },
+  {
+    "name": "DEC2OCT",
+    "args": [
+      {
+        "name": "number",
+        "about": "a whole number"
+      },
+      {
+        "name": "places",
+        "about": "how many digits to show, padded with zeros",
+        "optional": true
+      }
+    ],
+    "about": "Turns a decimal number into octal.",
+    "example": {
+      "cells": [
+        [
+          "Number"
+        ],
+        [
+          "58"
+        ]
+      ],
+      "formula": "=DEC2OCT(A2)",
+      "result": "72",
+      "why": "58 is 7 × 8 + 2, so 72."
+    }
+  },
+  {
+    "name": "HEX2BIN",
+    "args": [
+      {
+        "name": "number",
+        "about": "a hexadecimal number of up to 10 digits"
+      },
+      {
+        "name": "places",
+        "about": "how many digits to show, padded with zeros",
+        "optional": true
+      }
+    ],
+    "about": "Turns a hexadecimal number into binary.",
+    "example": {
+      "cells": [
+        [
+          "Hex"
+        ],
+        [
+          "F"
+        ]
+      ],
+      "formula": "=HEX2BIN(A2,8)",
+      "result": "00001111",
+      "why": "F is 15, which is 1111 in binary, padded to 8 digits."
+    }
+  },
+  {
+    "name": "HEX2DEC",
+    "args": [
+      {
+        "name": "number",
+        "about": "a hexadecimal number of up to 10 digits"
+      }
+    ],
+    "about": "Turns a hexadecimal number into a decimal number.",
+    "example": {
+      "cells": [
+        [
+          "Hex"
+        ],
+        [
+          "A5"
+        ]
+      ],
+      "formula": "=HEX2DEC(A2)",
+      "result": "165",
+      "why": "A5 is 10 × 16 + 5 = 165."
+    }
+  },
+  {
+    "name": "HEX2OCT",
+    "args": [
+      {
+        "name": "number",
+        "about": "a hexadecimal number of up to 10 digits"
+      },
+      {
+        "name": "places",
+        "about": "how many digits to show, padded with zeros",
+        "optional": true
+      }
+    ],
+    "about": "Turns a hexadecimal number into octal.",
+    "example": {
+      "cells": [
+        [
+          "Hex"
+        ],
+        [
+          "1F"
+        ]
+      ],
+      "formula": "=HEX2OCT(A2)",
+      "result": "37",
+      "why": "1F is 31, which is 3 × 8 + 7, so 37."
+    }
+  },
+  {
+    "name": "OCT2BIN",
+    "args": [
+      {
+        "name": "number",
+        "about": "an octal number of up to 10 digits"
+      },
+      {
+        "name": "places",
+        "about": "how many digits to show, padded with zeros",
+        "optional": true
+      }
+    ],
+    "about": "Turns a octal number into binary.",
+    "example": {
+      "cells": [
+        [
+          "Octal"
+        ],
+        [
+          "7"
+        ]
+      ],
+      "formula": "=OCT2BIN(A2,4)",
+      "result": "0111",
+      "why": "7 is 111 in binary, padded to 4 digits."
+    }
+  },
+  {
+    "name": "OCT2DEC",
+    "args": [
+      {
+        "name": "number",
+        "about": "an octal number of up to 10 digits"
+      }
+    ],
+    "about": "Turns a octal number into a decimal number.",
+    "example": {
+      "cells": [
+        [
+          "Octal"
+        ],
+        [
+          "54"
+        ]
+      ],
+      "formula": "=OCT2DEC(A2)",
+      "result": "44",
+      "why": "54 is 5 × 8 + 4 = 44."
+    }
+  },
+  {
+    "name": "OCT2HEX",
+    "args": [
+      {
+        "name": "number",
+        "about": "an octal number of up to 10 digits"
+      },
+      {
+        "name": "places",
+        "about": "how many digits to show, padded with zeros",
+        "optional": true
+      }
+    ],
+    "about": "Turns a octal number into hexadecimal.",
+    "example": {
+      "cells": [
+        [
+          "Octal"
+        ],
+        [
+          "100"
+        ]
+      ],
+      "formula": "=OCT2HEX(A2,4)",
+      "result": "0040",
+      "why": "100 in octal is 64, which is 40 in hexadecimal, padded to 4 digits."
+    }
+  },
+  {
+    "name": "BITAND",
+    "args": [
+      {
+        "name": "number1",
+        "about": "a whole number 0 or more"
+      },
+      {
+        "name": "number2",
+        "about": "another whole number 0 or more"
+      }
+    ],
+    "about": "Gives the bits that are on in both numbers.",
+    "example": {
+      "cells": [
+        [
+          "A",
+          "B"
+        ],
+        [
+          "13",
+          "25"
+        ]
+      ],
+      "formula": "=BITAND(A2,B2)",
+      "result": "9",
+      "why": "13 is 01101 and 25 is 11001; both have the 8 and 1 bits on, so 9."
+    }
+  },
+  {
+    "name": "BITLSHIFT",
+    "args": [
+      {
+        "name": "number",
+        "about": "a whole number 0 or more"
+      },
+      {
+        "name": "shift_amount",
+        "about": "how many bits to move it by"
+      }
+    ],
+    "about": "Moves the bits of a number to the left, which doubles it once for each place.",
+    "example": {
+      "cells": [
+        [
+          "Number",
+          "Places"
+        ],
+        [
+          "4",
+          "2"
+        ]
+      ],
+      "formula": "=BITLSHIFT(A2,B2)",
+      "result": "16",
+      "why": "4 is 100 in binary; two places left is 10000, which is 16."
+    },
+    "notes": "A negative shift moves right, like BITRSHIFT."
+  },
+  {
+    "name": "BITOR",
+    "args": [
+      {
+        "name": "number1",
+        "about": "a whole number 0 or more"
+      },
+      {
+        "name": "number2",
+        "about": "another whole number 0 or more"
+      }
+    ],
+    "about": "Gives the bits that are on in either number.",
+    "example": {
+      "cells": [
+        [
+          "A",
+          "B"
+        ],
+        [
+          "5",
+          "3"
+        ]
+      ],
+      "formula": "=BITOR(A2,B2)",
+      "result": "7",
+      "why": "5 is 101 and 3 is 011; either has each bit on, so 111 = 7."
+    }
+  },
+  {
+    "name": "BITRSHIFT",
+    "args": [
+      {
+        "name": "number",
+        "about": "a whole number 0 or more"
+      },
+      {
+        "name": "shift_amount",
+        "about": "how many bits to move it by"
+      }
+    ],
+    "about": "Moves the bits of a number to the right, which halves it once for each place.",
+    "example": {
+      "cells": [
+        [
+          "Number",
+          "Places"
+        ],
+        [
+          "13",
+          "2"
+        ]
+      ],
+      "formula": "=BITRSHIFT(A2,B2)",
+      "result": "3",
+      "why": "13 is 1101 in binary; two places right is 11, which is 3."
+    },
+    "notes": "A negative shift moves left, like BITLSHIFT."
+  },
+  {
+    "name": "BITXOR",
+    "args": [
+      {
+        "name": "number1",
+        "about": "a whole number 0 or more"
+      },
+      {
+        "name": "number2",
+        "about": "another whole number 0 or more"
+      }
+    ],
+    "about": "Gives the bits that are on in one number but not both.",
+    "example": {
+      "cells": [
+        [
+          "A",
+          "B"
+        ],
+        [
+          "5",
+          "3"
+        ]
+      ],
+      "formula": "=BITXOR(A2,B2)",
+      "result": "6",
+      "why": "5 is 101 and 3 is 011; the bits that differ are 110 = 6."
+    }
+  },
+  {
+    "name": "COMPLEX",
+    "args": [
+      {
+        "name": "real_num",
+        "about": "the real part"
+      },
+      {
+        "name": "i_num",
+        "about": "the imaginary part"
+      },
+      {
+        "name": "suffix",
+        "about": "\"i\" or \"j\" (\"i\" if left out)",
+        "optional": true
+      }
+    ],
+    "about": "Makes a complex number from its real and imaginary parts.",
+    "example": {
+      "cells": [
+        [
+          "Real",
+          "Imaginary"
+        ],
+        [
+          "3",
+          "4"
+        ]
+      ],
+      "formula": "=COMPLEX(A2,B2)",
+      "result": "3+4i",
+      "why": "Real part 3 and imaginary part 4 make 3+4i."
+    }
+  },
+  {
+    "name": "IMABS",
+    "args": [
+      {
+        "name": "inumber",
+        "about": "a complex number as text, like \"3+4i\""
+      }
+    ],
+    "about": "Gives the size (modulus) of a complex number.",
+    "example": {
+      "cells": [
+        [
+          "Number"
+        ],
+        [
+          "3+4i"
+        ]
+      ],
+      "formula": "=IMABS(A2)",
+      "result": "5",
+      "why": "√(3² + 4²) = √25 = 5."
+    }
+  },
+  {
+    "name": "IMAGINARY",
+    "args": [
+      {
+        "name": "inumber",
+        "about": "a complex number as text, like \"3+4i\""
+      }
+    ],
+    "about": "Gives the imaginary part of a complex number.",
+    "example": {
+      "cells": [
+        [
+          "Number"
+        ],
+        [
+          "3+4i"
+        ]
+      ],
+      "formula": "=IMAGINARY(A2)",
+      "result": "4",
+      "why": "The part with the i is 4."
+    }
+  },
+  {
+    "name": "IMARGUMENT",
+    "args": [
+      {
+        "name": "inumber",
+        "about": "a complex number as text, like \"3+4i\""
+      }
+    ],
+    "about": "Gives the angle of a complex number, in radians.",
+    "example": {
+      "cells": [
+        [
+          "Number"
+        ],
+        [
+          "1+i"
+        ]
+      ],
+      "formula": "=IMARGUMENT(A2)",
+      "result": "0.785398163",
+      "why": "1+i points at 45°, which is π/4 radians."
+    }
+  },
+  {
+    "name": "IMCONJUGATE",
+    "args": [
+      {
+        "name": "inumber",
+        "about": "a complex number as text, like \"3+4i\""
+      }
+    ],
+    "about": "Flips the sign of the imaginary part of a complex number.",
+    "example": {
+      "cells": [
+        [
+          "Number"
+        ],
+        [
+          "3+4i"
+        ]
+      ],
+      "formula": "=IMCONJUGATE(A2)",
+      "result": "3-4i",
+      "why": "The conjugate of 3+4i is 3-4i."
+    }
+  },
+  {
+    "name": "IMCOS",
+    "args": [
+      {
+        "name": "inumber",
+        "about": "a complex number as text, like \"3+4i\""
+      }
+    ],
+    "about": "Gives the cosine of a complex number.",
+    "example": {
+      "cells": [
+        [
+          "Number"
+        ],
+        [
+          "1+i"
+        ]
+      ],
+      "formula": "=IMCOS(A2)",
+      "result": "0.833730025131149-0.988897705762865i",
+      "why": "cos(1+i) = cos 1·cosh 1 − i·sin 1·sinh 1."
+    }
+  },
+  {
+    "name": "IMCOSH",
+    "args": [
+      {
+        "name": "inumber",
+        "about": "a complex number as text, like \"3+4i\""
+      }
+    ],
+    "about": "Gives the hyperbolic cosine of a complex number.",
+    "example": {
+      "cells": [
+        [
+          "Number"
+        ],
+        [
+          "1+i"
+        ]
+      ],
+      "formula": "=IMCOSH(A2)",
+      "result": "0.833730025131149+0.988897705762865i",
+      "why": "cosh(1+i) = cosh 1·cos 1 + i·sinh 1·sin 1."
+    }
+  },
+  {
+    "name": "IMCOT",
+    "args": [
+      {
+        "name": "inumber",
+        "about": "a complex number as text, like \"3+4i\""
+      }
+    ],
+    "about": "Gives the cotangent of a complex number.",
+    "example": {
+      "cells": [
+        [
+          "Number"
+        ],
+        [
+          "1+i"
+        ]
+      ],
+      "formula": "=IMCOT(A2)",
+      "result": "0.217621561854403-0.868014142895925i",
+      "why": "cot(1+i) = cos(1+i) / sin(1+i)."
+    }
+  },
+  {
+    "name": "IMCSC",
+    "args": [
+      {
+        "name": "inumber",
+        "about": "a complex number as text, like \"3+4i\""
+      }
+    ],
+    "about": "Gives the cosecant (1 over the sine) of a complex number.",
+    "example": {
+      "cells": [
+        [
+          "Number"
+        ],
+        [
+          "1+i"
+        ]
+      ],
+      "formula": "=IMCSC(A2)",
+      "result": "0.621518017170429-0.303931001628426i",
+      "why": "csc(1+i) = 1 / sin(1+i)."
+    }
+  },
+  {
+    "name": "IMCSCH",
+    "args": [
+      {
+        "name": "inumber",
+        "about": "a complex number as text, like \"3+4i\""
+      }
+    ],
+    "about": "Gives the hyperbolic cosecant (1 over sinh) of a complex number.",
+    "example": {
+      "cells": [
+        [
+          "Number"
+        ],
+        [
+          "1+i"
+        ]
+      ],
+      "formula": "=IMCSCH(A2)",
+      "result": "0.303931001628426-0.621518017170429i",
+      "why": "csch(1+i) = 1 / sinh(1+i)."
+    }
+  },
+  {
+    "name": "IMDIV",
+    "args": [
+      {
+        "name": "inumber1",
+        "about": "the complex number to divide"
+      },
+      {
+        "name": "inumber2",
+        "about": "the complex number to divide by"
+      }
+    ],
+    "about": "Divides one complex number by another.",
+    "example": {
+      "cells": [
+        [
+          "Top",
+          "Bottom"
+        ],
+        [
+          "22+19i",
+          "2-i"
+        ]
+      ],
+      "formula": "=IMDIV(A2,B2)",
+      "result": "5+12i",
+      "why": "(22+19i) / (2-i) = 5+12i, because (5+12i)(2-i) = 22+19i."
+    }
+  },
+  {
+    "name": "IMEXP",
+    "args": [
+      {
+        "name": "inumber",
+        "about": "a complex number as text, like \"3+4i\""
+      }
+    ],
+    "about": "Gives e raised to a complex number.",
+    "example": {
+      "cells": [
+        [
+          "Number"
+        ],
+        [
+          "1+i"
+        ]
+      ],
+      "formula": "=IMEXP(A2)",
+      "result": "1.46869393991589+2.28735528717884i",
+      "why": "e^(1+i) = e·(cos 1 + i·sin 1)."
+    }
+  },
+  {
+    "name": "IMLN",
+    "args": [
+      {
+        "name": "inumber",
+        "about": "a complex number as text, like \"3+4i\""
+      }
+    ],
+    "about": "Gives the natural logarithm of a complex number.",
+    "example": {
+      "cells": [
+        [
+          "Number"
+        ],
+        [
+          "3+4i"
+        ]
+      ],
+      "formula": "=IMLN(A2)",
+      "result": "1.6094379124341+0.927295218001612i",
+      "why": "ln|3+4i| = ln 5 = 1.609, and the angle is 0.927 radians."
+    }
+  },
+  {
+    "name": "IMLOG10",
+    "args": [
+      {
+        "name": "inumber",
+        "about": "a complex number as text, like \"3+4i\""
+      }
+    ],
+    "about": "Gives the base-10 logarithm of a complex number.",
+    "example": {
+      "cells": [
+        [
+          "Number"
+        ],
+        [
+          "3+4i"
+        ]
+      ],
+      "formula": "=IMLOG10(A2)",
+      "result": "0.698970004336019+0.402719196273373i",
+      "why": "log10 of 3+4i: log10 5 = 0.699, plus the angle over ln 10."
+    }
+  },
+  {
+    "name": "IMLOG2",
+    "args": [
+      {
+        "name": "inumber",
+        "about": "a complex number as text, like \"3+4i\""
+      }
+    ],
+    "about": "Gives the base-2 logarithm of a complex number.",
+    "example": {
+      "cells": [
+        [
+          "Number"
+        ],
+        [
+          "3+4i"
+        ]
+      ],
+      "formula": "=IMLOG2(A2)",
+      "result": "2.32192809488736+1.33780421245098i",
+      "why": "log2 of 3+4i: log2 5 = 2.322, plus the angle over ln 2."
+    }
+  },
+  {
+    "name": "IMPOWER",
+    "args": [
+      {
+        "name": "inumber",
+        "about": "a complex number as text, like \"3+4i\""
+      },
+      {
+        "name": "number",
+        "about": "the power to raise it to"
+      }
+    ],
+    "about": "Raises a complex number to a power.",
+    "example": {
+      "cells": [
+        [
+          "Number",
+          "Power"
+        ],
+        [
+          "2+3i",
+          "2"
+        ]
+      ],
+      "formula": "=IMPOWER(A2,B2)",
+      "result": "-5+12i",
+      "why": "(2+3i)² = 4 + 12i + 9i² = -5+12i."
+    }
+  },
+  {
+    "name": "IMPRODUCT",
+    "args": [
+      {
+        "name": "inumber1",
+        "about": "a complex number"
+      },
+      {
+        "name": "inumber2",
+        "about": "more complex numbers to multiply by",
+        "optional": true
+      }
+    ],
+    "more": true,
+    "about": "Multiplies complex numbers together.",
+    "example": {
+      "cells": [
+        [
+          "A",
+          "B"
+        ],
+        [
+          "3+4i",
+          "5-3i"
+        ]
+      ],
+      "formula": "=IMPRODUCT(A2,B2)",
+      "result": "27+11i",
+      "why": "(3+4i)(5-3i) = 15 − 9i + 20i + 12 = 27+11i."
+    }
+  },
+  {
+    "name": "IMREAL",
+    "args": [
+      {
+        "name": "inumber",
+        "about": "a complex number as text, like \"3+4i\""
+      }
+    ],
+    "about": "Gives the real part of a complex number.",
+    "example": {
+      "cells": [
+        [
+          "Number"
+        ],
+        [
+          "6-9i"
+        ]
+      ],
+      "formula": "=IMREAL(A2)",
+      "result": "6",
+      "why": "The part without the i is 6."
+    }
+  },
+  {
+    "name": "IMSEC",
+    "args": [
+      {
+        "name": "inumber",
+        "about": "a complex number as text, like \"3+4i\""
+      }
+    ],
+    "about": "Gives the secant (1 over the cosine) of a complex number.",
+    "example": {
+      "cells": [
+        [
+          "Number"
+        ],
+        [
+          "1+i"
+        ]
+      ],
+      "formula": "=IMSEC(A2)",
+      "result": "0.498337030555187+0.591083841721045i",
+      "why": "sec(1+i) = 1 / cos(1+i)."
+    }
+  },
+  {
+    "name": "IMSECH",
+    "args": [
+      {
+        "name": "inumber",
+        "about": "a complex number as text, like \"3+4i\""
+      }
+    ],
+    "about": "Gives the hyperbolic secant (1 over cosh) of a complex number.",
+    "example": {
+      "cells": [
+        [
+          "Number"
+        ],
+        [
+          "1+i"
+        ]
+      ],
+      "formula": "=IMSECH(A2)",
+      "result": "0.498337030555187-0.591083841721045i",
+      "why": "sech(1+i) = 1 / cosh(1+i)."
+    }
+  },
+  {
+    "name": "IMSIN",
+    "args": [
+      {
+        "name": "inumber",
+        "about": "a complex number as text, like \"3+4i\""
+      }
+    ],
+    "about": "Gives the sine of a complex number.",
+    "example": {
+      "cells": [
+        [
+          "Number"
+        ],
+        [
+          "1+i"
+        ]
+      ],
+      "formula": "=IMSIN(A2)",
+      "result": "1.29845758141598+0.634963914784736i",
+      "why": "sin(1+i) = sin 1·cosh 1 + i·cos 1·sinh 1."
+    }
+  },
+  {
+    "name": "IMSINH",
+    "args": [
+      {
+        "name": "inumber",
+        "about": "a complex number as text, like \"3+4i\""
+      }
+    ],
+    "about": "Gives the hyperbolic sine of a complex number.",
+    "example": {
+      "cells": [
+        [
+          "Number"
+        ],
+        [
+          "1+i"
+        ]
+      ],
+      "formula": "=IMSINH(A2)",
+      "result": "0.634963914784736+1.29845758141598i",
+      "why": "sinh(1+i) = sinh 1·cos 1 + i·cosh 1·sin 1."
+    }
+  },
+  {
+    "name": "IMSQRT",
+    "args": [
+      {
+        "name": "inumber",
+        "about": "a complex number as text, like \"3+4i\""
+      }
+    ],
+    "about": "Gives the square root of a complex number.",
+    "example": {
+      "cells": [
+        [
+          "Number"
+        ],
+        [
+          "3+4i"
+        ]
+      ],
+      "formula": "=IMSQRT(A2)",
+      "result": "2+i",
+      "why": "(2+i)² = 4 + 4i + i² = 3+4i."
+    }
+  },
+  {
+    "name": "IMSUB",
+    "args": [
+      {
+        "name": "inumber1",
+        "about": "the complex number to take from"
+      },
+      {
+        "name": "inumber2",
+        "about": "the complex number to take away"
+      }
+    ],
+    "about": "Takes one complex number away from another.",
+    "example": {
+      "cells": [
+        [
+          "A",
+          "B"
+        ],
+        [
+          "13+4i",
+          "5+3i"
+        ]
+      ],
+      "formula": "=IMSUB(A2,B2)",
+      "result": "8+i",
+      "why": "(13 − 5) + (4 − 3)i = 8+i."
+    }
+  },
+  {
+    "name": "IMSUM",
+    "args": [
+      {
+        "name": "inumber1",
+        "about": "a complex number"
+      },
+      {
+        "name": "inumber2",
+        "about": "more complex numbers to add",
+        "optional": true
+      }
+    ],
+    "more": true,
+    "about": "Adds complex numbers together.",
+    "example": {
+      "cells": [
+        [
+          "A",
+          "B"
+        ],
+        [
+          "3+4i",
+          "5-3i"
+        ]
+      ],
+      "formula": "=IMSUM(A2,B2)",
+      "result": "8+i",
+      "why": "(3 + 5) + (4 − 3)i = 8+i."
+    }
+  },
+  {
+    "name": "IMTAN",
+    "args": [
+      {
+        "name": "inumber",
+        "about": "a complex number as text, like \"3+4i\""
+      }
+    ],
+    "about": "Gives the tangent of a complex number.",
+    "example": {
+      "cells": [
+        [
+          "Number"
+        ],
+        [
+          "1+i"
+        ]
+      ],
+      "formula": "=IMTAN(A2)",
+      "result": "0.271752585319512+1.08392332733869i",
+      "why": "tan(1+i) = sin(1+i) / cos(1+i)."
+    }
+  },
+  {
+    "name": "CONVERT",
+    "args": [
+      {
+        "name": "number",
+        "about": "the amount to convert"
+      },
+      {
+        "name": "from_unit",
+        "about": "its unit, like \"mi\", \"kg\" or \"C\""
+      },
+      {
+        "name": "to_unit",
+        "about": "the unit to convert to"
+      }
+    ],
+    "about": "Converts an amount from one unit to another, like miles to kilometres.",
+    "example": {
+      "cells": [
+        [
+          "Miles"
+        ],
+        [
+          "26.2"
+        ]
+      ],
+      "formula": "=CONVERT(A2,\"mi\",\"km\")",
+      "result": "42.1648128",
+      "why": "A mile is 1.609344 km, so 26.2 miles is 42.16 km."
+    },
+    "notes": "Both units must measure the same thing (length, weight, temperature…), or it gives #N/A."
+  },
+  {
+    "name": "DELTA",
+    "args": [
+      {
+        "name": "number1",
+        "about": "a number"
+      },
+      {
+        "name": "number2",
+        "about": "the number to compare with (0 if left out)",
+        "optional": true
+      }
+    ],
+    "about": "Gives 1 when two numbers are equal and 0 when they aren't.",
+    "example": {
+      "cells": [
+        [
+          "Planned",
+          "Actual"
+        ],
+        [
+          "40",
+          "40"
+        ]
+      ],
+      "formula": "=DELTA(A2,B2)",
+      "result": "1",
+      "why": "40 equals 40, so 1."
+    }
+  },
+  {
+    "name": "GESTEP",
+    "args": [
+      {
+        "name": "number",
+        "about": "the number to test"
+      },
+      {
+        "name": "step",
+        "about": "the threshold (0 if left out)",
+        "optional": true
+      }
+    ],
+    "about": "Gives 1 when a number is at or above a threshold, otherwise 0.",
+    "example": {
+      "cells": [
+        [
+          "Score",
+          "Pass mark"
+        ],
+        [
+          "72",
+          "60"
+        ]
+      ],
+      "formula": "=GESTEP(A2,B2)",
+      "result": "1",
+      "why": "72 is at least 60, so 1."
+    }
+  }
+]

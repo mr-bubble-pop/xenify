@@ -1,0 +1,23 @@
+# "Against my principals", "basic principals": principles (rules, beliefs)
+# meant. Common confused-word lists; examples are ours.
+# why: Principles are rules or beliefs: against my principles, basic principles. Principals are heads of schools, or the main people in a deal.
+expr belief [basic, core, guiding, moral, ethical, fundamental, underlying, design, general, key, first, scientific, democratic, religious, founding]
+expr hold [against, (true to), (stick to), (sticks to), (stuck to), (stand by), (stands by), (stood by), (live by), (lives by), (lived by), betray, betrayed, betrays, abandon, abandoned, abandons, compromise, compromised, compromises]
+expr whose [my, your, his, her, our, their, its]
+expr main [<(@belief principals), principals>, <(@hold @whose principals), principals>, <(@hold principals), principals>]
+
+let message "Did you mean `principles` (rules or beliefs)? `Principals` are heads of schools, or the main people in something."
+let description "Fixes `against my principals` → `against my principles`."
+let kind "Malapropism"
+let becomes "principles"
+let strategy "MatchCase"
+
+test "It is against my principals." "It is against my principles."
+test "She stands by her principals." "She stands by her principles."
+test "Learn the basic principals first." "Learn the basic principles first."
+test "He would never betray his principals." "He would never betray his principles."
+
+allows "The principals of both schools met."
+allows "The deal was approved by their principals."
+allows "It is against my principles."
+allows "I wrote to my principals about it."

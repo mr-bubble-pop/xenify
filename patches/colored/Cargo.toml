@@ -1,0 +1,9 @@
+[package]
+name = "colored"
+version = "3.1.1"
+edition = "2021"
+license = "MIT"
+description = "Stand-in for colored: the Colorize methods return the text uncoloured (see patches/README.md)"
+publish = false
+
+[dependencies]

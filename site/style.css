@@ -1,0 +1,301 @@
+/* xenify.net: one light look, the apps' own (warm paper, orange accent). */
+@font-face {
+  font-family: Figtree;
+  src: url("/fonts/Figtree.ttf") format("truetype");
+  font-weight: 300 900;
+  font-display: swap;
+}
+
+:root {
+  --paper: #F6F3EF;
+  --panel: #FFFFFF;
+  --panel-soft: #EFECE8;
+  --line: #E2DDD7;
+  --line-soft: #EAE5DF;
+  --ink: #1C1917;
+  --ink-2: #44403C;
+  --muted: #57534E;
+  --accent: #C2410C;
+  --accent-deep: #9A3412;
+  --accent-tint: #FFEDD5;
+  --shadow: 0 2px 6px rgba(28, 25, 23, .05), 0 24px 60px rgba(28, 25, 23, .13);
+  color-scheme: light;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 400 16px/1.5 Figtree, system-ui, sans-serif;
+}
+img, video { display: block; max-width: 100%; height: auto; }
+a { color: var(--accent); }
+a:hover { color: var(--accent-deep); }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+
+.wrap { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+.narrow { max-width: 1120px; }
+
+/* Header */
+.top { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; padding: 22px 0; }
+.brand { display: inline-flex; align-items: center; gap: 10px; margin-right: auto; color: var(--ink); font-size: 20px; font-weight: 800; text-decoration: none; }
+.brand:hover { color: var(--ink); }
+.mark { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 9px; background: var(--accent); color: #fff; font-size: 16px; font-weight: 800; }
+.top nav { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; }
+.top nav a:not(.btn) { color: var(--ink-2); font-size: 15px; font-weight: 600; text-decoration: none; }
+.top nav a:not(.btn):hover, .top nav a[aria-current="page"]:not(.btn) { color: var(--accent); }
+
+/* Buttons */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; height: 52px; padding: 0 24px; border-radius: 14px; font: 700 16px Figtree, system-ui, sans-serif; text-decoration: none; white-space: nowrap; border: 1px solid transparent; cursor: pointer; }
+.btn.main { background: var(--accent); color: #fff; }
+.btn.main:hover { background: var(--accent-deep); color: #fff; }
+.btn.ghost { background: var(--panel); color: var(--ink); border-color: var(--line); }
+.btn.ghost:hover { background: #FAF9F7; color: var(--ink); }
+.btn.white { background: #fff; color: var(--accent-deep); }
+.btn.white:hover { background: var(--accent-tint); color: var(--accent-deep); }
+.btn.small { height: 42px; padding: 0 18px; font-size: 15px; }
+.actions { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+
+/* Type */
+.tag { color: var(--accent); font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; margin: 0; }
+h1, h2, h3 { margin: 0; letter-spacing: -0.025em; text-wrap: balance; }
+h1 { font-size: clamp(40px, 6vw, 80px); line-height: 1.03; font-weight: 900; letter-spacing: -0.035em; }
+h2 { font-size: clamp(30px, 3.6vw, 44px); line-height: 1.08; font-weight: 800; }
+.lede { margin: 0; font-size: clamp(18px, 1.6vw, 21px); line-height: 1.5; color: var(--ink-2); }
+.note { margin: 0; color: var(--muted); font-size: 14px; }
+.attention { max-width: 900px; margin: 0 auto; background: var(--accent-tint); border: 2px solid var(--accent); border-radius: 22px; padding: 28px 32px; display: flex; flex-direction: column; gap: 10px; }
+.attention b { font-size: 22px; line-height: 1.3; }
+.attention p { margin: 0; color: var(--ink-2); font-size: 17px; line-height: 1.6; }
+
+/* Sections */
+.hero { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 24px; padding: 52px 0 44px; }
+.hero h1 { max-width: 980px; }
+.hero .lede { max-width: 740px; }
+.band { background: var(--panel); border-top: 1px solid var(--line-soft); border-bottom: 1px solid var(--line-soft); }
+.pad { padding: 96px 0; }
+.pad-bottom { padding-bottom: 104px; }
+
+/* Footage: real app windows, shown as they are. */
+.shot { width: 100%; border-radius: 14px; border: 1px solid var(--line); box-shadow: var(--shadow); background: var(--panel-soft); }
+.caption { margin: 14px 0 0; color: var(--muted); font-size: 14.5px; text-align: center; }
+
+.row { display: flex; gap: 56px; align-items: center; flex-wrap: wrap; }
+.row > * { min-width: 0; }
+.row > .copy { flex: 1 1 340px; }
+.row > .shot, .row > figure { flex: 1 1 600px; max-width: 700px; margin: 0; }
+.copy { display: flex; flex-direction: column; gap: 14px; }
+.copy p { margin: 0; font-size: 18px; line-height: 1.6; color: var(--ink-2); }
+.center { text-align: center; align-items: center; margin: 0 auto; max-width: 760px; }
+
+.grid3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 36px; }
+.grid2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.item { display: flex; flex-direction: column; gap: 6px; }
+.item b { font-size: 17px; }
+.item span { color: var(--muted); font-size: 15.5px; line-height: 1.55; }
+
+.box { background: var(--panel); border-radius: 22px; padding: 30px; display: flex; flex-direction: column; gap: 10px; }
+.box b { font-size: 20px; }
+.box span:not(.tag) { color: var(--muted); line-height: 1.6; }
+.box .tag { color: var(--muted); }
+
+/* Home: the apps */
+.cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+/* Four cards: two by two, so each picture stays big enough to read. */
+.cards.four { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.card { background: var(--panel); border: 1px solid var(--line-soft); border-radius: 24px; overflow: hidden; display: flex; flex-direction: column; color: var(--ink); text-decoration: none; }
+.card:hover { color: var(--ink); box-shadow: 0 16px 40px rgba(28, 25, 23, .10); }
+/* Each picture sits framed on a tinted ground, so white pictures side by
+   side never run into each other. */
+.card .pic { background: var(--panel-soft); height: 238px; overflow: hidden; padding: 18px; border-bottom: 1px solid var(--line-soft); }
+.card .pic img { width: 100%; height: 100%; object-fit: cover; object-position: top left; border: 1px solid var(--line); border-radius: 10px; background: #fff; box-shadow: 0 6px 18px rgba(28, 25, 23, .08); }
+.card .body { padding: 26px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+.card b { font-size: 24px; }
+.card span { color: var(--muted); font-size: 16.5px; line-height: 1.55; }
+.card .more { color: var(--accent); font-weight: 700; margin-top: auto; }
+
+.checks { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; color: var(--ink-2); }
+.checks li::before { content: "✓"; color: var(--accent); font-weight: 800; margin-right: 10px; }
+
+/* Draw: the three steps */
+.step { display: flex; align-items: center; gap: 12px; }
+.step i { display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 99px; background: var(--accent-tint); color: var(--accent-deep); font-weight: 800; font-style: normal; }
+
+.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; }
+.steps li { display: flex; flex-direction: column; gap: 8px; }
+.steps .n { font-size: 44px; font-weight: 800; color: var(--accent); line-height: 1; }
+.steps b { font-size: 18px; }
+.steps span { color: var(--muted); line-height: 1.55; }
+
+/* The orange call to download */
+.cta { background: var(--accent); color: #fff; border-radius: 28px; padding: 56px; display: flex; gap: 28px; align-items: center; flex-wrap: wrap; }
+.cta > div { flex: 1 1 420px; display: flex; flex-direction: column; gap: 10px; }
+.cta h2 { font-size: 36px; }
+.cta p { margin: 0; font-size: 18px; color: var(--accent-tint); }
+
+/* Download */
+.systems { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.system { background: var(--panel); border-radius: 22px; padding: 28px; display: flex; flex-direction: column; gap: 14px; }
+.system b { font-size: 21px; }
+.system span { color: var(--muted); font-size: 15px; line-height: 1.55; }
+.system.mine { outline: 2px solid var(--accent); }
+.system.mine .btn.ghost { background: var(--accent); color: #fff; border-color: transparent; }
+
+/* While the source code is private (body.soon): no source links. The
+   downloads are public, on the mr-bubble-pop/xenify-releases repository. */
+.soon-note { display: none; }
+.soon .soon-note { display: block; }
+.soon .gh { display: none !important; }
+
+/* Footer */
+footer { border-top: 1px solid var(--line); padding: 28px 0; color: var(--muted); font-size: 14px; }
+footer .wrap { display: flex; gap: 22px; flex-wrap: wrap; }
+footer .wrap > span { margin-right: auto; }
+
+@media (max-width: 860px) {
+  .cards, .grid3, .grid2, .steps, .systems { grid-template-columns: minmax(0, 1fr); }
+  .pad { padding: 64px 0; }
+  .cta { padding: 32px; }
+  .top nav { gap: 18px; }
+  .row { gap: 32px; }
+}
+@media (max-width: 520px) {
+  .top { gap: 14px; }
+  .top nav { gap: 14px; }
+  .top nav a.btn { display: none; }
+  .btn { white-space: normal; text-align: center; }
+}
+@media (max-width: 860px) {
+  .cards.four { grid-template-columns: minmax(0, 1fr); }
+}
+/* Sections that are also .wrap keep its side gutter (.top, .hero, .pad and
+   .pad-bottom set only their top and bottom), so phones get a margin. */
+.wrap.top, .wrap.hero, .wrap.pad, .wrap.pad-bottom { padding-left: 24px; padding-right: 24px; }
+
+/* Films: real app footage played step by step. Nothing plays until it's
+   clicked; the poster is how it ends, so the page reads without playing.
+   site.js wires the play button and the steps. */
+.film { margin: 0; display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.film-screen { position: relative; border-radius: 14px; overflow: hidden; border: 1px solid var(--line); box-shadow: var(--shadow); background: var(--panel-soft); aspect-ratio: 16 / 10; max-width: 100%; }
+.film-screen video, .film-screen img { width: 100%; height: 100%; object-fit: cover; object-position: top left; }
+.film-play { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); white-space: nowrap; display: inline-flex; align-items: center; gap: 10px; height: 52px; padding: 0 22px 0 18px; border: 0; border-radius: 999px; background: var(--accent); color: #fff; font: 700 16px Figtree, system-ui, sans-serif; cursor: pointer; box-shadow: 0 10px 30px rgba(154, 52, 18, .35); }
+.film-play:hover { background: var(--accent-deep); }
+.film-play svg { width: 18px; height: 18px; fill: currentColor; }
+.film.playing .film-play { opacity: 0; pointer-events: none; }
+.film.playing .film-screen:hover .film-play, .film.paused .film-play { opacity: 1; pointer-events: auto; }
+.film-steps { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.film-steps button { position: relative; overflow: hidden; display: inline-flex; align-items: center; gap: 8px; height: 38px; padding: 0 14px 0 6px; border-radius: 999px; border: 1px solid var(--line); background: var(--panel); color: var(--ink-2); font: 600 14.5px Figtree, system-ui, sans-serif; cursor: pointer; }
+.film-steps button:hover { border-color: var(--accent); color: var(--ink); }
+.film-steps i { position: relative; z-index: 1; display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 99px; background: var(--panel-soft); color: var(--ink-2); font-style: normal; font-weight: 800; font-size: 13px; }
+.film-steps span { position: relative; z-index: 1; }
+/* The step playing: tinted, filling from the left as it goes. */
+.film-steps button[aria-current="step"] { border-color: var(--accent); color: var(--accent-deep); }
+.film-steps button[aria-current="step"] i { background: var(--accent); color: #fff; }
+.film-steps button::before { content: ""; position: absolute; inset: 0; width: calc(var(--done, 0) * 100%); background: var(--accent-tint); }
+.film-steps button.done i { background: var(--accent-tint); color: var(--accent-deep); }
+.film-soon { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: var(--muted); font-weight: 700; }
+
+/* A product page's highlights: a row of links to its sections. */
+.highlights { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; max-width: 900px; margin: 0 auto; padding: 0; list-style: none; }
+.highlights a { display: inline-flex; align-items: center; height: 40px; padding: 0 16px; border-radius: 999px; background: var(--panel); border: 1px solid var(--line-soft); color: var(--ink-2); font-weight: 700; font-size: 15px; text-decoration: none; }
+.highlights a:hover { color: var(--accent); border-color: var(--accent); }
+.feature { scroll-margin-top: 24px; }
+.feature .row { align-items: flex-start; }
+.feature .row > .film { flex: 1 1 600px; max-width: 720px; }
+.feature.flip .row { flex-direction: row-reverse; }
+@media (max-width: 860px) { .feature.flip .row { flex-direction: column; } }
+/* The same number, opened in two places. */
+.compare { margin: 6px 0 0; display: grid; gap: 10px; }
+.compare div { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding: 14px 18px; border-radius: 14px; background: var(--panel-soft); }
+.compare .ours { background: var(--accent-tint); }
+.compare dt { font-weight: 700; color: var(--ink-2); }
+.compare dd { margin: 0; display: flex; flex-direction: column; align-items: flex-end; font: 700 19px/1.3 ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-variant-numeric: tabular-nums; color: var(--ink); min-width: 0; overflow-wrap: anywhere; }
+.compare .ours dd { color: var(--accent-deep); }
+.compare small { font: 500 13px Figtree, system-ui, sans-serif; color: var(--muted); }
+img.film-screen { display: block; width: 100%; height: auto; }
+
+/* AI and Get started: card specs, tables of times, examples and the
+   step-by-step guide. */
+.specs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin-top: 8px; }
+.spec { background: var(--panel); border: 1px solid var(--line-soft); border-radius: 22px; padding: 26px; display: flex; flex-direction: column; gap: 8px; }
+.band .spec { background: var(--paper); }
+.spec > b { font-size: 21px; }
+.spec > span { color: var(--muted); font-size: 15px; }
+.spec .checks { margin-top: 8px; font-size: 15.5px; }
+.spec.pick { outline: 2px solid var(--accent); }
+.guide h3, .band h3 { font-size: 22px; margin-top: 12px; }
+.tablebox { overflow-x: auto; background: var(--panel); border: 1px solid var(--line); border-radius: 14px; }
+.band .tablebox { background: var(--paper); }
+.tablebox table { border-collapse: collapse; width: 100%; min-width: 560px; font-size: 15.5px; }
+.tablebox th, .tablebox td { text-align: left; padding: 11px 16px; border-bottom: 1px solid var(--line-soft); }
+.tablebox th { color: var(--muted); font-size: 13px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+.tablebox tr:last-child td { border-bottom: 0; }
+.tablebox .n { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.tablebox .pick td:first-child { font-weight: 700; }
+.tablebox .pick td:first-child::after { content: "Best pick"; margin-left: 8px; color: var(--accent); font-size: 11px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
+.examples { display: flex; flex-direction: column; gap: 48px; }
+.ex { margin: 0; display: flex; flex-direction: column; gap: 14px; }
+.ex .prompt { margin: 0; color: var(--ink-2); font-size: 17px; font-style: italic; max-width: 820px; }
+.pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+.pair figure { margin: 0; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.pair img, .pair video { width: 100%; border-radius: 12px; border: 1px solid var(--line); background: var(--panel-soft); }
+.pair figcaption { color: var(--muted); font-size: 14.5px; }
+.pair figcaption b { color: var(--ink); }
+.how { margin: 6px 0 0; padding-left: 1.3em; display: flex; flex-direction: column; gap: 10px; color: var(--ink-2); line-height: 1.6; }
+.copy .how { font-size: 17px; }
+/* Commands wrap rather than scroll, so the whole of one is always in view
+   (copying it still gives one line). */
+.guide pre, .vps pre { margin: 8px 0; padding: 12px 14px; background: var(--ink); color: #fff; border-radius: 10px; white-space: pre-wrap; overflow-wrap: anywhere; font-size: 14px; }
+.guide code, .vps code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .92em; }
+.guide :not(pre) > code { background: var(--panel-soft); border: 1px solid var(--line-soft); border-radius: 5px; padding: 1px 5px; overflow-wrap: anywhere; }
+.options { display: flex; flex-direction: column; gap: 18px; margin-top: 32px; }
+.opt { background: var(--paper); border: 1px solid var(--line-soft); border-radius: 22px; padding: 28px; display: flex; flex-direction: column; gap: 10px; }
+.opt.rec { outline: 2px solid var(--accent); }
+.opt p { margin: 0; color: var(--ink-2); line-height: 1.6; }
+.opt-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 14px; }
+.opt-head b { font-size: 21px; }
+.chip-s { color: var(--accent-deep); background: var(--accent-tint); border-radius: 999px; padding: 3px 11px; font-size: 13px; font-weight: 700; }
+.soon-opt { border-style: dashed; }
+@media (max-width: 860px) {
+  .specs { grid-template-columns: minmax(0, 1fr); }
+  .opt { padding: 22px; }
+}
+@media (max-width: 560px) { .pair { grid-template-columns: minmax(0, 1fr); } }
+.box .how b, .opt .how b { font-size: inherit; }
+[hidden] { display: none !important; }
+
+/* Home: the apps, one at a time. The name showing is lit, and its bar
+   fills while its film plays or its picture shows (--done, from site.js). */
+.tour { display: flex; flex-direction: column; gap: 22px; }
+.tour-tabs { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 10px; }
+.tour-tabs button { position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: flex-start; gap: 2px; padding: 14px 16px 16px; border-radius: 16px; border: 1px solid var(--line-soft); background: var(--panel); color: var(--ink-2); font: inherit; text-align: left; cursor: pointer; }
+.tour-tabs button:hover { border-color: var(--accent); }
+.tour-tabs b { font-size: 21px; font-weight: 800; letter-spacing: -0.01em; color: var(--ink); }
+.tour-tabs small { font-size: 14px; color: var(--muted); }
+.tour-tabs button::after { content: ""; position: absolute; left: 0; bottom: 0; height: 4px; width: calc(var(--done, 0) * 100%); background: var(--accent); }
+.tour-tabs button[aria-selected="true"] { border-color: var(--accent); background: var(--accent-tint); }
+.tour-tabs button[aria-selected="true"] b { color: var(--accent-deep); }
+.tour-tabs button[aria-selected="true"]:not(.timed)::after { width: 100%; }
+.tour-screen { display: block; border-radius: 14px; overflow: hidden; border: 1px solid var(--line); box-shadow: var(--shadow); background: #fff; aspect-ratio: 16 / 10; }
+.tour-screen video, .tour-screen img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+.tour-panel p { margin: 18px auto 0; max-width: 820px; text-align: center; font-size: 18px; line-height: 1.6; color: var(--ink-2); }
+.tour-panel p b { color: var(--ink); }
+.tour-panel p a { font-weight: 700; white-space: nowrap; }
+@media (max-width: 860px) {
+  .tour-tabs { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .tour-tabs button { padding: 10px 12px 12px; }
+  .tour-tabs b { font-size: 18px; }
+}
+@media (max-width: 420px) { .tour-tabs small { display: none; } }
+
+/* The home page's apps: an icon, a name and one line each. */
+.apps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.app { display: flex; gap: 16px; align-items: flex-start; padding: 20px 22px; border-radius: 18px; background: var(--panel); border: 1px solid var(--line-soft); color: var(--ink); text-decoration: none; }
+.app:hover { color: var(--ink); box-shadow: 0 10px 28px rgba(28, 25, 23, .09); }
+.app-icon { flex: none; width: 44px; height: 44px; border-radius: 12px; color: #fff; font: 800 20px/44px Figtree, system-ui, sans-serif; text-align: center; }
+.app-text { display: flex; flex-direction: column; gap: 4px; }
+.app-text b { font-size: 18px; }
+.app-text span { color: var(--muted); font-size: 15px; line-height: 1.5; }
+@media (max-width: 900px) { .apps { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .apps { grid-template-columns: minmax(0, 1fr); } }

@@ -1,0 +1,2298 @@
+[
+  {
+    "name": "AVERAGE",
+    "args": [
+      {
+        "name": "number1",
+        "about": "a number, a cell or a range of cells"
+      },
+      {
+        "name": "number2",
+        "about": "more numbers, cells or ranges",
+        "optional": true
+      }
+    ],
+    "more": true,
+    "about": "Gives the average (mean) of some numbers: their total divided by how many there are.",
+    "example": {
+      "cells": [
+        [
+          "Month",
+          "Sales"
+        ],
+        [
+          "Jan",
+          "120"
+        ],
+        [
+          "Feb",
+          "80"
+        ],
+        [
+          "Mar",
+          "150"
+        ],
+        [
+          "Apr",
+          "90"
+        ]
+      ],
+      "formula": "=AVERAGE(B2:B5)",
+      "result": "110",
+      "why": "(120 + 80 + 150 + 90) / 4 = 110. Words and empty cells are left out."
+    },
+    "notes": "AVERAGEA also counts TRUE, FALSE and text in cells. MEDIAN gives the middle value instead."
+  },
+  {
+    "name": "AVERAGEA",
+    "args": [
+      {
+        "name": "value1",
+        "about": "a value, a cell or a range of cells"
+      },
+      {
+        "name": "value2",
+        "about": "more values, cells or ranges",
+        "optional": true
+      }
+    ],
+    "more": true,
+    "about": "Gives the average of some values, counting text in cells as 0, TRUE as 1 and FALSE as 0.",
+    "example": {
+      "cells": [
+        [
+          "Pupil",
+          "Score"
+        ],
+        [
+          "Amy",
+          "8"
+        ],
+        [
+          "Ben",
+          "absent"
+        ],
+        [
+          "Cara",
+          "10"
+        ]
+      ],
+      "formula": "=AVERAGEA(B2:B4)",
+      "result": "6",
+      "why": "\"absent\" counts as 0, so (8 + 0 + 10) / 3 = 6; AVERAGE would give 9."
+    },
+    "notes": "Empty cells are still left out."
+  },
+  {
+    "name": "AVERAGEIF",
+    "args": [
+      {
+        "name": "range",
+        "about": "the cells to test"
+      },
+      {
+        "name": "criteria",
+        "about": "the test, like \"Apple\" or \">10\""
+      },
+      {
+        "name": "average_range",
+        "about": "the cells to average (the tested cells if left out)",
+        "optional": true
+      }
+    ],
+    "about": "Gives the average of the numbers in rows that pass a test.",
+    "example": {
+      "cells": [
+        [
+          "Fruit",
+          "Sold"
+        ],
+        [
+          "Apple",
+          "3"
+        ],
+        [
+          "Pear",
+          "5"
+        ],
+        [
+          "Apple",
+          "7"
+        ]
+      ],
+      "formula": "=AVERAGEIF(A2:A4,\"Apple\",B2:B4)",
+      "result": "5",
+      "why": "Only the Apple rows count: (3 + 7) / 2 = 5."
+    },
+    "notes": "AVERAGEIFS takes more than one test. Gives #DIV/0! when no row passes."
+  },
+  {
+    "name": "AVERAGEIFS",
+    "args": [
+      {
+        "name": "average_range",
+        "about": "the cells to average"
+      },
+      {
+        "name": "criteria_range1",
+        "about": "the cells for the first test"
+      },
+      {
+        "name": "criteria1",
+        "about": "the first test, like \"North\" or \">10\""
+      },
+      {
+        "name": "criteria_range2",
+        "about": "the cells for the next test",
+        "optional": true
+      },
+      {
+        "name": "criteria2",
+        "about": "the next test",
+        "optional": true
+      }
+    ],
+    "more": true,
+    "about": "Gives the average of the numbers in rows that pass every test.",
+    "example": {
+      "cells": [
+        [
+          "Region",
+          "Fruit",
+          "Sold"
+        ],
+        [
+          "North",
+          "Apple",
+          "4"
+        ],
+        [
+          "South",
+          "Apple",
+          "6"
+        ],
+        [
+          "North",
+          "Pear",
+          "9"
+        ],
+        [
+          "North",
+          "Apple",
+          "8"
+        ]
+      ],
+      "formula": "=AVERAGEIFS(C2:C5,A2:A5,\"North\",B2:B5,\"Apple\")",
+      "result": "6",
+      "why": "Two rows are North and Apple: (4 + 8) / 2 = 6."
+    },
+    "notes": "The cells to average come first here, but last in AVERAGEIF."
+  },
+  {
+    "name": "COUNT",
+    "args": [
+      {
+        "name": "value1",
+        "about": "a value, a cell or a range of cells"
+      },
+      {
+        "name": "value2",
+        "about": "more values, cells or ranges",
+        "optional": true
+      }
+    ],
+    "more": true,
+    "about": "Counts how many cells hold numbers (dates count too).",
+    "example": {
+      "cells": [
+        [
+          "Name",
+          "Age"
+        ],
+        [
+          "Amy",
+          "34"
+        ],
+        [
+          "Ben",
+          "unknown"
+        ],
+        [
+          "Cara",
+          "29"
+        ],
+        [
+          "Dan",
+          ""
+        ]
+      ],
+      "formula": "=COUNT(B2:B5)",
+      "result": "2",
+      "why": "Only 34 and 29 are numbers; the word and the empty cell are not counted."
+    },
+    "notes": "COUNTA counts every cell that isn't empty."
+  },
+  {
+    "name": "COUNTA",
+    "args": [
+      {
+        "name": "value1",
+        "about": "a value, a cell or a range of cells"
+      },
+      {
+        "name": "value2",
+        "about": "more values, cells or ranges",
+        "optional": true
+      }
+    ],
+    "more": true,
+    "about": "Counts how many cells are not empty, whatever they hold.",
+    "example": {
+      "cells": [
+        [
+          "Name",
+          "Age"
+        ],
+        [
+          "Amy",
+          "34"
+        ],
+        [
+          "Ben",
+          "unknown"
+        ],
+        [
+          "Cara",
+          "29"
+        ],
+        [
+          "Dan",
+          ""
+        ]
+      ],
+      "formula": "=COUNTA(B2:B5)",
+      "result": "3",
+      "why": "34, \"unknown\" and 29 are counted; Dan's empty cell is not."
+    },
+    "notes": "COUNT counts only numbers; COUNTBLANK counts the empty cells."
+  },
+  {
+    "name": "COUNTBLANK",
+    "args": [
+      {
+        "name": "range",
+        "about": "the cells to look at"
+      }
+    ],
+    "about": "Counts how many cells in a range are empty.",
+    "example": {
+      "cells": [
+        [
+          "Task",
+          "Done on"
+        ],
+        [
+          "Order",
+          "2026-03-02"
+        ],
+        [
+          "Pack",
+          ""
+        ],
+        [
+          "Send",
+          ""
+        ]
+      ],
+      "formula": "=COUNTBLANK(B2:B4)",
+      "result": "2",
+      "why": "Pack and Send have no date yet."
+    },
+    "notes": "A formula that shows \"\" counts as empty too."
+  },
+  {
+    "name": "COUNTIF",
+    "args": [
+      {
+        "name": "range",
+        "about": "the cells to test"
+      },
+      {
+        "name": "criteria",
+        "about": "the test, like \"Apple\", \">10\" or \"<>\""
+      }
+    ],
+    "about": "Counts the cells that pass a test.",
+    "example": {
+      "cells": [
+        [
+          "Fruit",
+          "Sold"
+        ],
+        [
+          "Apple",
+          "3"
+        ],
+        [
+          "Pear",
+          "5"
+        ],
+        [
+          "Apple",
+          "4"
+        ],
+        [
+          "Plum",
+          "12"
+        ]
+      ],
+      "formula": "=COUNTIF(B2:B5,\">4\")",
+      "result": "2",
+      "why": "5 and 12 are more than 4."
+    },
+    "notes": "Tests can use * for any letters and ? for one letter, like \"A*\". COUNTIFS takes more than one test."
+  },
+  {
+    "name": "COUNTIFS",
+    "args": [
+      {
+        "name": "criteria_range1",
+        "about": "the cells for the first test"
+      },
+      {
+        "name": "criteria1",
+        "about": "the first test, like \"North\" or \">10\""
+      },
+      {
+        "name": "criteria_range2",
+        "about": "the cells for the next test",
+        "optional": true
+      },
+      {
+        "name": "criteria2",
+        "about": "the next test",
+        "optional": true
+      }
+    ],
+    "more": true,
+    "about": "Counts the rows that pass every test.",
+    "example": {
+      "cells": [
+        [
+          "Region",
+          "Sold"
+        ],
+        [
+          "North",
+          "4"
+        ],
+        [
+          "South",
+          "9"
+        ],
+        [
+          "North",
+          "12"
+        ],
+        [
+          "North",
+          "15"
+        ]
+      ],
+      "formula": "=COUNTIFS(A2:A5,\"North\",B2:B5,\">10\")",
+      "result": "2",
+      "why": "Two North rows sold more than 10: 12 and 15."
+    }
+  },
+  {
+    "name": "MAXIFS",
+    "args": [
+      {
+        "name": "max_range",
+        "about": "the cells to take the largest from"
+      },
+      {
+        "name": "criteria_range1",
+        "about": "the cells for the first test"
+      },
+      {
+        "name": "criteria1",
+        "about": "the first test"
+      },
+      {
+        "name": "criteria_range2",
+        "about": "the cells for the next test",
+        "optional": true
+      },
+      {
+        "name": "criteria2",
+        "about": "the next test",
+        "optional": true
+      }
+    ],
+    "more": true,
+    "about": "Gives the largest number in rows that pass every test.",
+    "example": {
+      "cells": [
+        [
+          "Region",
+          "Sold"
+        ],
+        [
+          "North",
+          "4"
+        ],
+        [
+          "South",
+          "19"
+        ],
+        [
+          "North",
+          "12"
+        ],
+        [
+          "North",
+          "7"
+        ]
+      ],
+      "formula": "=MAXIFS(B2:B5,A2:A5,\"North\")",
+      "result": "12",
+      "why": "Of the North rows (4, 12, 7) the largest is 12."
+    },
+    "notes": "Gives 0 when no row passes."
+  },
+  {
+    "name": "MINIFS",
+    "args": [
+      {
+        "name": "min_range",
+        "about": "the cells to take the smallest from"
+      },
+      {
+        "name": "criteria_range1",
+        "about": "the cells for the first test"
+      },
+      {
+        "name": "criteria1",
+        "about": "the first test"
+      },
+      {
+        "name": "criteria_range2",
+        "about": "the cells for the next test",
+        "optional": true
+      },
+      {
+        "name": "criteria2",
+        "about": "the next test",
+        "optional": true
+      }
+    ],
+    "more": true,
+    "about": "Gives the smallest number in rows that pass every test.",
+    "example": {
+      "cells": [
+        [
+          "Region",
+          "Sold"
+        ],
+        [
+          "North",
+          "4"
+        ],
+        [
+          "South",
+          "19"
+        ],
+        [
+          "North",
+          "12"
+        ],
+        [
+          "North",
+          "7"
+        ]
+      ],
+      "formula": "=MINIFS(B2:B5,A2:A5,\"North\")",
+      "result": "4",
+      "why": "Of the North rows (4, 12, 7) the smallest is 4."
+    },
+    "notes": "Gives 0 when no row passes."
+  },
+  {
+    "name": "GEOMEAN",
+    "args": [
+      {
+        "name": "number1",
+        "about": "a number, a cell or a range of cells"
+      },
+      {
+        "name": "number2",
+        "about": "more numbers, cells or ranges",
+        "optional": true
+      }
+    ],
+    "more": true,
+    "about": "Gives the geometric mean: the typical rate when numbers multiply together, like yearly growth.",
+    "example": {
+      "cells": [
+        [
+          "Year",
+          "Growth"
+        ],
+        [
+          "2023",
+          "1.1"
+        ],
+        [
+          "2024",
+          "1.5"
+        ],
+        [
+          "2025",
+          "1.2"
+        ]
+      ],
+      "formula": "=GEOMEAN(B2:B4)",
+      "result": "1.255707236",
+      "why": "The cube root of 1.1 × 1.5 × 1.2 = 1.98: growing by about 25.6% every year gives the same total."
+    },
+    "notes": "All numbers must be more than 0, or it gives #NUM!."
+  },
+  {
+    "name": "FREQUENCY",
+    "args": [
+      {
+        "name": "data_array",
+        "about": "the numbers to sort into groups"
+      },
+      {
+        "name": "bins_array",
+        "about": "the top of each group, smallest first"
+      }
+    ],
+    "about": "Counts how many numbers fall into each group (bin), like a histogram.",
+    "example": {
+      "cells": [
+        [
+          "Score",
+          "Up to"
+        ],
+        [
+          "45",
+          "50"
+        ],
+        [
+          "62",
+          "70"
+        ],
+        [
+          "78",
+          "90"
+        ],
+        [
+          "91",
+          ""
+        ],
+        [
+          "55",
+          ""
+        ],
+        [
+          "83",
+          ""
+        ]
+      ],
+      "formula": "=FREQUENCY(A2:A7,B2:B4)",
+      "result": "1",
+      "why": "45 is the only score up to 50; below it spill 2 (51–70), 2 (71–90) and 1 (over 90)."
+    },
+    "notes": "It always gives one more cell than there are bins, for the numbers above the last one."
+  },
+  {
+    "name": "GROWTH",
+    "args": [
+      {
+        "name": "known_y's",
+        "about": "the values you know, which grow by a steady rate"
+      },
+      {
+        "name": "known_x's",
+        "about": "the steps they belong to, like 1, 2, 3",
+        "optional": true
+      },
+      {
+        "name": "new_x's",
+        "about": "the steps to predict for",
+        "optional": true
+      },
+      {
+        "name": "const",
+        "about": "FALSE to force the curve through 1 at step 0",
+        "optional": true
+      }
+    ],
+    "about": "Predicts values on a curve that grows by the same percentage each step.",
+    "example": {
+      "cells": [
+        [
+          "Month",
+          "Users"
+        ],
+        [
+          "1",
+          "100"
+        ],
+        [
+          "2",
+          "200"
+        ],
+        [
+          "3",
+          "400"
+        ]
+      ],
+      "formula": "=GROWTH(B2:B4,A2:A4,4)",
+      "result": "800",
+      "why": "Users double every month, so month 4 should have 800."
+    },
+    "notes": "TREND does the same for a straight line."
+  },
+  {
+    "name": "AVEDEV",
+    "args": [
+      {
+        "name": "number1",
+        "about": "a number, a cell or a range of cells"
+      },
+      {
+        "name": "number2",
+        "about": "more numbers, cells or ranges",
+        "optional": true
+      }
+    ],
+    "more": true,
+    "about": "Gives how far the numbers are from their average, on average.",
+    "example": {
+      "cells": [
+        [
+          "Day",
+          "Visitors"
+        ],
+        [
+          "Mon",
+          "10"
+        ],
+        [
+          "Tue",
+          "14"
+        ],
+        [
+          "Wed",
+          "12"
+        ],
+        [
+          "Thu",
+          "8"
+        ]
+      ],
+      "formula": "=AVEDEV(B2:B5)",
+      "result": "2",
+      "why": "The average is 11; the numbers are 1, 3, 1 and 3 away from it, which averages 2."
+    },
+    "notes": "STDEV.S is the more common measure of spread."
+  },
+  {
+    "name": "BETA.DIST",
+    "args": [
+      {
+        "name": "x",
+        "about": "the value, usually between 0 and 1"
+      },
+      {
+        "name": "alpha",
+        "about": "the first shape number, more than 0"
+      },
+      {
+        "name": "beta",
+        "about": "the second shape number, more than 0"
+      },
+      {
+        "name": "cumulative",
+        "about": "TRUE for the chance of up to x, FALSE for the height of the curve at x"
+      },
+      {
+        "name": "A",
+        "about": "the lowest possible value (0 if left out)",
+        "optional": true
+      },
+      {
+        "name": "B",
+        "about": "the highest possible value (1 if left out)",
+        "optional": true
+      }
+    ],
+    "about": "Gives the beta distribution, often used for chances and proportions that lie between 0 and 1.",
+    "example": {
+      "cells": [
+        [
+          "Share"
+        ],
+        [
+          "0.4"
+        ]
+      ],
+      "formula": "=BETA.DIST(A2,2,3,TRUE)",
+      "result": "0.5248",
+      "why": "With shapes 2 and 3 (values centred near 0.33), 52.48% of the curve lies below 0.4."
+    },
+    "notes": "BETA.INV goes the other way."
+  },
+  {
+    "name": "BETA.INV",
+    "args": [
+      {
+        "name": "probability",
+        "about": "the chance, between 0 and 1"
+      },
+      {
+        "name": "alpha",
+        "about": "the first shape number"
+      },
+      {
+        "name": "beta",
+        "about": "the second shape number"
+      },
+      {
+        "name": "A",
+        "about": "the lowest possible value (0 if left out)",
+        "optional": true
+      },
+      {
+        "name": "B",
+        "about": "the highest possible value (1 if left out)",
+        "optional": true
+      }
+    ],
+    "about": "Gives the value below which a given share of a beta distribution lies (the reverse of BETA.DIST).",
+    "example": {
+      "cells": [
+        [
+          "Chance"
+        ],
+        [
+          "0.5248"
+        ]
+      ],
+      "formula": "=BETA.INV(A2,2,3)",
+      "result": "0.4",
+      "why": "It undoes BETA.DIST(0.4,2,3,TRUE), which gives 0.5248."
+    }
+  },
+  {
+    "name": "BINOM.DIST",
+    "args": [
+      {
+        "name": "number_s",
+        "about": "how many successes"
+      },
+      {
+        "name": "trials",
+        "about": "how many tries"
+      },
+      {
+        "name": "probability_s",
+        "about": "the chance of success in each try"
+      },
+      {
+        "name": "cumulative",
+        "about": "TRUE for the chance of up to that many, FALSE for exactly that many"
+      }
+    ],
+    "about": "Gives the chance of a number of successes in a fixed number of tries, like heads in coin tosses.",
+    "example": {
+      "cells": [
+        [
+          "Heads",
+          "Tosses"
+        ],
+        [
+          "3",
+          "10"
+        ]
+      ],
+      "formula": "=BINOM.DIST(A2,B2,0.5,FALSE)",
+      "result": "0.1171875",
+      "why": "There are 120 ways to get exactly 3 heads among 1,024 equally likely results: 120 / 1024."
+    }
+  },
+  {
+    "name": "BINOM.DIST.RANGE",
+    "args": [
+      {
+        "name": "trials",
+        "about": "how many tries"
+      },
+      {
+        "name": "probability_s",
+        "about": "the chance of success in each try"
+      },
+      {
+        "name": "number_s",
+        "about": "the fewest successes"
+      },
+      {
+        "name": "number_s2",
+        "about": "the most successes (just number_s if left out)",
+        "optional": true
+      }
+    ],
+    "about": "Gives the chance that the number of successes falls between two numbers.",
+    "example": {
+      "cells": [
+        [
+          "Tosses",
+          "From",
+          "To"
+        ],
+        [
+          "10",
+          "4",
+          "6"
+        ]
+      ],
+      "formula": "=BINOM.DIST.RANGE(A2,0.5,B2,C2)",
+      "result": "0.65625",
+      "why": "Getting 4, 5 or 6 heads in 10 fair tosses happens 672 times in 1,024."
+    }
+  },
+  {
+    "name": "BINOM.INV",
+    "args": [
+      {
+        "name": "trials",
+        "about": "how many tries"
+      },
+      {
+        "name": "probability_s",
+        "about": "the chance of success in each try"
+      },
+      {
+        "name": "alpha",
+        "about": "the target chance, between 0 and 1"
+      }
+    ],
+    "about": "Gives the smallest number of successes whose chance of being reached or undershot is at least the target.",
+    "example": {
+      "cells": [
+        [
+          "Parts",
+          "Faulty rate"
+        ],
+        [
+          "100",
+          "0.05"
+        ]
+      ],
+      "formula": "=BINOM.INV(A2,B2,0.95)",
+      "result": "9",
+      "why": "With 100 parts each 5% likely to be faulty, there is at least a 95% chance of 9 or fewer faulty ones."
+    }
+  },
+  {
+    "name": "CHISQ.DIST",
+    "args": [
+      {
+        "name": "x",
+        "about": "the value, 0 or more"
+      },
+      {
+        "name": "deg_freedom",
+        "about": "the degrees of freedom: usually one less than the number of groups"
+      },
+      {
+        "name": "cumulative",
+        "about": "TRUE for the chance of up to x, FALSE for the height of the curve"
+      }
+    ],
+    "about": "Gives the chi-squared distribution (left tail), used to see how well counts fit what was expected.",
+    "example": {
+      "cells": [
+        [
+          "Value"
+        ],
+        [
+          "3.84"
+        ]
+      ],
+      "formula": "=CHISQ.DIST(A2,1,TRUE)",
+      "result": "0.949956479",
+      "why": "With 1 degree of freedom, about 95% of results are below 3.84."
+    },
+    "notes": "CHISQ.DIST.RT gives the right tail, which is the one usually used in tests."
+  },
+  {
+    "name": "CHISQ.DIST.RT",
+    "args": [
+      {
+        "name": "x",
+        "about": "the value, 0 or more"
+      },
+      {
+        "name": "deg_freedom",
+        "about": "the degrees of freedom"
+      }
+    ],
+    "about": "Gives the chance of a chi-squared value this large or larger: small means the counts don't fit what was expected.",
+    "example": {
+      "cells": [
+        [
+          "Value"
+        ],
+        [
+          "3.84"
+        ]
+      ],
+      "formula": "=CHISQ.DIST.RT(A2,1)",
+      "result": "0.050043521",
+      "why": "With 1 degree of freedom, a value of 3.84 or more happens only about 5% of the time."
+    }
+  },
+  {
+    "name": "CHISQ.INV",
+    "args": [
+      {
+        "name": "probability",
+        "about": "the chance, between 0 and 1"
+      },
+      {
+        "name": "deg_freedom",
+        "about": "the degrees of freedom"
+      }
+    ],
+    "about": "Gives the chi-squared value below which a given share of results lies (the reverse of CHISQ.DIST).",
+    "example": {
+      "cells": [
+        [
+          "Chance"
+        ],
+        [
+          "0.95"
+        ]
+      ],
+      "formula": "=CHISQ.INV(A2,1)",
+      "result": "3.841458821",
+      "why": "95% of chi-squared results with 1 degree of freedom are below about 3.84."
+    }
+  },
+  {
+    "name": "CHISQ.INV.RT",
+    "args": [
+      {
+        "name": "probability",
+        "about": "the chance in the right tail, between 0 and 1"
+      },
+      {
+        "name": "deg_freedom",
+        "about": "the degrees of freedom"
+      }
+    ],
+    "about": "Gives the chi-squared value that is exceeded with a given chance: the cut-off for a test.",
+    "example": {
+      "cells": [
+        [
+          "Chance"
+        ],
+        [
+          "0.05"
+        ]
+      ],
+      "formula": "=CHISQ.INV.RT(A2,2)",
+      "result": "5.991464546",
+      "why": "With 2 degrees of freedom, only 5% of results go above about 5.99."
+    }
+  },
+  {
+    "name": "CHISQ.TEST",
+    "args": [
+      {
+        "name": "actual_range",
+        "about": "the counts you saw"
+      },
+      {
+        "name": "expected_range",
+        "about": "the counts you expected, same shape"
+      }
+    ],
+    "about": "Gives the chance that counts this far from what was expected happen by luck alone. Small means the difference is real.",
+    "example": {
+      "cells": [
+        [
+          "Seen",
+          "Expected"
+        ],
+        [
+          "30",
+          "25"
+        ],
+        [
+          "20",
+          "25"
+        ],
+        [
+          "25",
+          "25"
+        ],
+        [
+          "25",
+          "25"
+        ]
+      ],
+      "formula": "=CHISQ.TEST(A2:A5,B2:B5)",
+      "result": "0.572406704",
+      "why": "Sales of four flavours were 30, 20, 25 and 25 against 25 each; a gap like that happens by luck about 57% of the time, so it proves nothing."
+    }
+  },
+  {
+    "name": "CONFIDENCE.NORM",
+    "args": [
+      {
+        "name": "alpha",
+        "about": "how much doubt you accept, like 0.05 for 95% confidence"
+      },
+      {
+        "name": "standard_dev",
+        "about": "how spread out the values are"
+      },
+      {
+        "name": "size",
+        "about": "how many values were measured"
+      }
+    ],
+    "about": "Gives the margin of error (the ± figure) for an average, using the normal distribution.",
+    "example": {
+      "cells": [
+        [
+          "Spread",
+          "Sample"
+        ],
+        [
+          "2.5",
+          "50"
+        ]
+      ],
+      "formula": "=CONFIDENCE.NORM(0.05,A2,B2)",
+      "result": "0.692951912",
+      "why": "With 50 measurements spread by 2.5, the true average is within ± 0.69 of the measured one, with 95% confidence."
+    },
+    "notes": "CONFIDENCE.T suits small samples."
+  },
+  {
+    "name": "CONFIDENCE.T",
+    "args": [
+      {
+        "name": "alpha",
+        "about": "how much doubt you accept, like 0.05 for 95% confidence"
+      },
+      {
+        "name": "standard_dev",
+        "about": "how spread out the values are"
+      },
+      {
+        "name": "size",
+        "about": "how many values were measured"
+      }
+    ],
+    "about": "Gives the margin of error (the ± figure) for an average, using the t distribution, which suits small samples.",
+    "example": {
+      "cells": [
+        [
+          "Spread",
+          "Sample"
+        ],
+        [
+          "2.5",
+          "10"
+        ]
+      ],
+      "formula": "=CONFIDENCE.T(0.05,A2,B2)",
+      "result": "1.788392265",
+      "why": "With only 10 measurements spread by 2.5, the true average is within ± 1.79 of the measured one, with 95% confidence."
+    }
+  },
+  {
+    "name": "COVARIANCE.P",
+    "args": [
+      {
+        "name": "array1",
+        "about": "the first set of numbers"
+      },
+      {
+        "name": "array2",
+        "about": "the second set, the same size"
+      }
+    ],
+    "about": "Gives the covariance of a whole population: positive when two things tend to rise together, negative when one falls as the other rises.",
+    "example": {
+      "cells": [
+        [
+          "Temp",
+          "Ice creams"
+        ],
+        [
+          "18",
+          "20"
+        ],
+        [
+          "22",
+          "28"
+        ],
+        [
+          "25",
+          "35"
+        ],
+        [
+          "30",
+          "45"
+        ]
+      ],
+      "formula": "=COVARIANCE.P(A2:A5,B2:B5)",
+      "result": "40.25",
+      "why": "Warmer days go with more ice creams sold, so it's positive (40.25)."
+    },
+    "notes": "COVARIANCE.S is for a sample. CORREL gives the same idea on a scale from -1 to 1."
+  },
+  {
+    "name": "COVARIANCE.S",
+    "args": [
+      {
+        "name": "array1",
+        "about": "the first set of numbers"
+      },
+      {
+        "name": "array2",
+        "about": "the second set, the same size"
+      }
+    ],
+    "about": "Gives the covariance of a sample: positive when two things tend to rise together, negative when one falls as the other rises.",
+    "example": {
+      "cells": [
+        [
+          "Temp",
+          "Ice creams"
+        ],
+        [
+          "18",
+          "20"
+        ],
+        [
+          "22",
+          "28"
+        ],
+        [
+          "25",
+          "35"
+        ],
+        [
+          "30",
+          "45"
+        ]
+      ],
+      "formula": "=COVARIANCE.S(A2:A5,B2:B5)",
+      "result": "53.666666667",
+      "why": "Like COVARIANCE.P but divides by one less than the count, as is right for a sample."
+    }
+  },
+  {
+    "name": "DEVSQ",
+    "args": [
+      {
+        "name": "number1",
+        "about": "a number, a cell or a range of cells"
+      },
+      {
+        "name": "number2",
+        "about": "more numbers, cells or ranges",
+        "optional": true
+      }
+    ],
+    "more": true,
+    "about": "Adds up the squares of how far each number is from the average.",
+    "example": {
+      "cells": [
+        [
+          "Day",
+          "Visitors"
+        ],
+        [
+          "Mon",
+          "10"
+        ],
+        [
+          "Tue",
+          "14"
+        ],
+        [
+          "Wed",
+          "12"
+        ],
+        [
+          "Thu",
+          "8"
+        ]
+      ],
+      "formula": "=DEVSQ(B2:B5)",
+      "result": "20",
+      "why": "The average is 11; 1² + 3² + 1² + 3² = 20."
+    }
+  },
+  {
+    "name": "EXPON.DIST",
+    "args": [
+      {
+        "name": "x",
+        "about": "the value, like a waiting time"
+      },
+      {
+        "name": "lambda",
+        "about": "how often it happens on average, per unit"
+      },
+      {
+        "name": "cumulative",
+        "about": "TRUE for the chance of up to x, FALSE for the height of the curve"
+      }
+    ],
+    "about": "Gives the exponential distribution: for example the chance of waiting no longer than x for something that happens at random.",
+    "example": {
+      "cells": [
+        [
+          "Minutes"
+        ],
+        [
+          "5"
+        ]
+      ],
+      "formula": "=EXPON.DIST(A2,0.2,TRUE)",
+      "result": "0.632120559",
+      "why": "Buses come on average every 5 minutes (0.2 a minute); the chance of one within 5 minutes is about 63%."
+    }
+  },
+  {
+    "name": "F.DIST",
+    "args": [
+      {
+        "name": "x",
+        "about": "the value, 0 or more"
+      },
+      {
+        "name": "deg_freedom1",
+        "about": "the degrees of freedom on top"
+      },
+      {
+        "name": "deg_freedom2",
+        "about": "the degrees of freedom below"
+      },
+      {
+        "name": "cumulative",
+        "about": "TRUE for the chance of up to x, FALSE for the height of the curve"
+      }
+    ],
+    "about": "Gives the F distribution (left tail), which compares how spread out two groups are.",
+    "example": {
+      "cells": [
+        [
+          "Ratio"
+        ],
+        [
+          "2"
+        ]
+      ],
+      "formula": "=F.DIST(A2,5,10,TRUE)",
+      "result": "0.835805049",
+      "why": "About 83% of F values with 5 and 10 degrees of freedom are below 2."
+    },
+    "notes": "F.DIST.RT gives the right tail used in tests."
+  },
+  {
+    "name": "F.DIST.RT",
+    "args": [
+      {
+        "name": "x",
+        "about": "the value, 0 or more"
+      },
+      {
+        "name": "deg_freedom1",
+        "about": "the degrees of freedom on top"
+      },
+      {
+        "name": "deg_freedom2",
+        "about": "the degrees of freedom below"
+      }
+    ],
+    "about": "Gives the chance of an F value this large or larger: small means two groups really differ in spread.",
+    "example": {
+      "cells": [
+        [
+          "Ratio"
+        ],
+        [
+          "2"
+        ]
+      ],
+      "formula": "=F.DIST.RT(A2,5,10)",
+      "result": "0.164194951",
+      "why": "About 16% of F values with 5 and 10 degrees of freedom are 2 or more."
+    },
+    "notes": "F.TEST does the whole test from two lists of numbers."
+  },
+  {
+    "name": "F.INV",
+    "args": [
+      {
+        "name": "probability",
+        "about": "the chance, between 0 and 1"
+      },
+      {
+        "name": "deg_freedom1",
+        "about": "the degrees of freedom on top"
+      },
+      {
+        "name": "deg_freedom2",
+        "about": "the degrees of freedom below"
+      }
+    ],
+    "about": "Gives the F value below which a given share of results lies (the reverse of F.DIST).",
+    "example": {
+      "cells": [
+        [
+          "Chance"
+        ],
+        [
+          "0.95"
+        ]
+      ],
+      "formula": "=F.INV(A2,5,10)",
+      "result": "3.32583453",
+      "why": "95% of F values with 5 and 10 degrees of freedom are below about 3.33."
+    }
+  },
+  {
+    "name": "F.INV.RT",
+    "args": [
+      {
+        "name": "probability",
+        "about": "the chance in the right tail, between 0 and 1"
+      },
+      {
+        "name": "deg_freedom1",
+        "about": "the degrees of freedom on top"
+      },
+      {
+        "name": "deg_freedom2",
+        "about": "the degrees of freedom below"
+      }
+    ],
+    "about": "Gives the F value exceeded with a given chance: the cut-off for a test.",
+    "example": {
+      "cells": [
+        [
+          "Chance"
+        ],
+        [
+          "0.05"
+        ]
+      ],
+      "formula": "=F.INV.RT(A2,5,10)",
+      "result": "3.32583453",
+      "why": "Only 5% of F values with 5 and 10 degrees of freedom go above about 3.33."
+    }
+  },
+  {
+    "name": "F.TEST",
+    "args": [
+      {
+        "name": "array1",
+        "about": "the first group of numbers"
+      },
+      {
+        "name": "array2",
+        "about": "the second group"
+      }
+    ],
+    "about": "Gives the chance that two groups are this different in spread by luck alone. Small means they really differ.",
+    "example": {
+      "cells": [
+        [
+          "Machine A",
+          "Machine B"
+        ],
+        [
+          "10.1",
+          "9.6"
+        ],
+        [
+          "9.9",
+          "10.5"
+        ],
+        [
+          "10.0",
+          "9.4"
+        ],
+        [
+          "10.2",
+          "10.7"
+        ],
+        [
+          "9.8",
+          "9.8"
+        ]
+      ],
+      "formula": "=F.TEST(A2:A6,B2:B6)",
+      "result": "0.029154519",
+      "why": "Machine B's parts vary much more than A's; a gap that big happens by luck only about 3% of the time."
+    },
+    "notes": "The chance covers a gap either way (two-tailed)."
+  },
+  {
+    "name": "FISHER",
+    "args": [
+      {
+        "name": "x",
+        "about": "a correlation, between -1 and 1 (not either end)"
+      }
+    ],
+    "about": "Gives the Fisher transformation of a correlation, which turns it into a number that is roughly normally spread.",
+    "example": {
+      "cells": [
+        [
+          "Correlation"
+        ],
+        [
+          "0.75"
+        ]
+      ],
+      "formula": "=FISHER(A2)",
+      "result": "0.972955075",
+      "why": "It is half the natural log of (1 + 0.75) / (1 − 0.75)."
+    },
+    "notes": "FISHERINV undoes it."
+  },
+  {
+    "name": "FISHERINV",
+    "args": [
+      {
+        "name": "y",
+        "about": "the transformed value"
+      }
+    ],
+    "about": "Undoes FISHER, turning the value back into a correlation between -1 and 1.",
+    "example": {
+      "cells": [
+        [
+          "Value"
+        ],
+        [
+          "0.972955074527657"
+        ]
+      ],
+      "formula": "=FISHERINV(A2)",
+      "result": "0.75",
+      "why": "It gives back the correlation 0.75 that FISHER turned into 0.973."
+    }
+  },
+  {
+    "name": "FORECAST",
+    "args": [
+      {
+        "name": "x",
+        "about": "the point to predict for"
+      },
+      {
+        "name": "known_y's",
+        "about": "the values you know"
+      },
+      {
+        "name": "known_x's",
+        "about": "the points they belong to"
+      }
+    ],
+    "about": "Predicts a value on the straight line that best fits the data.",
+    "example": {
+      "cells": [
+        [
+          "Month",
+          "Sales"
+        ],
+        [
+          "1",
+          "100"
+        ],
+        [
+          "2",
+          "120"
+        ],
+        [
+          "3",
+          "140"
+        ],
+        [
+          "4",
+          "160"
+        ]
+      ],
+      "formula": "=FORECAST(5,B2:B5,A2:A5)",
+      "result": "180",
+      "why": "Sales rise by 20 a month, so month 5 should bring 180."
+    },
+    "notes": "Older name: use FORECAST.LINEAR, which works the same."
+  },
+  {
+    "name": "FORECAST.LINEAR",
+    "args": [
+      {
+        "name": "x",
+        "about": "the point to predict for"
+      },
+      {
+        "name": "known_y's",
+        "about": "the values you know"
+      },
+      {
+        "name": "known_x's",
+        "about": "the points they belong to"
+      }
+    ],
+    "about": "Predicts a value on the straight line that best fits the data.",
+    "example": {
+      "cells": [
+        [
+          "Month",
+          "Sales"
+        ],
+        [
+          "1",
+          "100"
+        ],
+        [
+          "2",
+          "125"
+        ],
+        [
+          "3",
+          "135"
+        ],
+        [
+          "4",
+          "160"
+        ]
+      ],
+      "formula": "=FORECAST.LINEAR(5,B2:B5,A2:A5)",
+      "result": "177.5",
+      "why": "The best line rises by 19 a month from 82.5, so month 5 gives 82.5 + 5 × 19."
+    }
+  },
+  {
+    "name": "FORECAST.ETS",
+    "args": [
+      {
+        "name": "target_date",
+        "about": "the date or point to predict for"
+      },
+      {
+        "name": "values",
+        "about": "the values you know"
+      },
+      {
+        "name": "timeline",
+        "about": "their dates or points, evenly spaced"
+      },
+      {
+        "name": "seasonality",
+        "about": "the length of a repeating pattern (found by itself if left out, 0 for none)",
+        "optional": true
+      },
+      {
+        "name": "data_completion",
+        "about": "1 to fill gaps, 0 to treat them as zero",
+        "optional": true
+      },
+      {
+        "name": "aggregation",
+        "about": "how to combine values on the same date",
+        "optional": true
+      }
+    ],
+    "about": "Predicts a future value from a time series, using exponential smoothing that can follow trends and repeating seasons.",
+    "example": {
+      "cells": [
+        [
+          "Month",
+          "Sales"
+        ],
+        [
+          "2026-01-01",
+          "100"
+        ],
+        [
+          "2026-02-01",
+          "110"
+        ],
+        [
+          "2026-03-01",
+          "120"
+        ],
+        [
+          "2026-04-01",
+          "130"
+        ],
+        [
+          "2026-05-01",
+          "140"
+        ],
+        [
+          "2026-06-01",
+          "150"
+        ],
+        [
+          "2026-07-01",
+          "160"
+        ],
+        [
+          "2026-08-01",
+          "170"
+        ]
+      ],
+      "formula": "=FORECAST.ETS(DATE(2026,9,1),B2:B9,A2:A9)",
+      "result": "#N/IMPL!",
+      "why": "Sales rise by 10 every month, so September should bring 180, but Calc does not work this out yet."
+    },
+    "notes": "Not yet implemented in Calc: it always gives #N/IMPL!. For a straight-line trend use FORECAST.LINEAR or TREND."
+  },
+  {
+    "name": "FORECAST.ETS.CONFINT",
+    "args": [
+      {
+        "name": "target_date",
+        "about": "the date or point to predict for"
+      },
+      {
+        "name": "values",
+        "about": "the values you know"
+      },
+      {
+        "name": "timeline",
+        "about": "their dates or points, evenly spaced"
+      },
+      {
+        "name": "confidence_level",
+        "about": "how sure to be, like 0.95 (the default)",
+        "optional": true
+      },
+      {
+        "name": "seasonality",
+        "about": "the length of a repeating pattern (found by itself if left out, 0 for none)",
+        "optional": true
+      },
+      {
+        "name": "data_completion",
+        "about": "1 to fill gaps, 0 to treat them as zero",
+        "optional": true
+      },
+      {
+        "name": "aggregation",
+        "about": "how to combine values on the same date",
+        "optional": true
+      }
+    ],
+    "about": "Gives the ± margin around a FORECAST.ETS prediction for a given confidence.",
+    "example": {
+      "cells": [
+        [
+          "Month",
+          "Sales"
+        ],
+        [
+          "2026-01-01",
+          "100"
+        ],
+        [
+          "2026-02-01",
+          "110"
+        ],
+        [
+          "2026-03-01",
+          "120"
+        ],
+        [
+          "2026-04-01",
+          "130"
+        ],
+        [
+          "2026-05-01",
+          "140"
+        ],
+        [
+          "2026-06-01",
+          "150"
+        ],
+        [
+          "2026-07-01",
+          "160"
+        ],
+        [
+          "2026-08-01",
+          "170"
+        ]
+      ],
+      "formula": "=FORECAST.ETS.CONFINT(DATE(2026,9,1),B2:B9,A2:A9)",
+      "result": "#N/IMPL!",
+      "why": "The sales follow the trend exactly, so the margin should be close to 0, but Calc does not work this out yet."
+    },
+    "notes": "Not yet implemented in Calc: it always gives #N/IMPL!. For a straight-line trend use FORECAST.LINEAR or TREND."
+  },
+  {
+    "name": "FORECAST.ETS.SEASONALITY",
+    "args": [
+      {
+        "name": "values",
+        "about": "the values you know"
+      },
+      {
+        "name": "timeline",
+        "about": "their dates or points, evenly spaced"
+      },
+      {
+        "name": "data_completion",
+        "about": "1 to fill gaps, 0 to treat them as zero",
+        "optional": true
+      },
+      {
+        "name": "aggregation",
+        "about": "how to combine values on the same date",
+        "optional": true
+      }
+    ],
+    "about": "Gives the length of the repeating pattern that FORECAST.ETS finds in a time series.",
+    "example": {
+      "cells": [
+        [
+          "Quarter",
+          "Sales"
+        ],
+        [
+          "1",
+          "10"
+        ],
+        [
+          "2",
+          "20"
+        ],
+        [
+          "3",
+          "30"
+        ],
+        [
+          "4",
+          "40"
+        ],
+        [
+          "5",
+          "10"
+        ],
+        [
+          "6",
+          "20"
+        ],
+        [
+          "7",
+          "30"
+        ],
+        [
+          "8",
+          "40"
+        ],
+        [
+          "9",
+          "10"
+        ],
+        [
+          "10",
+          "20"
+        ],
+        [
+          "11",
+          "30"
+        ],
+        [
+          "12",
+          "40"
+        ]
+      ],
+      "formula": "=FORECAST.ETS.SEASONALITY(B2:B13,A2:A13)",
+      "result": "#N/IMPL!",
+      "why": "Sales repeat 10, 20, 30, 40, so the pattern is 4 quarters long, but Calc does not work this out yet."
+    },
+    "notes": "Not yet implemented in Calc: it always gives #N/IMPL!. For a straight-line trend use FORECAST.LINEAR or TREND."
+  },
+  {
+    "name": "FORECAST.ETS.STAT",
+    "args": [
+      {
+        "name": "values",
+        "about": "the values you know"
+      },
+      {
+        "name": "timeline",
+        "about": "their dates or points, evenly spaced"
+      },
+      {
+        "name": "statistic_type",
+        "about": "which figure: 1 alpha, 2 beta, 3 gamma, 4 MASE, 5 SMAPE, 6 MAE, 7 RMSE, 8 step size"
+      },
+      {
+        "name": "seasonality",
+        "about": "the length of a repeating pattern (found by itself if left out, 0 for none)",
+        "optional": true
+      },
+      {
+        "name": "data_completion",
+        "about": "1 to fill gaps, 0 to treat them as zero",
+        "optional": true
+      },
+      {
+        "name": "aggregation",
+        "about": "how to combine values on the same date",
+        "optional": true
+      }
+    ],
+    "about": "Gives one of the figures behind a FORECAST.ETS prediction, like how strongly it smooths or how big its errors were.",
+    "example": {
+      "cells": [
+        [
+          "Month",
+          "Sales"
+        ],
+        [
+          "2026-01-01",
+          "100"
+        ],
+        [
+          "2026-02-01",
+          "110"
+        ],
+        [
+          "2026-03-01",
+          "120"
+        ],
+        [
+          "2026-04-01",
+          "130"
+        ],
+        [
+          "2026-05-01",
+          "140"
+        ],
+        [
+          "2026-06-01",
+          "150"
+        ],
+        [
+          "2026-07-01",
+          "160"
+        ],
+        [
+          "2026-08-01",
+          "170"
+        ]
+      ],
+      "formula": "=FORECAST.ETS.STAT(B2:B9,A2:A9,8)",
+      "result": "#N/IMPL!",
+      "why": "8 asks for the step size, which should be one month, but Calc does not work this out yet."
+    },
+    "notes": "Not yet implemented in Calc: it always gives #N/IMPL!. For a straight-line trend use FORECAST.LINEAR or TREND."
+  },
+  {
+    "name": "GAMMA",
+    "args": [
+      {
+        "name": "number",
+        "about": "the number"
+      }
+    ],
+    "about": "Gives the gamma function, which extends factorials to numbers that aren't whole.",
+    "example": {
+      "cells": [
+        [
+          "Number"
+        ],
+        [
+          "5"
+        ]
+      ],
+      "formula": "=GAMMA(A2)",
+      "result": "24",
+      "why": "GAMMA(n) = (n − 1)!, so GAMMA(5) = 4 × 3 × 2 × 1 = 24."
+    },
+    "notes": "Gives #NUM! for 0 and negative whole numbers."
+  },
+  {
+    "name": "GAMMA.DIST",
+    "args": [
+      {
+        "name": "x",
+        "about": "the value, 0 or more"
+      },
+      {
+        "name": "alpha",
+        "about": "the shape number"
+      },
+      {
+        "name": "beta",
+        "about": "the scale number"
+      },
+      {
+        "name": "cumulative",
+        "about": "TRUE for the chance of up to x, FALSE for the height of the curve"
+      }
+    ],
+    "about": "Gives the gamma distribution, often used for waiting times and amounts that can't be negative.",
+    "example": {
+      "cells": [
+        [
+          "Hours"
+        ],
+        [
+          "4"
+        ]
+      ],
+      "formula": "=GAMMA.DIST(A2,2,2,TRUE)",
+      "result": "0.59399415",
+      "why": "With shape 2 and scale 2, about 59% of the waiting times are 4 hours or less."
+    }
+  },
+  {
+    "name": "GAMMA.INV",
+    "args": [
+      {
+        "name": "probability",
+        "about": "the chance, between 0 and 1"
+      },
+      {
+        "name": "alpha",
+        "about": "the shape number"
+      },
+      {
+        "name": "beta",
+        "about": "the scale number"
+      }
+    ],
+    "about": "Gives the value below which a given share of a gamma distribution lies (the reverse of GAMMA.DIST).",
+    "example": {
+      "cells": [
+        [
+          "Chance"
+        ],
+        [
+          "0.75"
+        ]
+      ],
+      "formula": "=GAMMA.INV(A2,2,2)",
+      "result": "5.385269058",
+      "why": "Three quarters of the waiting times with shape 2 and scale 2 are below about 5.39 hours."
+    }
+  },
+  {
+    "name": "GAMMALN",
+    "args": [
+      {
+        "name": "x",
+        "about": "a number more than 0"
+      }
+    ],
+    "about": "Gives the natural log of the gamma function.",
+    "example": {
+      "cells": [
+        [
+          "Number"
+        ],
+        [
+          "5"
+        ]
+      ],
+      "formula": "=GAMMALN(A2)",
+      "result": "3.17805383",
+      "why": "GAMMA(5) is 24, and ln 24 ≈ 3.178."
+    },
+    "notes": "Newer name: GAMMALN.PRECISE, which works the same."
+  },
+  {
+    "name": "GAMMALN.PRECISE",
+    "args": [
+      {
+        "name": "x",
+        "about": "a number more than 0"
+      }
+    ],
+    "about": "Gives the natural log of the gamma function.",
+    "example": {
+      "cells": [
+        [
+          "Number"
+        ],
+        [
+          "10"
+        ]
+      ],
+      "formula": "=GAMMALN.PRECISE(A2)",
+      "result": "12.80182748",
+      "why": "GAMMA(10) is 9! = 362,880, and ln 362880 ≈ 12.80."
+    }
+  },
+  {
+    "name": "GAUSS",
+    "args": [
+      {
+        "name": "z",
+        "about": "how many standard deviations above the average"
+      }
+    ],
+    "about": "Gives the chance that a normally spread value lands between the average and z standard deviations above it.",
+    "example": {
+      "cells": [
+        [
+          "z"
+        ],
+        [
+          "1"
+        ]
+      ],
+      "formula": "=GAUSS(A2)",
+      "result": "0.341344746",
+      "why": "About 34% of values lie between the average and one standard deviation above it."
+    },
+    "notes": "It is NORM.S.DIST(z,TRUE) − 0.5."
+  },
+  {
+    "name": "HARMEAN",
+    "args": [
+      {
+        "name": "number1",
+        "about": "a number, a cell or a range of cells"
+      },
+      {
+        "name": "number2",
+        "about": "more numbers, cells or ranges",
+        "optional": true
+      }
+    ],
+    "more": true,
+    "about": "Gives the harmonic mean: the right average for rates, like speeds over the same distance.",
+    "example": {
+      "cells": [
+        [
+          "Leg",
+          "km/h"
+        ],
+        [
+          "Out",
+          "60"
+        ],
+        [
+          "Back",
+          "40"
+        ]
+      ],
+      "formula": "=HARMEAN(B2:B3)",
+      "result": "48",
+      "why": "Driving the same distance at 60 and then 40 km/h averages 48 km/h, not 50."
+    },
+    "notes": "All numbers must be more than 0, or it gives #NUM!."
+  },
+  {
+    "name": "HYPGEOM.DIST",
+    "args": [
+      {
+        "name": "sample_s",
+        "about": "how many successes in the sample"
+      },
+      {
+        "name": "number_sample",
+        "about": "how many are drawn"
+      },
+      {
+        "name": "population_s",
+        "about": "how many successes there are in all"
+      },
+      {
+        "name": "number_pop",
+        "about": "how many there are in all"
+      },
+      {
+        "name": "cumulative",
+        "about": "TRUE for the chance of up to that many, FALSE for exactly that many"
+      }
+    ],
+    "about": "Gives the chance of a number of successes when drawing without putting back, like picking cards.",
+    "example": {
+      "cells": [
+        [
+          "Drawn",
+          "Red"
+        ],
+        [
+          "5",
+          "2"
+        ]
+      ],
+      "formula": "=HYPGEOM.DIST(B2,A2,26,52,FALSE)",
+      "result": "0.325130052",
+      "why": "Dealing 5 cards from a pack, the chance of exactly 2 red ones is about 32.5%."
+    }
+  },
+  {
+    "name": "KURT",
+    "args": [
+      {
+        "name": "number1",
+        "about": "a number, a cell or a range of cells"
+      },
+      {
+        "name": "number2",
+        "about": "more numbers, cells or ranges",
+        "optional": true
+      }
+    ],
+    "more": true,
+    "about": "Gives the kurtosis: positive when the data has more extreme values than a normal bell curve, negative when it is flatter.",
+    "example": {
+      "cells": [
+        [
+          "Day",
+          "Orders"
+        ],
+        [
+          "Mon",
+          "3"
+        ],
+        [
+          "Tue",
+          "4"
+        ],
+        [
+          "Wed",
+          "4"
+        ],
+        [
+          "Thu",
+          "5"
+        ],
+        [
+          "Fri",
+          "4"
+        ],
+        [
+          "Sat",
+          "12"
+        ]
+      ],
+      "formula": "=KURT(B2:B7)",
+      "result": "5.26382639",
+      "why": "Saturday's 12 is far from the others, so the data has a heavy tail and the result is well above 0."
+    },
+    "notes": "Needs at least 4 numbers."
+  },
+  {
+    "name": "LARGE",
+    "args": [
+      {
+        "name": "array",
+        "about": "the numbers"
+      },
+      {
+        "name": "k",
+        "about": "which place: 1 for the largest, 2 for the second largest…"
+      }
+    ],
+    "about": "Gives the k-th largest number.",
+    "example": {
+      "cells": [
+        [
+          "Player",
+          "Points"
+        ],
+        [
+          "Amy",
+          "42"
+        ],
+        [
+          "Ben",
+          "57"
+        ],
+        [
+          "Cara",
+          "38"
+        ],
+        [
+          "Dan",
+          "51"
+        ]
+      ],
+      "formula": "=LARGE(B2:B5,2)",
+      "result": "51",
+      "why": "57 is the largest, 51 the second largest."
+    },
+    "notes": "SMALL counts from the bottom."
+  },
+  {
+    "name": "LINEST",
+    "args": [
+      {
+        "name": "known_y's",
+        "about": "the values you know"
+      },
+      {
+        "name": "known_x's",
+        "about": "the points they belong to",
+        "optional": true
+      },
+      {
+        "name": "const",
+        "about": "FALSE to force the line through 0",
+        "optional": true
+      },
+      {
+        "name": "stats",
+        "about": "TRUE for extra figures about the fit",
+        "optional": true
+      }
+    ],
+    "about": "Gives the slope and starting value of the straight line that best fits the data.",
+    "example": {
+      "cells": [
+        [
+          "Ads",
+          "Sales"
+        ],
+        [
+          "1",
+          "12"
+        ],
+        [
+          "2",
+          "14"
+        ],
+        [
+          "3",
+          "16"
+        ],
+        [
+          "4",
+          "18"
+        ]
+      ],
+      "formula": "=LINEST(B2:B5,A2:A5)",
+      "result": "2",
+      "why": "Each extra ad brings 2 more sales; the 10 sales without ads spill into the next cell."
+    },
+    "notes": "SLOPE and INTERCEPT give these one at a time."
+  }
+]

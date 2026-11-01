@@ -1,0 +1,25 @@
+# Real-word typo: "pubic" for "public". Spell-checkers miss it because both
+# are words. Pattern from published lists of mistakes spell-checkers miss
+# (e.g. businesswritingblog.com, prdaily.com); wording and examples are ours.
+# why: Public (open to everyone) and pubic (about the groin) differ by one letter, and a spell-checker can't tell them apart because both are real words. It's one of the most common embarrassing typos in notices and emails.
+expr nouns [safety, works, school, schools, library, libraries, speaking, speaker, notice, notices, meeting, meetings, official, officials, health, transport, transit, transportation, holiday, holidays, service, services, servant, servants, record, records, relations, sector, opinion, hearing, hearings, comment, comments, access, interest, figure, figures, domain, park, parks, pool, restroom, restrooms, toilet, toilets, policy, funding, broadcast, broadcasting, debate, defender, education, office, offices, square, space, spaces, event, events, statement, statements, announcement, inquiry, consultation, money, funds, sale, profile, key, API, repository, beta, transport, assistance, housing, land, lands, radio, television, display, displays, appearance, appearances, life, eye, good, goods, impact, impacts, perception, support, pressure, awareness, concern, concerns, outcry, reaction, trust, debt, spending, sphere, view, views, transit, safety, order, nuisance, scrutiny, attention, demand, approval, feedback]
+expr main [<(pubic @nouns), pubic>, <(in pubic), pubic>, <(the pubic [and, or]), pubic>]
+
+let message "Did you mean `public`? (`pubic` refers to the groin area.)"
+let description "Catches the embarrassing typo `pubic` where `public` was meant (pubic safety, pubic works, in pubic)."
+let kind "Typo"
+let becomes "public"
+let strategy "MatchCase"
+
+test "Contact the pubic safety office for help." "Contact the public safety office for help."
+test "She is the Director of Pubic Works." "She is the Director of Public Works."
+test "The pubic library opens at nine." "The public library opens at nine."
+test "He hates speaking in pubic." "He hates speaking in public."
+test "I took a course in pubic speaking." "I took a course in public speaking."
+test "The pubic and the press are welcome." "The public and the press are welcome."
+test "Pubic comments close on Friday." "Public comments close on Friday."
+
+test "We examined the pubic impact of the policy." "We examined the public impact of the policy."
+allows "The pubic bone is part of the pelvis."
+allows "Pubic lice are treated with a lotion."
+allows "The public library opens at nine."

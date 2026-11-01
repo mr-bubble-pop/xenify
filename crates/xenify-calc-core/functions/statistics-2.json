@@ -1,0 +1,2508 @@
+[
+  {
+    "name": "LOGEST",
+    "args": [
+      {
+        "name": "known_y's",
+        "about": "the values that grow"
+      },
+      {
+        "name": "known_x's",
+        "about": "the steps they belong to, like 1, 2, 3 (1, 2, 3… if left out)",
+        "optional": true
+      },
+      {
+        "name": "const",
+        "about": "FALSE to make the curve start at 1",
+        "optional": true
+      },
+      {
+        "name": "stats",
+        "about": "TRUE for extra figures about the fit",
+        "optional": true
+      }
+    ],
+    "about": "Finds the growth rate of numbers that grow by a steady percentage, giving the rate and the starting value.",
+    "example": {
+      "cells": [
+        [
+          "Month",
+          "Users"
+        ],
+        [
+          "1",
+          "100"
+        ],
+        [
+          "2",
+          "150"
+        ],
+        [
+          "3",
+          "225"
+        ],
+        [
+          "4",
+          "340"
+        ]
+      ],
+      "formula": "=LOGEST(B2:B5,A2:A5)",
+      "result": "1.503324727",
+      "why": "Users go up about 50% a month, so each month is about 1.5 times the last; the starting value spills into the next cell."
+    },
+    "notes": "Gives two cells side by side: the growth factor, then the value at step 0. GROWTH uses the same curve to predict new values."
+  },
+  {
+    "name": "LOGNORM.DIST",
+    "args": [
+      {
+        "name": "x",
+        "about": "the value to look at"
+      },
+      {
+        "name": "mean",
+        "about": "the mean of the logarithm of the values"
+      },
+      {
+        "name": "standard_dev",
+        "about": "the spread of the logarithm of the values"
+      },
+      {
+        "name": "cumulative",
+        "about": "TRUE for the chance of being at or below x, FALSE for the curve's height"
+      }
+    ],
+    "about": "Gives the chance for a value whose logarithm follows a bell curve, as for incomes or house prices that are mostly small with a long tail of large ones.",
+    "example": {
+      "cells": [
+        [
+          "Setting",
+          "Value"
+        ],
+        [
+          "Price",
+          "300000"
+        ],
+        [
+          "Log mean",
+          "12.5"
+        ],
+        [
+          "Log spread",
+          "0.4"
+        ]
+      ],
+      "formula": "=LOGNORM.DIST(B2,B3,B4,TRUE)",
+      "result": "0.609817874",
+      "why": "LN(300000) is about 12.61, 0.28 log spreads above the log mean of 12.5, so about 61% of prices are at or below it."
+    }
+  },
+  {
+    "name": "LOGNORM.INV",
+    "args": [
+      {
+        "name": "probability",
+        "about": "the chance, between 0 and 1"
+      },
+      {
+        "name": "mean",
+        "about": "the mean of the logarithm of the values"
+      },
+      {
+        "name": "standard_dev",
+        "about": "the spread of the logarithm of the values"
+      }
+    ],
+    "about": "Works backwards from LOGNORM.DIST: gives the value that a chosen share of a long-tailed set of values falls below.",
+    "example": {
+      "cells": [
+        [
+          "Setting",
+          "Value"
+        ],
+        [
+          "Share",
+          "0.9"
+        ],
+        [
+          "Log mean",
+          "12.5"
+        ],
+        [
+          "Log spread",
+          "0.4"
+        ]
+      ],
+      "formula": "=LOGNORM.INV(B2,B3,B4)",
+      "result": "448032.308604632",
+      "why": "9 in 10 prices are below this: EXP(12.5 + 1.2816 × 0.4)."
+    }
+  },
+  {
+    "name": "MAXA",
+    "args": [
+      {
+        "name": "value1",
+        "about": "a value, a cell or a range"
+      },
+      {
+        "name": "value2",
+        "about": "more values, cells or ranges",
+        "optional": true
+      }
+    ],
+    "more": true,
+    "about": "Gives the largest value, counting TRUE as 1, FALSE and text in cells as 0.",
+    "example": {
+      "cells": [
+        [
+          "Check",
+          "Result"
+        ],
+        [
+          "A",
+          "-2"
+        ],
+        [
+          "B",
+          "FALSE"
+        ],
+        [
+          "C",
+          "-5"
+        ]
+      ],
+      "formula": "=MAXA(B2:B4)",
+      "result": "0",
+      "why": "FALSE counts as 0, which is bigger than -2 and -5."
+    },
+    "notes": "MAX leaves out TRUE, FALSE and text in cells."
+  },
+  {
+    "name": "MEDIAN",
+    "args": [
+      {
+        "name": "number1",
+        "about": "a number, a cell or a range"
+      },
+      {
+        "name": "number2",
+        "about": "more numbers, cells or ranges",
+        "optional": true
+      }
+    ],
+    "more": true,
+    "about": "Gives the middle value when the numbers are put in order.",
+    "example": {
+      "cells": [
+        [
+          "House",
+          "Price"
+        ],
+        [
+          "Flat",
+          "180000"
+        ],
+        [
+          "Semi",
+          "250000"
+        ],
+        [
+          "Cottage",
+          "210000"
+        ],
+        [
+          "Mansion",
+          "900000"
+        ]
+      ],
+      "formula": "=MEDIAN(B2:B5)",
+      "result": "230000",
+      "why": "In order: 180000, 210000, 250000, 900000; with an even count it takes the halfway point of the two middle ones. The one mansion barely moves it."
+    }
+  },
+  {
+    "name": "MINA",
+    "args": [
+      {
+        "name": "value1",
+        "about": "a value, a cell or a range"
+      },
+      {
+        "name": "value2",
+        "about": "more values, cells or ranges",
+        "optional": true
+      }
+    ],
+    "more": true,
+    "about": "Gives the smallest value, counting TRUE as 1, FALSE and text in cells as 0.",
+    "example": {
+      "cells": [
+        [
+          "Check",
+          "Result"
+        ],
+        [
+          "A",
+          "4"
+        ],
+        [
+          "B",
+          "TRUE"
+        ],
+        [
+          "C",
+          "7"
+        ]
+      ],
+      "formula": "=MINA(B2:B4)",
+      "result": "1",
+      "why": "TRUE counts as 1, which is smaller than 4 and 7."
+    },
+    "notes": "MIN leaves out TRUE, FALSE and text in cells."
+  },
+  {
+    "name": "MODE.MULT",
+    "args": [
+      {
+        "name": "number1",
+        "about": "a number, a cell or a range"
+      },
+      {
+        "name": "number2",
+        "about": "more numbers, cells or ranges",
+        "optional": true
+      }
+    ],
+    "more": true,
+    "about": "Gives every value that turns up most often, when there's a tie.",
+    "example": {
+      "cells": [
+        [
+          "Customer",
+          "Shoe size"
+        ],
+        [
+          "Ann",
+          "6"
+        ],
+        [
+          "Bob",
+          "9"
+        ],
+        [
+          "Cara",
+          "6"
+        ],
+        [
+          "Dev",
+          "8"
+        ],
+        [
+          "Ed",
+          "9"
+        ],
+        [
+          "Flo",
+          "5"
+        ]
+      ],
+      "formula": "=MODE.MULT(B2:B7)",
+      "result": "6",
+      "why": "Sizes 6 and 9 each turn up twice; 6 comes first and 9 spills into the cell below."
+    }
+  },
+  {
+    "name": "MODE.SNGL",
+    "args": [
+      {
+        "name": "number1",
+        "about": "a number, a cell or a range"
+      },
+      {
+        "name": "number2",
+        "about": "more numbers, cells or ranges",
+        "optional": true
+      }
+    ],
+    "more": true,
+    "about": "Gives the value that turns up most often.",
+    "example": {
+      "cells": [
+        [
+          "Customer",
+          "Shoe size"
+        ],
+        [
+          "Ann",
+          "6"
+        ],
+        [
+          "Bob",
+          "9"
+        ],
+        [
+          "Cara",
+          "8"
+        ],
+        [
+          "Dev",
+          "9"
+        ],
+        [
+          "Ed",
+          "7"
+        ]
+      ],
+      "formula": "=MODE.SNGL(B2:B6)",
+      "result": "9",
+      "why": "Size 9 turns up twice, every other size once."
+    },
+    "notes": "Gives #N/A when no value turns up more than once. MODE.MULT gives all the values in a tie."
+  },
+  {
+    "name": "NEGBINOM.DIST",
+    "args": [
+      {
+        "name": "number_f",
+        "about": "how many failures before the last success"
+      },
+      {
+        "name": "number_s",
+        "about": "how many successes you want"
+      },
+      {
+        "name": "probability_s",
+        "about": "the chance of success each try"
+      },
+      {
+        "name": "cumulative",
+        "about": "TRUE for that many failures or fewer, FALSE for exactly that many"
+      }
+    ],
+    "about": "Gives the chance of having a set number of failures before reaching a set number of successes.",
+    "example": {
+      "cells": [
+        [
+          "Setting",
+          "Value"
+        ],
+        [
+          "Failed calls",
+          "5"
+        ],
+        [
+          "Sales wanted",
+          "2"
+        ],
+        [
+          "Chance of a sale",
+          "0.2"
+        ]
+      ],
+      "formula": "=NEGBINOM.DIST(B2,B3,B4,FALSE)",
+      "result": "0.0786432",
+      "why": "The chance that a seller with a 1-in-5 hit rate makes exactly 5 calls that fail before the second sale."
+    }
+  },
+  {
+    "name": "NORM.DIST",
+    "args": [
+      {
+        "name": "x",
+        "about": "the value to look at"
+      },
+      {
+        "name": "mean",
+        "about": "the average"
+      },
+      {
+        "name": "standard_dev",
+        "about": "the spread"
+      },
+      {
+        "name": "cumulative",
+        "about": "TRUE for the chance of being at or below x, FALSE for the curve's height"
+      }
+    ],
+    "about": "Gives the chance of a value on a bell curve with the average and spread you give.",
+    "example": {
+      "cells": [
+        [
+          "Setting",
+          "Value"
+        ],
+        [
+          "Height (cm)",
+          "180"
+        ],
+        [
+          "Average",
+          "170"
+        ],
+        [
+          "Spread",
+          "8"
+        ]
+      ],
+      "formula": "=NORM.DIST(B2,B3,B4,TRUE)",
+      "result": "0.894350226",
+      "why": "180 cm is 1.25 spreads above the average, and about 89% of people are that tall or shorter."
+    }
+  },
+  {
+    "name": "NORM.INV",
+    "args": [
+      {
+        "name": "probability",
+        "about": "the chance, between 0 and 1"
+      },
+      {
+        "name": "mean",
+        "about": "the average"
+      },
+      {
+        "name": "standard_dev",
+        "about": "the spread"
+      }
+    ],
+    "about": "Works backwards from NORM.DIST: gives the value that a chosen share of a bell curve falls below.",
+    "example": {
+      "cells": [
+        [
+          "Setting",
+          "Value"
+        ],
+        [
+          "Share",
+          "0.95"
+        ],
+        [
+          "Average",
+          "170"
+        ],
+        [
+          "Spread",
+          "8"
+        ]
+      ],
+      "formula": "=NORM.INV(B2,B3,B4)",
+      "result": "183.158829016",
+      "why": "95% of people are shorter than this: 170 + 1.645 × 8."
+    }
+  },
+  {
+    "name": "NORM.S.DIST",
+    "args": [
+      {
+        "name": "z",
+        "about": "how many spreads above (or below) the average"
+      },
+      {
+        "name": "cumulative",
+        "about": "TRUE for the chance of being at or below z, FALSE for the curve's height"
+      }
+    ],
+    "about": "Gives the chance on the standard bell curve, the one with average 0 and spread 1.",
+    "example": {
+      "cells": [
+        [
+          "Setting",
+          "Value"
+        ],
+        [
+          "z",
+          "1"
+        ]
+      ],
+      "formula": "=NORM.S.DIST(B2,TRUE)",
+      "result": "0.841344746",
+      "why": "About 84% of values on a bell curve are less than one spread above the average."
+    }
+  },
+  {
+    "name": "NORM.S.INV",
+    "args": [
+      {
+        "name": "probability",
+        "about": "the chance, between 0 and 1"
+      }
+    ],
+    "about": "Works backwards from NORM.S.DIST: gives how many spreads from the average a chosen share falls below.",
+    "example": {
+      "cells": [
+        [
+          "Setting",
+          "Value"
+        ],
+        [
+          "Share",
+          "0.975"
+        ]
+      ],
+      "formula": "=NORM.S.INV(B2)",
+      "result": "1.959963985",
+      "why": "97.5% of a bell curve lies below 1.96 spreads above the average; that's where 95% confidence limits come from."
+    }
+  },
+  {
+    "name": "PEARSON",
+    "args": [
+      {
+        "name": "array1",
+        "about": "the first set of values"
+      },
+      {
+        "name": "array2",
+        "about": "the second set, the same size"
+      }
+    ],
+    "about": "Measures how closely two sets of numbers rise and fall together, from -1 to 1.",
+    "example": {
+      "cells": [
+        [
+          "Month",
+          "Ads",
+          "Sales"
+        ],
+        [
+          "Jan",
+          "2",
+          "20"
+        ],
+        [
+          "Feb",
+          "4",
+          "35"
+        ],
+        [
+          "Mar",
+          "5",
+          "41"
+        ],
+        [
+          "Apr",
+          "7",
+          "60"
+        ],
+        [
+          "May",
+          "9",
+          "72"
+        ]
+      ],
+      "formula": "=PEARSON(B2:B6,C2:C6)",
+      "result": "0.997507078",
+      "why": "Near 1: months with more ads had more sales, almost in a straight line."
+    },
+    "notes": "The same as CORREL."
+  },
+  {
+    "name": "PERCENTILE.EXC",
+    "args": [
+      {
+        "name": "array",
+        "about": "the values"
+      },
+      {
+        "name": "k",
+        "about": "the share, between 0 and 1 but not 0 or 1"
+      }
+    ],
+    "about": "Gives the value that a chosen share of the numbers falls below, leaving out the ends.",
+    "example": {
+      "cells": [
+        [
+          "Pupil",
+          "Score"
+        ],
+        [
+          "Amy",
+          "62"
+        ],
+        [
+          "Ben",
+          "75"
+        ],
+        [
+          "Cat",
+          "81"
+        ],
+        [
+          "Dan",
+          "68"
+        ],
+        [
+          "Eve",
+          "90"
+        ],
+        [
+          "Fay",
+          "74"
+        ]
+      ],
+      "formula": "=PERCENTILE.EXC(B2:B7,0.25)",
+      "result": "66.5",
+      "why": "A quarter of the way up the scores 62, 68, 74, 75, 81, 90, counted over 7 gaps rather than 5."
+    },
+    "notes": "PERCENTILE.INC counts from the lowest to the highest value; the two give slightly different answers."
+  },
+  {
+    "name": "PERCENTILE.INC",
+    "args": [
+      {
+        "name": "array",
+        "about": "the values"
+      },
+      {
+        "name": "k",
+        "about": "the share, from 0 to 1"
+      }
+    ],
+    "about": "Gives the value that a chosen share of the numbers falls below.",
+    "example": {
+      "cells": [
+        [
+          "Pupil",
+          "Score"
+        ],
+        [
+          "Amy",
+          "62"
+        ],
+        [
+          "Ben",
+          "75"
+        ],
+        [
+          "Cat",
+          "81"
+        ],
+        [
+          "Dan",
+          "68"
+        ],
+        [
+          "Eve",
+          "90"
+        ],
+        [
+          "Fay",
+          "74"
+        ]
+      ],
+      "formula": "=PERCENTILE.INC(B2:B7,0.9)",
+      "result": "85.5",
+      "why": "9 in 10 of the scores are at or below this: 90% of the way from 62 to 90 in order, between 81 and 90."
+    }
+  },
+  {
+    "name": "PERCENTRANK.EXC",
+    "args": [
+      {
+        "name": "array",
+        "about": "the values"
+      },
+      {
+        "name": "x",
+        "about": "the value to rank"
+      },
+      {
+        "name": "significance",
+        "about": "how many digits to keep (3 if left out)",
+        "optional": true
+      }
+    ],
+    "about": "Gives where a value stands among the numbers as a share between 0 and 1, never exactly 0 or 1.",
+    "example": {
+      "cells": [
+        [
+          "Pupil",
+          "Score"
+        ],
+        [
+          "Amy",
+          "62"
+        ],
+        [
+          "Ben",
+          "75"
+        ],
+        [
+          "Cat",
+          "81"
+        ],
+        [
+          "Dan",
+          "68"
+        ],
+        [
+          "Eve",
+          "90"
+        ],
+        [
+          "Fay",
+          "74"
+        ]
+      ],
+      "formula": "=PERCENTRANK.EXC(B2:B7,75)",
+      "result": "0.571",
+      "why": "75 is 4th of 6 in order, so it is 4 ÷ 7 of the way up."
+    }
+  },
+  {
+    "name": "PERCENTRANK.INC",
+    "args": [
+      {
+        "name": "array",
+        "about": "the values"
+      },
+      {
+        "name": "x",
+        "about": "the value to rank"
+      },
+      {
+        "name": "significance",
+        "about": "how many digits to keep (3 if left out)",
+        "optional": true
+      }
+    ],
+    "about": "Gives where a value stands among the numbers as a share from 0 (lowest) to 1 (highest).",
+    "example": {
+      "cells": [
+        [
+          "Pupil",
+          "Score"
+        ],
+        [
+          "Amy",
+          "62"
+        ],
+        [
+          "Ben",
+          "75"
+        ],
+        [
+          "Cat",
+          "81"
+        ],
+        [
+          "Dan",
+          "68"
+        ],
+        [
+          "Eve",
+          "90"
+        ],
+        [
+          "Fay",
+          "74"
+        ]
+      ],
+      "formula": "=PERCENTRANK.INC(B2:B7,75)",
+      "result": "0.6",
+      "why": "Three of the other five scores are below 75: 3 ÷ 5."
+    }
+  },
+  {
+    "name": "PERMUT",
+    "args": [
+      {
+        "name": "number",
+        "about": "how many to choose from"
+      },
+      {
+        "name": "number_chosen",
+        "about": "how many to pick"
+      }
+    ],
+    "about": "Counts the ways to pick some items when the order matters and nothing can be picked twice.",
+    "example": {
+      "cells": [
+        [
+          "Race",
+          "Count"
+        ],
+        [
+          "Runners",
+          "8"
+        ],
+        [
+          "Medals",
+          "3"
+        ]
+      ],
+      "formula": "=PERMUT(B2,B3)",
+      "result": "336",
+      "why": "Gold, silver and bronze among 8 runners: 8 × 7 × 6."
+    }
+  },
+  {
+    "name": "PERMUTATIONA",
+    "args": [
+      {
+        "name": "number",
+        "about": "how many to choose from"
+      },
+      {
+        "name": "number_chosen",
+        "about": "how many to pick"
+      }
+    ],
+    "about": "Counts the ways to pick some items when the order matters and the same one can be picked again.",
+    "example": {
+      "cells": [
+        [
+          "Lock",
+          "Count"
+        ],
+        [
+          "Digits",
+          "10"
+        ],
+        [
+          "Wheels",
+          "4"
+        ]
+      ],
+      "formula": "=PERMUTATIONA(B2,B3)",
+      "result": "10000",
+      "why": "A bike lock with 4 wheels of 10 digits: 10 × 10 × 10 × 10."
+    }
+  },
+  {
+    "name": "PHI",
+    "args": [
+      {
+        "name": "x",
+        "about": "how many spreads from the average"
+      }
+    ],
+    "about": "Gives the height of the standard bell curve at a point.",
+    "example": {
+      "cells": [
+        [
+          "Setting",
+          "Value"
+        ],
+        [
+          "z",
+          "0"
+        ]
+      ],
+      "formula": "=PHI(B2)",
+      "result": "0.39894228",
+      "why": "The bell curve is highest at the middle, where its height is 1 ÷ √(2π)."
+    },
+    "notes": "The same as NORM.S.DIST(x,FALSE)."
+  },
+  {
+    "name": "POISSON.DIST",
+    "args": [
+      {
+        "name": "x",
+        "about": "how many times it happens"
+      },
+      {
+        "name": "mean",
+        "about": "how many times it happens on average"
+      },
+      {
+        "name": "cumulative",
+        "about": "TRUE for that many or fewer, FALSE for exactly that many"
+      }
+    ],
+    "about": "Gives the chance of something happening a set number of times, when you know how often it happens on average.",
+    "example": {
+      "cells": [
+        [
+          "Shop",
+          "Value"
+        ],
+        [
+          "Customers",
+          "3"
+        ],
+        [
+          "Average an hour",
+          "5"
+        ]
+      ],
+      "formula": "=POISSON.DIST(B2,B3,FALSE)",
+      "result": "0.140373896",
+      "why": "With 5 customers an hour on average, exactly 3 in an hour happens about 14% of the time."
+    }
+  },
+  {
+    "name": "PROB",
+    "args": [
+      {
+        "name": "x_range",
+        "about": "the possible values"
+      },
+      {
+        "name": "prob_range",
+        "about": "the chance of each, adding up to 1"
+      },
+      {
+        "name": "lower_limit",
+        "about": "the lowest value to count"
+      },
+      {
+        "name": "upper_limit",
+        "about": "the highest value to count (just the lower one if left out)",
+        "optional": true
+      }
+    ],
+    "about": "Adds up the chances of the values that fall between two limits.",
+    "example": {
+      "cells": [
+        [
+          "Goals",
+          "Chance"
+        ],
+        [
+          "0",
+          "0.25"
+        ],
+        [
+          "1",
+          "0.35"
+        ],
+        [
+          "2",
+          "0.25"
+        ],
+        [
+          "3",
+          "0.15"
+        ]
+      ],
+      "formula": "=PROB(A2:A5,B2:B5,1,2)",
+      "result": "0.6",
+      "why": "1 goal or 2 goals: 0.35 + 0.25."
+    }
+  },
+  {
+    "name": "QUARTILE.EXC",
+    "args": [
+      {
+        "name": "array",
+        "about": "the values"
+      },
+      {
+        "name": "quart",
+        "about": "1 for the lower quarter, 2 for the middle, 3 for the upper quarter"
+      }
+    ],
+    "about": "Gives the value a quarter, half or three quarters of the way up the numbers, leaving out the ends.",
+    "example": {
+      "cells": [
+        [
+          "Pupil",
+          "Score"
+        ],
+        [
+          "Amy",
+          "62"
+        ],
+        [
+          "Ben",
+          "75"
+        ],
+        [
+          "Cat",
+          "81"
+        ],
+        [
+          "Dan",
+          "68"
+        ],
+        [
+          "Eve",
+          "90"
+        ],
+        [
+          "Fay",
+          "74"
+        ]
+      ],
+      "formula": "=QUARTILE.EXC(B2:B7,3)",
+      "result": "83.25",
+      "why": "Three quarters of the way up 62, 68, 74, 75, 81, 90, counted over 7 gaps."
+    },
+    "notes": "Same as PERCENTILE.EXC with 0.25, 0.5 or 0.75. QUARTILE.INC gives slightly different answers."
+  },
+  {
+    "name": "QUARTILE.INC",
+    "args": [
+      {
+        "name": "array",
+        "about": "the values"
+      },
+      {
+        "name": "quart",
+        "about": "0 for the lowest, 1 for the lower quarter, 2 for the middle, 3 for the upper quarter, 4 for the highest"
+      }
+    ],
+    "about": "Gives the value a quarter, half or three quarters of the way up the numbers.",
+    "example": {
+      "cells": [
+        [
+          "Pupil",
+          "Score"
+        ],
+        [
+          "Amy",
+          "62"
+        ],
+        [
+          "Ben",
+          "75"
+        ],
+        [
+          "Cat",
+          "81"
+        ],
+        [
+          "Dan",
+          "68"
+        ],
+        [
+          "Eve",
+          "90"
+        ],
+        [
+          "Fay",
+          "74"
+        ]
+      ],
+      "formula": "=QUARTILE.INC(B2:B7,1)",
+      "result": "69.5",
+      "why": "A quarter of the way from the lowest to the highest score, between 68 and 74."
+    }
+  },
+  {
+    "name": "RANK.AVG",
+    "args": [
+      {
+        "name": "number",
+        "about": "the value to rank"
+      },
+      {
+        "name": "ref",
+        "about": "the values to rank it among"
+      },
+      {
+        "name": "order",
+        "about": "0 or left out to put the largest first, 1 for the smallest first",
+        "optional": true
+      }
+    ],
+    "about": "Gives a value's place among the numbers; tied values share the average of their places.",
+    "example": {
+      "cells": [
+        [
+          "Runner",
+          "Points"
+        ],
+        [
+          "Ann",
+          "90"
+        ],
+        [
+          "Bob",
+          "85"
+        ],
+        [
+          "Cara",
+          "85"
+        ],
+        [
+          "Dev",
+          "70"
+        ]
+      ],
+      "formula": "=RANK.AVG(B3,B2:B5)",
+      "result": "2.5",
+      "why": "Bob and Cara tie for 2nd and 3rd place, so each gets 2.5."
+    }
+  },
+  {
+    "name": "RANK.EQ",
+    "args": [
+      {
+        "name": "number",
+        "about": "the value to rank"
+      },
+      {
+        "name": "ref",
+        "about": "the values to rank it among"
+      },
+      {
+        "name": "order",
+        "about": "0 or left out to put the largest first, 1 for the smallest first",
+        "optional": true
+      }
+    ],
+    "about": "Gives a value's place among the numbers; tied values share the best place.",
+    "example": {
+      "cells": [
+        [
+          "Runner",
+          "Points"
+        ],
+        [
+          "Ann",
+          "90"
+        ],
+        [
+          "Bob",
+          "85"
+        ],
+        [
+          "Cara",
+          "85"
+        ],
+        [
+          "Dev",
+          "70"
+        ]
+      ],
+      "formula": "=RANK.EQ(B3,B2:B5)",
+      "result": "2",
+      "why": "Bob and Cara tie, so both are 2nd and Dev is 4th."
+    },
+    "notes": "RANK.AVG gives ties the average of their places."
+  },
+  {
+    "name": "SKEW",
+    "args": [
+      {
+        "name": "number1",
+        "about": "a number, a cell or a range"
+      },
+      {
+        "name": "number2",
+        "about": "more numbers, cells or ranges",
+        "optional": true
+      }
+    ],
+    "more": true,
+    "about": "Measures how lopsided the numbers are: above 0 means a long tail of high values, below 0 a long tail of low ones.",
+    "example": {
+      "cells": [
+        [
+          "Visit",
+          "Wait (min)"
+        ],
+        [
+          "1",
+          "2"
+        ],
+        [
+          "2",
+          "3"
+        ],
+        [
+          "3",
+          "3"
+        ],
+        [
+          "4",
+          "4"
+        ],
+        [
+          "5",
+          "5"
+        ],
+        [
+          "6",
+          "15"
+        ]
+      ],
+      "formula": "=SKEW(B2:B7)",
+      "result": "2.21267913",
+      "why": "Most waits are short but one is 15 minutes, so the tail points to the high side."
+    },
+    "notes": "Treats the numbers as a sample; SKEW.P treats them as everything there is."
+  },
+  {
+    "name": "SKEW.P",
+    "args": [
+      {
+        "name": "number1",
+        "about": "a number, a cell or a range"
+      },
+      {
+        "name": "number2",
+        "about": "more numbers, cells or ranges",
+        "optional": true
+      }
+    ],
+    "more": true,
+    "about": "Measures how lopsided the numbers are, treating them as everything there is rather than a sample.",
+    "example": {
+      "cells": [
+        [
+          "Visit",
+          "Wait (min)"
+        ],
+        [
+          "1",
+          "2"
+        ],
+        [
+          "2",
+          "3"
+        ],
+        [
+          "3",
+          "3"
+        ],
+        [
+          "4",
+          "4"
+        ],
+        [
+          "5",
+          "5"
+        ],
+        [
+          "6",
+          "15"
+        ]
+      ],
+      "formula": "=SKEW.P(B2:B7)",
+      "result": "1.615912362",
+      "why": "The same long tail of high waits; a little smaller than SKEW because it doesn't allow for sampling."
+    }
+  },
+  {
+    "name": "SMALL",
+    "args": [
+      {
+        "name": "array",
+        "about": "the values"
+      },
+      {
+        "name": "k",
+        "about": "1 for the smallest, 2 for the next…"
+      }
+    ],
+    "about": "Gives the smallest value, the second smallest and so on.",
+    "example": {
+      "cells": [
+        [
+          "Lap",
+          "Time (s)"
+        ],
+        [
+          "1",
+          "64.2"
+        ],
+        [
+          "2",
+          "62.8"
+        ],
+        [
+          "3",
+          "63.5"
+        ],
+        [
+          "4",
+          "61.9"
+        ]
+      ],
+      "formula": "=SMALL(B2:B5,2)",
+      "result": "62.8",
+      "why": "In order: 61.9, 62.8, 63.5, 64.2; the second is 62.8."
+    },
+    "notes": "LARGE counts from the top."
+  },
+  {
+    "name": "STANDARDIZE",
+    "args": [
+      {
+        "name": "x",
+        "about": "the value"
+      },
+      {
+        "name": "mean",
+        "about": "the average"
+      },
+      {
+        "name": "standard_dev",
+        "about": "the spread"
+      }
+    ],
+    "about": "Says how many spreads a value is above or below the average (its z-score).",
+    "example": {
+      "cells": [
+        [
+          "Setting",
+          "Value"
+        ],
+        [
+          "Score",
+          "82"
+        ],
+        [
+          "Average",
+          "70"
+        ],
+        [
+          "Spread",
+          "8"
+        ]
+      ],
+      "formula": "=STANDARDIZE(B2,B3,B4)",
+      "result": "1.5",
+      "why": "(82 − 70) ÷ 8: the score is one and a half spreads above average."
+    }
+  },
+  {
+    "name": "STDEV",
+    "args": [
+      {
+        "name": "number1",
+        "about": "a number, a cell or a range"
+      },
+      {
+        "name": "number2",
+        "about": "more numbers, cells or ranges",
+        "optional": true
+      }
+    ],
+    "more": true,
+    "about": "Measures how spread out a sample of numbers is around their average.",
+    "example": {
+      "cells": [
+        [
+          "Pupil",
+          "Score"
+        ],
+        [
+          "Amy",
+          "62"
+        ],
+        [
+          "Ben",
+          "75"
+        ],
+        [
+          "Cat",
+          "81"
+        ],
+        [
+          "Dan",
+          "68"
+        ],
+        [
+          "Eve",
+          "90"
+        ],
+        [
+          "Fay",
+          "74"
+        ]
+      ],
+      "formula": "=STDEV(B2:B7)",
+      "result": "9.797958971",
+      "why": "The scores are typically about 10 points from their average of 75."
+    },
+    "notes": "An older name for STDEV.S, kept for old spreadsheets."
+  },
+  {
+    "name": "STDEV.P",
+    "args": [
+      {
+        "name": "number1",
+        "about": "a number, a cell or a range"
+      },
+      {
+        "name": "number2",
+        "about": "more numbers, cells or ranges",
+        "optional": true
+      }
+    ],
+    "more": true,
+    "about": "Measures how spread out the numbers are around their average, when they are everything there is (not a sample).",
+    "example": {
+      "cells": [
+        [
+          "Pupil",
+          "Score"
+        ],
+        [
+          "Amy",
+          "62"
+        ],
+        [
+          "Ben",
+          "75"
+        ],
+        [
+          "Cat",
+          "81"
+        ],
+        [
+          "Dan",
+          "68"
+        ],
+        [
+          "Eve",
+          "90"
+        ],
+        [
+          "Fay",
+          "74"
+        ]
+      ],
+      "formula": "=STDEV.P(B2:B7)",
+      "result": "8.94427191",
+      "why": "The square root of the average squared distance from 75; a bit smaller than STDEV.S."
+    },
+    "notes": "Use STDEV.S when the numbers are a sample of a bigger group."
+  },
+  {
+    "name": "STDEV.S",
+    "args": [
+      {
+        "name": "number1",
+        "about": "a number, a cell or a range"
+      },
+      {
+        "name": "number2",
+        "about": "more numbers, cells or ranges",
+        "optional": true
+      }
+    ],
+    "more": true,
+    "about": "Measures how spread out a sample of numbers is around their average.",
+    "example": {
+      "cells": [
+        [
+          "Pupil",
+          "Score"
+        ],
+        [
+          "Amy",
+          "62"
+        ],
+        [
+          "Ben",
+          "75"
+        ],
+        [
+          "Cat",
+          "81"
+        ],
+        [
+          "Dan",
+          "68"
+        ],
+        [
+          "Eve",
+          "90"
+        ],
+        [
+          "Fay",
+          "74"
+        ]
+      ],
+      "formula": "=STDEV.S(B2:B7)",
+      "result": "9.797958971",
+      "why": "The scores are typically about 10 points from their average of 75; it divides by 5 rather than 6 to allow for this being a sample."
+    },
+    "notes": "STDEV.P is for when the numbers are everything there is."
+  },
+  {
+    "name": "STDEVA",
+    "args": [
+      {
+        "name": "value1",
+        "about": "a value, a cell or a range"
+      },
+      {
+        "name": "value2",
+        "about": "more values, cells or ranges",
+        "optional": true
+      }
+    ],
+    "more": true,
+    "about": "Measures how spread out a sample is, counting TRUE as 1, FALSE and text in cells as 0.",
+    "example": {
+      "cells": [
+        [
+          "Item",
+          "Value"
+        ],
+        [
+          "A",
+          "4"
+        ],
+        [
+          "B",
+          "TRUE"
+        ],
+        [
+          "C",
+          "6"
+        ],
+        [
+          "D",
+          "FALSE"
+        ]
+      ],
+      "formula": "=STDEVA(B2:B5)",
+      "result": "2.753785274",
+      "why": "The values are taken as 4, 1, 6 and 0."
+    },
+    "notes": "STDEV.S leaves out TRUE, FALSE and text in cells."
+  },
+  {
+    "name": "STDEVPA",
+    "args": [
+      {
+        "name": "value1",
+        "about": "a value, a cell or a range"
+      },
+      {
+        "name": "value2",
+        "about": "more values, cells or ranges",
+        "optional": true
+      }
+    ],
+    "more": true,
+    "about": "Measures how spread out all the values are, counting TRUE as 1, FALSE and text in cells as 0.",
+    "example": {
+      "cells": [
+        [
+          "Item",
+          "Value"
+        ],
+        [
+          "A",
+          "4"
+        ],
+        [
+          "B",
+          "TRUE"
+        ],
+        [
+          "C",
+          "6"
+        ],
+        [
+          "D",
+          "FALSE"
+        ]
+      ],
+      "formula": "=STDEVPA(B2:B5)",
+      "result": "2.384848004",
+      "why": "The values are taken as 4, 1, 6 and 0, treated as everything there is."
+    },
+    "notes": "STDEV.P leaves out TRUE, FALSE and text in cells."
+  },
+  {
+    "name": "T.DIST",
+    "args": [
+      {
+        "name": "x",
+        "about": "the t value"
+      },
+      {
+        "name": "deg_freedom",
+        "about": "the degrees of freedom, usually the sample size minus 1"
+      },
+      {
+        "name": "cumulative",
+        "about": "TRUE for the chance of being at or below x, FALSE for the curve's height"
+      }
+    ],
+    "about": "Gives the chance on the t curve, a wider bell curve used for small samples.",
+    "example": {
+      "cells": [
+        [
+          "Setting",
+          "Value"
+        ],
+        [
+          "t",
+          "2"
+        ],
+        [
+          "Degrees of freedom",
+          "10"
+        ]
+      ],
+      "formula": "=T.DIST(B2,B3,TRUE)",
+      "result": "0.963305983",
+      "why": "About 96.3% of the t curve for a sample of 11 lies below 2."
+    }
+  },
+  {
+    "name": "T.DIST.2T",
+    "args": [
+      {
+        "name": "x",
+        "about": "the t value (0 or more)"
+      },
+      {
+        "name": "deg_freedom",
+        "about": "the degrees of freedom, usually the sample size minus 1"
+      }
+    ],
+    "about": "Gives the chance of a t value at least this far from 0 in either direction.",
+    "example": {
+      "cells": [
+        [
+          "Setting",
+          "Value"
+        ],
+        [
+          "t",
+          "2"
+        ],
+        [
+          "Degrees of freedom",
+          "10"
+        ]
+      ],
+      "formula": "=T.DIST.2T(B2,B3)",
+      "result": "0.073388035",
+      "why": "About 3.7% above 2 plus the same below −2."
+    }
+  },
+  {
+    "name": "T.DIST.RT",
+    "args": [
+      {
+        "name": "x",
+        "about": "the t value"
+      },
+      {
+        "name": "deg_freedom",
+        "about": "the degrees of freedom, usually the sample size minus 1"
+      }
+    ],
+    "about": "Gives the chance of a t value above x.",
+    "example": {
+      "cells": [
+        [
+          "Setting",
+          "Value"
+        ],
+        [
+          "t",
+          "2"
+        ],
+        [
+          "Degrees of freedom",
+          "10"
+        ]
+      ],
+      "formula": "=T.DIST.RT(B2,B3)",
+      "result": "0.036694017",
+      "why": "The part of the t curve above 2: 1 minus T.DIST."
+    }
+  },
+  {
+    "name": "T.INV",
+    "args": [
+      {
+        "name": "probability",
+        "about": "the chance, between 0 and 1"
+      },
+      {
+        "name": "deg_freedom",
+        "about": "the degrees of freedom, usually the sample size minus 1"
+      }
+    ],
+    "about": "Works backwards from T.DIST: gives the t value that a chosen share of the t curve falls below.",
+    "example": {
+      "cells": [
+        [
+          "Setting",
+          "Value"
+        ],
+        [
+          "Share",
+          "0.95"
+        ],
+        [
+          "Degrees of freedom",
+          "10"
+        ]
+      ],
+      "formula": "=T.INV(B2,B3)",
+      "result": "1.812461123",
+      "why": "95% of the t curve for 10 degrees of freedom lies below this; wider than the 1.645 of a bell curve."
+    }
+  },
+  {
+    "name": "T.INV.2T",
+    "args": [
+      {
+        "name": "probability",
+        "about": "the chance in both tails together, between 0 and 1"
+      },
+      {
+        "name": "deg_freedom",
+        "about": "the degrees of freedom, usually the sample size minus 1"
+      }
+    ],
+    "about": "Gives how far from 0 a t value has to be so that only the chosen chance lies further out, on both sides together.",
+    "example": {
+      "cells": [
+        [
+          "Setting",
+          "Value"
+        ],
+        [
+          "Chance",
+          "0.05"
+        ],
+        [
+          "Degrees of freedom",
+          "10"
+        ]
+      ],
+      "formula": "=T.INV.2T(B2,B3)",
+      "result": "2.228138852",
+      "why": "Only 5% of the t curve lies beyond ±2.23; this is the number for a 95% confidence interval from a sample of 11."
+    }
+  },
+  {
+    "name": "T.TEST",
+    "args": [
+      {
+        "name": "array1",
+        "about": "the first set of values"
+      },
+      {
+        "name": "array2",
+        "about": "the second set"
+      },
+      {
+        "name": "tails",
+        "about": "1 to test one direction, 2 for either"
+      },
+      {
+        "name": "type",
+        "about": "1 for paired values, 2 for two groups with the same spread, 3 for groups with different spreads"
+      }
+    ],
+    "about": "Gives the chance that the difference between two sets of numbers is just luck.",
+    "example": {
+      "cells": [
+        [
+          "Runner",
+          "Before",
+          "After"
+        ],
+        [
+          "Ann",
+          "32",
+          "30"
+        ],
+        [
+          "Bob",
+          "28",
+          "27"
+        ],
+        [
+          "Cara",
+          "35",
+          "32"
+        ],
+        [
+          "Dev",
+          "30",
+          "29"
+        ],
+        [
+          "Ed",
+          "33",
+          "30"
+        ]
+      ],
+      "formula": "=T.TEST(B2:B6,C2:C6,2,1)",
+      "result": "0.011056493",
+      "why": "Every runner got faster after training; a chance this small says the change is very unlikely to be luck."
+    }
+  },
+  {
+    "name": "TREND",
+    "args": [
+      {
+        "name": "known_y's",
+        "about": "the values you know"
+      },
+      {
+        "name": "known_x's",
+        "about": "what they belong to, like months (1, 2, 3… if left out)",
+        "optional": true
+      },
+      {
+        "name": "new_x's",
+        "about": "where to predict (the known x's if left out)",
+        "optional": true
+      },
+      {
+        "name": "const",
+        "about": "FALSE to make the line pass through 0",
+        "optional": true
+      }
+    ],
+    "about": "Draws the best straight line through the numbers and gives values along it, to predict new ones.",
+    "example": {
+      "cells": [
+        [
+          "Month",
+          "Ads",
+          "Sales"
+        ],
+        [
+          "Jan",
+          "2",
+          "20"
+        ],
+        [
+          "Feb",
+          "4",
+          "35"
+        ],
+        [
+          "Mar",
+          "5",
+          "41"
+        ],
+        [
+          "Apr",
+          "7",
+          "60"
+        ],
+        [
+          "May",
+          "9",
+          "72"
+        ]
+      ],
+      "formula": "=TREND(C2:C6,B2:B6,10)",
+      "result": "80.54109589",
+      "why": "The line through the months' ads and sales predicts the sales for a month with 10 ads."
+    }
+  },
+  {
+    "name": "TRIMMEAN",
+    "args": [
+      {
+        "name": "array",
+        "about": "the values"
+      },
+      {
+        "name": "percent",
+        "about": "the share to leave out, split between the top and bottom"
+      }
+    ],
+    "about": "Gives the average after leaving out the highest and lowest values.",
+    "example": {
+      "cells": [
+        [
+          "Judge",
+          "Score"
+        ],
+        [
+          "1",
+          "7.5"
+        ],
+        [
+          "2",
+          "8"
+        ],
+        [
+          "3",
+          "8.5"
+        ],
+        [
+          "4",
+          "9.9"
+        ],
+        [
+          "5",
+          "8"
+        ],
+        [
+          "6",
+          "2"
+        ],
+        [
+          "7",
+          "8.2"
+        ],
+        [
+          "8",
+          "7.8"
+        ],
+        [
+          "9",
+          "8.1"
+        ],
+        [
+          "10",
+          "8.4"
+        ]
+      ],
+      "formula": "=TRIMMEAN(B2:B11,0.2)",
+      "result": "8.0625",
+      "why": "20% of 10 scores is 2, so the lowest (2) and highest (9.9) are left out and the other 8 are averaged."
+    }
+  },
+  {
+    "name": "VAR.P",
+    "args": [
+      {
+        "name": "number1",
+        "about": "a number, a cell or a range"
+      },
+      {
+        "name": "number2",
+        "about": "more numbers, cells or ranges",
+        "optional": true
+      }
+    ],
+    "more": true,
+    "about": "Measures how spread out the numbers are: the average squared distance from their average, when they are everything there is.",
+    "example": {
+      "cells": [
+        [
+          "Pupil",
+          "Score"
+        ],
+        [
+          "Amy",
+          "62"
+        ],
+        [
+          "Ben",
+          "75"
+        ],
+        [
+          "Cat",
+          "81"
+        ],
+        [
+          "Dan",
+          "68"
+        ],
+        [
+          "Eve",
+          "90"
+        ],
+        [
+          "Fay",
+          "74"
+        ]
+      ],
+      "formula": "=VAR.P(B2:B7)",
+      "result": "80",
+      "why": "The scores' distances from 75, squared and averaged over all 6."
+    },
+    "notes": "VAR.S is for a sample. STDEV.P is its square root, in the same units as the data."
+  },
+  {
+    "name": "VAR.S",
+    "args": [
+      {
+        "name": "number1",
+        "about": "a number, a cell or a range"
+      },
+      {
+        "name": "number2",
+        "about": "more numbers, cells or ranges",
+        "optional": true
+      }
+    ],
+    "more": true,
+    "about": "Measures how spread out a sample of numbers is: the squared distance from their average, averaged over one fewer than the count.",
+    "example": {
+      "cells": [
+        [
+          "Pupil",
+          "Score"
+        ],
+        [
+          "Amy",
+          "62"
+        ],
+        [
+          "Ben",
+          "75"
+        ],
+        [
+          "Cat",
+          "81"
+        ],
+        [
+          "Dan",
+          "68"
+        ],
+        [
+          "Eve",
+          "90"
+        ],
+        [
+          "Fay",
+          "74"
+        ]
+      ],
+      "formula": "=VAR.S(B2:B7)",
+      "result": "96",
+      "why": "The scores' squared distances from 75 add up to 480, divided by 5."
+    },
+    "notes": "STDEV.S is its square root, in the same units as the data."
+  },
+  {
+    "name": "VARPA",
+    "args": [
+      {
+        "name": "value1",
+        "about": "a value, a cell or a range"
+      },
+      {
+        "name": "value2",
+        "about": "more values, cells or ranges",
+        "optional": true
+      }
+    ],
+    "more": true,
+    "about": "Measures how spread out all the values are, counting TRUE as 1, FALSE and text in cells as 0.",
+    "example": {
+      "cells": [
+        [
+          "Item",
+          "Value"
+        ],
+        [
+          "A",
+          "4"
+        ],
+        [
+          "B",
+          "TRUE"
+        ],
+        [
+          "C",
+          "6"
+        ],
+        [
+          "D",
+          "FALSE"
+        ]
+      ],
+      "formula": "=VARPA(B2:B5)",
+      "result": "5.6875",
+      "why": "The values are taken as 4, 1, 6 and 0; their average is 2.75."
+    },
+    "notes": "VAR.P leaves out TRUE, FALSE and text in cells."
+  },
+  {
+    "name": "VARA",
+    "args": [
+      {
+        "name": "value1",
+        "about": "a value, a cell or a range"
+      },
+      {
+        "name": "value2",
+        "about": "more values, cells or ranges",
+        "optional": true
+      }
+    ],
+    "more": true,
+    "about": "Measures how spread out a sample is, counting TRUE as 1, FALSE and text in cells as 0.",
+    "example": {
+      "cells": [
+        [
+          "Item",
+          "Value"
+        ],
+        [
+          "A",
+          "4"
+        ],
+        [
+          "B",
+          "TRUE"
+        ],
+        [
+          "C",
+          "6"
+        ],
+        [
+          "D",
+          "FALSE"
+        ]
+      ],
+      "formula": "=VARA(B2:B5)",
+      "result": "7.583333333",
+      "why": "The values are taken as 4, 1, 6 and 0, divided by 3 rather than 4 as for a sample."
+    },
+    "notes": "VAR.S leaves out TRUE, FALSE and text in cells."
+  },
+  {
+    "name": "WEIBULL.DIST",
+    "args": [
+      {
+        "name": "x",
+        "about": "the value, like a time"
+      },
+      {
+        "name": "alpha",
+        "about": "the shape: below 1 for early failures, above 1 for wearing out"
+      },
+      {
+        "name": "beta",
+        "about": "the scale, roughly the typical value"
+      },
+      {
+        "name": "cumulative",
+        "about": "TRUE for the chance of being at or below x, FALSE for the curve's height"
+      }
+    ],
+    "about": "Gives the chance used for how long things last, like the chance a part has failed by a certain time.",
+    "example": {
+      "cells": [
+        [
+          "Setting",
+          "Value"
+        ],
+        [
+          "Hours",
+          "1000"
+        ],
+        [
+          "Shape",
+          "2"
+        ],
+        [
+          "Scale",
+          "2000"
+        ]
+      ],
+      "formula": "=WEIBULL.DIST(B2,B3,B4,TRUE)",
+      "result": "0.221199217",
+      "why": "1 − EXP(−(1000 ÷ 2000)²): about 22% of the bulbs have failed by 1000 hours."
+    }
+  },
+  {
+    "name": "Z.TEST",
+    "args": [
+      {
+        "name": "array",
+        "about": "the sample"
+      },
+      {
+        "name": "x",
+        "about": "the average to test against"
+      },
+      {
+        "name": "sigma",
+        "about": "the known spread (the sample's own if left out)",
+        "optional": true
+      }
+    ],
+    "about": "Gives the chance of a sample average this high or higher if the true average were x.",
+    "example": {
+      "cells": [
+        [
+          "Bag",
+          "Weight (g)"
+        ],
+        [
+          "1",
+          "502"
+        ],
+        [
+          "2",
+          "505"
+        ],
+        [
+          "3",
+          "499"
+        ],
+        [
+          "4",
+          "503"
+        ],
+        [
+          "5",
+          "506"
+        ]
+      ],
+      "formula": "=Z.TEST(B2:B6,500,3)",
+      "result": "0.012673659",
+      "why": "The bags average 503 g; if the machine really filled 500 g with a spread of 3 g, an average this high would happen about 1.3% of the time."
+    }
+  },
+  {
+    "name": "CORREL",
+    "args": [
+      {
+        "name": "array1",
+        "about": "the first set of values"
+      },
+      {
+        "name": "array2",
+        "about": "the second set, the same size"
+      }
+    ],
+    "about": "Measures how closely two sets of numbers rise and fall together, from -1 to 1.",
+    "example": {
+      "cells": [
+        [
+          "Month",
+          "Ads",
+          "Sales"
+        ],
+        [
+          "Jan",
+          "2",
+          "20"
+        ],
+        [
+          "Feb",
+          "4",
+          "35"
+        ],
+        [
+          "Mar",
+          "5",
+          "41"
+        ],
+        [
+          "Apr",
+          "7",
+          "60"
+        ],
+        [
+          "May",
+          "9",
+          "72"
+        ]
+      ],
+      "formula": "=CORREL(B2:B6,C2:C6)",
+      "result": "0.997507078",
+      "why": "Near 1: months with more ads had more sales, almost in a straight line."
+    },
+    "notes": "The same as PEARSON. RSQ is its square."
+  },
+  {
+    "name": "RSQ",
+    "args": [
+      {
+        "name": "known_y's",
+        "about": "the values to explain"
+      },
+      {
+        "name": "known_x's",
+        "about": "the values that explain them"
+      }
+    ],
+    "about": "Says how much of the ups and downs in one set of numbers a straight line through another explains, from 0 to 1.",
+    "example": {
+      "cells": [
+        [
+          "Month",
+          "Ads",
+          "Sales"
+        ],
+        [
+          "Jan",
+          "2",
+          "20"
+        ],
+        [
+          "Feb",
+          "4",
+          "35"
+        ],
+        [
+          "Mar",
+          "5",
+          "41"
+        ],
+        [
+          "Apr",
+          "7",
+          "60"
+        ],
+        [
+          "May",
+          "9",
+          "72"
+        ]
+      ],
+      "formula": "=RSQ(C2:C6,B2:B6)",
+      "result": "0.995020372",
+      "why": "The square of CORREL: the number of ads explains almost all the change in sales."
+    }
+  },
+  {
+    "name": "INTERCEPT",
+    "args": [
+      {
+        "name": "known_y's",
+        "about": "the values to predict"
+      },
+      {
+        "name": "known_x's",
+        "about": "the values to predict them from"
+      }
+    ],
+    "about": "Gives where the best straight line through the numbers crosses 0: the predicted value when x is 0.",
+    "example": {
+      "cells": [
+        [
+          "Month",
+          "Ads",
+          "Sales"
+        ],
+        [
+          "Jan",
+          "2",
+          "20"
+        ],
+        [
+          "Feb",
+          "4",
+          "35"
+        ],
+        [
+          "Mar",
+          "5",
+          "41"
+        ],
+        [
+          "Apr",
+          "7",
+          "60"
+        ],
+        [
+          "May",
+          "9",
+          "72"
+        ]
+      ],
+      "formula": "=INTERCEPT(C2:C6,B2:B6)",
+      "result": "4.582191781",
+      "why": "The line through ads and sales predicts these sales in a month with no ads."
+    },
+    "notes": "SLOPE gives how steep the line is."
+  },
+  {
+    "name": "SLOPE",
+    "args": [
+      {
+        "name": "known_y's",
+        "about": "the values to predict"
+      },
+      {
+        "name": "known_x's",
+        "about": "the values to predict them from"
+      }
+    ],
+    "about": "Gives how steep the best straight line through the numbers is: how much y goes up for each 1 that x goes up.",
+    "example": {
+      "cells": [
+        [
+          "Month",
+          "Ads",
+          "Sales"
+        ],
+        [
+          "Jan",
+          "2",
+          "20"
+        ],
+        [
+          "Feb",
+          "4",
+          "35"
+        ],
+        [
+          "Mar",
+          "5",
+          "41"
+        ],
+        [
+          "Apr",
+          "7",
+          "60"
+        ],
+        [
+          "May",
+          "9",
+          "72"
+        ]
+      ],
+      "formula": "=SLOPE(C2:C6,B2:B6)",
+      "result": "7.595890411",
+      "why": "Each extra ad goes with about 7.6 more sales."
+    },
+    "notes": "INTERCEPT gives where the line crosses 0."
+  },
+  {
+    "name": "STEYX",
+    "args": [
+      {
+        "name": "known_y's",
+        "about": "the values to predict"
+      },
+      {
+        "name": "known_x's",
+        "about": "the values to predict them from"
+      }
+    ],
+    "about": "Gives how far, typically, the values are from the best straight line through them.",
+    "example": {
+      "cells": [
+        [
+          "Month",
+          "Ads",
+          "Sales"
+        ],
+        [
+          "Jan",
+          "2",
+          "20"
+        ],
+        [
+          "Feb",
+          "4",
+          "35"
+        ],
+        [
+          "Mar",
+          "5",
+          "41"
+        ],
+        [
+          "Apr",
+          "7",
+          "60"
+        ],
+        [
+          "May",
+          "9",
+          "72"
+        ]
+      ],
+      "formula": "=STEYX(C2:C6,B2:B6)",
+      "result": "1.676455273",
+      "why": "Predicting sales from the line through ads and sales is typically off by this many sales."
+    }
+  }
+]

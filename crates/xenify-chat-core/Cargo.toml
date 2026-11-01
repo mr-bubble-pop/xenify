@@ -1,0 +1,19 @@
+[package]
+name = "xenify-chat-core"
+description = "What Xenify Chat does between its screens and the server, for the desktop app and the browser alike: signing in, meetings, calendars, address books"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+serde.workspace = true
+serde_json.workspace = true
+xenify-chat-proto = { path = "../xenify-chat-proto" }
+# Signing in: the Xenify server's account API.
+xenify-server-proto = { path = "../xenify-server-proto" }
+# Random ids (builds for the browser).
+xenify-sync = { path = "../xenify-sync" }
+# Events, repeats, time zones and invitations (without SQLite or the network).
+xenify-cal = { path = "../xenify-cal", default-features = false }
+chrono = { version = "0.4", default-features = false, features = ["std"] }
+chrono-tz = "0.10"

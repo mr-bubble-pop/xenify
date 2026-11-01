@@ -1,0 +1,297 @@
+[
+  {
+    "name": "ERROR.TYPE",
+    "args": [
+      { "name": "error_val", "about": "the error, or the cell holding it" }
+    ],
+    "about": "Gives a number for which kind of error a value is.",
+    "example": {
+      "cells": [["Total", "Count", "Average"], ["300", "0", "=A2/B2"]],
+      "formula": "=ERROR.TYPE(C2)",
+      "result": "2",
+      "why": "C2 holds #DIV/0!, which is error number 2 (#NULL! is 1, #VALUE! 3, #REF! 4, #NAME? 5, #NUM! 6, #N/A 7)."
+    },
+    "notes": "Gives #N/A when the value is not an error."
+  },
+  {
+    "name": "FORMULATEXT",
+    "args": [
+      { "name": "reference", "about": "the cell whose formula to show" }
+    ],
+    "about": "Shows the formula in a cell as text.",
+    "example": {
+      "cells": [["Price", "Qty", "Total"], ["4", "3", "=A2*B2"]],
+      "formula": "=FORMULATEXT(C2)",
+      "result": "=A2*B2",
+      "why": "C2 holds the formula =A2*B2, shown here as text."
+    },
+    "notes": "Gives #N/A when the cell holds no formula."
+  },
+  {
+    "name": "ISBLANK",
+    "args": [
+      { "name": "value", "about": "the cell to check" }
+    ],
+    "about": "Gives TRUE when a cell is empty.",
+    "example": {
+      "cells": [["Name", "Phone"], ["Ann", ""]],
+      "formula": "=ISBLANK(B2)",
+      "result": "TRUE",
+      "why": "Ann's phone cell has nothing in it."
+    },
+    "notes": "A cell with a formula giving \"\" is not blank."
+  },
+  {
+    "name": "ISERR",
+    "args": [
+      { "name": "value", "about": "the value or cell to check" }
+    ],
+    "about": "Gives TRUE when a value is any error except #N/A.",
+    "example": {
+      "cells": [["Total", "Count"], ["300", "0"]],
+      "formula": "=ISERR(A2/B2)",
+      "result": "TRUE",
+      "why": "Dividing by 0 gives #DIV/0!, which is an error other than #N/A."
+    },
+    "notes": "ISERROR also counts #N/A; ISNA counts only #N/A."
+  },
+  {
+    "name": "ISERROR",
+    "args": [
+      { "name": "value", "about": "the value or cell to check" }
+    ],
+    "about": "Gives TRUE when a value is any error.",
+    "example": {
+      "cells": [["Fruit", "Price"], ["Apple", "1.2"]],
+      "formula": "=ISERROR(MATCH(\"Plum\",A2:A2,0))",
+      "result": "TRUE",
+      "why": "There is no Plum, so MATCH gives #N/A, which is an error."
+    },
+    "notes": "IFERROR shows something else in place of the error."
+  },
+  {
+    "name": "ISEVEN",
+    "args": [
+      { "name": "number", "about": "the number to check; any fraction is dropped" }
+    ],
+    "about": "Gives TRUE when a number is even.",
+    "example": {
+      "cells": [["Row", "Seats"], ["A", "12"]],
+      "formula": "=ISEVEN(B2)",
+      "result": "TRUE",
+      "why": "12 divides by 2 with nothing left over."
+    }
+  },
+  {
+    "name": "ISFORMULA",
+    "args": [
+      { "name": "reference", "about": "the cell to check" }
+    ],
+    "about": "Gives TRUE when a cell holds a formula.",
+    "example": {
+      "cells": [["Price", "Qty", "Total"], ["4", "3", "=A2*B2"]],
+      "formula": "=ISFORMULA(C2)",
+      "result": "TRUE",
+      "why": "C2 is worked out by the formula =A2*B2 rather than typed in."
+    }
+  },
+  {
+    "name": "ISLOGICAL",
+    "args": [
+      { "name": "value", "about": "the value or cell to check" }
+    ],
+    "about": "Gives TRUE when a value is TRUE or FALSE.",
+    "example": {
+      "cells": [["Task", "Done"], ["Paint", "FALSE"]],
+      "formula": "=ISLOGICAL(B2)",
+      "result": "TRUE",
+      "why": "B2 holds the logical value FALSE."
+    }
+  },
+  {
+    "name": "ISNA",
+    "args": [
+      { "name": "value", "about": "the value or cell to check" }
+    ],
+    "about": "Gives TRUE when a value is the #N/A error.",
+    "example": {
+      "cells": [["Fruit", "Price"], ["Apple", "1.2"], ["Pear", "0.9"]],
+      "formula": "=ISNA(MATCH(\"Plum\",A2:A3,0))",
+      "result": "TRUE",
+      "why": "Plum isn't in the list, so MATCH gives #N/A."
+    },
+    "notes": "IFNA shows something else in place of #N/A."
+  },
+  {
+    "name": "ISNONTEXT",
+    "args": [
+      { "name": "value", "about": "the value or cell to check" }
+    ],
+    "about": "Gives TRUE when a value is not text, including empty cells.",
+    "example": {
+      "cells": [["Item", "Price"], ["Lamp", "120"]],
+      "formula": "=ISNONTEXT(B2)",
+      "result": "TRUE",
+      "why": "B2 holds the number 120, not text."
+    }
+  },
+  {
+    "name": "ISNUMBER",
+    "args": [
+      { "name": "value", "about": "the value or cell to check" }
+    ],
+    "about": "Gives TRUE when a value is a number (dates and times count as numbers).",
+    "example": {
+      "cells": [["Item", "Price"], ["Lamp", "120"]],
+      "formula": "=ISNUMBER(B2)",
+      "result": "TRUE",
+      "why": "B2 holds the number 120."
+    },
+    "notes": "Numbers typed as text, like \"120\" in quotes, are not numbers."
+  },
+  {
+    "name": "ISODD",
+    "args": [
+      { "name": "number", "about": "the number to check; any fraction is dropped" }
+    ],
+    "about": "Gives TRUE when a number is odd.",
+    "example": {
+      "cells": [["Row", "Seats"], ["A", "12"]],
+      "formula": "=ISODD(B2)",
+      "result": "FALSE",
+      "why": "12 is even, so it is not odd."
+    }
+  },
+  {
+    "name": "ISOMITTED",
+    "args": [
+      { "name": "argument", "about": "a parameter name of the LAMBDA it is used in" }
+    ],
+    "about": "Inside a LAMBDA, gives TRUE when a value was left out of the call.",
+    "example": {
+      "cells": [["Price"], ["50"]],
+      "formula": "=LAMBDA(price,rate,IF(ISOMITTED(rate),price*1.2,price*(1+rate)))(A2,)",
+      "result": "60",
+      "why": "The rate is left out of the call, so the default of 20% is added: 50 × 1.2 = 60."
+    }
+  },
+  {
+    "name": "ISREF",
+    "args": [
+      { "name": "value", "about": "the value to check" }
+    ],
+    "about": "Gives TRUE when a value is a cell or range reference.",
+    "example": {
+      "cells": [["Item", "Price"], ["Lamp", "120"]],
+      "formula": "=ISREF(B2)",
+      "result": "TRUE",
+      "why": "B2 is a reference to a cell, whatever it holds."
+    }
+  },
+  {
+    "name": "ISTEXT",
+    "args": [
+      { "name": "value", "about": "the value or cell to check" }
+    ],
+    "about": "Gives TRUE when a value is text.",
+    "example": {
+      "cells": [["Item", "Price"], ["Lamp", "120"]],
+      "formula": "=ISTEXT(A2)",
+      "result": "TRUE",
+      "why": "A2 holds the word Lamp."
+    }
+  },
+  {
+    "name": "NA",
+    "args": [],
+    "about": "Gives the #N/A error, to mark a value as missing.",
+    "example": {
+      "cells": [],
+      "formula": "=NA()",
+      "result": "#N/A",
+      "why": "It always gives #N/A, which charts skip and ISNA picks up."
+    }
+  },
+  {
+    "name": "SHEET",
+    "args": [
+      { "name": "value", "about": "a sheet name in quotes (the formula's own sheet if left out)", "optional": true }
+    ],
+    "about": "Gives the number of a sheet, counting from the left.",
+    "example": {
+      "cells": [],
+      "formula": "=SHEET(\"Sheet1\")",
+      "result": "1",
+      "why": "Sheet1 is the first sheet from the left."
+    },
+    "notes": "Unlike some other spreadsheet apps, a cell reference like SHEET(B2) doesn't give that cell's sheet: the cell's contents are read as a sheet name, so it usually gives #N/A. Use the sheet's name in quotes instead."
+  },
+  {
+    "name": "TYPE",
+    "args": [
+      { "name": "value", "about": "the value or cell to check" }
+    ],
+    "about": "Gives a number for what kind of value something is: 1 number, 2 text, 4 logical, 16 error, 64 array.",
+    "example": {
+      "cells": [["Item", "Price"], ["Lamp", "120"]],
+      "formula": "=TYPE(A2)",
+      "result": "2",
+      "why": "A2 holds text, which is type 2."
+    }
+  },
+  {
+    "name": "SHEETS",
+    "args": [
+      { "name": "reference", "about": "a reference whose sheets to count (the whole workbook if left out)", "optional": true }
+    ],
+    "about": "Gives how many sheets there are.",
+    "example": {
+      "cells": [],
+      "formula": "=SHEETS()",
+      "result": "1",
+      "why": "A new workbook has one sheet."
+    }
+  },
+  {
+    "name": "N",
+    "args": [
+      { "name": "value", "about": "the value or cell to turn into a number" }
+    ],
+    "about": "Turns a value into a number: numbers stay, TRUE is 1, text and FALSE are 0.",
+    "example": {
+      "cells": [["Task", "Done"], ["Paint", "TRUE"]],
+      "formula": "=N(B2)",
+      "result": "1",
+      "why": "TRUE turns into 1."
+    }
+  },
+  {
+    "name": "CELL",
+    "args": [
+      { "name": "info_type", "about": "what to find out, like \"address\", \"row\", \"col\", \"contents\" or \"type\"" },
+      { "name": "reference", "about": "the cell to look at (the formula's own cell if left out)", "optional": true }
+    ],
+    "about": "Gives a fact about a cell, such as its address, row or what it holds.",
+    "example": {
+      "cells": [["Item", "Price"], ["Lamp", "120"]],
+      "formula": "=CELL(\"address\",B2)",
+      "result": "$B$2",
+      "why": "The address of B2, written with dollar signs."
+    },
+    "notes": "\"type\" gives b for blank, l for text and v for anything else. \"color\", \"format\", \"parentheses\", \"prefix\", \"protect\" and \"width\" aren't worked out yet and give an error."
+  },
+  {
+    "name": "INFO",
+    "args": [
+      { "name": "type_text", "about": "what to find out, like \"numfile\", \"recalc\" or \"system\"" }
+    ],
+    "about": "Gives a fact about the workbook or the computer it is running on.",
+    "example": {
+      "cells": [],
+      "formula": "=INFO(\"numfile\")",
+      "result": "1",
+      "why": "\"numfile\" gives how many sheets the workbook has."
+    },
+    "notes": "\"directory\", \"origin\" and \"osversion\" aren't worked out and give an error."
+  }
+]
