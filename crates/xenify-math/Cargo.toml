@@ -1,0 +1,11 @@
+[package]
+name = "xenify-math"
+description = "Equations for Xenify Write: LaTeX parsed into a maths tree, typeset with an OpenType MATH font (TeX's rules), and written as Word's equation markup (OMML)"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+xenify-util.workspace = true
+# Reads the font's MATH table; MIT OR Apache-2.0.
+ttf-parser = { version = "0.25", default-features = false, features = ["std", "opentype-layout"] }

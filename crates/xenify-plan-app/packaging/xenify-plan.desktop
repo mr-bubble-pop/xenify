@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=Xenify Plan
+GenericName=Project planner
+Comment=Tasks, Gantt charts and who is busy
+Exec=xenify-plan %F
+Icon=xenify-plan
+Terminal=false
+Categories=Office;ProjectManagement;
+MimeType=application/x-xenify-plan;
+Keywords=tasks;gantt;project;plan;board;

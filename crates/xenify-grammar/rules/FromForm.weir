@@ -1,0 +1,18 @@
+# Real-word typo: "from" for "form" (a document). Pattern from published
+# lists of mistakes spell-checkers miss; examples are ours.
+# why: A form is a document you fill in; from shows where something starts. Swapping the r and o is a classic typo.
+expr main [<([fill, filled, filling] [in, out] [the, this, that, a, an, your, our, their, his, her, my] from [below, above, attached, online, here, and, by, before, within, to, (.)]), from>, <([fill, filled, filling, complete, completed, completing, submit, submitted, submitting, sign, signed, signing, return, returned, print, printed, download, downloaded, attach, attached, send, sent, use] [the, this, that, a, an, your, our, their, his, her, my] from [below, above, attached, online, here, and, by, before, within, to]), from>, <([consent, registration, application, booking, order, contact, feedback, entry, claim, tax, enrolment, enrollment, permission, request, signup, survey, medical, release, intake, referral, evaluation, assessment] from [below, above, attached, online, and, by, before, within]), from>]
+
+let message "Did you mean `form` (a document)?"
+let description "Catches `from` where `form` was meant (fill in the from below)."
+let kind "Typo"
+let becomes "form"
+let strategy "MatchCase"
+
+test "Please fill in the from below." "Please fill in the form below."
+test "Sign the consent from before Friday." "Sign the consent form before Friday."
+test "Return the registration from by email." "Return the registration form by email."
+
+allows "Please fill in the form below."
+allows "Send the parcel from the post office."
+allows "I got a letter from below the stairs."

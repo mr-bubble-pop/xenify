@@ -1,0 +1,1123 @@
+[
+  {
+    "name": "ABS",
+    "args": [
+      { "name": "number", "about": "the number to make positive" }
+    ],
+    "about": "Gives a number without its minus sign.",
+    "example": {
+      "cells": [["Account", "Balance"], ["Rent", "-450"]],
+      "formula": "=ABS(B2)",
+      "result": "450",
+      "why": "The minus sign is dropped, so -450 becomes 450."
+    }
+  },
+  {
+    "name": "ACOS",
+    "args": [
+      { "name": "number", "about": "the cosine of the angle, from -1 to 1" }
+    ],
+    "about": "Gives the angle, in radians, whose cosine is the number.",
+    "example": {
+      "cells": [["Cosine"], ["0.5"]],
+      "formula": "=ACOS(A2)",
+      "result": "1.047197551",
+      "why": "The angle with a cosine of 0.5 is 60 degrees, which is π/3 radians."
+    },
+    "notes": "Wrap it in DEGREES to get the angle in degrees."
+  },
+  {
+    "name": "ACOSH",
+    "args": [
+      { "name": "number", "about": "a number of 1 or more" }
+    ],
+    "about": "Gives the inverse hyperbolic cosine of a number.",
+    "example": {
+      "cells": [["Value"], ["1"]],
+      "formula": "=ACOSH(A2)",
+      "result": "0",
+      "why": "COSH(0) is 1, so ACOSH(1) is 0."
+    }
+  },
+  {
+    "name": "ASIN",
+    "args": [
+      { "name": "number", "about": "the sine of the angle, from -1 to 1" }
+    ],
+    "about": "Gives the angle, in radians, whose sine is the number.",
+    "example": {
+      "cells": [["Sine"], ["1"]],
+      "formula": "=ASIN(A2)",
+      "result": "1.570796327",
+      "why": "The angle with a sine of 1 is 90 degrees, which is π/2 radians."
+    },
+    "notes": "Wrap it in DEGREES to get the angle in degrees."
+  },
+  {
+    "name": "ASINH",
+    "args": [
+      { "name": "number", "about": "any number" }
+    ],
+    "about": "Gives the inverse hyperbolic sine of a number.",
+    "example": {
+      "cells": [["Value"], ["0"]],
+      "formula": "=ASINH(A2)",
+      "result": "0",
+      "why": "SINH(0) is 0, so ASINH(0) is 0."
+    }
+  },
+  {
+    "name": "ATAN",
+    "args": [
+      { "name": "number", "about": "the tangent of the angle" }
+    ],
+    "about": "Gives the angle, in radians, whose tangent is the number.",
+    "example": {
+      "cells": [["Tangent"], ["1"]],
+      "formula": "=ATAN(A2)",
+      "result": "0.785398163",
+      "why": "The angle with a tangent of 1 is 45 degrees, which is π/4 radians."
+    },
+    "notes": "ATAN2 takes x and y separately and knows which quarter the angle is in."
+  },
+  {
+    "name": "ATAN2",
+    "args": [
+      { "name": "x_num", "about": "how far across the point is" },
+      { "name": "y_num", "about": "how far up the point is" }
+    ],
+    "about": "Gives the angle, in radians, from the x axis to a point.",
+    "example": {
+      "cells": [["X", "Y"], ["-1", "1"]],
+      "formula": "=ATAN2(A2,B2)",
+      "result": "2.35619449",
+      "why": "The point (-1, 1) is up and to the left, at 135 degrees, which is 3π/4 radians."
+    },
+    "notes": "x comes first, as in other spreadsheet apps (many programming languages put y first)."
+  },
+  {
+    "name": "ATANH",
+    "args": [
+      { "name": "number", "about": "a number between -1 and 1" }
+    ],
+    "about": "Gives the inverse hyperbolic tangent of a number.",
+    "example": {
+      "cells": [["Value"], ["0.5"]],
+      "formula": "=ATANH(A2)",
+      "result": "0.549306144",
+      "why": "TANH(0.549306…) is 0.5."
+    }
+  },
+  {
+    "name": "COS",
+    "args": [
+      { "name": "number", "about": "an angle in radians" }
+    ],
+    "about": "Gives the cosine of an angle.",
+    "example": {
+      "cells": [["Degrees"], ["60"]],
+      "formula": "=COS(RADIANS(A2))",
+      "result": "0.5",
+      "why": "60 degrees turned into radians has a cosine of 0.5."
+    }
+  },
+  {
+    "name": "COSH",
+    "args": [
+      { "name": "number", "about": "any number" }
+    ],
+    "about": "Gives the hyperbolic cosine of a number.",
+    "example": {
+      "cells": [["Value"], ["0"]],
+      "formula": "=COSH(A2)",
+      "result": "1",
+      "why": "(e⁰ + e⁰) / 2 = 1."
+    }
+  },
+  {
+    "name": "LOG",
+    "args": [
+      { "name": "number", "about": "a positive number" },
+      { "name": "base", "about": "the base of the logarithm (10 if left out)", "optional": true }
+    ],
+    "about": "Gives the power the base must be raised to to make the number.",
+    "example": {
+      "cells": [["Value", "Base"], ["8", "2"]],
+      "formula": "=LOG(A2,B2)",
+      "result": "3",
+      "why": "2 × 2 × 2 = 8, so the logarithm of 8 in base 2 is 3."
+    }
+  },
+  {
+    "name": "LOG10",
+    "args": [
+      { "name": "number", "about": "a positive number" }
+    ],
+    "about": "Gives the base-10 logarithm of a number.",
+    "example": {
+      "cells": [["Value"], ["1000"]],
+      "formula": "=LOG10(A2)",
+      "result": "3",
+      "why": "10 to the power 3 is 1000."
+    }
+  },
+  {
+    "name": "LN",
+    "args": [
+      { "name": "number", "about": "a positive number" }
+    ],
+    "about": "Gives the natural logarithm of a number (base e).",
+    "example": {
+      "cells": [["Value"], ["1"]],
+      "formula": "=LN(A2)",
+      "result": "0",
+      "why": "e to the power 0 is 1."
+    },
+    "notes": "EXP does the opposite."
+  },
+  {
+    "name": "MAX",
+    "args": [
+      { "name": "number1", "about": "a number, a cell or a range" },
+      { "name": "number2", "about": "more numbers, cells or ranges", "optional": true }
+    ],
+    "more": true,
+    "about": "Gives the largest number.",
+    "example": {
+      "cells": [["Month", "Sales"], ["Jan", "120"], ["Feb", "80"], ["Mar", "150"]],
+      "formula": "=MAX(B2:B4)",
+      "result": "150",
+      "why": "150 is the biggest of 120, 80 and 150."
+    }
+  },
+  {
+    "name": "MIN",
+    "args": [
+      { "name": "number1", "about": "a number, a cell or a range" },
+      { "name": "number2", "about": "more numbers, cells or ranges", "optional": true }
+    ],
+    "more": true,
+    "about": "Gives the smallest number.",
+    "example": {
+      "cells": [["Month", "Sales"], ["Jan", "120"], ["Feb", "80"], ["Mar", "150"]],
+      "formula": "=MIN(B2:B4)",
+      "result": "80",
+      "why": "80 is the smallest of 120, 80 and 150."
+    }
+  },
+  {
+    "name": "PI",
+    "args": [],
+    "about": "Gives π, the distance round a circle divided by its width.",
+    "example": {
+      "cells": [],
+      "formula": "=PI()",
+      "result": "3.141592654",
+      "why": "π, shown to ten figures; the cell holds it to about 15."
+    }
+  },
+  {
+    "name": "POWER",
+    "args": [
+      { "name": "number", "about": "the number to raise" },
+      { "name": "power", "about": "how many times to multiply it by itself" }
+    ],
+    "about": "Raises a number to a power.",
+    "example": {
+      "cells": [["Number", "Power"], ["3", "4"]],
+      "formula": "=POWER(A2,B2)",
+      "result": "81",
+      "why": "3 × 3 × 3 × 3 = 81."
+    },
+    "notes": "The ^ sign does the same: =A2^B2."
+  },
+  {
+    "name": "PRODUCT",
+    "args": [
+      { "name": "number1", "about": "a number, a cell or a range to multiply" },
+      { "name": "number2", "about": "more numbers, cells or ranges", "optional": true }
+    ],
+    "more": true,
+    "about": "Multiplies numbers together.",
+    "example": {
+      "cells": [["Length", "Width", "Height"], ["2", "3", "4"]],
+      "formula": "=PRODUCT(A2:C2)",
+      "result": "24",
+      "why": "2 × 3 × 4 = 24."
+    }
+  },
+  {
+    "name": "RAND",
+    "args": [],
+    "about": "Gives a random number from 0 up to (but not including) 1.",
+    "example": {
+      "cells": [],
+      "formula": "=RAND()",
+      "result": null,
+      "why": "A new number is picked each time the sheet works itself out again."
+    },
+    "notes": "RANDBETWEEN gives whole numbers in a range."
+  },
+  {
+    "name": "RANDBETWEEN",
+    "args": [
+      { "name": "bottom", "about": "the smallest number it may give" },
+      { "name": "top", "about": "the largest number it may give" }
+    ],
+    "about": "Gives a random whole number between two numbers.",
+    "example": {
+      "cells": [["From", "To"], ["1", "6"]],
+      "formula": "=RANDBETWEEN(A2,B2)",
+      "result": null,
+      "why": "Like a die: any whole number from 1 to 6, new each time the sheet works itself out."
+    }
+  },
+  {
+    "name": "ROUND",
+    "args": [
+      { "name": "number", "about": "the number to round" },
+      { "name": "num_digits", "about": "how many decimal places to keep (negative rounds to tens, hundreds…)" }
+    ],
+    "about": "Rounds a number to a number of decimal places.",
+    "example": {
+      "cells": [["Item", "Price"], ["Tea", "2.346"]],
+      "formula": "=ROUND(B2,2)",
+      "result": "2.35",
+      "why": "The third decimal is 6, so the second rounds up from 4 to 5."
+    },
+    "notes": "ROUNDUP and ROUNDDOWN always round one way."
+  },
+  {
+    "name": "ROUNDDOWN",
+    "args": [
+      { "name": "number", "about": "the number to round" },
+      { "name": "num_digits", "about": "how many decimal places to keep" }
+    ],
+    "about": "Rounds a number towards zero.",
+    "example": {
+      "cells": [["Item", "Price"], ["Tea", "2.349"]],
+      "formula": "=ROUNDDOWN(B2,2)",
+      "result": "2.34",
+      "why": "Everything after the second decimal is cut off."
+    }
+  },
+  {
+    "name": "ROUNDUP",
+    "args": [
+      { "name": "number", "about": "the number to round" },
+      { "name": "num_digits", "about": "how many decimal places to keep" }
+    ],
+    "about": "Rounds a number away from zero.",
+    "example": {
+      "cells": [["Item", "Price"], ["Tea", "2.341"]],
+      "formula": "=ROUNDUP(B2,2)",
+      "result": "2.35",
+      "why": "Anything after the second decimal pushes it up to the next hundredth."
+    }
+  },
+  {
+    "name": "SIN",
+    "args": [
+      { "name": "number", "about": "an angle in radians" }
+    ],
+    "about": "Gives the sine of an angle.",
+    "example": {
+      "cells": [["Degrees"], ["30"]],
+      "formula": "=SIN(RADIANS(A2))",
+      "result": "0.5",
+      "why": "30 degrees turned into radians has a sine of 0.5."
+    }
+  },
+  {
+    "name": "SINH",
+    "args": [
+      { "name": "number", "about": "any number" }
+    ],
+    "about": "Gives the hyperbolic sine of a number.",
+    "example": {
+      "cells": [["Value"], ["1"]],
+      "formula": "=SINH(A2)",
+      "result": "1.175201194",
+      "why": "(e¹ − e⁻¹) / 2 = 1.1752…"
+    }
+  },
+  {
+    "name": "SQRT",
+    "args": [
+      { "name": "number", "about": "a number of 0 or more" }
+    ],
+    "about": "Gives the square root of a number.",
+    "example": {
+      "cells": [["Area (m²)"], ["144"]],
+      "formula": "=SQRT(A2)",
+      "result": "12",
+      "why": "12 × 12 = 144, so a square of 144 m² has 12 m sides."
+    }
+  },
+  {
+    "name": "SQRTPI",
+    "args": [
+      { "name": "number", "about": "a number of 0 or more to multiply by π" }
+    ],
+    "about": "Gives the square root of a number times π.",
+    "example": {
+      "cells": [["Value"], ["1"]],
+      "formula": "=SQRTPI(A2)",
+      "result": "1.772453851",
+      "why": "The square root of 1 × π is 1.7724…"
+    }
+  },
+  {
+    "name": "SUM",
+    "args": [
+      { "name": "number1", "about": "a number, a cell or a range of cells to add up" },
+      { "name": "number2", "about": "more numbers, cells or ranges", "optional": true }
+    ],
+    "more": true,
+    "about": "Adds up numbers.",
+    "example": {
+      "cells": [["Month", "Sales"], ["Jan", "120"], ["Feb", "80"], ["Mar", "150"]],
+      "formula": "=SUM(B2:B4)",
+      "result": "350",
+      "why": "120 + 80 + 150 = 350. Words in the range are left out."
+    }
+  },
+  {
+    "name": "SUMIF",
+    "args": [
+      { "name": "range", "about": "the cells to test" },
+      { "name": "criteria", "about": "the test, like \"Apple\" or \">10\"" },
+      { "name": "sum_range", "about": "the cells to add up (the tested cells if left out)", "optional": true }
+    ],
+    "about": "Adds up the numbers in rows that pass a test.",
+    "example": {
+      "cells": [["Fruit", "Sold"], ["Apple", "3"], ["Pear", "5"], ["Apple", "4"]],
+      "formula": "=SUMIF(A2:A4,\"Apple\",B2:B4)",
+      "result": "7",
+      "why": "Only the Apple rows count: 3 + 4."
+    },
+    "notes": "SUMIFS takes more than one test."
+  },
+  {
+    "name": "SUMIFS",
+    "args": [
+      { "name": "sum_range", "about": "the cells to add up" },
+      { "name": "criteria_range1", "about": "the cells for the first test" },
+      { "name": "criteria1", "about": "the first test, like \"Apple\" or \">10\"" },
+      { "name": "criteria_range2", "about": "the cells for the next test", "optional": true },
+      { "name": "criteria2", "about": "the next test", "optional": true }
+    ],
+    "more": true,
+    "about": "Adds up the numbers in rows that pass every test.",
+    "example": {
+      "cells": [["Fruit", "Shop", "Sold"], ["Apple", "North", "3"], ["Apple", "South", "5"], ["Pear", "North", "4"], ["Apple", "North", "2"]],
+      "formula": "=SUMIFS(C2:C5,A2:A5,\"Apple\",B2:B5,\"North\")",
+      "result": "5",
+      "why": "Only apples sold in the North shop count: 3 + 2."
+    },
+    "notes": "Unlike SUMIF, the cells to add up come first."
+  },
+  {
+    "name": "SUMX2MY2",
+    "args": [
+      { "name": "array_x", "about": "the first list of numbers" },
+      { "name": "array_y", "about": "the second list, the same size" }
+    ],
+    "about": "Adds up the differences of the squares of matching numbers in two lists.",
+    "example": {
+      "cells": [["X", "Y"], ["3", "1"], ["4", "2"]],
+      "formula": "=SUMX2MY2(A2:A3,B2:B3)",
+      "result": "20",
+      "why": "(9 − 1) + (16 − 4) = 20."
+    }
+  },
+  {
+    "name": "SUMX2PY2",
+    "args": [
+      { "name": "array_x", "about": "the first list of numbers" },
+      { "name": "array_y", "about": "the second list, the same size" }
+    ],
+    "about": "Adds up the squares of all the numbers in two lists.",
+    "example": {
+      "cells": [["X", "Y"], ["3", "1"], ["4", "2"]],
+      "formula": "=SUMX2PY2(A2:A3,B2:B3)",
+      "result": "30",
+      "why": "(9 + 1) + (16 + 4) = 30."
+    }
+  },
+  {
+    "name": "SUMXMY2",
+    "args": [
+      { "name": "array_x", "about": "the first list of numbers" },
+      { "name": "array_y", "about": "the second list, the same size" }
+    ],
+    "about": "Adds up the squares of the differences between matching numbers in two lists.",
+    "example": {
+      "cells": [["X", "Y"], ["3", "1"], ["4", "2"]],
+      "formula": "=SUMXMY2(A2:A3,B2:B3)",
+      "result": "8",
+      "why": "(3 − 1)² + (4 − 2)² = 4 + 4 = 8."
+    }
+  },
+  {
+    "name": "TAN",
+    "args": [
+      { "name": "number", "about": "an angle in radians" }
+    ],
+    "about": "Gives the tangent of an angle.",
+    "example": {
+      "cells": [["Degrees"], ["45"]],
+      "formula": "=TAN(RADIANS(A2))",
+      "result": "1",
+      "why": "At 45 degrees the opposite and adjacent sides are the same length."
+    }
+  },
+  {
+    "name": "TANH",
+    "args": [
+      { "name": "number", "about": "any number" }
+    ],
+    "about": "Gives the hyperbolic tangent of a number.",
+    "example": {
+      "cells": [["Value"], ["0.5"]],
+      "formula": "=TANH(A2)",
+      "result": "0.462117157",
+      "why": "SINH(0.5) / COSH(0.5) = 0.4621…"
+    }
+  },
+  {
+    "name": "ACOT",
+    "args": [
+      { "name": "number", "about": "the cotangent of the angle" }
+    ],
+    "about": "Gives the angle, in radians, whose cotangent is the number.",
+    "example": {
+      "cells": [["Cotangent"], ["1"]],
+      "formula": "=ACOT(A2)",
+      "result": "0.785398163",
+      "why": "The angle with a cotangent of 1 is 45 degrees, which is π/4 radians."
+    }
+  },
+  {
+    "name": "ACOTH",
+    "args": [
+      { "name": "number", "about": "a number below -1 or above 1" }
+    ],
+    "about": "Gives the inverse hyperbolic cotangent of a number.",
+    "example": {
+      "cells": [["Value"], ["2"]],
+      "formula": "=ACOTH(A2)",
+      "result": "0.549306144",
+      "why": "It is ATANH of 1/2."
+    }
+  },
+  {
+    "name": "COT",
+    "args": [
+      { "name": "number", "about": "an angle in radians, not 0" }
+    ],
+    "about": "Gives the cotangent of an angle (1 divided by its tangent).",
+    "example": {
+      "cells": [["Degrees"], ["45"]],
+      "formula": "=COT(RADIANS(A2))",
+      "result": "1",
+      "why": "The tangent of 45 degrees is 1, and 1/1 is 1."
+    }
+  },
+  {
+    "name": "COTH",
+    "args": [
+      { "name": "number", "about": "any number but 0" }
+    ],
+    "about": "Gives the hyperbolic cotangent of a number.",
+    "example": {
+      "cells": [["Value"], ["1"]],
+      "formula": "=COTH(A2)",
+      "result": "1.313035285",
+      "why": "1 / TANH(1) = 1.3130…"
+    }
+  },
+  {
+    "name": "CSC",
+    "args": [
+      { "name": "number", "about": "an angle in radians, not 0" }
+    ],
+    "about": "Gives the cosecant of an angle (1 divided by its sine).",
+    "example": {
+      "cells": [["Degrees"], ["30"]],
+      "formula": "=CSC(RADIANS(A2))",
+      "result": "2",
+      "why": "The sine of 30 degrees is 0.5, and 1/0.5 is 2."
+    }
+  },
+  {
+    "name": "CSCH",
+    "args": [
+      { "name": "number", "about": "any number but 0" }
+    ],
+    "about": "Gives the hyperbolic cosecant of a number.",
+    "example": {
+      "cells": [["Value"], ["1"]],
+      "formula": "=CSCH(A2)",
+      "result": "0.850918128",
+      "why": "1 / SINH(1) = 0.8509…"
+    }
+  },
+  {
+    "name": "SEC",
+    "args": [
+      { "name": "number", "about": "an angle in radians" }
+    ],
+    "about": "Gives the secant of an angle (1 divided by its cosine).",
+    "example": {
+      "cells": [["Degrees"], ["60"]],
+      "formula": "=SEC(RADIANS(A2))",
+      "result": "2",
+      "why": "The cosine of 60 degrees is 0.5, and 1/0.5 is 2."
+    }
+  },
+  {
+    "name": "SECH",
+    "args": [
+      { "name": "number", "about": "any number" }
+    ],
+    "about": "Gives the hyperbolic secant of a number.",
+    "example": {
+      "cells": [["Value"], ["0"]],
+      "formula": "=SECH(A2)",
+      "result": "1",
+      "why": "1 / COSH(0) = 1 / 1 = 1."
+    }
+  },
+  {
+    "name": "EXP",
+    "args": [
+      { "name": "number", "about": "the power to raise e to" }
+    ],
+    "about": "Gives e (2.71828…) raised to a power.",
+    "example": {
+      "cells": [["Power"], ["1"]],
+      "formula": "=EXP(A2)",
+      "result": "2.718281828",
+      "why": "e to the power 1 is e itself."
+    },
+    "notes": "LN does the opposite."
+  },
+  {
+    "name": "FACT",
+    "args": [
+      { "name": "number", "about": "a whole number of 0 or more" }
+    ],
+    "about": "Gives the factorial of a number: 1 × 2 × 3 … up to it.",
+    "example": {
+      "cells": [["Guests"], ["5"]],
+      "formula": "=FACT(A2)",
+      "result": "120",
+      "why": "Five guests can sit in a row in 1 × 2 × 3 × 4 × 5 = 120 ways."
+    }
+  },
+  {
+    "name": "FACTDOUBLE",
+    "args": [
+      { "name": "number", "about": "a whole number of 0 or more" }
+    ],
+    "about": "Gives the double factorial: the number times every second number below it.",
+    "example": {
+      "cells": [["Value"], ["7"]],
+      "formula": "=FACTDOUBLE(A2)",
+      "result": "105",
+      "why": "7 × 5 × 3 × 1 = 105."
+    }
+  },
+  {
+    "name": "SIGN",
+    "args": [
+      { "name": "number", "about": "any number" }
+    ],
+    "about": "Gives 1 for a positive number, -1 for a negative one and 0 for zero.",
+    "example": {
+      "cells": [["Account", "Balance"], ["Rent", "-450"]],
+      "formula": "=SIGN(B2)",
+      "result": "-1",
+      "why": "-450 is below zero."
+    }
+  },
+  {
+    "name": "RADIANS",
+    "args": [
+      { "name": "angle", "about": "an angle in degrees" }
+    ],
+    "about": "Turns degrees into radians.",
+    "example": {
+      "cells": [["Degrees"], ["180"]],
+      "formula": "=RADIANS(A2)",
+      "result": "3.141592654",
+      "why": "Half a turn, 180 degrees, is π radians."
+    }
+  },
+  {
+    "name": "DEGREES",
+    "args": [
+      { "name": "angle", "about": "an angle in radians" }
+    ],
+    "about": "Turns radians into degrees.",
+    "example": {
+      "cells": [],
+      "formula": "=DEGREES(PI()/2)",
+      "result": "90",
+      "why": "π/2 radians is a quarter turn, 90 degrees."
+    }
+  },
+  {
+    "name": "INT",
+    "args": [
+      { "name": "number", "about": "the number to round down" }
+    ],
+    "about": "Rounds a number down to the whole number below it.",
+    "example": {
+      "cells": [["Value"], ["-3.7"]],
+      "formula": "=INT(A2)",
+      "result": "-4",
+      "why": "It always rounds down, so -3.7 goes to -4."
+    },
+    "notes": "TRUNC just cuts off the decimals, giving -3 here."
+  },
+  {
+    "name": "EVEN",
+    "args": [
+      { "name": "number", "about": "the number to round" }
+    ],
+    "about": "Rounds a number away from zero to the next even whole number.",
+    "example": {
+      "cells": [["Guests"], ["7"]],
+      "formula": "=EVEN(A2)",
+      "result": "8",
+      "why": "Seats come in pairs, so 7 guests need 8 seats."
+    }
+  },
+  {
+    "name": "ODD",
+    "args": [
+      { "name": "number", "about": "the number to round" }
+    ],
+    "about": "Rounds a number away from zero to the next odd whole number.",
+    "example": {
+      "cells": [["Value"], ["2.1"]],
+      "formula": "=ODD(A2)",
+      "result": "3",
+      "why": "3 is the first odd whole number above 2.1."
+    }
+  },
+  {
+    "name": "CEILING",
+    "args": [
+      { "name": "number", "about": "the number to round" },
+      { "name": "significance", "about": "the multiple to round up to" }
+    ],
+    "about": "Rounds a number up to the next multiple of another.",
+    "example": {
+      "cells": [["Item", "Price"], ["Pen", "4.42"]],
+      "formula": "=CEILING(B2,0.05)",
+      "result": "4.45",
+      "why": "4.45 is the next multiple of 0.05 at or above 4.42."
+    },
+    "notes": "An older function: CEILING.MATH works the same for positive numbers and is clearer with negative ones."
+  },
+  {
+    "name": "CEILING.MATH",
+    "args": [
+      { "name": "number", "about": "the number to round" },
+      { "name": "significance", "about": "the multiple to round to (1 if left out)", "optional": true },
+      { "name": "mode", "about": "for negative numbers: 0 or left out rounds towards zero, anything else away from it", "optional": true }
+    ],
+    "about": "Rounds a number up to the next multiple.",
+    "example": {
+      "cells": [["People"], ["23"]],
+      "formula": "=CEILING.MATH(A2,6)",
+      "result": "24",
+      "why": "With tables of six, 23 people need room for 24."
+    }
+  },
+  {
+    "name": "CEILING.PRECISE",
+    "args": [
+      { "name": "number", "about": "the number to round" },
+      { "name": "significance", "about": "the multiple to round to (1 if left out)", "optional": true }
+    ],
+    "about": "Rounds a number up to the next multiple, whatever the signs.",
+    "example": {
+      "cells": [["Value"], ["-4.3"]],
+      "formula": "=CEILING.PRECISE(A2,2)",
+      "result": "-4",
+      "why": "Up means towards plus, so -4.3 goes to -4."
+    }
+  },
+  {
+    "name": "FLOOR",
+    "args": [
+      { "name": "number", "about": "the number to round" },
+      { "name": "significance", "about": "the multiple to round down to" }
+    ],
+    "about": "Rounds a number down to a multiple of another.",
+    "example": {
+      "cells": [["Item", "Price"], ["Pen", "4.48"]],
+      "formula": "=FLOOR(B2,0.05)",
+      "result": "4.45",
+      "why": "4.45 is the multiple of 0.05 at or just below 4.48."
+    },
+    "notes": "An older function: FLOOR.MATH works the same for positive numbers and is clearer with negative ones."
+  },
+  {
+    "name": "FLOOR.MATH",
+    "args": [
+      { "name": "number", "about": "the number to round" },
+      { "name": "significance", "about": "the multiple to round to (1 if left out)", "optional": true },
+      { "name": "mode", "about": "for negative numbers: 0 or left out rounds away from zero, anything else towards it", "optional": true }
+    ],
+    "about": "Rounds a number down to a multiple.",
+    "example": {
+      "cells": [["Eggs"], ["29"]],
+      "formula": "=FLOOR.MATH(A2,6)",
+      "result": "24",
+      "why": "29 eggs fill four boxes of six, which hold 24."
+    }
+  },
+  {
+    "name": "FLOOR.PRECISE",
+    "args": [
+      { "name": "number", "about": "the number to round" },
+      { "name": "significance", "about": "the multiple to round to (1 if left out)", "optional": true }
+    ],
+    "about": "Rounds a number down to a multiple, whatever the signs.",
+    "example": {
+      "cells": [["Value"], ["-4.3"]],
+      "formula": "=FLOOR.PRECISE(A2,2)",
+      "result": "-6",
+      "why": "Down means towards minus, so -4.3 goes to -6."
+    }
+  },
+  {
+    "name": "ISO.CEILING",
+    "args": [
+      { "name": "number", "about": "the number to round" },
+      { "name": "significance", "about": "the multiple to round to (1 if left out)", "optional": true }
+    ],
+    "about": "Rounds a number up to the next multiple, whatever the signs.",
+    "example": {
+      "cells": [["Value"], ["4.3"]],
+      "formula": "=ISO.CEILING(A2,2)",
+      "result": "6",
+      "why": "6 is the next multiple of 2 above 4.3."
+    },
+    "notes": "The same as CEILING.PRECISE."
+  },
+  {
+    "name": "MOD",
+    "args": [
+      { "name": "number", "about": "the number to divide" },
+      { "name": "divisor", "about": "the number to divide by" }
+    ],
+    "about": "Gives what is left over after dividing.",
+    "example": {
+      "cells": [["Sweets", "Children"], ["17", "5"]],
+      "formula": "=MOD(A2,B2)",
+      "result": "2",
+      "why": "Each child gets 3 sweets (15 in all) and 2 are left over."
+    },
+    "notes": "QUOTIENT gives the whole part of the division."
+  },
+  {
+    "name": "QUOTIENT",
+    "args": [
+      { "name": "numerator", "about": "the number to divide" },
+      { "name": "denominator", "about": "the number to divide by" }
+    ],
+    "about": "Divides and gives only the whole part of the answer.",
+    "example": {
+      "cells": [["Sweets", "Children"], ["17", "5"]],
+      "formula": "=QUOTIENT(A2,B2)",
+      "result": "3",
+      "why": "17 / 5 is 3.4, so each child gets 3 whole sweets."
+    },
+    "notes": "MOD gives what is left over."
+  },
+  {
+    "name": "MROUND",
+    "args": [
+      { "name": "number", "about": "the number to round" },
+      { "name": "multiple", "about": "the multiple to round to" }
+    ],
+    "about": "Rounds a number to the nearest multiple.",
+    "example": {
+      "cells": [["Minutes"], ["37"]],
+      "formula": "=MROUND(A2,15)",
+      "result": "30",
+      "why": "37 is nearer 30 than 45."
+    }
+  },
+  {
+    "name": "TRUNC",
+    "args": [
+      { "name": "number", "about": "the number to cut short" },
+      { "name": "num_digits", "about": "how many decimal places to keep (0 if left out)", "optional": true }
+    ],
+    "about": "Cuts off a number's decimals without rounding.",
+    "example": {
+      "cells": [["Value"], ["-3.7"]],
+      "formula": "=TRUNC(A2)",
+      "result": "-3",
+      "why": "The .7 is just dropped."
+    },
+    "notes": "INT rounds down instead, giving -4 here."
+  },
+  {
+    "name": "GCD",
+    "args": [
+      { "name": "number1", "about": "a whole number or a range" },
+      { "name": "number2", "about": "more whole numbers", "optional": true }
+    ],
+    "more": true,
+    "about": "Gives the largest whole number that divides all the numbers exactly.",
+    "example": {
+      "cells": [["Red", "Blue"], ["24", "36"]],
+      "formula": "=GCD(A2,B2)",
+      "result": "12",
+      "why": "12 goes into both 24 and 36, and nothing bigger does."
+    }
+  },
+  {
+    "name": "LCM",
+    "args": [
+      { "name": "number1", "about": "a whole number or a range" },
+      { "name": "number2", "about": "more whole numbers", "optional": true }
+    ],
+    "more": true,
+    "about": "Gives the smallest number that all the numbers divide into exactly.",
+    "example": {
+      "cells": [["Bus A (min)", "Bus B (min)"], ["4", "6"]],
+      "formula": "=LCM(A2,B2)",
+      "result": "12",
+      "why": "Buses every 4 and every 6 minutes leave together again after 12 minutes."
+    }
+  },
+  {
+    "name": "BASE",
+    "args": [
+      { "name": "number", "about": "a whole number of 0 or more" },
+      { "name": "radix", "about": "the base to write it in, from 2 to 36" },
+      { "name": "min_length", "about": "pad with zeros to at least this many characters", "optional": true }
+    ],
+    "about": "Writes a number in another base, as text.",
+    "example": {
+      "cells": [["Value", "Base"], ["10", "2"]],
+      "formula": "=BASE(A2,B2,8)",
+      "result": "00001010",
+      "why": "10 in binary is 1010, padded to eight characters."
+    },
+    "notes": "DECIMAL does the opposite."
+  },
+  {
+    "name": "DECIMAL",
+    "args": [
+      { "name": "text", "about": "a number written in another base" },
+      { "name": "radix", "about": "the base it is written in, from 2 to 36" }
+    ],
+    "about": "Turns a number written in another base into an ordinary number.",
+    "example": {
+      "cells": [["Hex", "Base"], ["FF", "16"]],
+      "formula": "=DECIMAL(A2,B2)",
+      "result": "255",
+      "why": "FF in base 16 is 15 × 16 + 15 = 255."
+    },
+    "notes": "BASE does the opposite."
+  },
+  {
+    "name": "ROMAN",
+    "args": [
+      { "name": "number", "about": "a whole number from 0 to 3999" },
+      { "name": "form", "about": "0 or left out for the classic form; 1 to 4 for shorter ones", "optional": true }
+    ],
+    "about": "Writes a number in Roman numerals.",
+    "example": {
+      "cells": [["Year"], ["2026"]],
+      "formula": "=ROMAN(A2)",
+      "result": "MMXXVI",
+      "why": "2026 = MM (2000) + XX (20) + VI (6)."
+    },
+    "notes": "ARABIC does the opposite."
+  },
+  {
+    "name": "ARABIC",
+    "args": [
+      { "name": "text", "about": "Roman numerals, like \"XIV\"" }
+    ],
+    "about": "Turns Roman numerals into an ordinary number.",
+    "example": {
+      "cells": [["Chapter"], ["XIV"]],
+      "formula": "=ARABIC(A2)",
+      "result": "14",
+      "why": "X (10) + IV (4) = 14."
+    },
+    "notes": "ROMAN does the opposite."
+  },
+  {
+    "name": "COMBIN",
+    "args": [
+      { "name": "number", "about": "how many things there are" },
+      { "name": "number_chosen", "about": "how many to pick" }
+    ],
+    "about": "Gives how many ways there are to pick some things from a group, when order doesn't matter.",
+    "example": {
+      "cells": [["Players", "Team size"], ["5", "2"]],
+      "formula": "=COMBIN(A2,B2)",
+      "result": "10",
+      "why": "From 5 players you can make 10 different pairs."
+    },
+    "notes": "COMBINA lets the same thing be picked more than once."
+  },
+  {
+    "name": "COMBINA",
+    "args": [
+      { "name": "number", "about": "how many things there are" },
+      { "name": "number_chosen", "about": "how many to pick" }
+    ],
+    "about": "Gives how many ways there are to pick some things from a group, when each may be picked again.",
+    "example": {
+      "cells": [["Flavours", "Scoops"], ["3", "2"]],
+      "formula": "=COMBINA(A2,B2)",
+      "result": "6",
+      "why": "Two scoops from 3 flavours, doubles allowed, make 6 different cones."
+    }
+  },
+  {
+    "name": "SUMSQ",
+    "args": [
+      { "name": "number1", "about": "a number, a cell or a range" },
+      { "name": "number2", "about": "more numbers, cells or ranges", "optional": true }
+    ],
+    "more": true,
+    "about": "Adds up the squares of numbers.",
+    "example": {
+      "cells": [["Side"], ["3"], ["4"]],
+      "formula": "=SUMSQ(A2:A3)",
+      "result": "25",
+      "why": "3² + 4² = 9 + 16 = 25."
+    }
+  },
+  {
+    "name": "MDETERM",
+    "args": [
+      { "name": "array", "about": "a square block of numbers" }
+    ],
+    "about": "Gives the determinant of a square block of numbers.",
+    "example": {
+      "cells": [["3", "8"], ["4", "6"]],
+      "formula": "=MDETERM(A1:B2)",
+      "result": "-14",
+      "why": "3 × 6 − 8 × 4 = 18 − 32 = -14."
+    }
+  },
+  {
+    "name": "MINVERSE",
+    "args": [
+      { "name": "array", "about": "a square block of numbers" }
+    ],
+    "about": "Gives the inverse of a square block of numbers.",
+    "example": {
+      "cells": [["4", "7"], ["2", "6"]],
+      "formula": "=MINVERSE(A1:B2)",
+      "result": "0.6",
+      "why": "The inverse is 0.6, -0.7, -0.2, 0.4, spilling into a 2 × 2 block; 0.6 is its first cell."
+    }
+  },
+  {
+    "name": "MUNIT",
+    "args": [
+      { "name": "dimension", "about": "how many rows and columns" }
+    ],
+    "about": "Gives a square block with 1 down the diagonal and 0 everywhere else.",
+    "example": {
+      "cells": [["Size"], ["3"]],
+      "formula": "=MUNIT(A2)",
+      "result": "1",
+      "why": "It spills a 3 × 3 block; the first cell is on the diagonal, so it is 1."
+    }
+  },
+  {
+    "name": "MULTINOMIAL",
+    "args": [
+      { "name": "number1", "about": "a whole number of 0 or more" },
+      { "name": "number2", "about": "more whole numbers", "optional": true }
+    ],
+    "more": true,
+    "about": "Gives how many ways there are to split things into groups of given sizes.",
+    "example": {
+      "cells": [["Group A", "Group B", "Group C"], ["2", "3", "4"]],
+      "formula": "=MULTINOMIAL(A2:C2)",
+      "result": "1260",
+      "why": "9! / (2! × 3! × 4!) = 362880 / 288 = 1260."
+    }
+  },
+  {
+    "name": "SERIESSUM",
+    "args": [
+      { "name": "x", "about": "the value to put into the series" },
+      { "name": "n", "about": "the power of x for the first term" },
+      { "name": "m", "about": "how much the power goes up each term" },
+      { "name": "coefficients", "about": "the numbers to multiply each term by" }
+    ],
+    "about": "Adds up a power series: a₁xⁿ + a₂xⁿ⁺ᵐ + a₃xⁿ⁺²ᵐ…",
+    "example": {
+      "cells": [["Coefficient"], ["1"], ["2"], ["3"]],
+      "formula": "=SERIESSUM(2,0,1,A2:A4)",
+      "result": "17",
+      "why": "1 × 2⁰ + 2 × 2¹ + 3 × 2² = 1 + 4 + 12 = 17."
+    }
+  },
+  {
+    "name": "SUMPRODUCT",
+    "args": [
+      { "name": "array1", "about": "the first range of numbers" },
+      { "name": "array2", "about": "more ranges the same size to multiply with it", "optional": true }
+    ],
+    "more": true,
+    "about": "Multiplies matching numbers in ranges and adds up the results.",
+    "example": {
+      "cells": [["Item", "Price", "Qty"], ["Tea", "3", "4"], ["Cake", "2.5", "2"], ["Jam", "4", "1"]],
+      "formula": "=SUMPRODUCT(B2:B4,C2:C4)",
+      "result": "21",
+      "why": "3 × 4 + 2.5 × 2 + 4 × 1 = 12 + 5 + 4 = 21, the whole bill."
+    }
+  },
+  {
+    "name": "PERCENTOF",
+    "args": [
+      { "name": "data_subset", "about": "the part, as numbers or a range" },
+      { "name": "data_all", "about": "the whole, as numbers or a range" }
+    ],
+    "about": "Gives what share of a total a part makes up.",
+    "example": {
+      "cells": [["Month", "Sales"], ["Jan", "120"], ["Feb", "80"], ["Mar", "200"]],
+      "formula": "=PERCENTOF(B2,B2:B4)",
+      "result": "0.3",
+      "why": "120 out of a total of 400 is 0.3, or 30%."
+    }
+  },
+  {
+    "name": "SUBTOTAL",
+    "args": [
+      { "name": "function_num", "about": "which sum to do: 9 adds up, 1 averages, 2 counts…; add 100 to skip hidden rows" },
+      { "name": "ref1", "about": "the range to work on" },
+      { "name": "ref2", "about": "more ranges", "optional": true }
+    ],
+    "more": true,
+    "about": "Works out a sum, average, count or the like over a range, leaving out other subtotals.",
+    "example": {
+      "cells": [["Month", "Sales"], ["Jan", "120"], ["Feb", "80"], ["Mar", "150"]],
+      "formula": "=SUBTOTAL(1,B2:B4)",
+      "result": "116.666666667",
+      "why": "Function 1 is the average: 350 / 3."
+    },
+    "notes": "Codes: 1 AVERAGE, 2 COUNT, 3 COUNTA, 4 MAX, 5 MIN, 6 PRODUCT, 7 STDEV, 8 STDEVP, 9 SUM, 10 VAR, 11 VARP."
+  }
+]

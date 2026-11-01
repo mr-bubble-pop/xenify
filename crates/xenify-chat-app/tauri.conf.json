@@ -1,0 +1,14 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "Xenify Chat",
+  "identifier": "app.xenify.chat",
+  "build": { "frontendDist": "ui" },
+  "app": {
+    "withGlobalTauri": true,
+    "windows": [
+      { "title": "Xenify Chat", "width": 1280, "height": 800, "minWidth": 760, "minHeight": 520 }
+    ],
+    "security": { "csp": "default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data: blob: xfile: http://xfile.localhost; media-src 'self' data: blob: mediastream: xfile: http://xfile.localhost; connect-src 'self' ipc: http://ipc.localhost xfile: http://xfile.localhost http: https: ws: wss:; worker-src 'self' blob:; frame-src 'self'" }
+  },
+  "bundle": { "active": false, "icon": ["icons/icon.png"] }
+}

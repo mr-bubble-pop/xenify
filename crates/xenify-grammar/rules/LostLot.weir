@@ -1,0 +1,21 @@
+# Real-word typo: "lost" for "lot"/"lots" (a lost of, lost of people).
+# Examples are ours.
+# why: A lot of (or lots of) means many; lost means no longer found. A slip of the keys turns one into the other.
+expr main [<(a lost of), lost>, <([have, has, had, got, get, with, (there are), (there were)] lost of [new, great, good, bad, other, different, small, big, interesting, exciting, fun]), lost>, <([have, has, had, got] lost of [complaints, ideas, questions, options, reasons, things, features, plans, friends]), lost>, <(lost of [people, time, money, fun, things, stuff, love, work, friends, ideas, questions, options, reasons, ways, room, space, data, information, experience, practice, effort, help, support, interest, changes, details, photos, pictures, food, water, noise, traffic, rain, snow, issues, problems, bugs, features, students, customers, users, visitors]), lost>]
+
+let message "Did you mean `lot`/`lots`?"
+let description "Catches `lost` where `lot` or `lots` was meant (a lost of people)."
+let kind "Typo"
+let becomes ["lot", "lots"]
+let strategy "MatchCase"
+
+test "There were a lost of people there." "There were a lot of people there."
+test "We had lost of fun." "We had lot of fun."
+
+allows "We lost a lot of time."
+allows "The lost property office is closed."
+allows "He is the most lost of all of us."
+
+test "We have lost of new features planned." "We have lot of new features planned."
+test "I have lost of complaints." "I have lot of complaints."
+allows "We have lost a lot of time."

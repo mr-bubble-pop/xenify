@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Name=Xenify Chat
+GenericName=Chat, email and calendar
+Comment=Chat, email and your calendar in one place, with spelling and grammar checked on this computer
+Exec=xenify-chat %u
+Icon=xenify-chat
+Terminal=false
+Categories=Network;Chat;Email;InstantMessaging;
+Keywords=chat;email;mail;calendar;messages;
+MimeType=x-scheme-handler/xenify;
+StartupWMClass=xenify-chat

@@ -1,0 +1,9 @@
+[package]
+name = "xenify-server-proto"
+description = "What the Xenify apps, admin site and server say to each other (JSON over HTTP); shared types only"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+serde.workspace = true

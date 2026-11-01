@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Xenify Chat</title>
+<link rel="stylesheet" href="style.css">
+<style>
+/* Starting: the app's mark at once, "Loading…" if it takes a moment, and the app only once it's ready. */
+#boot { position: fixed; inset: 0; z-index: 2147483647; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px;
+  background: var(--ground, var(--stone, #EFECE8)); color: var(--muted, #57534E); font: 500 14px system-ui, sans-serif; animation: boot-gone 0s 20s forwards; }
+#boot b { width: 56px; height: 56px; border-radius: 16px; background: var(--accent, #C2410C); color: #fff; font: 800 28px system-ui, sans-serif;
+  display: flex; align-items: center; justify-content: center; }
+#boot span, #boot i { opacity: 0; animation: boot-show .2s .4s forwards; }
+#boot i { width: 120px; height: 3px; border-radius: 2px; background: var(--line, #DDD8D2); overflow: hidden; }
+#boot i::after { content: ""; display: block; width: 40%; height: 100%; background: var(--accent, #C2410C); animation: boot-bar 1.2s ease-in-out infinite; }
+body:has(#app:empty) > :not(#boot) { visibility: hidden; animation: boot-show 0s 20s forwards; }
+body:not(:has(#app:empty)) #boot { display: none; }
+@keyframes boot-show { to { opacity: 1; visibility: visible; } }
+@keyframes boot-gone { to { visibility: hidden; } }
+@keyframes boot-bar { from { transform: translateX(-100%); } to { transform: translateX(250%); } }
+@media (prefers-reduced-motion: reduce) { #boot i::after { animation: none; width: 100%; opacity: .5; } }
+</style>
+</head>
+<body>
+<div id="boot" role="status" aria-label="Loading Chat"><b aria-hidden="true">C</b><span>Loading Chat…</span><i aria-hidden="true"></i></div>
+<div id="app"></div>
+<div id="boardhost" hidden></div>
+<script type="module" src="app.js"></script>
+</body>
+</html>

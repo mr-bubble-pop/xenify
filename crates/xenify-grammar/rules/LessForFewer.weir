@@ -1,0 +1,17 @@
+# "Less" with things you can count. From common-error lists; examples are ours.
+# why: In careful writing, fewer goes with things you can count (fewer mistakes, fewer people) and less with amounts (less time, less money).
+expr counted [people, mistakes, errors, items, cars, students, users, customers, employees, problems, issues, options, bugs, calories, members, visitors, words, questions, complaints, meetings, steps, clicks, tickets, cases, deaths, jobs, hours, days, staff]
+expr main <(less @counted), less>
+
+let message "Use `fewer` with things you can count."
+let description "Fixes `less mistakes` → `fewer mistakes`."
+let kind "Agreement"
+let becomes "fewer"
+let strategy "MatchCase"
+
+test "We should aim for less mistakes this time." "We should aim for fewer mistakes this time."
+test "Less people came than we expected." "Fewer people came than we expected."
+
+allows "We should spend less time on it."
+allows "It costs less money than before."
+allows "Fewer people came than we expected."

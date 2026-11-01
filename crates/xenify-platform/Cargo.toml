@@ -1,0 +1,39 @@
+[package]
+name = "xenify-platform"
+description = "Platform services (files, video encoding) behind traits, with native implementations (web later)"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[features]
+# Finding Xenify servers on the network (mDNS).
+discover = ["dep:mdns-sd"]
+# Trusting a server's own HTTPS certificate (servers without a domain name).
+trust = ["dep:rustls", "dep:rustls-native-certs", "dep:sha2", "dep:base64", "dep:webkit2gtk"]
+
+[dependencies]
+mdns-sd = { version = "0.21", optional = true }
+rustls = { version = "0.23", default-features = false, features = ["ring", "std", "tls12"], optional = true }
+sha2 = { workspace = true, optional = true }
+rustls-native-certs = { version = "0.8", optional = true }
+base64 = { workspace = true, optional = true }
+serde.workspace = true
+thiserror.workspace = true
+xenify-anim.workspace = true
+xenify-audio.workspace = true
+xenify-doc.workspace = true
+
+[target.'cfg(not(target_arch = "wasm32"))'.dependencies]
+# OS credential store: Secret Service (GNOME Keyring / KWallet) on Linux,
+# Keychain on macOS, Credential Manager on Windows.
+keyring = "4.2"
+# System clipboard (images, files).
+arboard = { version = "3.6", default-features = false, features = ["image-data"] }
+serde_json.workspace = true
+# On-demand downloads (animated emoji).
+ureq.workspace = true
+
+[target.'cfg(target_os = "linux")'.dependencies]
+# The desktop apps' web view (the same WebKitGTK Tauri uses): letting it
+# accept a server's own certificate once someone trusts it.
+webkit2gtk = { version = "2.0", features = ["v2_6"], optional = true }

@@ -1,0 +1,24 @@
+# "Your" for "you're" before words that only follow "you are". Common-error
+# lists; examples are ours.
+# why: You're means "you are" (you're invited). Your means "belonging to you" (your invitation). If you can say "you are", write you're.
+expr main [<(your [able, kidding, done, not, probably, definitely]), your>, <(your [going, invited, supposed, allowed, expected, required, welcome] [to, for]), your>]
+
+let message "Did you mean `you're` (you are)?"
+let description "Fixes `your invited` → `you're invited`."
+let kind "Grammar"
+let becomes "you're"
+let strategy "MatchCase"
+
+test "The mayor said that your invited to the opening." "The mayor said that you're invited to the opening."
+test "Your able to change it in the settings." "You're able to change it in the settings."
+test "I think your going to like it." "I think you're going to like it."
+test "Your not alone." "You're not alone."
+
+allows "You're invited to the opening."
+allows "Your invitation is attached."
+allows "Thanks for your help."
+allows "Your right to appeal is explained below."
+allows "Bring your invited guests to the front."
+allows "Your finished product will ship Monday."
+allows "It was your very own idea."
+allows "I can't wait for your going-away party."

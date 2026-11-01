@@ -1,0 +1,42 @@
+[package]
+name = "xenify-write-app"
+description = "Xenify Write with HTML screens: the word processor on the desktop (and later in the browser)"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[[bin]]
+name = "xenify-write-app"
+path = "src/main.rs"
+
+[dependencies]
+# Xenify Hub: a newer version it installed (Help › Restart to use it).
+xenify-hub-core = { path = "../xenify-hub-core" }
+# Finding Xenify servers on the network (Settings › Server).
+xenify-platform = { workspace = true, features = ["discover", "trust"] }
+# Desktop app shell around the system's web view (MIT OR Apache-2.0).
+tauri = { version = "2", features = [] }
+serde_json.workspace = true
+image.workspace = true
+base64.workspace = true
+xenify-write-host = { path = "../xenify-write-host" }
+xenify-wp-doc.workspace = true
+xenify-wp-io.workspace = true
+xenify-wp-layout = { path = "../xenify-wp-layout", default-features = false }
+xenify-wp-check.workspace = true
+xenify-wp-ai.workspace = true
+xenify-openrouter.workspace = true
+tauri-plugin-dialog = "2"
+# The command line (convert, check, profiles, merge); MIT OR Apache-2.0.
+clap = { version = "4", features = ["derive"] }
+
+[target.'cfg(windows)'.dependencies]
+# Printing the command line's output to the console it was started from.
+windows-sys = { version = "0.61", features = ["Win32_System_Console"] }
+
+[target.'cfg(target_os = "linux")'.dependencies]
+# Whether the desktop draws see-through windows (for rounded corners); the same GTK Tauri uses (MIT).
+gtk = "0.18"
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
