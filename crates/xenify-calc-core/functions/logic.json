@@ -1,0 +1,288 @@
+[
+  {
+    "name": "IF",
+    "args": [
+      { "name": "test", "about": "something that is TRUE or FALSE, like B2>100" },
+      { "name": "value_if_true", "about": "what to show when it's TRUE" },
+      { "name": "value_if_false", "about": "what to show when it's FALSE (FALSE if left out)", "optional": true }
+    ],
+    "about": "Shows one thing when a test is TRUE and another when it's FALSE.",
+    "example": {
+      "cells": [["Item", "Price"], ["Lamp", "120"]],
+      "formula": "=IF(B2>100,\"Dear\",\"Cheap\")",
+      "result": "Dear",
+      "why": "120 is more than 100, so the test is TRUE."
+    }
+  },
+  {
+    "name": "AND",
+    "args": [
+      { "name": "logical1", "about": "a test, like B2>0, or cells holding TRUE or FALSE" },
+      { "name": "logical2", "about": "more tests", "optional": true }
+    ],
+    "more": true,
+    "about": "Gives TRUE only when every test is TRUE.",
+    "example": {
+      "cells": [["Name", "Age", "Member"], ["Ann", "34", "TRUE"]],
+      "formula": "=AND(B2>=18,C2)",
+      "result": "TRUE",
+      "why": "Ann is over 18 and is a member, so both tests are TRUE."
+    },
+    "notes": "OR gives TRUE when any test is TRUE."
+  },
+  {
+    "name": "FALSE",
+    "args": [],
+    "about": "Gives the logical value FALSE.",
+    "example": {
+      "cells": [],
+      "formula": "=FALSE()",
+      "result": "FALSE",
+      "why": "It always gives FALSE; typing FALSE on its own does the same."
+    }
+  },
+  {
+    "name": "IFERROR",
+    "args": [
+      { "name": "value", "about": "the formula or cell to check" },
+      { "name": "value_if_error", "about": "what to show if it is an error" }
+    ],
+    "about": "Shows a value unless it's an error, in which case it shows something else.",
+    "example": {
+      "cells": [["Total", "Count"], ["300", "0"]],
+      "formula": "=IFERROR(A2/B2,\"No sales\")",
+      "result": "No sales",
+      "why": "300 divided by 0 is the error #DIV/0!, so the fallback text is shown."
+    },
+    "notes": "IFNA only catches #N/A and lets other errors through."
+  },
+  {
+    "name": "IFNA",
+    "args": [
+      { "name": "value", "about": "the formula or cell to check" },
+      { "name": "value_if_na", "about": "what to show if it is #N/A" }
+    ],
+    "about": "Shows a value unless it's #N/A, in which case it shows something else.",
+    "example": {
+      "cells": [["Fruit", "Price"], ["Apple", "1.2"], ["Pear", "0.9"]],
+      "formula": "=IFNA(VLOOKUP(\"Plum\",A2:B3,2,FALSE),\"Not found\")",
+      "result": "Not found",
+      "why": "There is no Plum, so VLOOKUP gives #N/A and the fallback text is shown."
+    },
+    "notes": "IFERROR catches every kind of error."
+  },
+  {
+    "name": "IFS",
+    "args": [
+      { "name": "test1", "about": "the first test" },
+      { "name": "value1", "about": "what to show when the first test is TRUE" },
+      { "name": "test2", "about": "the next test", "optional": true },
+      { "name": "value2", "about": "what to show when that test is TRUE", "optional": true }
+    ],
+    "more": true,
+    "about": "Goes through tests in order and shows the value for the first one that is TRUE.",
+    "example": {
+      "cells": [["Pupil", "Mark"], ["Ben", "72"]],
+      "formula": "=IFS(B2>=80,\"A\",B2>=70,\"B\",B2>=60,\"C\",TRUE,\"Fail\")",
+      "result": "B",
+      "why": "72 is not 80 or more, but it is 70 or more, so the second value is shown."
+    },
+    "notes": "Gives #N/A when no test is TRUE; put TRUE as the last test to catch everything else."
+  },
+  {
+    "name": "LAMBDA",
+    "args": [
+      { "name": "parameter1", "about": "a name for a value the function takes", "optional": true },
+      { "name": "calculation", "about": "the formula worked out with those names; always last" }
+    ],
+    "more": true,
+    "about": "Makes your own function out of a formula, with names for the values it takes.",
+    "example": {
+      "cells": [["Price", "VAT"], ["50", "0.2"]],
+      "formula": "=LAMBDA(price,rate,price*(1+rate))(A2,B2)",
+      "result": "60",
+      "why": "The function adds the rate to the price, and is called straight away with 50 and 0.2: 50 × 1.2 = 60."
+    },
+    "notes": "A LAMBDA that isn't called gives #CALC!. Give it to MAP, REDUCE, BYROW and the like, or call it with values in brackets after it."
+  },
+  {
+    "name": "LET",
+    "args": [
+      { "name": "name1", "about": "a name for a value" },
+      { "name": "value1", "about": "the value that name stands for" },
+      { "name": "calculation", "about": "the formula using the names; always last" }
+    ],
+    "more": true,
+    "about": "Gives names to values inside a formula, so each is worked out once and the formula reads better.",
+    "example": {
+      "cells": [["Item", "Price", "Qty"], ["Mug", "4", "3"]],
+      "formula": "=LET(total,B2*C2,total+total*0.2)",
+      "result": "14.4",
+      "why": "total is 4 × 3 = 12, then 12 + 12 × 0.2 = 14.4."
+    }
+  },
+  {
+    "name": "NOT",
+    "args": [
+      { "name": "logical", "about": "a test or value that is TRUE or FALSE" }
+    ],
+    "about": "Turns TRUE into FALSE and FALSE into TRUE.",
+    "example": {
+      "cells": [["Task", "Done"], ["Paint", "FALSE"]],
+      "formula": "=NOT(B2)",
+      "result": "TRUE",
+      "why": "The task isn't done, so NOT turns FALSE into TRUE."
+    }
+  },
+  {
+    "name": "OR",
+    "args": [
+      { "name": "logical1", "about": "a test, like B2>0, or cells holding TRUE or FALSE" },
+      { "name": "logical2", "about": "more tests", "optional": true }
+    ],
+    "more": true,
+    "about": "Gives TRUE when at least one test is TRUE.",
+    "example": {
+      "cells": [["Day", "Hours"], ["Sat", "4"]],
+      "formula": "=OR(A2=\"Sat\",A2=\"Sun\")",
+      "result": "TRUE",
+      "why": "The day is Sat, so the first test is TRUE."
+    },
+    "notes": "AND needs every test to be TRUE; XOR needs an odd number of them."
+  },
+  {
+    "name": "SWITCH",
+    "args": [
+      { "name": "expression", "about": "the value to compare" },
+      { "name": "value1", "about": "the first value to match" },
+      { "name": "result1", "about": "what to show when it matches" },
+      { "name": "default_or_value2", "about": "what to show when nothing matches, or the next value to match", "optional": true }
+    ],
+    "more": true,
+    "about": "Compares a value with a list and shows the result paired with the one it matches.",
+    "example": {
+      "cells": [["Size", "Code"], ["Medium", "M"]],
+      "formula": "=SWITCH(B2,\"S\",\"Small\",\"M\",\"Medium\",\"L\",\"Large\",\"Unknown\")",
+      "result": "Medium",
+      "why": "B2 holds M, which is paired with Medium."
+    },
+    "notes": "Gives #N/A when nothing matches and there is no default at the end."
+  },
+  {
+    "name": "TRUE",
+    "args": [],
+    "about": "Gives the logical value TRUE.",
+    "example": {
+      "cells": [],
+      "formula": "=TRUE()",
+      "result": "TRUE",
+      "why": "It always gives TRUE; typing TRUE on its own does the same."
+    }
+  },
+  {
+    "name": "XOR",
+    "args": [
+      { "name": "logical1", "about": "a test, or cells holding TRUE or FALSE" },
+      { "name": "logical2", "about": "more tests", "optional": true }
+    ],
+    "more": true,
+    "about": "Gives TRUE when an odd number of the tests are TRUE, so with two tests, when exactly one is.",
+    "example": {
+      "cells": [["Name", "Tea", "Coffee"], ["Sam", "TRUE", "TRUE"]],
+      "formula": "=XOR(B2,C2)",
+      "result": "FALSE",
+      "why": "Sam likes both, so two tests are TRUE, an even number."
+    }
+  },
+  {
+    "name": "BYCOL",
+    "args": [
+      { "name": "array", "about": "the cells to go through column by column" },
+      { "name": "lambda", "about": "a LAMBDA taking one column and giving one value" }
+    ],
+    "about": "Works out one value for each column of a range, using a LAMBDA.",
+    "example": {
+      "cells": [["Jan", "Feb", "Mar"], ["10", "20", "30"], ["5", "15", "25"]],
+      "formula": "=BYCOL(A2:C3,LAMBDA(col,SUM(col)))",
+      "result": "15",
+      "why": "The Jan column adds up to 10 + 5 = 15; 35 and 55 for Feb and Mar spill to the right."
+    }
+  },
+  {
+    "name": "BYROW",
+    "args": [
+      { "name": "array", "about": "the cells to go through row by row" },
+      { "name": "lambda", "about": "a LAMBDA taking one row and giving one value" }
+    ],
+    "about": "Works out one value for each row of a range, using a LAMBDA.",
+    "example": {
+      "cells": [["Name", "Q1", "Q2"], ["Ann", "40", "60"], ["Ben", "30", "20"]],
+      "formula": "=BYROW(B2:C3,LAMBDA(row,MAX(row)))",
+      "result": "60",
+      "why": "Ann's best quarter is 60; Ben's 30 spills into the cell below."
+    }
+  },
+  {
+    "name": "MAP",
+    "args": [
+      { "name": "array1", "about": "the cells to go through one by one" },
+      { "name": "array2", "about": "more ranges of the same size, taken alongside", "optional": true },
+      { "name": "lambda", "about": "a LAMBDA taking one value from each range; always last" }
+    ],
+    "more": true,
+    "about": "Works out a new value for every cell of a range, using a LAMBDA.",
+    "example": {
+      "cells": [["Price"], ["10"], ["25"], ["40"]],
+      "formula": "=MAP(A2:A4,LAMBDA(p,p*2))",
+      "result": "20",
+      "why": "10 doubled is 20; 50 and 80 spill into the cells below."
+    }
+  },
+  {
+    "name": "REDUCE",
+    "args": [
+      { "name": "initial_value", "about": "the starting value" },
+      { "name": "array", "about": "the cells to go through one by one" },
+      { "name": "lambda", "about": "a LAMBDA taking the value so far and the next cell, giving the new value so far" }
+    ],
+    "about": "Goes through a range carrying a running value, and gives the final value.",
+    "example": {
+      "cells": [["Sales"], ["120"], ["80"], ["150"]],
+      "formula": "=REDUCE(0,A2:A4,LAMBDA(total,x,IF(x>100,total+x,total)))",
+      "result": "270",
+      "why": "Only sales over 100 are added: 120 + 150 = 270."
+    },
+    "notes": "SCAN gives every value along the way instead of just the last."
+  },
+  {
+    "name": "SCAN",
+    "args": [
+      { "name": "initial_value", "about": "the starting value" },
+      { "name": "array", "about": "the cells to go through one by one" },
+      { "name": "lambda", "about": "a LAMBDA taking the value so far and the next cell, giving the new value so far" }
+    ],
+    "about": "Goes through a range carrying a running value, and gives the value after each cell, like a running total.",
+    "example": {
+      "cells": [["Sales"], ["120"], ["80"], ["150"]],
+      "formula": "=SCAN(0,A2:A4,LAMBDA(total,x,total+x))",
+      "result": "120",
+      "why": "The running total after the first month is 120; 200 and 350 spill into the cells below."
+    },
+    "notes": "REDUCE gives only the final value."
+  },
+  {
+    "name": "MAKEARRAY",
+    "args": [
+      { "name": "rows", "about": "how many rows" },
+      { "name": "columns", "about": "how many columns" },
+      { "name": "lambda", "about": "a LAMBDA taking the row and column number, giving the value for that cell" }
+    ],
+    "about": "Builds a block of values of a given size, working out each one with a LAMBDA.",
+    "example": {
+      "cells": [],
+      "formula": "=MAKEARRAY(3,3,LAMBDA(r,c,r*c))",
+      "result": "1",
+      "why": "Row 1 times column 1 is 1; the rest of a 3 by 3 times table spills right and down."
+    }
+  }
+]

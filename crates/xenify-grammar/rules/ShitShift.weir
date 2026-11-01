@@ -1,0 +1,18 @@
+# Real-word typo: a profanity for "shift" (the f is missed). Pattern from
+# published lists of embarrassing workplace typos; examples are ours.
+# why: Dropping the f from shift turns it into a swear word, and a spell-checker won't catch it.
+expr main [<([night, day, morning, evening, extra, long, short, closing, opening, afternoon, double, graveyard, weekend, overnight, late, early, split, next, first, second, third] shit), shit>, <(shit [schedule, schedules, change, changes, swap, swaps, supervisor, supervisors, lead, leads, manager, pattern, patterns, worker, workers, differential, rota, rotas, roster, rosters, starts, ends, handover, allowance, premium, cover, pay, length]), shit>]
+
+let message "Did you mean `shift`?"
+let description "Catches the embarrassing typo `shit` where `shift` was meant (night shit, shit schedule)."
+let kind "Typo"
+let becomes "shift"
+let strategy "MatchCase"
+
+test "The crew worked an extra shit to finish." "The crew worked an extra shift to finish."
+test "I'm on the night shit this week." "I'm on the night shift this week."
+test "Can anyone cover my Saturday double shit?" "Can anyone cover my Saturday double shift?"
+test "The new shit schedule is attached." "The new shift schedule is attached."
+test "Please speak to your shit supervisor." "Please speak to your shift supervisor."
+
+allows "I'm on the night shift this week."

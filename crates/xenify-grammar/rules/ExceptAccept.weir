@@ -1,0 +1,17 @@
+# Commonly confused words: "accept" where "except" (apart from) is meant.
+# why: Except means apart from (everyone except Tom). Accept means take or agree to.
+expr main [<([everyone, everybody, everything, all, anyone, anybody, nobody, nothing, anything, someone, each, every, none, (all of us), (all of them), day, days, week, weeks] accept [for, the, me, you, him, her, them, us, Tom, when, that, this, those, these, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday, weekends, holidays]), accept>, <(accept for), accept>]
+
+let message "Did you mean `except` (apart from)? `Accept` means to take or agree to."
+let description "Fixes `accept` where `except` is meant: `everyone accept Tom` → `everyone except Tom`."
+let kind "Malapropism"
+let becomes "except"
+let strategy "MatchCase"
+
+test "Everyone accept Tom came." "Everyone except Tom came."
+test "We are open every day accept Sunday." "We are open every day except Sunday."
+test "It was fine accept for the noise." "It was fine except for the noise."
+
+allows "Please accept my apology."
+allows "I accept the terms."
+allows "Everyone must accept the rules."

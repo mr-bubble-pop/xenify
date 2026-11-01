@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!-- Merged into the Mac app's Info.plist (tauri.macos.conf.json): links to
+     server documents (xenify-write://open?server=…&node=…, from a Xenify
+     server's Files page) open in Write. -->
+<plist version="1.0">
+<dict>
+  <key>CFBundleURLTypes</key>
+  <array>
+    <dict>
+      <key>CFBundleURLName</key>
+      <string>Xenify Write server document</string>
+      <key>CFBundleURLSchemes</key>
+      <array>
+        <string>xenify-write</string>
+      </array>
+    </dict>
+  </array>
+</dict>
+</plist>

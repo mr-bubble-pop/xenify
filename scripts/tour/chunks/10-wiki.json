@@ -1,0 +1,9 @@
+{
+  "section": "Wiki",
+  "shots": [
+    {"card": {"tag": "Wiki", "title": "Everything in one spot.", "sub": "Documents, spreadsheets, plans and drawings, side by side."}, "seconds": 3},
+    {"still": "site/media/wiki-handbook.webp", "seconds": 4.5, "caption": "A shared space for each team, project or handbook"},
+    {"still": "site/media/wiki-read.webp", "seconds": 4, "caption": "Open anything in the browser, and search every word"},
+    {"clip": "site/media/write-together.mp4", "from": 0.5, "to": 8, "caption": "Everyone can edit together, at the same time"}
+  ]
+}

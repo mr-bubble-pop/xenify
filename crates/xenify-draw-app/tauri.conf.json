@@ -1,0 +1,87 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "Xenify Draw",
+  "mainBinaryName": "xenify-draw",
+  "identifier": "app.xenify.draw",
+  "build": {
+    "frontendDist": "ui"
+  },
+  "app": {
+    "withGlobalTauri": true,
+    "windows": [],
+    "security": {
+      "csp": "default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob: https://*.giphy.com; media-src 'self' data: blob:; connect-src 'self' ipc: http://ipc.localhost https://api.giphy.com https://*.giphy.com https://openrouter.ai http: https: ws: wss:; worker-src 'self' blob:"
+    }
+  },
+  "bundle": {
+    "active": true,
+    "publisher": "Xenify",
+    "copyright": "MIT licence",
+    "license": "MIT",
+    "licenseFile": "../../LICENSE",
+    "category": "GraphicsAndDesign",
+    "shortDescription": "Drawing and animation with private spelling and grammar checks",
+    "longDescription": "Draw posters, pictures and animations. Text on the canvas is checked for spelling and grammar on this computer, as in Xenify Write.",
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico",
+      "icons/icon.png"
+    ],
+    "resources": {
+      "../../target/spotter/config.json": "spotter/config.json",
+      "../../target/spotter/tokenizer.json": "spotter/tokenizer.json",
+      "../../target/spotter/model.f16.safetensors": "spotter/model.f16.safetensors",
+      "../../target/spotter/README.md": "spotter/README.md",
+      "../../THIRD_PARTY_LICENSES.txt": "THIRD_PARTY_LICENSES.txt"
+    },
+    "fileAssociations": [
+      {
+        "ext": [
+          "xdraw",
+          "xenify"
+        ],
+        "name": "Xenify Draw canvas",
+        "description": "Xenify Draw canvas",
+        "role": "Editor",
+        "mimeType": "application/x-xenify-draw"
+      }
+    ],
+    "linux": {
+      "deb": {
+        "depends": [
+          "libwebkit2gtk-4.1-0",
+          "libgtk-3-0",
+          "libsoup-3.0-0"
+        ],
+        "section": "graphics",
+        "desktopTemplate": "packaging/linux.desktop.hbs"
+      },
+      "rpm": {
+        "depends": [
+          "webkit2gtk4.1",
+          "gtk3",
+          "libsoup3"
+        ],
+        "desktopTemplate": "packaging/linux.desktop.hbs"
+      }
+    },
+    "windows": {
+      "webviewInstallMode": {
+        "type": "downloadBootstrapper",
+        "silent": true
+      },
+      "nsis": {
+        "installMode": "currentUser",
+        "displayLanguageSelector": false
+      }
+    },
+    "macOS": {
+      "minimumSystemVersion": "11.0",
+      "signingIdentity": "-",
+      "dmg": {}
+    }
+  }
+}

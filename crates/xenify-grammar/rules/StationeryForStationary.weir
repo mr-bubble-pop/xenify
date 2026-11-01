@@ -1,0 +1,24 @@
+# "Stationary" (not moving) where "stationery" (paper, pens, envelopes) is
+# meant. Common confused-word lists; examples are ours.
+# why: Stationery (with an e, as in envelope) is paper, pens and envelopes. Stationary (with an a) means not moving.
+expr kind [office, school, wedding, writing, personalised, personalized, printed, headed, letterhead, business, crafts, art]
+expr goods [shop, shops, store, stores, supplies, cupboard, cupboards, drawer, drawers, aisle, section, order, orders, budget, catalogue, catalog, items, set, sets]
+expr buy [bought, buy, buys, buying, ordered, order, ordering, some, other, (pens and), (paper and), (envelopes and)]
+expr after [., (,), for, from, at, and, or, in, on, are, is, was, were]
+expr main [<(@kind stationary), stationary>, <(stationary @goods), stationary>, <(@buy stationary @after), stationary>]
+
+let message "Did you mean `stationery` (paper, pens, envelopes)? `Stationary` means not moving."
+let description "Fixes `office stationary` → `office stationery`."
+let kind "Malapropism"
+let becomes "stationery"
+let strategy "MatchCase"
+
+test "I bought some stationary for the office." "I bought some stationery for the office."
+test "Pens, paper and other stationary are in the cupboard." "Pens, paper and other stationery are in the cupboard."
+test "We ordered new office stationary." "We ordered new office stationery."
+test "There's a stationary shop on the corner." "There's a stationery shop on the corner."
+
+allows "The car was stationary at the lights."
+allows "I bought some stationary bikes for the gym."
+allows "The train remained stationary for an hour."
+allows "We ordered new office stationery."

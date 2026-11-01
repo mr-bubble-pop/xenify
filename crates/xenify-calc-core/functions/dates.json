@@ -1,0 +1,663 @@
+[
+  {
+    "name": "DATE",
+    "args": [
+      {
+        "name": "year",
+        "about": "the year, like 2026"
+      },
+      {
+        "name": "month",
+        "about": "the month number, 1 to 12 (more rolls into the next year)"
+      },
+      {
+        "name": "day",
+        "about": "the day of the month (more rolls into the next month)"
+      }
+    ],
+    "about": "Makes a date from a year, a month and a day.",
+    "example": {
+      "cells": [
+        [
+          "Year",
+          "Month",
+          "Day"
+        ],
+        [
+          "2026",
+          "3",
+          "15"
+        ]
+      ],
+      "formula": "=DATE(A2,B2,C2)",
+      "result": "3/15/2026",
+      "why": "Year 2026, month 3, day 15 make 15 March 2026, shown as a date."
+    },
+    "notes": "Months and days past the end roll over: DATE(2026,14,1) is 1 February 2027."
+  },
+  {
+    "name": "DATEDIF",
+    "args": [
+      {
+        "name": "start_date",
+        "about": "the earlier date"
+      },
+      {
+        "name": "end_date",
+        "about": "the later date"
+      },
+      {
+        "name": "unit",
+        "about": "\"Y\" whole years, \"M\" whole months, \"D\" days, or \"YM\", \"YD\", \"MD\" for what's left over"
+      }
+    ],
+    "about": "How many whole years, months or days lie between two dates.",
+    "example": {
+      "cells": [
+        [
+          "Born",
+          "Today"
+        ],
+        [
+          "1990-06-20",
+          "2026-03-01"
+        ]
+      ],
+      "formula": "=DATEDIF(A2,B2,\"Y\")",
+      "result": "35",
+      "why": "From 20 June 1990 to 1 March 2026 is 35 whole years; the 36th birthday hasn't come yet."
+    },
+    "notes": "The start date must not be after the end date, or it gives #NUM!."
+  },
+  {
+    "name": "DATEVALUE",
+    "args": [
+      {
+        "name": "date_text",
+        "about": "a date written as text, like \"2026-03-15\""
+      }
+    ],
+    "about": "Turns a date written as text into a date number.",
+    "example": {
+      "cells": [],
+      "formula": "=DATEVALUE(\"2026-03-15\")",
+      "result": "46096",
+      "why": "Dates are counted in days from 1 January 1900; 15 March 2026 is day 46096. Give the cell a date format to see it as a date."
+    }
+  },
+  {
+    "name": "DAY",
+    "args": [
+      {
+        "name": "date",
+        "about": "a date"
+      }
+    ],
+    "about": "The day of the month of a date, 1 to 31.",
+    "example": {
+      "cells": [
+        [
+          "Invoice date"
+        ],
+        [
+          "2026-03-15"
+        ]
+      ],
+      "formula": "=DAY(A2)",
+      "result": "15",
+      "why": "15 March 2026 is the 15th day of the month."
+    }
+  },
+  {
+    "name": "EDATE",
+    "args": [
+      {
+        "name": "start_date",
+        "about": "the date to start from"
+      },
+      {
+        "name": "months",
+        "about": "how many months later (negative for earlier)"
+      }
+    ],
+    "about": "The same day a number of months before or after a date.",
+    "example": {
+      "cells": [
+        [
+          "Contract starts",
+          "Months"
+        ],
+        [
+          "2026-01-31",
+          "1"
+        ]
+      ],
+      "formula": "=EDATE(A2,B2)",
+      "result": "46081",
+      "why": "One month after 31 January is 28 February 2026, as February has no 31st; it shows as the day number 46081 until the cell gets a date format."
+    }
+  },
+  {
+    "name": "EOMONTH",
+    "args": [
+      {
+        "name": "start_date",
+        "about": "the date to start from"
+      },
+      {
+        "name": "months",
+        "about": "how many months later (0 for the same month, negative for earlier)"
+      }
+    ],
+    "about": "The last day of the month, a number of months before or after a date.",
+    "example": {
+      "cells": [
+        [
+          "Order date"
+        ],
+        [
+          "2026-02-10"
+        ]
+      ],
+      "formula": "=EOMONTH(A2,0)",
+      "result": "46081",
+      "why": "The last day of February 2026 is the 28th, day number 46081; give the cell a date format to see it as a date."
+    }
+  },
+  {
+    "name": "MONTH",
+    "args": [
+      {
+        "name": "date",
+        "about": "a date"
+      }
+    ],
+    "about": "The month of a date, 1 to 12.",
+    "example": {
+      "cells": [
+        [
+          "Invoice date"
+        ],
+        [
+          "2026-03-15"
+        ]
+      ],
+      "formula": "=MONTH(A2)",
+      "result": "3",
+      "why": "March is the third month."
+    }
+  },
+  {
+    "name": "TIME",
+    "args": [
+      {
+        "name": "hour",
+        "about": "the hour, 0 to 23"
+      },
+      {
+        "name": "minute",
+        "about": "the minutes, 0 to 59"
+      },
+      {
+        "name": "second",
+        "about": "the seconds, 0 to 59"
+      }
+    ],
+    "about": "Makes a time of day from hours, minutes and seconds.",
+    "example": {
+      "cells": [
+        [
+          "Hour",
+          "Minute",
+          "Second"
+        ],
+        [
+          "18",
+          "0",
+          "0"
+        ]
+      ],
+      "formula": "=TIME(A2,B2,C2)",
+      "result": "0.75",
+      "why": "A time is a part of a day: 6 in the evening is three quarters of the way through it."
+    }
+  },
+  {
+    "name": "TIMEVALUE",
+    "args": [
+      {
+        "name": "time_text",
+        "about": "a time written as text, like \"14:30\""
+      }
+    ],
+    "about": "Turns a time written as text into a part of a day.",
+    "example": {
+      "cells": [],
+      "formula": "=TIMEVALUE(\"12:00\")",
+      "result": "0.5",
+      "why": "Midday is half of a day."
+    }
+  },
+  {
+    "name": "HOUR",
+    "args": [
+      {
+        "name": "time",
+        "about": "a time or a date with a time"
+      }
+    ],
+    "about": "The hour of a time, 0 to 23.",
+    "example": {
+      "cells": [],
+      "formula": "=HOUR(\"14:35:20\")",
+      "result": "14",
+      "why": "14:35 is in the 14th hour, 2 in the afternoon."
+    }
+  },
+  {
+    "name": "MINUTE",
+    "args": [
+      {
+        "name": "time",
+        "about": "a time or a date with a time"
+      }
+    ],
+    "about": "The minutes of a time, 0 to 59.",
+    "example": {
+      "cells": [],
+      "formula": "=MINUTE(\"14:35:20\")",
+      "result": "35",
+      "why": "14:35:20 is 35 minutes past 2."
+    }
+  },
+  {
+    "name": "SECOND",
+    "args": [
+      {
+        "name": "time",
+        "about": "a time or a date with a time"
+      }
+    ],
+    "about": "The seconds of a time, 0 to 59.",
+    "example": {
+      "cells": [],
+      "formula": "=SECOND(\"14:35:20\")",
+      "result": "20",
+      "why": "14:35:20 has 20 seconds."
+    }
+  },
+  {
+    "name": "NOW",
+    "args": [],
+    "about": "The date and time right now.",
+    "example": {
+      "cells": [],
+      "formula": "=NOW()",
+      "result": null,
+      "why": "It changes every time the sheet works itself out again."
+    },
+    "notes": "TODAY gives the date without the time."
+  },
+  {
+    "name": "TODAY",
+    "args": [],
+    "about": "Today's date.",
+    "example": {
+      "cells": [],
+      "formula": "=TODAY()",
+      "result": null,
+      "why": "It changes every day."
+    },
+    "notes": "NOW gives the time as well."
+  },
+  {
+    "name": "YEAR",
+    "args": [
+      {
+        "name": "date",
+        "about": "a date"
+      }
+    ],
+    "about": "The year of a date.",
+    "example": {
+      "cells": [
+        [
+          "Invoice date"
+        ],
+        [
+          "2026-03-15"
+        ]
+      ],
+      "formula": "=YEAR(A2)",
+      "result": "2026",
+      "why": "15 March 2026 is in 2026."
+    }
+  },
+  {
+    "name": "NETWORKDAYS",
+    "args": [
+      {
+        "name": "start_date",
+        "about": "the first day"
+      },
+      {
+        "name": "end_date",
+        "about": "the last day"
+      },
+      {
+        "name": "holidays",
+        "about": "dates that aren't working days",
+        "optional": true
+      }
+    ],
+    "about": "How many working days (Monday to Friday) lie between two dates, counting both ends.",
+    "example": {
+      "cells": [
+        [
+          "Start",
+          "End",
+          "Holiday"
+        ],
+        [
+          "2026-03-02",
+          "2026-03-13",
+          "2026-03-09"
+        ]
+      ],
+      "formula": "=NETWORKDAYS(A2,B2,C2)",
+      "result": "9",
+      "why": "Two weeks from Monday 2 March to Friday 13 March have 10 weekdays; the holiday on 9 March leaves 9."
+    },
+    "notes": "NETWORKDAYS.INTL lets you say which days are the weekend."
+  },
+  {
+    "name": "NETWORKDAYS.INTL",
+    "args": [
+      {
+        "name": "start_date",
+        "about": "the first day"
+      },
+      {
+        "name": "end_date",
+        "about": "the last day"
+      },
+      {
+        "name": "weekend",
+        "about": "which days are off: 1 Sat–Sun, 2 Sun–Mon… 11 Sunday only, or text like \"0000011\"",
+        "optional": true
+      },
+      {
+        "name": "holidays",
+        "about": "dates that aren't working days",
+        "optional": true
+      }
+    ],
+    "about": "How many working days lie between two dates, with the weekend days you choose.",
+    "example": {
+      "cells": [
+        [
+          "Start",
+          "End"
+        ],
+        [
+          "2026-03-02",
+          "2026-03-15"
+        ]
+      ],
+      "formula": "=NETWORKDAYS.INTL(A2,B2,11)",
+      "result": "12",
+      "why": "Weekend 11 means only Sunday is off: the 14 days from 2 to 15 March hold two Sundays, leaving 12."
+    }
+  },
+  {
+    "name": "DAYS",
+    "args": [
+      {
+        "name": "end_date",
+        "about": "the later date"
+      },
+      {
+        "name": "start_date",
+        "about": "the earlier date"
+      }
+    ],
+    "about": "How many days lie between two dates.",
+    "example": {
+      "cells": [
+        [
+          "Ordered",
+          "Delivered"
+        ],
+        [
+          "2026-03-02",
+          "2026-03-20"
+        ]
+      ],
+      "formula": "=DAYS(B2,A2)",
+      "result": "18",
+      "why": "From 2 March to 20 March is 18 days. The later date comes first."
+    }
+  },
+  {
+    "name": "DAYS360",
+    "args": [
+      {
+        "name": "start_date",
+        "about": "the earlier date"
+      },
+      {
+        "name": "end_date",
+        "about": "the later date"
+      },
+      {
+        "name": "method",
+        "about": "FALSE for the US way (the usual), TRUE for the European way",
+        "optional": true
+      }
+    ],
+    "about": "How many days lie between two dates, counting every month as 30 days, as some accounts do.",
+    "example": {
+      "cells": [
+        [
+          "From",
+          "To"
+        ],
+        [
+          "2026-01-31",
+          "2026-03-31"
+        ]
+      ],
+      "formula": "=DAYS360(A2,B2)",
+      "result": "60",
+      "why": "Two months of 30 days each make 60, though the calendar has 59 days between them."
+    }
+  },
+  {
+    "name": "WEEKDAY",
+    "args": [
+      {
+        "name": "date",
+        "about": "a date"
+      },
+      {
+        "name": "return_type",
+        "about": "1 for Sunday=1…Saturday=7 (the usual), 2 for Monday=1…Sunday=7, 3 for Monday=0…Sunday=6",
+        "optional": true
+      }
+    ],
+    "about": "Which day of the week a date falls on, as a number.",
+    "example": {
+      "cells": [
+        [
+          "Meeting"
+        ],
+        [
+          "2026-03-18"
+        ]
+      ],
+      "formula": "=WEEKDAY(A2,2)",
+      "result": "3",
+      "why": "18 March 2026 is a Wednesday, the third day when Monday is 1."
+    }
+  },
+  {
+    "name": "WEEKNUM",
+    "args": [
+      {
+        "name": "date",
+        "about": "a date"
+      },
+      {
+        "name": "return_type",
+        "about": "1 if weeks start on Sunday (the usual), 2 if they start on Monday",
+        "optional": true
+      }
+    ],
+    "about": "Which week of the year a date is in, counting the week with 1 January as week 1.",
+    "example": {
+      "cells": [
+        [
+          "Meeting"
+        ],
+        [
+          "2026-03-18"
+        ]
+      ],
+      "formula": "=WEEKNUM(A2)",
+      "result": "12",
+      "why": "Week 1 is 1–3 January (weeks start on Sunday), and Sunday 15 March starts week 12."
+    },
+    "notes": "ISOWEEKNUM gives the week numbers used in Europe, where week 1 is the first with a Thursday."
+  },
+  {
+    "name": "WORKDAY",
+    "args": [
+      {
+        "name": "start_date",
+        "about": "the date to start from"
+      },
+      {
+        "name": "days",
+        "about": "how many working days later (negative for earlier)"
+      },
+      {
+        "name": "holidays",
+        "about": "dates that aren't working days",
+        "optional": true
+      }
+    ],
+    "about": "The date a number of working days (Monday to Friday) after a date.",
+    "example": {
+      "cells": [
+        [
+          "Ordered",
+          "Working days"
+        ],
+        [
+          "2026-03-06",
+          "5"
+        ]
+      ],
+      "formula": "=WORKDAY(A2,B2)",
+      "result": "46094",
+      "why": "Five working days after Friday 6 March skip the weekend and land on Friday 13 March, day number 46094."
+    },
+    "notes": "WORKDAY.INTL lets you say which days are the weekend."
+  },
+  {
+    "name": "WORKDAY.INTL",
+    "args": [
+      {
+        "name": "start_date",
+        "about": "the date to start from"
+      },
+      {
+        "name": "days",
+        "about": "how many working days later (negative for earlier)"
+      },
+      {
+        "name": "weekend",
+        "about": "which days are off: 1 Sat–Sun, 7 Fri–Sat, 11 Sunday only… or text like \"0000011\"",
+        "optional": true
+      },
+      {
+        "name": "holidays",
+        "about": "dates that aren't working days",
+        "optional": true
+      }
+    ],
+    "about": "The date a number of working days after a date, with the weekend days you choose.",
+    "example": {
+      "cells": [
+        [
+          "Ordered",
+          "Working days"
+        ],
+        [
+          "2026-03-06",
+          "5"
+        ]
+      ],
+      "formula": "=WORKDAY.INTL(A2,B2,11)",
+      "result": "46093",
+      "why": "With only Sunday off, five working days after Friday 6 March are Sat 7, Mon 9, Tue 10, Wed 11 and Thu 12 March (day number 46093)."
+    }
+  },
+  {
+    "name": "YEARFRAC",
+    "args": [
+      {
+        "name": "start_date",
+        "about": "the first date"
+      },
+      {
+        "name": "end_date",
+        "about": "the second date"
+      },
+      {
+        "name": "basis",
+        "about": "how days are counted: 0 US 30/360 (the usual), 1 actual days, 2 actual/360, 3 actual/365, 4 European 30/360",
+        "optional": true
+      }
+    ],
+    "about": "What part of a year lies between two dates.",
+    "example": {
+      "cells": [
+        [
+          "From",
+          "To"
+        ],
+        [
+          "2026-01-01",
+          "2026-07-01"
+        ]
+      ],
+      "formula": "=YEARFRAC(A2,B2)",
+      "result": "0.5",
+      "why": "Six months of 30 days are 180 of the 360 days in a year this way of counting."
+    }
+  },
+  {
+    "name": "ISOWEEKNUM",
+    "args": [
+      {
+        "name": "date",
+        "about": "a date"
+      }
+    ],
+    "about": "The ISO week number of a date, the one used on calendars in Europe.",
+    "example": {
+      "cells": [
+        [
+          "Meeting"
+        ],
+        [
+          "2026-03-18"
+        ]
+      ],
+      "formula": "=ISOWEEKNUM(A2)",
+      "result": "12",
+      "why": "ISO weeks start on Monday and week 1 is the one with the year's first Thursday (1 January 2026 is a Thursday), so 18 March is in week 12."
+    }
+  }
+]

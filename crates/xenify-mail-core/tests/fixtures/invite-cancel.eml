@@ -1,0 +1,64 @@
+From: Pat Example <pat@example.com>
+To: Sam Lee <sam@example.org>
+Subject: Cancelled: Q4 planning
+Date: Thu, 15 Oct 2026 10:15:00 +0100
+Message-ID: <cancel-q4@example.com>
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="MIX"
+
+--MIX
+Content-Type: multipart/alternative; boundary="ALT"
+
+--ALT
+Content-Type: text/plain; charset=utf-8
+
+Cancelled: Q4 planning
+
+--ALT
+Content-Type: text/calendar; charset=utf-8; method=CANCEL
+
+BEGIN:VCALENDAR
+METHOD:CANCEL
+PRODID:Microsoft Exchange Server 2010
+VERSION:2.0
+BEGIN:VEVENT
+ORGANIZER;CN=Pat Example:mailto:pat@example.com
+ATTENDEE;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=TRUE;CN=Sam Lee:mailto:sam@example.org
+ATTENDEE;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Ana Ruiz:mailto:ana@example.org
+UID:q4-planning-1
+SUMMARY:Q4 planning
+DTSTART;TZID=GMT Standard Time:20261022T140000
+DTEND;TZID=GMT Standard Time:20261022T150000
+DTSTAMP:20261015T091500Z
+SEQUENCE:1
+STATUS:CANCELLED
+LOCATION:Room 4
+END:VEVENT
+END:VCALENDAR
+
+--ALT--
+
+--MIX
+Content-Type: application/ics; name="invite.ics"
+Content-Disposition: attachment; filename="invite.ics"
+
+BEGIN:VCALENDAR
+METHOD:CANCEL
+PRODID:Microsoft Exchange Server 2010
+VERSION:2.0
+BEGIN:VEVENT
+ORGANIZER;CN=Pat Example:mailto:pat@example.com
+ATTENDEE;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=TRUE;CN=Sam Lee:mailto:sam@example.org
+ATTENDEE;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Ana Ruiz:mailto:ana@example.org
+UID:q4-planning-1
+SUMMARY:Q4 planning
+DTSTART;TZID=GMT Standard Time:20261022T140000
+DTEND;TZID=GMT Standard Time:20261022T150000
+DTSTAMP:20261015T091500Z
+SEQUENCE:1
+STATUS:CANCELLED
+LOCATION:Room 4
+END:VEVENT
+END:VCALENDAR
+
+--MIX--

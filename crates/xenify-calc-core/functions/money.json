@@ -1,0 +1,2455 @@
+[
+  {
+    "name": "ACCRINT",
+    "args": [
+      {
+        "name": "issue",
+        "about": "the day the bond was issued"
+      },
+      {
+        "name": "first_interest",
+        "about": "the day of its first interest payment"
+      },
+      {
+        "name": "settlement",
+        "about": "the day you buy it"
+      },
+      {
+        "name": "rate",
+        "about": "the yearly interest rate it pays, like 0.05 for 5%"
+      },
+      {
+        "name": "par",
+        "about": "its face value (1000 if left out)"
+      },
+      {
+        "name": "frequency",
+        "about": "interest payments a year: 1, 2 or 4"
+      },
+      {
+        "name": "basis",
+        "about": "how days are counted: 0 US 30/360 (the usual), 1 actual, 2 actual/360, 3 actual/365, 4 European 30/360",
+        "optional": true
+      },
+      {
+        "name": "calc_method",
+        "about": "TRUE to count from the issue date (the usual), FALSE from the last payment",
+        "optional": true
+      }
+    ],
+    "about": "The interest a bond has earned since it was issued but not yet paid out, which a buyer pays the seller.",
+    "example": {
+      "cells": [
+        [
+          "Issued",
+          "First interest",
+          "Bought",
+          "Rate",
+          "Face value"
+        ],
+        [
+          "2026-01-01",
+          "2026-07-01",
+          "2026-04-01",
+          "0.05",
+          "1000"
+        ]
+      ],
+      "formula": "=ACCRINT(A2,B2,C2,D2,E2,2)",
+      "result": "12.5",
+      "why": "A 1000 bond paying 5% a year earns 50 a year; three months is a quarter of that, 12.50."
+    }
+  },
+  {
+    "name": "ACCRINTM",
+    "args": [
+      {
+        "name": "issue",
+        "about": "the day the security was issued"
+      },
+      {
+        "name": "settlement",
+        "about": "the day it pays out (its maturity)"
+      },
+      {
+        "name": "rate",
+        "about": "the yearly interest rate, like 0.04 for 4%"
+      },
+      {
+        "name": "par",
+        "about": "its face value (1000 if left out)"
+      },
+      {
+        "name": "basis",
+        "about": "how days are counted: 0 US 30/360 (the usual), 1 actual, 2 actual/360, 3 actual/365, 4 European 30/360",
+        "optional": true
+      }
+    ],
+    "about": "The interest earned by a security that pays all its interest in one go at the end.",
+    "example": {
+      "cells": [
+        [
+          "Issued",
+          "Matures",
+          "Rate",
+          "Face value"
+        ],
+        [
+          "2026-01-01",
+          "2026-10-01",
+          "0.04",
+          "5000"
+        ]
+      ],
+      "formula": "=ACCRINTM(A2,B2,C2,D2)",
+      "result": "150",
+      "why": "4% of 5000 is 200 a year; nine months earn three quarters of that, 150."
+    }
+  },
+  {
+    "name": "DISC",
+    "args": [
+      {
+        "name": "settlement",
+        "about": "the day you buy it"
+      },
+      {
+        "name": "maturity",
+        "about": "the day it pays out"
+      },
+      {
+        "name": "pr",
+        "about": "the price you pay per 100 of face value"
+      },
+      {
+        "name": "redemption",
+        "about": "what it pays out per 100 of face value"
+      },
+      {
+        "name": "basis",
+        "about": "how days are counted: 0 US 30/360 (the usual), 1 actual, 2 actual/360, 3 actual/365, 4 European 30/360",
+        "optional": true
+      }
+    ],
+    "about": "The yearly discount rate of a security bought below what it pays out, like a Treasury bill.",
+    "example": {
+      "cells": [
+        [
+          "Bought",
+          "Pays out",
+          "Price",
+          "Pays"
+        ],
+        [
+          "2026-01-01",
+          "2027-01-01",
+          "96",
+          "100"
+        ]
+      ],
+      "formula": "=DISC(A2,B2,C2,D2)",
+      "result": "0.04",
+      "why": "You pay 96 and get 100 a year later: the discount of 4 is 4% of 100."
+    }
+  },
+  {
+    "name": "FVSCHEDULE",
+    "args": [
+      {
+        "name": "principal",
+        "about": "the amount you start with"
+      },
+      {
+        "name": "schedule",
+        "about": "the interest rates, one for each year (or period)"
+      }
+    ],
+    "about": "What an amount grows to when each year earns a different interest rate.",
+    "example": {
+      "cells": [
+        [
+          "Year",
+          "Rate"
+        ],
+        [
+          "1",
+          "0.02"
+        ],
+        [
+          "2",
+          "0.03"
+        ],
+        [
+          "3",
+          "0.04"
+        ]
+      ],
+      "formula": "=FVSCHEDULE(1000,B2:B4)",
+      "result": "1092.624",
+      "why": "1000 × 1.02 × 1.03 × 1.04 = 1092.62: each year's interest is added before the next year's is worked out."
+    }
+  },
+  {
+    "name": "INTRATE",
+    "args": [
+      {
+        "name": "settlement",
+        "about": "the day you put the money in"
+      },
+      {
+        "name": "maturity",
+        "about": "the day it pays out"
+      },
+      {
+        "name": "investment",
+        "about": "the amount you put in"
+      },
+      {
+        "name": "redemption",
+        "about": "the amount you get back"
+      },
+      {
+        "name": "basis",
+        "about": "how days are counted: 0 US 30/360 (the usual), 1 actual, 2 actual/360, 3 actual/365, 4 European 30/360",
+        "optional": true
+      }
+    ],
+    "about": "The yearly interest rate of an investment that pays everything back on one day.",
+    "example": {
+      "cells": [
+        [
+          "Put in on",
+          "Paid out on",
+          "Put in",
+          "Got back"
+        ],
+        [
+          "2026-01-01",
+          "2026-07-01",
+          "10000",
+          "10200"
+        ]
+      ],
+      "formula": "=INTRATE(A2,B2,C2,D2)",
+      "result": "0.04",
+      "why": "200 extra on 10000 is 2% in half a year, so 4% a year."
+    }
+  },
+  {
+    "name": "PRICEDISC",
+    "args": [
+      {
+        "name": "settlement",
+        "about": "the day you buy it"
+      },
+      {
+        "name": "maturity",
+        "about": "the day it pays out"
+      },
+      {
+        "name": "discount",
+        "about": "the yearly discount rate, like 0.04 for 4%"
+      },
+      {
+        "name": "redemption",
+        "about": "what it pays out per 100 of face value"
+      },
+      {
+        "name": "basis",
+        "about": "how days are counted: 0 US 30/360 (the usual), 1 actual, 2 actual/360, 3 actual/365, 4 European 30/360",
+        "optional": true
+      }
+    ],
+    "about": "The price per 100 of a security sold at a discount, like a Treasury bill.",
+    "example": {
+      "cells": [
+        [
+          "Bought",
+          "Pays out",
+          "Discount"
+        ],
+        [
+          "2026-01-01",
+          "2026-07-01",
+          "0.04"
+        ]
+      ],
+      "formula": "=PRICEDISC(A2,B2,C2,100)",
+      "result": "98",
+      "why": "A 4% yearly discount for half a year takes 2 off the 100 it pays out."
+    }
+  },
+  {
+    "name": "PRICEMAT",
+    "args": [
+      {
+        "name": "settlement",
+        "about": "the day you buy it"
+      },
+      {
+        "name": "maturity",
+        "about": "the day it pays out"
+      },
+      {
+        "name": "issue",
+        "about": "the day it was issued"
+      },
+      {
+        "name": "rate",
+        "about": "the yearly interest rate it pays, like 0.05 for 5%"
+      },
+      {
+        "name": "yld",
+        "about": "the yearly return you want, like 0.06 for 6%"
+      },
+      {
+        "name": "basis",
+        "about": "how days are counted: 0 US 30/360 (the usual), 1 actual, 2 actual/360, 3 actual/365, 4 European 30/360",
+        "optional": true
+      }
+    ],
+    "about": "The price per 100 of a security that pays all its interest at the end.",
+    "example": {
+      "cells": [
+        [
+          "Bought",
+          "Pays out",
+          "Issued",
+          "Rate",
+          "Wanted return"
+        ],
+        [
+          "2026-04-01",
+          "2027-01-01",
+          "2026-01-01",
+          "0.05",
+          "0.06"
+        ]
+      ],
+      "formula": "=PRICEMAT(A2,B2,C2,D2,E2)",
+      "result": "99.2284689",
+      "why": "It pays 105 at the end; to earn 6% a year you'd pay 100.48 for it, less the 1.25 of interest it had already earned, 99.23."
+    }
+  },
+  {
+    "name": "RECEIVED",
+    "args": [
+      {
+        "name": "settlement",
+        "about": "the day you buy it"
+      },
+      {
+        "name": "maturity",
+        "about": "the day it pays out"
+      },
+      {
+        "name": "investment",
+        "about": "the amount you pay"
+      },
+      {
+        "name": "discount",
+        "about": "the yearly discount rate, like 0.04 for 4%"
+      },
+      {
+        "name": "basis",
+        "about": "how days are counted: 0 US 30/360 (the usual), 1 actual, 2 actual/360, 3 actual/365, 4 European 30/360",
+        "optional": true
+      }
+    ],
+    "about": "How much a security bought at a discount pays out at the end.",
+    "example": {
+      "cells": [
+        [
+          "Bought",
+          "Pays out",
+          "Paid",
+          "Discount"
+        ],
+        [
+          "2026-01-01",
+          "2026-07-01",
+          "9800",
+          "0.04"
+        ]
+      ],
+      "formula": "=RECEIVED(A2,B2,C2,D2)",
+      "result": "10000",
+      "why": "Half a year at a 4% discount takes 2% off: 9800 is 98% of 10000."
+    }
+  },
+  {
+    "name": "YIELDDISC",
+    "args": [
+      {
+        "name": "settlement",
+        "about": "the day you buy it"
+      },
+      {
+        "name": "maturity",
+        "about": "the day it pays out"
+      },
+      {
+        "name": "pr",
+        "about": "the price you pay per 100 of face value"
+      },
+      {
+        "name": "redemption",
+        "about": "what it pays out per 100 of face value"
+      },
+      {
+        "name": "basis",
+        "about": "how days are counted: 0 US 30/360 (the usual), 1 actual, 2 actual/360, 3 actual/365, 4 European 30/360",
+        "optional": true
+      }
+    ],
+    "about": "The yearly return of a security bought below what it pays out.",
+    "example": {
+      "cells": [
+        [
+          "Bought",
+          "Pays out",
+          "Price",
+          "Pays"
+        ],
+        [
+          "2026-01-01",
+          "2026-07-01",
+          "98",
+          "100"
+        ]
+      ],
+      "formula": "=YIELDDISC(A2,B2,C2,D2)",
+      "result": "0.040816327",
+      "why": "You gain 2 on the 98 you paid in half a year: 2.04%, so 4.08% a year."
+    },
+    "notes": "DISC gives the discount on what it pays out; this gives the return on what you paid."
+  },
+  {
+    "name": "YIELDMAT",
+    "args": [
+      {
+        "name": "settlement",
+        "about": "the day you buy it"
+      },
+      {
+        "name": "maturity",
+        "about": "the day it pays out"
+      },
+      {
+        "name": "issue",
+        "about": "the day it was issued"
+      },
+      {
+        "name": "rate",
+        "about": "the yearly interest rate it pays, like 0.05 for 5%"
+      },
+      {
+        "name": "pr",
+        "about": "the price you pay per 100 of face value"
+      },
+      {
+        "name": "basis",
+        "about": "how days are counted: 0 US 30/360 (the usual), 1 actual, 2 actual/360, 3 actual/365, 4 European 30/360",
+        "optional": true
+      }
+    ],
+    "about": "The yearly return of a security that pays all its interest at the end.",
+    "example": {
+      "cells": [
+        [
+          "Bought",
+          "Pays out",
+          "Issued",
+          "Rate",
+          "Price"
+        ],
+        [
+          "2026-04-01",
+          "2027-01-01",
+          "2026-01-01",
+          "0.05",
+          "99"
+        ]
+      ],
+      "formula": "=YIELDMAT(A2,B2,C2,D2,E2)",
+      "result": "0.063175395",
+      "why": "Paying 99 for something that pays 105 at the end, less the interest already earned, gives about 6.3% a year, a bit above the 5% it pays."
+    }
+  },
+  {
+    "name": "CUMIPMT",
+    "args": [
+      {
+        "name": "rate",
+        "about": "the interest rate per payment, like 0.06/12 for 6% a year paid monthly"
+      },
+      {
+        "name": "nper",
+        "about": "how many payments in all"
+      },
+      {
+        "name": "pv",
+        "about": "the amount borrowed"
+      },
+      {
+        "name": "start_period",
+        "about": "the first payment to count"
+      },
+      {
+        "name": "end_period",
+        "about": "the last payment to count"
+      },
+      {
+        "name": "type",
+        "about": "0 for payments at the end of each period (the usual), 1 at the start"
+      }
+    ],
+    "about": "How much interest you pay on a loan between two payments.",
+    "example": {
+      "cells": [
+        [
+          "Yearly rate",
+          "Months",
+          "Loan"
+        ],
+        [
+          "0.06",
+          "60",
+          "20000"
+        ]
+      ],
+      "formula": "=ROUND(CUMIPMT(A2/12,B2,C2,1,12,0),2)",
+      "result": "-1103.81",
+      "why": "In the first year of a five-year car loan of 20000 at 6%, 1103.81 of the payments is interest. It shows as a minus because it's money paid out."
+    }
+  },
+  {
+    "name": "CUMPRINC",
+    "args": [
+      {
+        "name": "rate",
+        "about": "the interest rate per payment, like 0.06/12 for 6% a year paid monthly"
+      },
+      {
+        "name": "nper",
+        "about": "how many payments in all"
+      },
+      {
+        "name": "pv",
+        "about": "the amount borrowed"
+      },
+      {
+        "name": "start_period",
+        "about": "the first payment to count"
+      },
+      {
+        "name": "end_period",
+        "about": "the last payment to count"
+      },
+      {
+        "name": "type",
+        "about": "0 for payments at the end of each period (the usual), 1 at the start"
+      }
+    ],
+    "about": "How much of a loan you pay off (leaving out interest) between two payments.",
+    "example": {
+      "cells": [
+        [
+          "Yearly rate",
+          "Months",
+          "Loan"
+        ],
+        [
+          "0.06",
+          "60",
+          "20000"
+        ]
+      ],
+      "formula": "=ROUND(CUMPRINC(A2/12,B2,C2,1,12,0),2)",
+      "result": "-3536.06",
+      "why": "In the first year of a five-year car loan of 20000 at 6%, 3536.06 of what's borrowed is paid back; the rest of the payments is interest."
+    }
+  },
+  {
+    "name": "DB",
+    "args": [
+      {
+        "name": "cost",
+        "about": "what the thing cost"
+      },
+      {
+        "name": "salvage",
+        "about": "what it's worth at the end of its life"
+      },
+      {
+        "name": "life",
+        "about": "how many years it lasts"
+      },
+      {
+        "name": "period",
+        "about": "which year to work out"
+      },
+      {
+        "name": "month",
+        "about": "months in the first year (12 if left out)",
+        "optional": true
+      }
+    ],
+    "about": "How much value something loses in a year, losing the same share of what's left each year (fixed-declining balance).",
+    "example": {
+      "cells": [
+        [
+          "Cost",
+          "Worth at end",
+          "Years"
+        ],
+        [
+          "10000",
+          "1000",
+          "5"
+        ]
+      ],
+      "formula": "=DB(A2,B2,C2,1)",
+      "result": "$3,690.00",
+      "why": "Losing 36.9% a year takes 10000 down to 1000 in five years; the first year loses 3690. The cell is given a money format."
+    }
+  },
+  {
+    "name": "DDB",
+    "args": [
+      {
+        "name": "cost",
+        "about": "what the thing cost"
+      },
+      {
+        "name": "salvage",
+        "about": "what it's worth at the end of its life"
+      },
+      {
+        "name": "life",
+        "about": "how many years it lasts"
+      },
+      {
+        "name": "period",
+        "about": "which year to work out"
+      },
+      {
+        "name": "factor",
+        "about": "how fast it loses value (2 if left out, twice the straight-line rate)",
+        "optional": true
+      }
+    ],
+    "about": "How much value something loses in a year, losing more in the early years (double-declining balance).",
+    "example": {
+      "cells": [
+        [
+          "Cost",
+          "Worth at end",
+          "Years"
+        ],
+        [
+          "10000",
+          "1000",
+          "5"
+        ]
+      ],
+      "formula": "=DDB(A2,B2,C2,2)",
+      "result": "$2,400.00",
+      "why": "Each year loses 2/5 of what's left: 4000 the first year, then 40% of the 6000 left is 2400. The cell is given a money format."
+    }
+  },
+  {
+    "name": "DOLLARDE",
+    "args": [
+      {
+        "name": "fractional_dollar",
+        "about": "a price written with a fraction after the point, like 1.02 for 1 and 2/16"
+      },
+      {
+        "name": "fraction",
+        "about": "the bottom of the fraction, like 16"
+      }
+    ],
+    "about": "Turns a price written as whole units and a fraction into an ordinary decimal.",
+    "example": {
+      "cells": [
+        [
+          "Quoted",
+          "In"
+        ],
+        [
+          "101.08",
+          "16"
+        ]
+      ],
+      "formula": "=DOLLARDE(A2,B2)",
+      "result": "101.5",
+      "why": "Bond prices are sometimes quoted in sixteenths: 101.08 means 101 and 8/16, which is 101.5."
+    }
+  },
+  {
+    "name": "DOLLARFR",
+    "args": [
+      {
+        "name": "decimal_dollar",
+        "about": "an ordinary decimal price"
+      },
+      {
+        "name": "fraction",
+        "about": "the bottom of the fraction, like 16"
+      }
+    ],
+    "about": "Turns a decimal price into whole units and a fraction, as some bond prices are quoted.",
+    "example": {
+      "cells": [
+        [
+          "Price",
+          "In"
+        ],
+        [
+          "101.5",
+          "16"
+        ]
+      ],
+      "formula": "=DOLLARFR(A2,B2)",
+      "result": "101.08",
+      "why": "0.5 is 8/16, so 101.5 is written 101.08: 101 and 8 sixteenths."
+    }
+  },
+  {
+    "name": "EFFECT",
+    "args": [
+      {
+        "name": "nominal_rate",
+        "about": "the yearly rate as advertised, like 0.06 for 6%"
+      },
+      {
+        "name": "npery",
+        "about": "how many times a year interest is added, like 12"
+      }
+    ],
+    "about": "The rate you really earn or pay in a year when interest is added several times a year.",
+    "example": {
+      "cells": [
+        [
+          "Advertised rate",
+          "Times a year"
+        ],
+        [
+          "0.06",
+          "12"
+        ]
+      ],
+      "formula": "=ROUND(EFFECT(A2,B2),6)",
+      "result": "0.061678",
+      "why": "6% a year added monthly is 0.5% a month; with interest on interest that makes about 6.17% over the year."
+    },
+    "notes": "NOMINAL goes the other way."
+  },
+  {
+    "name": "FV",
+    "args": [
+      {
+        "name": "rate",
+        "about": "the interest rate per period, like 0.04/12 for 4% a year paid monthly"
+      },
+      {
+        "name": "nper",
+        "about": "how many periods"
+      },
+      {
+        "name": "pmt",
+        "about": "the amount paid in each period (negative for money you put in)"
+      },
+      {
+        "name": "pv",
+        "about": "the amount at the start (negative for money you put in; 0 if left out)",
+        "optional": true
+      },
+      {
+        "name": "type",
+        "about": "0 for payments at the end of each period (the usual), 1 at the start",
+        "optional": true
+      }
+    ],
+    "about": "What savings grow to after regular payments and interest.",
+    "example": {
+      "cells": [
+        [
+          "Yearly rate",
+          "Months",
+          "Each month"
+        ],
+        [
+          "0.04",
+          "120",
+          "-200"
+        ]
+      ],
+      "formula": "=ROUND(FV(A2/12,B2,C2),2)",
+      "result": "29449.96",
+      "why": "Putting 200 a month into savings at 4% for ten years (24000 in all) grows to about 29450 with the interest."
+    }
+  },
+  {
+    "name": "IPMT",
+    "args": [
+      {
+        "name": "rate",
+        "about": "the interest rate per period, like 0.05/12 for 5% a year paid monthly"
+      },
+      {
+        "name": "per",
+        "about": "which payment to look at, from 1"
+      },
+      {
+        "name": "nper",
+        "about": "how many payments in all"
+      },
+      {
+        "name": "pv",
+        "about": "the amount borrowed"
+      },
+      {
+        "name": "fv",
+        "about": "what's left at the end (0 if left out)",
+        "optional": true
+      },
+      {
+        "name": "type",
+        "about": "0 for payments at the end of each period (the usual), 1 at the start",
+        "optional": true
+      }
+    ],
+    "about": "How much of one loan payment is interest.",
+    "example": {
+      "cells": [
+        [
+          "Yearly rate",
+          "Months",
+          "Loan"
+        ],
+        [
+          "0.05",
+          "300",
+          "200000"
+        ]
+      ],
+      "formula": "=ROUND(IPMT(A2/12,1,B2,C2),2)",
+      "result": "-833.33",
+      "why": "In the first month of a 25-year mortgage of 200000 at 5%, the interest is 200000 × 5% ÷ 12 = 833.33."
+    },
+    "notes": "PPMT gives the rest of the payment, the part that pays off the loan."
+  },
+  {
+    "name": "IRR",
+    "args": [
+      {
+        "name": "values",
+        "about": "the money in and out, one per year, starting with what you put in as a minus"
+      },
+      {
+        "name": "guess",
+        "about": "a rate to start searching from (0.1 if left out)",
+        "optional": true
+      }
+    ],
+    "about": "The yearly return of an investment from the money paid in and out of it each year.",
+    "example": {
+      "cells": [
+        [
+          "Year",
+          "Cash"
+        ],
+        [
+          "0",
+          "-10000"
+        ],
+        [
+          "1",
+          "3000"
+        ],
+        [
+          "2",
+          "4000"
+        ],
+        [
+          "3",
+          "5000"
+        ]
+      ],
+      "formula": "=ROUND(IRR(B2:B5),4)",
+      "result": "0.089",
+      "why": "Putting in 10000 and getting back 3000, 4000 and 5000 over three years is like earning about 8.9% a year."
+    },
+    "notes": "XIRR works with payments on any dates."
+  },
+  {
+    "name": "ISPMT",
+    "args": [
+      {
+        "name": "rate",
+        "about": "the interest rate per period"
+      },
+      {
+        "name": "per",
+        "about": "which period, counting from 0"
+      },
+      {
+        "name": "nper",
+        "about": "how many periods in all"
+      },
+      {
+        "name": "pv",
+        "about": "the amount borrowed"
+      }
+    ],
+    "about": "The interest in one period of a loan that pays back the same amount of the loan each period.",
+    "example": {
+      "cells": [
+        [
+          "Yearly rate",
+          "Years",
+          "Loan"
+        ],
+        [
+          "0.05",
+          "4",
+          "8000"
+        ]
+      ],
+      "formula": "=ISPMT(A2,1,B2,C2)",
+      "result": "-300",
+      "why": "Paying back 2000 a year, after the first year 6000 is still owed: 5% of 6000 is 300 of interest."
+    }
+  },
+  {
+    "name": "MIRR",
+    "args": [
+      {
+        "name": "values",
+        "about": "the money in and out, one per period, starting with what you put in as a minus"
+      },
+      {
+        "name": "finance_rate",
+        "about": "the interest you pay on money you borrow"
+      },
+      {
+        "name": "reinvest_rate",
+        "about": "the interest you earn on money you get back"
+      }
+    ],
+    "about": "The yearly return of an investment when the money you get back is saved at a different rate.",
+    "example": {
+      "cells": [
+        [
+          "Year",
+          "Cash"
+        ],
+        [
+          "0",
+          "-10000"
+        ],
+        [
+          "1",
+          "3000"
+        ],
+        [
+          "2",
+          "4000"
+        ],
+        [
+          "3",
+          "5000"
+        ]
+      ],
+      "formula": "=ROUND(MIRR(B2:B5,0.06,0.03),4)",
+      "result": "0.0715",
+      "why": "If what comes back each year only earns 3% in the bank, the 10000 grows less than IRR assumes: about 7.15% a year instead of 8.9%."
+    }
+  },
+  {
+    "name": "NOMINAL",
+    "args": [
+      {
+        "name": "effect_rate",
+        "about": "the rate really earned in a year, like 0.0617"
+      },
+      {
+        "name": "npery",
+        "about": "how many times a year interest is added, like 12"
+      }
+    ],
+    "about": "The advertised yearly rate that gives a real yearly rate when interest is added several times a year.",
+    "example": {
+      "cells": [
+        [
+          "Real rate",
+          "Times a year"
+        ],
+        [
+          "0.05",
+          "4"
+        ]
+      ],
+      "formula": "=ROUND(NOMINAL(A2,B2),6)",
+      "result": "0.049089",
+      "why": "To really earn 5% a year with interest added every quarter, the advertised rate need only be about 4.91%."
+    },
+    "notes": "EFFECT goes the other way."
+  },
+  {
+    "name": "NPER",
+    "args": [
+      {
+        "name": "rate",
+        "about": "the interest rate per period"
+      },
+      {
+        "name": "pmt",
+        "about": "the amount paid each period (negative for money you pay)"
+      },
+      {
+        "name": "pv",
+        "about": "the amount borrowed, or what you start with"
+      },
+      {
+        "name": "fv",
+        "about": "what's left at the end (0 if left out)",
+        "optional": true
+      },
+      {
+        "name": "type",
+        "about": "0 for payments at the end of each period (the usual), 1 at the start",
+        "optional": true
+      }
+    ],
+    "about": "How many payments it takes to pay off a loan or reach a savings goal.",
+    "example": {
+      "cells": [
+        [
+          "Yearly rate",
+          "Each month",
+          "Owed"
+        ],
+        [
+          "0.18",
+          "-150",
+          "3000"
+        ]
+      ],
+      "formula": "=ROUND(NPER(A2/12,B2,C2),1)",
+      "result": "24",
+      "why": "Paying 150 a month off a 3000 credit card at 18% a year takes about 24 months."
+    }
+  },
+  {
+    "name": "NPV",
+    "args": [
+      {
+        "name": "rate",
+        "about": "the yearly rate to discount by, like what the money would earn elsewhere"
+      },
+      {
+        "name": "value1",
+        "about": "the money in (or out, as a minus) at the end of year 1"
+      },
+      {
+        "name": "value2",
+        "about": "more years' money",
+        "optional": true
+      }
+    ],
+    "more": true,
+    "about": "What future money in and out is worth today, given what money could earn meanwhile.",
+    "example": {
+      "cells": [
+        [
+          "Year",
+          "Cash"
+        ],
+        [
+          "1",
+          "3000"
+        ],
+        [
+          "2",
+          "4000"
+        ],
+        [
+          "3",
+          "5000"
+        ]
+      ],
+      "formula": "=ROUND(NPV(0.05,B2:B4),2)",
+      "result": "10804.45",
+      "why": "At 5% a year, 3000 next year is worth 3000 ÷ 1.05 today, 4000 in two years 4000 ÷ 1.05², and so on; the three add up to 10804.45."
+    },
+    "notes": "The first value is a year away. Money you pay today goes outside: =NPV(rate,…)+today's amount."
+  },
+  {
+    "name": "PDURATION",
+    "args": [
+      {
+        "name": "rate",
+        "about": "the interest rate per period"
+      },
+      {
+        "name": "pv",
+        "about": "the amount you start with"
+      },
+      {
+        "name": "fv",
+        "about": "the amount you want to reach"
+      }
+    ],
+    "about": "How many periods it takes for money to grow to an amount at a given rate.",
+    "example": {
+      "cells": [
+        [
+          "Yearly rate",
+          "Have",
+          "Want"
+        ],
+        [
+          "0.04",
+          "5000",
+          "10000"
+        ]
+      ],
+      "formula": "=ROUND(PDURATION(A2,B2,C2),2)",
+      "result": "17.67",
+      "why": "At 4% a year, money doubles in about 17.7 years."
+    }
+  },
+  {
+    "name": "PMT",
+    "args": [
+      {
+        "name": "rate",
+        "about": "the interest rate per period, like 0.05/12 for 5% a year paid monthly"
+      },
+      {
+        "name": "nper",
+        "about": "how many payments"
+      },
+      {
+        "name": "pv",
+        "about": "the amount borrowed"
+      },
+      {
+        "name": "fv",
+        "about": "what's left at the end (0 if left out)",
+        "optional": true
+      },
+      {
+        "name": "type",
+        "about": "0 for payments at the end of each period (the usual), 1 at the start",
+        "optional": true
+      }
+    ],
+    "about": "The regular payment that pays off a loan, with interest, over a number of periods.",
+    "example": {
+      "cells": [
+        [
+          "Yearly rate",
+          "Months",
+          "Loan"
+        ],
+        [
+          "0.05",
+          "300",
+          "200000"
+        ]
+      ],
+      "formula": "=ROUND(PMT(A2/12,B2,C2),2)",
+      "result": "-1169.18",
+      "why": "A 25-year mortgage of 200000 at 5% costs about 1169 a month; it's a minus because it's money you pay."
+    }
+  },
+  {
+    "name": "PPMT",
+    "args": [
+      {
+        "name": "rate",
+        "about": "the interest rate per period, like 0.05/12 for 5% a year paid monthly"
+      },
+      {
+        "name": "per",
+        "about": "which payment to look at, from 1"
+      },
+      {
+        "name": "nper",
+        "about": "how many payments in all"
+      },
+      {
+        "name": "pv",
+        "about": "the amount borrowed"
+      },
+      {
+        "name": "fv",
+        "about": "what's left at the end (0 if left out)",
+        "optional": true
+      },
+      {
+        "name": "type",
+        "about": "0 for payments at the end of each period (the usual), 1 at the start",
+        "optional": true
+      }
+    ],
+    "about": "How much of one loan payment pays off the loan itself, leaving out the interest.",
+    "example": {
+      "cells": [
+        [
+          "Yearly rate",
+          "Months",
+          "Loan"
+        ],
+        [
+          "0.05",
+          "300",
+          "200000"
+        ]
+      ],
+      "formula": "=ROUND(PPMT(A2/12,1,B2,C2),2)",
+      "result": "-335.85",
+      "why": "The first monthly payment of a 25-year mortgage of 200000 at 5% is about 1169, of which 833.33 is interest, so only about 336 pays off the loan."
+    },
+    "notes": "IPMT gives the interest part."
+  },
+  {
+    "name": "PV",
+    "args": [
+      {
+        "name": "rate",
+        "about": "the interest rate per period"
+      },
+      {
+        "name": "nper",
+        "about": "how many payments"
+      },
+      {
+        "name": "pmt",
+        "about": "the amount paid each period (negative for money you pay)"
+      },
+      {
+        "name": "fv",
+        "about": "a lump sum at the end (0 if left out)",
+        "optional": true
+      },
+      {
+        "name": "type",
+        "about": "0 for payments at the end of each period (the usual), 1 at the start",
+        "optional": true
+      }
+    ],
+    "about": "What a series of future payments is worth today, like how much you can borrow for a monthly payment.",
+    "example": {
+      "cells": [
+        [
+          "Yearly rate",
+          "Months",
+          "Each month"
+        ],
+        [
+          "0.06",
+          "48",
+          "-300"
+        ]
+      ],
+      "formula": "=ROUND(PV(A2/12,B2,C2),2)",
+      "result": "12774.1",
+      "why": "If you can pay 300 a month for four years at 6%, you can borrow about 12774."
+    }
+  },
+  {
+    "name": "RATE",
+    "args": [
+      {
+        "name": "nper",
+        "about": "how many payments"
+      },
+      {
+        "name": "pmt",
+        "about": "the amount paid each period (negative for money you pay)"
+      },
+      {
+        "name": "pv",
+        "about": "the amount borrowed"
+      },
+      {
+        "name": "fv",
+        "about": "what's left at the end (0 if left out)",
+        "optional": true
+      },
+      {
+        "name": "type",
+        "about": "0 for payments at the end of each period (the usual), 1 at the start",
+        "optional": true
+      },
+      {
+        "name": "guess",
+        "about": "a rate to start searching from (0.1 if left out)",
+        "optional": true
+      }
+    ],
+    "about": "The interest rate per period of a loan or savings plan.",
+    "example": {
+      "cells": [
+        [
+          "Months",
+          "Each month",
+          "Loan"
+        ],
+        [
+          "48",
+          "-300",
+          "12000"
+        ]
+      ],
+      "formula": "=ROUND(RATE(A2,B2,C2)*12,4)",
+      "result": "0.0924",
+      "why": "Borrowing 12000 and paying 300 a month for four years (14400 in all) is a rate of about 0.77% a month, 9.24% a year."
+    }
+  },
+  {
+    "name": "RRI",
+    "args": [
+      {
+        "name": "nper",
+        "about": "how many periods"
+      },
+      {
+        "name": "pv",
+        "about": "the amount at the start"
+      },
+      {
+        "name": "fv",
+        "about": "the amount at the end"
+      }
+    ],
+    "about": "The steady yearly growth rate that takes one amount to another.",
+    "example": {
+      "cells": [
+        [
+          "Years",
+          "Start",
+          "End"
+        ],
+        [
+          "5",
+          "10000",
+          "14000"
+        ]
+      ],
+      "formula": "=ROUND(RRI(A2,B2,C2),4)",
+      "result": "0.0696",
+      "why": "Growing from 10000 to 14000 in five years is like about 7% a year, with growth on growth."
+    }
+  },
+  {
+    "name": "SLN",
+    "args": [
+      {
+        "name": "cost",
+        "about": "what the thing cost"
+      },
+      {
+        "name": "salvage",
+        "about": "what it's worth at the end of its life"
+      },
+      {
+        "name": "life",
+        "about": "how many years it lasts"
+      }
+    ],
+    "about": "How much value something loses each year when it loses the same amount every year (straight-line).",
+    "example": {
+      "cells": [
+        [
+          "Cost",
+          "Worth at end",
+          "Years"
+        ],
+        [
+          "10000",
+          "1000",
+          "5"
+        ]
+      ],
+      "formula": "=SLN(A2,B2,C2)",
+      "result": "$1,800.00",
+      "why": "It loses 9000 over five years, 1800 a year. The cell is given a money format."
+    }
+  },
+  {
+    "name": "SYD",
+    "args": [
+      {
+        "name": "cost",
+        "about": "what the thing cost"
+      },
+      {
+        "name": "salvage",
+        "about": "what it's worth at the end of its life"
+      },
+      {
+        "name": "life",
+        "about": "how many years it lasts"
+      },
+      {
+        "name": "per",
+        "about": "which year to work out"
+      }
+    ],
+    "about": "How much value something loses in a year, losing a bit less each year (sum-of-years' digits).",
+    "example": {
+      "cells": [
+        [
+          "Cost",
+          "Worth at end",
+          "Years"
+        ],
+        [
+          "10000",
+          "1000",
+          "5"
+        ]
+      ],
+      "formula": "=SYD(A2,B2,C2,1)",
+      "result": "$3,000.00",
+      "why": "The years count 5+4+3+2+1 = 15 shares; the first year loses 5/15 of the 9000, 3000. The cell is given a money format."
+    }
+  },
+  {
+    "name": "TBILLEQ",
+    "args": [
+      {
+        "name": "settlement",
+        "about": "the day you buy it"
+      },
+      {
+        "name": "maturity",
+        "about": "the day it pays out, within a year"
+      },
+      {
+        "name": "discount",
+        "about": "the yearly discount rate, like 0.04 for 4%"
+      }
+    ],
+    "about": "The bond-style yearly return of a Treasury bill, to compare it with bonds.",
+    "example": {
+      "cells": [
+        [
+          "Bought",
+          "Pays out",
+          "Discount"
+        ],
+        [
+          "2026-01-01",
+          "2026-07-01",
+          "0.04"
+        ]
+      ],
+      "formula": "=ROUND(TBILLEQ(A2,B2,C2),6)",
+      "result": "0.041388",
+      "why": "A 4% discount for 181 days means paying about 98 for 100, a return of a little over 4% a year."
+    }
+  },
+  {
+    "name": "TBILLPRICE",
+    "args": [
+      {
+        "name": "settlement",
+        "about": "the day you buy it"
+      },
+      {
+        "name": "maturity",
+        "about": "the day it pays out, within a year"
+      },
+      {
+        "name": "discount",
+        "about": "the yearly discount rate, like 0.04 for 4%"
+      }
+    ],
+    "about": "The price per 100 of a Treasury bill.",
+    "example": {
+      "cells": [
+        [
+          "Bought",
+          "Pays out",
+          "Discount"
+        ],
+        [
+          "2026-01-01",
+          "2026-07-01",
+          "0.04"
+        ]
+      ],
+      "formula": "=ROUND(TBILLPRICE(A2,B2,C2),4)",
+      "result": "97.9889",
+      "why": "T-bills count a year as 360 days: 4% for 181 days takes about 2.01 off 100."
+    }
+  },
+  {
+    "name": "TBILLYIELD",
+    "args": [
+      {
+        "name": "settlement",
+        "about": "the day you buy it"
+      },
+      {
+        "name": "maturity",
+        "about": "the day it pays out, within a year"
+      },
+      {
+        "name": "pr",
+        "about": "the price you pay per 100"
+      }
+    ],
+    "about": "The yearly return of a Treasury bill from the price you pay.",
+    "example": {
+      "cells": [
+        [
+          "Bought",
+          "Pays out",
+          "Price"
+        ],
+        [
+          "2026-01-01",
+          "2026-07-01",
+          "98"
+        ]
+      ],
+      "formula": "=ROUND(TBILLYIELD(A2,B2,C2),6)",
+      "result": "0.040591",
+      "why": "Gaining 2 on 98 in 181 days, with a 360-day year, is about 4.06% a year."
+    }
+  },
+  {
+    "name": "XIRR",
+    "args": [
+      {
+        "name": "values",
+        "about": "the money in and out, starting with what you put in as a minus"
+      },
+      {
+        "name": "dates",
+        "about": "the date of each amount"
+      },
+      {
+        "name": "guess",
+        "about": "a rate to start searching from (0.1 if left out)",
+        "optional": true
+      }
+    ],
+    "about": "The yearly return of an investment whose payments come on any dates.",
+    "example": {
+      "cells": [
+        [
+          "Date",
+          "Cash"
+        ],
+        [
+          "2026-01-01",
+          "-10000"
+        ],
+        [
+          "2026-07-01",
+          "2000"
+        ],
+        [
+          "2027-03-15",
+          "4000"
+        ],
+        [
+          "2028-01-01",
+          "6000"
+        ]
+      ],
+      "formula": "=ROUND(XIRR(B2:B5,A2:A5),4)",
+      "result": "0.1328",
+      "why": "10000 put in and 12000 back over two years, some of it early, is like earning about 13.3% a year."
+    },
+    "notes": "IRR is the same for payments a year apart."
+  },
+  {
+    "name": "XNPV",
+    "args": [
+      {
+        "name": "rate",
+        "about": "the yearly rate to discount by"
+      },
+      {
+        "name": "values",
+        "about": "the money in and out"
+      },
+      {
+        "name": "dates",
+        "about": "the date of each amount; the first is today"
+      }
+    ],
+    "about": "What money in and out on any dates is worth on the first date.",
+    "example": {
+      "cells": [
+        [
+          "Date",
+          "Cash"
+        ],
+        [
+          "2026-01-01",
+          "-10000"
+        ],
+        [
+          "2026-07-01",
+          "2000"
+        ],
+        [
+          "2027-03-15",
+          "4000"
+        ],
+        [
+          "2028-01-01",
+          "6000"
+        ]
+      ],
+      "formula": "=ROUND(XNPV(0.05,B2:B5,A2:A5),2)",
+      "result": "1166.9",
+      "why": "At 5% a year the later amounts are worth 11166.90 on 1 January 2026, so after the 10000 paid the investment is 1166.90 ahead."
+    }
+  },
+  {
+    "name": "DURATION",
+    "args": [
+      {
+        "name": "settlement",
+        "about": "the day you buy the bond"
+      },
+      {
+        "name": "maturity",
+        "about": "the day it pays back"
+      },
+      {
+        "name": "coupon",
+        "about": "the yearly interest rate it pays, like 0.05"
+      },
+      {
+        "name": "yld",
+        "about": "the yearly return at today's price, like 0.06"
+      },
+      {
+        "name": "frequency",
+        "about": "interest payments a year: 1, 2 or 4"
+      },
+      {
+        "name": "basis",
+        "about": "how days are counted: 0 US 30/360 (the usual), 1 actual, 2 actual/360, 3 actual/365, 4 European 30/360",
+        "optional": true
+      }
+    ],
+    "about": "The average time, in years, until a bond's money comes back to you (Macaulay duration).",
+    "example": {
+      "cells": [
+        [
+          "Bought",
+          "Pays back",
+          "Pays",
+          "Return"
+        ],
+        [
+          "2026-01-15",
+          "2031-01-15",
+          "0.05",
+          "0.06"
+        ]
+      ],
+      "formula": "=ROUND(DURATION(A2,B2,C2,D2,2),4)",
+      "result": "4.4717",
+      "why": "A five-year bond pays interest along the way, so on average its money comes back in about 4.4 years."
+    }
+  },
+  {
+    "name": "MDURATION",
+    "args": [
+      {
+        "name": "settlement",
+        "about": "the day you buy the bond"
+      },
+      {
+        "name": "maturity",
+        "about": "the day it pays back"
+      },
+      {
+        "name": "coupon",
+        "about": "the yearly interest rate it pays, like 0.05"
+      },
+      {
+        "name": "yld",
+        "about": "the yearly return at today's price, like 0.06"
+      },
+      {
+        "name": "frequency",
+        "about": "interest payments a year: 1, 2 or 4"
+      },
+      {
+        "name": "basis",
+        "about": "how days are counted: 0 US 30/360 (the usual), 1 actual, 2 actual/360, 3 actual/365, 4 European 30/360",
+        "optional": true
+      }
+    ],
+    "about": "Roughly how many per cent a bond's price falls when interest rates rise by one point (modified duration).",
+    "example": {
+      "cells": [
+        [
+          "Bought",
+          "Pays back",
+          "Pays",
+          "Return"
+        ],
+        [
+          "2026-01-15",
+          "2031-01-15",
+          "0.05",
+          "0.06"
+        ]
+      ],
+      "formula": "=ROUND(MDURATION(A2,B2,C2,D2,2),4)",
+      "result": "4.3414",
+      "why": "It's DURATION divided by 1 + 0.06/2: if rates rise by 1%, this bond's price drops by about 4.3%."
+    }
+  },
+  {
+    "name": "PRICE",
+    "args": [
+      {
+        "name": "settlement",
+        "about": "the day you buy the bond"
+      },
+      {
+        "name": "maturity",
+        "about": "the day it pays back"
+      },
+      {
+        "name": "rate",
+        "about": "the yearly interest rate it pays, like 0.05"
+      },
+      {
+        "name": "yld",
+        "about": "the yearly return you want, like 0.06"
+      },
+      {
+        "name": "redemption",
+        "about": "what it pays back per 100 of face value"
+      },
+      {
+        "name": "frequency",
+        "about": "interest payments a year: 1, 2 or 4"
+      },
+      {
+        "name": "basis",
+        "about": "how days are counted: 0 US 30/360 (the usual), 1 actual, 2 actual/360, 3 actual/365, 4 European 30/360",
+        "optional": true
+      }
+    ],
+    "about": "The price per 100 of a bond that pays interest regularly, for the return you want.",
+    "example": {
+      "cells": [
+        [
+          "Bought",
+          "Pays back",
+          "Pays",
+          "Return"
+        ],
+        [
+          "2026-01-15",
+          "2031-01-15",
+          "0.05",
+          "0.06"
+        ]
+      ],
+      "formula": "=ROUND(PRICE(A2,B2,C2,D2,100,2),4)",
+      "result": "95.7349",
+      "why": "The bond pays 5% but you want 6%, so you'd pay less than 100 for it: 95.73."
+    }
+  },
+  {
+    "name": "YIELD",
+    "args": [
+      {
+        "name": "settlement",
+        "about": "the day you buy the bond"
+      },
+      {
+        "name": "maturity",
+        "about": "the day it pays back"
+      },
+      {
+        "name": "rate",
+        "about": "the yearly interest rate it pays, like 0.05"
+      },
+      {
+        "name": "pr",
+        "about": "the price you pay per 100 of face value"
+      },
+      {
+        "name": "redemption",
+        "about": "what it pays back per 100 of face value"
+      },
+      {
+        "name": "frequency",
+        "about": "interest payments a year: 1, 2 or 4"
+      },
+      {
+        "name": "basis",
+        "about": "how days are counted: 0 US 30/360 (the usual), 1 actual, 2 actual/360, 3 actual/365, 4 European 30/360",
+        "optional": true
+      }
+    ],
+    "about": "The yearly return of a bond that pays interest regularly, at the price you pay.",
+    "example": {
+      "cells": [
+        [
+          "Bought",
+          "Pays back",
+          "Pays",
+          "Price"
+        ],
+        [
+          "2026-01-15",
+          "2031-01-15",
+          "0.05",
+          "95"
+        ]
+      ],
+      "formula": "=ROUND(YIELD(A2,B2,C2,D2,100,2),4)",
+      "result": "0.0618",
+      "why": "Paying 95 for a bond paying 5% that gives back 100 in five years earns about 6.18% a year."
+    }
+  },
+  {
+    "name": "ODDFPRICE",
+    "args": [
+      {
+        "name": "settlement",
+        "about": "the day you buy the bond"
+      },
+      {
+        "name": "maturity",
+        "about": "the day it pays back"
+      },
+      {
+        "name": "issue",
+        "about": "the day it was issued"
+      },
+      {
+        "name": "first_coupon",
+        "about": "the day of its first interest payment"
+      },
+      {
+        "name": "rate",
+        "about": "the yearly interest rate it pays"
+      },
+      {
+        "name": "yld",
+        "about": "the yearly return you want"
+      },
+      {
+        "name": "redemption",
+        "about": "what it pays back per 100 of face value"
+      },
+      {
+        "name": "frequency",
+        "about": "interest payments a year: 1, 2 or 4"
+      },
+      {
+        "name": "basis",
+        "about": "how days are counted: 0 US 30/360 (the usual), 1 actual, 2 actual/360, 3 actual/365, 4 European 30/360",
+        "optional": true
+      }
+    ],
+    "about": "The price per 100 of a bond whose first interest period is shorter or longer than the rest.",
+    "example": {
+      "cells": [
+        [
+          "Bought",
+          "Pays back",
+          "Issued",
+          "First interest"
+        ],
+        [
+          "2026-02-01",
+          "2030-07-01",
+          "2026-01-01",
+          "2026-07-01"
+        ]
+      ],
+      "formula": "=ROUND(ODDFPRICE(A2,B2,C2,D2,0.05,0.06,100,2),4)",
+      "result": "96.1649",
+      "why": "Like PRICE, a bond paying 5% when you want 6% costs less than 100: about 96.16."
+    }
+  },
+  {
+    "name": "ODDFYIELD",
+    "args": [
+      {
+        "name": "settlement",
+        "about": "the day you buy the bond"
+      },
+      {
+        "name": "maturity",
+        "about": "the day it pays back"
+      },
+      {
+        "name": "issue",
+        "about": "the day it was issued"
+      },
+      {
+        "name": "first_coupon",
+        "about": "the day of its first interest payment"
+      },
+      {
+        "name": "rate",
+        "about": "the yearly interest rate it pays"
+      },
+      {
+        "name": "pr",
+        "about": "the price you pay per 100 of face value"
+      },
+      {
+        "name": "redemption",
+        "about": "what it pays back per 100 of face value"
+      },
+      {
+        "name": "frequency",
+        "about": "interest payments a year: 1, 2 or 4"
+      },
+      {
+        "name": "basis",
+        "about": "how days are counted: 0 US 30/360 (the usual), 1 actual, 2 actual/360, 3 actual/365, 4 European 30/360",
+        "optional": true
+      }
+    ],
+    "about": "The yearly return of a bond whose first interest period is shorter or longer than the rest.",
+    "example": {
+      "cells": [
+        [
+          "Bought",
+          "Pays back",
+          "Issued",
+          "First interest"
+        ],
+        [
+          "2026-02-01",
+          "2030-07-01",
+          "2026-01-01",
+          "2026-07-01"
+        ]
+      ],
+      "formula": "=ROUND(ODDFYIELD(A2,B2,C2,D2,0.05,96,100,2),4)",
+      "result": "0.0604",
+      "why": "Paying 96 for a bond paying 5% that gives back 100 in about four and a half years earns about 6.04% a year."
+    }
+  },
+  {
+    "name": "ODDLPRICE",
+    "args": [
+      {
+        "name": "settlement",
+        "about": "the day you buy the bond"
+      },
+      {
+        "name": "maturity",
+        "about": "the day it pays back"
+      },
+      {
+        "name": "last_interest",
+        "about": "the day of its last regular interest payment"
+      },
+      {
+        "name": "rate",
+        "about": "the yearly interest rate it pays"
+      },
+      {
+        "name": "yld",
+        "about": "the yearly return you want"
+      },
+      {
+        "name": "redemption",
+        "about": "what it pays back per 100 of face value"
+      },
+      {
+        "name": "frequency",
+        "about": "interest payments a year: 1, 2 or 4"
+      },
+      {
+        "name": "basis",
+        "about": "how days are counted: 0 US 30/360 (the usual), 1 actual, 2 actual/360, 3 actual/365, 4 European 30/360",
+        "optional": true
+      }
+    ],
+    "about": "The price per 100 of a bond whose last interest period is shorter or longer than the rest.",
+    "example": {
+      "cells": [
+        [
+          "Bought",
+          "Pays back",
+          "Last interest"
+        ],
+        [
+          "2026-02-01",
+          "2026-06-01",
+          "2026-01-01"
+        ]
+      ],
+      "formula": "=ROUND(ODDLPRICE(A2,B2,C2,0.05,0.06,100,2),4)",
+      "result": "99.665",
+      "why": "Four months before it pays back, a bond paying 5% when you want 6% is worth a little under 100: 99.67."
+    }
+  },
+  {
+    "name": "ODDLYIELD",
+    "args": [
+      {
+        "name": "settlement",
+        "about": "the day you buy the bond"
+      },
+      {
+        "name": "maturity",
+        "about": "the day it pays back"
+      },
+      {
+        "name": "last_interest",
+        "about": "the day of its last regular interest payment"
+      },
+      {
+        "name": "rate",
+        "about": "the yearly interest rate it pays"
+      },
+      {
+        "name": "pr",
+        "about": "the price you pay per 100 of face value"
+      },
+      {
+        "name": "redemption",
+        "about": "what it pays back per 100 of face value"
+      },
+      {
+        "name": "frequency",
+        "about": "interest payments a year: 1, 2 or 4"
+      },
+      {
+        "name": "basis",
+        "about": "how days are counted: 0 US 30/360 (the usual), 1 actual, 2 actual/360, 3 actual/365, 4 European 30/360",
+        "optional": true
+      }
+    ],
+    "about": "The yearly return of a bond whose last interest period is shorter or longer than the rest.",
+    "example": {
+      "cells": [
+        [
+          "Bought",
+          "Pays back",
+          "Last interest"
+        ],
+        [
+          "2026-02-01",
+          "2026-06-01",
+          "2026-01-01"
+        ]
+      ],
+      "formula": "=ROUND(ODDLYIELD(A2,B2,C2,0.05,99.5,100,2),4)",
+      "result": "0.0651",
+      "why": "Paying 99.5 four months before it pays back 100 plus interest earns about 6.5% a year, more than the 5% it pays."
+    }
+  },
+  {
+    "name": "COUPDAYBS",
+    "args": [
+      {
+        "name": "settlement",
+        "about": "the day you buy the bond"
+      },
+      {
+        "name": "maturity",
+        "about": "the day it pays back"
+      },
+      {
+        "name": "frequency",
+        "about": "interest payments a year: 1, 2 or 4"
+      },
+      {
+        "name": "basis",
+        "about": "how days are counted: 0 US 30/360 (the usual), 1 actual, 2 actual/360, 3 actual/365, 4 European 30/360",
+        "optional": true
+      }
+    ],
+    "about": "How many days have passed since a bond's last interest payment.",
+    "example": {
+      "cells": [
+        [
+          "Bought",
+          "Pays back"
+        ],
+        [
+          "2026-03-01",
+          "2031-01-15"
+        ]
+      ],
+      "formula": "=COUPDAYBS(A2,B2,2,1)",
+      "result": "45",
+      "why": "Interest is paid every 15 January and 15 July; from 15 January to 1 March is 45 days."
+    }
+  },
+  {
+    "name": "COUPDAYS",
+    "args": [
+      {
+        "name": "settlement",
+        "about": "the day you buy the bond"
+      },
+      {
+        "name": "maturity",
+        "about": "the day it pays back"
+      },
+      {
+        "name": "frequency",
+        "about": "interest payments a year: 1, 2 or 4"
+      },
+      {
+        "name": "basis",
+        "about": "how days are counted: 0 US 30/360 (the usual), 1 actual, 2 actual/360, 3 actual/365, 4 European 30/360",
+        "optional": true
+      }
+    ],
+    "about": "How many days long the bond's current interest period is.",
+    "example": {
+      "cells": [
+        [
+          "Bought",
+          "Pays back"
+        ],
+        [
+          "2026-03-01",
+          "2031-01-15"
+        ]
+      ],
+      "formula": "=COUPDAYS(A2,B2,2,1)",
+      "result": "181",
+      "why": "Counting real days, the period from 15 January to 15 July 2026 is 181 days long."
+    }
+  },
+  {
+    "name": "COUPDAYSNC",
+    "args": [
+      {
+        "name": "settlement",
+        "about": "the day you buy the bond"
+      },
+      {
+        "name": "maturity",
+        "about": "the day it pays back"
+      },
+      {
+        "name": "frequency",
+        "about": "interest payments a year: 1, 2 or 4"
+      },
+      {
+        "name": "basis",
+        "about": "how days are counted: 0 US 30/360 (the usual), 1 actual, 2 actual/360, 3 actual/365, 4 European 30/360",
+        "optional": true
+      }
+    ],
+    "about": "How many days are left until a bond's next interest payment.",
+    "example": {
+      "cells": [
+        [
+          "Bought",
+          "Pays back"
+        ],
+        [
+          "2026-03-01",
+          "2031-01-15"
+        ]
+      ],
+      "formula": "=COUPDAYSNC(A2,B2,2,1)",
+      "result": "136",
+      "why": "From 1 March to the next payment on 15 July 2026 is 136 days."
+    }
+  },
+  {
+    "name": "COUPNCD",
+    "args": [
+      {
+        "name": "settlement",
+        "about": "the day you buy the bond"
+      },
+      {
+        "name": "maturity",
+        "about": "the day it pays back"
+      },
+      {
+        "name": "frequency",
+        "about": "interest payments a year: 1, 2 or 4"
+      },
+      {
+        "name": "basis",
+        "about": "how days are counted: 0 US 30/360 (the usual), 1 actual, 2 actual/360, 3 actual/365, 4 European 30/360",
+        "optional": true
+      }
+    ],
+    "about": "The date of a bond's next interest payment.",
+    "example": {
+      "cells": [
+        [
+          "Bought",
+          "Pays back"
+        ],
+        [
+          "2026-03-01",
+          "2031-01-15"
+        ]
+      ],
+      "formula": "=COUPNCD(A2,B2,2)",
+      "result": "46218",
+      "why": "Interest is paid every six months on the day it pays back: the next payment is 15 July 2026, day number 46218."
+    }
+  },
+  {
+    "name": "COUPNUM",
+    "args": [
+      {
+        "name": "settlement",
+        "about": "the day you buy the bond"
+      },
+      {
+        "name": "maturity",
+        "about": "the day it pays back"
+      },
+      {
+        "name": "frequency",
+        "about": "interest payments a year: 1, 2 or 4"
+      },
+      {
+        "name": "basis",
+        "about": "how days are counted: 0 US 30/360 (the usual), 1 actual, 2 actual/360, 3 actual/365, 4 European 30/360",
+        "optional": true
+      }
+    ],
+    "about": "How many interest payments are left on a bond.",
+    "example": {
+      "cells": [
+        [
+          "Bought",
+          "Pays back"
+        ],
+        [
+          "2026-03-01",
+          "2031-01-15"
+        ]
+      ],
+      "formula": "=COUPNUM(A2,B2,2)",
+      "result": "10",
+      "why": "Twice a year from July 2026 to January 2031 makes 10 payments."
+    }
+  },
+  {
+    "name": "COUPPCD",
+    "args": [
+      {
+        "name": "settlement",
+        "about": "the day you buy the bond"
+      },
+      {
+        "name": "maturity",
+        "about": "the day it pays back"
+      },
+      {
+        "name": "frequency",
+        "about": "interest payments a year: 1, 2 or 4"
+      },
+      {
+        "name": "basis",
+        "about": "how days are counted: 0 US 30/360 (the usual), 1 actual, 2 actual/360, 3 actual/365, 4 European 30/360",
+        "optional": true
+      }
+    ],
+    "about": "The date of a bond's last interest payment before you buy it.",
+    "example": {
+      "cells": [
+        [
+          "Bought",
+          "Pays back"
+        ],
+        [
+          "2026-03-01",
+          "2031-01-15"
+        ]
+      ],
+      "formula": "=COUPPCD(A2,B2,2)",
+      "result": "46037",
+      "why": "The payment before 1 March 2026 was on 15 January 2026, day number 46037."
+    }
+  },
+  {
+    "name": "AMORDEGRC",
+    "args": [
+      {
+        "name": "cost",
+        "about": "what the thing cost"
+      },
+      {
+        "name": "date_purchased",
+        "about": "the day it was bought"
+      },
+      {
+        "name": "first_period",
+        "about": "the end of the first accounting year"
+      },
+      {
+        "name": "salvage",
+        "about": "what it's worth at the end of its life"
+      },
+      {
+        "name": "period",
+        "about": "which year to work out, from 0"
+      },
+      {
+        "name": "rate",
+        "about": "how much it loses a year, like 0.2 for 20%"
+      },
+      {
+        "name": "basis",
+        "about": "how days are counted: 0 US 30/360 (the usual), 1 actual, 3 actual/365, 4 European 30/360",
+        "optional": true
+      }
+    ],
+    "about": "How much value something loses in a year under the French accounts rules, losing more early on.",
+    "example": {
+      "cells": [
+        [
+          "Cost",
+          "Bought",
+          "Year ends",
+          "Worth at end"
+        ],
+        [
+          "10000",
+          "2026-01-01",
+          "2026-12-31",
+          "1000"
+        ]
+      ],
+      "formula": "=AMORDEGRC(A2,B2,C2,D2,1,0.15)",
+      "result": "2344",
+      "why": "A 15% rate means a life of about 6.7 years, so it's multiplied by 2.5 to 37.5%: the first year loses 3750, and the second 37.5% of the 6250 left, 2344 in whole units."
+    },
+    "notes": "As in other spreadsheet apps, it gives #NUM! when 1/rate (the life in years) is 3 or less or between 4 and 5, so a 20% or 25% rate doesn't work. AMORLINC loses the same amount every year."
+  },
+  {
+    "name": "AMORLINC",
+    "args": [
+      {
+        "name": "cost",
+        "about": "what the thing cost"
+      },
+      {
+        "name": "date_purchased",
+        "about": "the day it was bought"
+      },
+      {
+        "name": "first_period",
+        "about": "the end of the first accounting year"
+      },
+      {
+        "name": "salvage",
+        "about": "what it's worth at the end of its life"
+      },
+      {
+        "name": "period",
+        "about": "which year to work out, from 0"
+      },
+      {
+        "name": "rate",
+        "about": "how much it loses a year, like 0.2 for 20%"
+      },
+      {
+        "name": "basis",
+        "about": "how days are counted: 0 US 30/360 (the usual), 1 actual, 3 actual/365, 4 European 30/360",
+        "optional": true
+      }
+    ],
+    "about": "How much value something loses in a year under the French accounts rules, the same amount each year.",
+    "example": {
+      "cells": [
+        [
+          "Cost",
+          "Bought",
+          "Year ends",
+          "Worth at end"
+        ],
+        [
+          "10000",
+          "2026-01-01",
+          "2026-12-31",
+          "1000"
+        ]
+      ],
+      "formula": "=AMORLINC(A2,B2,C2,D2,1,0.2)",
+      "result": "2000",
+      "why": "20% of the 10000 it cost is 2000 a year."
+    }
+  },
+  {
+    "name": "VDB",
+    "args": [
+      {
+        "name": "cost",
+        "about": "what the thing cost"
+      },
+      {
+        "name": "salvage",
+        "about": "what it's worth at the end of its life"
+      },
+      {
+        "name": "life",
+        "about": "how many periods it lasts"
+      },
+      {
+        "name": "start_period",
+        "about": "where to start counting"
+      },
+      {
+        "name": "end_period",
+        "about": "where to stop counting"
+      },
+      {
+        "name": "factor",
+        "about": "how fast it loses value (2 if left out)",
+        "optional": true
+      },
+      {
+        "name": "no_switch",
+        "about": "TRUE to never switch to straight-line (FALSE if left out)",
+        "optional": true
+      }
+    ],
+    "about": "How much value something loses between any two points in its life, losing more early on.",
+    "example": {
+      "cells": [
+        [
+          "Cost",
+          "Worth at end",
+          "Years"
+        ],
+        [
+          "10000",
+          "1000",
+          "5"
+        ]
+      ],
+      "formula": "=VDB(A2,B2,C2,0,2)",
+      "result": "6400",
+      "why": "Double-declining balance loses 4000 in year 1 and 2400 in year 2: 6400 over the first two years."
+    }
+  }
+]

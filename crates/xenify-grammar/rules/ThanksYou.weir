@@ -1,0 +1,16 @@
+# Mangled thank-you phrases in emails and letters. From published lists of
+# embarrassing email mistakes; examples are ours.
+# why: Use either thank you or thanks. Thanks you mixes the two.
+expr main <(thanks you), thanks>
+
+let message "Use `thank you` or `thanks`, not both."
+let description "Fixes `thanks you` → `thank you`."
+let kind "Grammar"
+let becomes "thank"
+let strategy "MatchCase"
+
+test "Thanks you for your help." "Thank you for your help."
+
+
+allows "Thank you for your help."
+allows "Thanks, you were great."
