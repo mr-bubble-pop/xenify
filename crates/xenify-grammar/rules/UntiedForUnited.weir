@@ -1,0 +1,19 @@
+# Real-word typo: "untied" (knots undone) for "united" (together), in
+# everyday phrases. Pattern from published lists of mistakes spell-checkers
+# miss; examples are ours. (Names like United States: UntiedUnited.)
+# why: United means joined together (a united team). Untied means a knot or lace has been undone. A spell-checker can't tell them apart because both are real words.
+expr main [<(untied [team, teams, effort, community, voice, nation, workforce, family, group, approach, stance, response]), untied>, <([acted, act, acting, stand, stood, remain, remained] untied [in, against, behind, as, for]), untied>]
+
+let message "Did you mean `united` (together)?"
+let description "Fixes `an untied team` → `a united team`."
+let kind "Typo"
+let becomes "united"
+let strategy "MatchCase"
+
+test "Our untied team won the final." "Our united team won the final."
+test "The class acted untied in protest." "The class acted united in protest."
+test "We stood untied against the plan." "We stood united against the plan."
+
+allows "He untied his shoes."
+allows "The laces remained untied all day."
+allows "Our united team won the final."

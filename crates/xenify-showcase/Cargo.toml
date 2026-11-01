@@ -1,0 +1,16 @@
+[package]
+name = "xenify-showcase"
+description = "Builds the showcase presentation (all media made by the program itself)"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+xenify-doc.workspace = true
+xenify-anim.workspace = true
+xenify-ops.workspace = true
+xenify-render.workspace = true
+xenify-export.workspace = true
+xenify-audio.workspace = true
+xenify-platform.workspace = true
+kurbo.workspace = true

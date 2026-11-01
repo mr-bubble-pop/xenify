@@ -1,0 +1,8 @@
+[package]
+name = "xenify-collab"
+description = "Editing together: puts your unsent changes after everyone else's (operational transformation with the server only keeping order)"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]

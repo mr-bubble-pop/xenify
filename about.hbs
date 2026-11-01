@@ -1,0 +1,18 @@
+Third-party software used by Xenify
+===================================
+
+Xenify includes the following third-party components. Each is used under the
+license reproduced below.
+
+{{#each licenses}}
+--------------------------------------------------------------------------------
+{{{name}}}
+
+Used by:
+{{#each used_by}}
+  - {{crate.name}} {{crate.version}}{{#if crate.repository}} ({{{crate.repository}}}){{/if}}
+{{/each}}
+
+{{{text}}}
+
+{{/each}}

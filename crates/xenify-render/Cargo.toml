@@ -1,0 +1,32 @@
+[package]
+name = "xenify-render"
+description = "Renders evaluated Xenify Draw scenes with Vello (on-screen and offscreen)"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[features]
+default = ["gpu"]
+# Vello (wgpu compute): offscreen rendering and export.
+gpu = ["dep:vello", "dep:pollster"]
+# Vello Hybrid (WebGL2): the HTML apps.
+hybrid = ["dep:vello_hybrid", "dep:vello_common"]
+
+[dependencies]
+xenify-anim.workspace = true
+xenify-doc.workspace = true
+kurbo.workspace = true
+vello = { workspace = true, optional = true }
+peniko.workspace = true
+vello_hybrid = { workspace = true, optional = true, features = ["webgl"] }
+vello_common = { workspace = true, optional = true }
+thiserror.workspace = true
+parley.workspace = true
+skrifa.workspace = true
+png.workspace = true
+image.workspace = true
+
+[target.'cfg(not(target_arch = "wasm32"))'.dependencies]
+pollster = { workspace = true, optional = true }
+# System font discovery (fontconfig) on desktop; the browser build uses bundled fonts only.
+parley = { workspace = true, features = ["system"] }

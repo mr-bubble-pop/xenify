@@ -1,0 +1,10 @@
+{
+  "section": "Chat",
+  "shots": [
+    {"card": {"tag": "Chat", "title": "Chat, email and calendars.", "sub": "In one window."}, "seconds": 3},
+    {"still": "site/media/chat-chats.webp", "seconds": 4, "caption": "Chats, channels and video calls for your team"},
+    {"still": "site/media/chat-mail.webp", "seconds": 4.5, "caption": "Your email right next to your chats"},
+    {"still": "site/media/chat-invite.webp", "seconds": 4, "caption": "Invitations go straight into your calendar"},
+    {"still": "site/media/chat-calendar.webp", "seconds": 4, "caption": "Calendars, meetings and room bookings for everyone"}
+  ]
+}

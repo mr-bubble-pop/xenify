@@ -1,0 +1,21 @@
+[package]
+name = "xenify-chat-web"
+description = "Xenify Chat in the browser: the shared core (signing in, meetings, calendar, address books) as WebAssembly, under the desktop app's screens"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+xenify-chat-core = { path = "../xenify-chat-core" }
+xenify-chat-proto = { path = "../xenify-chat-proto" }
+serde_json.workspace = true
+chrono-tz = "0.10"
+
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+wasm-bindgen = "0.2.128"
+wasm-bindgen-futures = "0.4"
+js-sys = "0.3"
+getrandom = { version = "0.3", features = ["wasm_js"] }

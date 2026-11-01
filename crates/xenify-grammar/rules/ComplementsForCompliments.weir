@@ -1,0 +1,22 @@
+# "Compliments" (praises) where "complements" (goes well with) is meant:
+# "the rug really compliments the room". Common confused-word lists;
+# examples are ours.
+# why: Complements (with an e) means goes well with or completes: the rug complements the room. Compliments (with an i) means praises.
+expr thing [colour, color, colours, wine, sauce, scarf, tie, shade, flavour, flavor, rug, design, palette, texture, dress, outfit, frame, accent, finish, paint, wallpaper, cushion, lamp, decor, furniture, garnish, dressing, side, (side dish), font, typeface, background, border, trim, it, this, that, which]
+expr how [really, perfectly, nicely, beautifully, well, wonderfully, neatly]
+expr whom [the, your, its, this, that, any, every, each, a, an, my, our, their, his, her, it]
+expr main [<(@thing compliments @whom), compliments>, <(@thing @how compliments @whom), compliments>]
+
+let message "Did you mean `complements` (goes well with)? `Compliments` means praises."
+let description "Fixes `the rug compliments the room` → `complements`."
+let kind "Malapropism"
+let becomes "complements"
+let strategy "MatchCase"
+
+test "That colour really compliments the room." "That colour really complements the room."
+test "The wine compliments the cheese." "The wine complements the cheese."
+test "The sauce perfectly compliments the fish." "The sauce perfectly complements the fish."
+
+allows "The wine complements the cheese."
+allows "She always compliments the chef."
+allows "He really compliments the team when they win."
